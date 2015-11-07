@@ -1,0 +1,42 @@
+- model: course_management.schedule
+  pk: 1
+  fields:
+    _type: W
+- model: course_management.faculty
+  pk: 1
+  fields:
+    name: Fakultät Informatik
+- model: course_management.subject
+  pk: 1
+  fields:
+    description: ""
+    name: Python
+- model: course_management.course
+  pk: 1
+  fields:
+    subject: 1
+    active: true
+    schedule: 1
+    teacher: 1
+    participants: []
+- model: auth.user
+  pk: 1
+  fields:
+    last_name: Mustermann
+    user_permissions: []
+    date_joined: "2015-11-07T19:08:00.919Z"
+    email: test@domain.de
+    is_active: true
+    username: TestMaster
+    is_superuser: false
+    is_staff: false
+    last_login: null
+    groups: []
+    password: pbkdf2_sha256$20000$T5T8VHPGwiMj$RCTed4E2r2foWB0SO77QzvoI5ChIUBjwsSvIDW3Drno=
+    first_name: Max
+- model: course_management.student
+  pk: 1
+  fields:
+    user: 1
+    s_nummer: s1234567
+    faculty: 1

@@ -22,9 +22,11 @@
       <div class="sidebar shadow">
 			  {% block nav %}
 					<header class="green">Subjects</header>
-				  {% for subject in active_subjects %}
-				    <a href="/{{ subject.subject_name }}/">{{ subject.subject_name }}</a><br />
-				  {% endfor %}
+          <ul>
+            {% for course in active_courses %}
+              <li>{{ course.subject.name }}</li>
+            {% endfor %}
+          </ul>
 			  {% endblock nav %}
       </div>
 		</nav>
