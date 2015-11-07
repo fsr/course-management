@@ -1,18 +1,19 @@
 {% load staticfiles %}
 <html>
 <head>
-  <link type="text/css" href="{% static "css/bootstrap.min.js" %}">
-  <titel>{% if title %}{{ title }}{% else %}IFSR course enrollment{% endif %}</title>
+  <link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+  <title>{% if title %}{{ title }}{% else %}IFSR course enrollment{% endif %}</title>
 </head>
 <body>
   {% block header %}
-  {% endblock %}
+  {% endblock header %}
 
   {% block nav %}
-  {% endblock %}
+  {% endblock nav %}
 
   {% block content %}
-  {% endblock %}
-  <script type="text/javascript" src="{% static "js/botstrap.min.js" %}"></script>
+  {% endblock content %}
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
 </body>
 </html>
