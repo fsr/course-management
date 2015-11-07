@@ -23,8 +23,8 @@
 			  {% block nav %}
 					<header class="green">Subjects</header>
           <ul>
-            {% for course in active_courses %}
-              <li>{{ course.subject.name }}</li>
+            {% for subject in active_subjects %}
+              <li>{{ subject.name }}</li>
             {% endfor %}
           </ul>
 			  {% endblock nav %}
