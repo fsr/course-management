@@ -1,0 +1,28 @@
+a {
+    color: black;
+}
+#top_logo {
+    width: 100%;
+}
+header.green {
+    padding: 5px 15px;
+    background: linear-gradient(#79BE0E, #B1E11C);
+}
+header.green.nav {
+    padding: 0 15px;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+header.green.nav > a {
+    padding: 5px;
+    margin-left: 5px;
+}
+header.green.nav > a:hover {
+    color:white;
+    background: linear-gradient(#61a50e, #B1E11C);
+    text-decoration: none;
+}
+.shadow {
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+}

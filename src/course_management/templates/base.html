@@ -2,17 +2,43 @@
 <html>
 <head>
   <link type="text/css" rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-  <title>{% if title %}{{ title }}{% else %}IFSR course enrollment{% endif %}</title>
+  <link type="text/css" rel="stylesheet" href="{% static "css/layout.css" %}">
+  <title>{% if title %}{{ title }}{% else %}iFSR Course Management{% endif %}</title>
 </head>
-<body>
+<body class="container">
   {% block header %}
+    <header class="row">
+      <div class="col-md-10">
+        <h1>iFSR Course Management</h1>
+      </div>
+      <div class="col-md-2">
+        <img src="{% static "img/LogoStandard.svg" %}" id="top_logo">
+      </div>
+    </header>
   {% endblock header %}
 
-  {% block nav %}
-  {% endblock nav %}
-
-  {% block content %}
-  {% endblock content %}
+  <div class="row">
+    <nav class="col-md-2">
+      <div class="sidebar shadow">
+			  {% block nav %}
+					<header class="green">Subjects</header>
+			  {% endblock nav %}
+      </div>
+		</nav>
+    <section class="col-md-10">
+      <div class="content shadow">
+		    <header class="green nav">
+			    <a href="">Menu Item</a>
+			    <a href="">Menu Item</a>
+			    <a href="">
+				    <span class="glyphicon glyphicon-chevron-left" title="back"></span>
+		      </a>
+		    </header>
+	      {% block content %}
+			  {% endblock content %}
+      </div>
+	  </section>
+  </div>
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
 </body>
