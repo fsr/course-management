@@ -2,23 +2,23 @@ from django.db import models
 
 
 class Schedule(models.Model):
+    TYPES = [
+        ('W', "weekly"),
+        ('O', 'one time')
+    ]
 
-    class Meta:
-        abstract = True
-
-class Weekly(Schedule):
-    @property
-    def slots(self):
-        return WeeklySlots.objects.get(schedule=self)
-
-class OneTime(Schedule):
+    _type = models.CharField(max_length=1, choices=TYPES)
 
     @property
     def slots(self):
-        return DateSlots.objects.get(schedule=self)
+        if self._type == 'W':
+            return WeeklySlots.objects.get(schedule=self)
+        else:
+            return DateSlots.objects.get(schedule=self)
+
 
 class WeeklySlot(models.Model):
-    schedule = models.ForeighnKey(Weekly)
+    schedule = models.ForeignKey(Schedule)
 
 class DateSlot(models.Model):
-    schedule = models.ForeighnKey(OneTime)
+    schedule = models.ForeignKey(Schedule)

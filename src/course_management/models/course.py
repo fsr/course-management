@@ -5,5 +5,5 @@ from . import schedule, student
 
 class Course(models.Model):
     schedule = models.OneToOneField(schedule.Schedule)
-    teacher = models.ForeighnKey(student.Student)
+    teacher = models.ForeignKey(student.Student, related_name="teacher")
     participants = models.ManyToManyField(student.Student)
