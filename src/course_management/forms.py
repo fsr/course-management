@@ -1,4 +1,5 @@
 from django import forms
+from course_management.models import faculty
 
 
 class LoginForm(forms.Form):
@@ -13,3 +14,4 @@ class RegistrationForm(forms.Form):
     password_repeat = forms.CharField(min_length=8, widget=forms.PasswordInput)
     s_number = forms.CharField(min_length=6)
     email = forms.EmailField()
+    faculty = forms.ChoiceField(choices=lambda : map(lambda fak: (fak.id, fak.name), faculty.Faculty.objects.all()))
