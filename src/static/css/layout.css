@@ -126,16 +126,16 @@ table.courses tr:nth-child(even) {
 table.courses tbody tr:hover {
     border-color: #888888;
 }
-li.subject {
+ul.subjectlist li {
     padding: .1em 0;
     background: #fafafa;
 }
-li.subject a{
+ul.subjectlist li a{
     display: block;
     width: 100%;
     padding-left: 1em
 }
-li.subject:nth-child(even){
+ul.subjectlist li:nth-child(even){
     border-top: solid 1px #dddddd;
     border-bottom: solid 1px #dddddd;
     background: #eeeeee;
