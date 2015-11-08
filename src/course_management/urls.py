@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from .views import index, register, subject, course, login
+from .views import index, register, subject, course, login, enroll
 
 
 urlpatterns = [
@@ -26,4 +26,8 @@ urlpatterns = [
     url(r'^login/', login.login, name='login'),
     url(r'^subject/(?P<subjectname>\w+)', subject.render_course_overview, name='subject'),
     url(r'^course/(?P<courseid>[0-9]+)', course.render_course, name='course'),
+    url(r'^enrollment/add/(?P<subject>)$', enroll.add, name='enrollment-add'),
+    url(r'^enrollment/remove/(?P<subject>)$', enroll.remove, name='enrollment-remove'),
+    url(r'^enrollment/add/(?P<subject>)/done$', enroll.add_success, name='enrollment-add-success'),
+    url(r'^enrollment/remove/(?P<subject>)/done$', enroll.remove_success, name='enrollment-remove-success'),
 ]

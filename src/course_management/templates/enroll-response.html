@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  <p>
+    Deine {% if action == 'subscribe' %}Registrierung{% elif action == 'unsubscribe' %}Abmeldung{% endif %} vom Kurs {{ subject }} war erfolgreich.
+  </p>
+  <p>
+    <a href="{% url 'course' course_id %}">Zur Kurs Beschreibung</a>
+  </p>
+</div>
+{% endblock content %}
