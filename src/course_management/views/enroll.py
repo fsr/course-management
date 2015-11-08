@@ -8,9 +8,16 @@ from course_management.models.course import Course
 @login_required()
 def add(request, course_id):
     stud = request.user.student
-    ps = Course.obects.get(id=course_id).participants_set
-    ps.add(stud)
-    ps.save()
+    course = Course.obects.get(id=course_id)
+    ps = course.participants_set
+    if stud in participants_set:
+        request.session['enroll-error'] = 'You are already enrolled in this course.'
+    elif len(ps) >= course.max_participants:
+        request.session['enroll-error'] = 'Sorry, this course is full.'
+    else:
+        del request.session['enroll-error']
+        ps.add(stud)
+        ps.save()
     return redirect('enrollment-add-done')
 
 
@@ -26,14 +33,18 @@ def remove(request, course_id):
 
 @login_required()
 def add_response(request, course_id):
+    context = {
+        'action': 'subscribe',
+        'subject': Course.objects.get(id=course_id).subject.name,
+        'course_id': course_id
+    }
+    if 'enroll-error' in user.session:
+        context['error'] = user.session['enroll-error']
+        del user.session['enroll-error']
     return render(
         request,
-        'enroll-response.html',
-        {
-            'action': 'subscribe',
-            'subject': Course.objects.get(id=course_id).subject.name,
-            'course_id': course_id
-        }
+        'enroll/response.html',
+        context
     )
 
 
@@ -41,7 +52,7 @@ def add_response(request, course_id):
 def remove_response(request, course_id):
     return render(
         request,
-        'enroll-response.html',
+        'enroll/response.html',
         {
             'action': 'unsubscribe',
             'subject': Course.objects.get(id=course_id).subject.name,

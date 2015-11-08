@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Count
+from django.db.models import Count, F, Q
 
 
 class Subject(models.Model):
@@ -11,4 +11,4 @@ class Subject(models.Model):
 
     @classmethod
     def get_active(cls):
-        return cls.objects.annotate(course_count=Count('course')).filter(course_count__gt=0)
+        return cls.objects.annotate(course_count=Count(Q(course__active=True))).filter(course_count__gt=0)

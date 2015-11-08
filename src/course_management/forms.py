@@ -24,3 +24,9 @@ class ModifyUserForm(forms.Form):
     last_name = forms.CharField(required=False)
     email = forms.EmailField(required=False)
     faculty = forms.ChoiceField(choices=get_faculties, required=False)
+
+
+class EditCourseForm(forms.Form):
+    active = forms.BooleanField(initial=False)
+    description = forms.CharField(widget=forms.Textarea, required=False)
+    max_participants = forms.DecimalField(min_value=1, required=False)

@@ -32,6 +32,7 @@
     schedule: 1
     teacher: [1]
     participants: []
+    max_participants: 30
 - model: course_management.course
   pk: 2
   fields:
@@ -40,6 +41,7 @@
     schedule: 2
     teacher: [1]
     participants: []
+    max_participants: 30
 - model: course_management.course
   pk: 3
   fields:
@@ -48,6 +50,7 @@
     schedule: 3
     teacher: [2]
     participants: []
+    max_participants: 30
 - model: auth.user
   pk: 1
   fields:
