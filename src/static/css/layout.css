@@ -82,12 +82,17 @@ table.courses th{
     background-color: #eeeeee;
 }
 table.courses tr {
-    border-top: solid 1px #dddddd;
-    height: 2em;
-}
-table.courses tr:last-child {
     border-bottom: solid 1px #dddddd;
+    height: 2em;
+    transition-property: border-color;
+    transition-duration: .2s;
+}
+table.courses tr:first-child {
+    border-top: solid 1px #dddddd;
 }
 table.courses tr:nth-child(even) {
     background-color: #eeeeee;
+}
+table.courses tbody tr:hover {
+    border-color: #888888;
 }
