@@ -45,7 +45,7 @@ header {
 .heading.green.nav > a {
     padding: 5px;
     margin-left: 5px;
-    transition-property: background color;
+    transition-property: background, color;
     transition-duration: .2s;
 }
 .heading.green.nav > a:hover {

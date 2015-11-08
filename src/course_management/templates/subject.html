@@ -16,7 +16,8 @@
 		<tbody>
 			{% for course in subject.course_set.all %}
 				<tr class="row">
-					<td class="col-md-3">{{ course.teacher }}</td>
+					<td class="col-md-3">
+						<a href="{% url 'course' course.id %}">{{ course.teacher }}</a></td>
 					<td class="col-md-3"></td>
 					<td class="col-md-3"></td>
 					<td class="col-md-3"></td>

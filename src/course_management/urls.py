@@ -16,13 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from .views import index, register, subject
+from .views import index, register, subject, course, login
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', index.index),
-    url(r'^register/', register.register),
-    url(r'^subject/(?P<subjectname>\w+)', subject.render_course_overview)
-
+    url(r'^$', index.index, name='index'),
+    url(r'^register/', register.register, name='register'),
+    url(r'^login/', login.login, name='login'),
+    url(r'^subject/(?P<subjectname>\w+)', subject.render_course_overview, name='subject'),
+    url(r'^course/(?P<courseid>[0-9]+)', course.render_course, name='course'),
 ]

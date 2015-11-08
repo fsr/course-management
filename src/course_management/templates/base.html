@@ -9,7 +9,7 @@
 <body class="container">
   {% block header %}
     <header class="row">
-      <a href="/" class="col-md-10 headline">
+      <a href="{% url 'index' %}" class="col-md-10 headline">
         <span>iFSR Course Management</span>
       </a>
       <a href="https://ifsr.de" class="col-md-2" id="top_logo">
@@ -25,7 +25,7 @@
 					<div class="heading green">Subjects</div>
           <ul>
             {% for subject in active_subjects %}
-              <li><a href="/subject/{{ subject.name }}/">{{ subject.name }}</a></li>
+              <li><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></li>
             {% endfor %}
           </ul>
 			  {% endblock nav %}
@@ -34,11 +34,13 @@
     <section class="col-md-10">
       <div class="content shadow">
 		    <div class="heading green nav">
-			    <a href="/register/">Sign up</a>
-			    <a href="/login/">Sign in</a>
-			    <a href="">
-				    <span class="glyphicon glyphicon-chevron-left" title="back"></span>
-		      </a>
+			    <a href="{% url 'register' %}">Sign up</a>
+			    <a href="{% url 'login' %}">Sign in</a>
+			    {% if backurl %}
+				    <a href="{{ backurl }}">
+					    <span class="glyphicon glyphicon-chevron-left" title="back"></span>
+			      </a>
+			    {% endif %}
 		    </div>
 	      <div class="main">
 		      {% block content %}
