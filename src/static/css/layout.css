@@ -103,27 +103,33 @@ ul {
     border-radius: 0 1em;
     border: solid .25em #3c763d;
 }
-table.courses {
+div.courses {
     margin: 2em 0;
     width: 100%;
     border-radius: 1em 1em 0 0;
 }
-table.courses th{
+div.courses > div {
+    padding: .25em .5em;
+    font-size: 1em;
+}
+div.courses div.head {
+    font-weight: bolder;
+    font-size: 1.5em;
     background-color: #eeeeee;
 }
-table.courses tr {
+div.courses div.tbody {
     border-bottom: solid 1px #dddddd;
     height: 2em;
     transition-property: border-color;
     transition-duration: .2s;
 }
-table.courses tr:first-child {
+div.courses div.tbody:first-child {
     border-top: solid 1px #dddddd;
 }
-table.courses tr:nth-child(even) {
+div.courses div.tbody:nth-child(odd) {
     background-color: #eeeeee;
 }
-table.courses tbody tr:hover {
+div.courses div.tbody:hover {
     border-color: #888888;
 }
 ul.subjectlist li {

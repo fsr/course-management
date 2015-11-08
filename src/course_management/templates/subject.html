@@ -1,32 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
-	<div class="description">
-		<div class="headline">{{ subject.name }}</div>
-		{{ subject.description }}
+<div class="description">
+	<div class="headline">{{ subject.name }}</div>
+	{{ subject.description }}
+</div>
+<div class="courses">
+	<div class="head">
+		<div class="row">
+			<div class="col-md-3">Teacher</div>
+			<div class="col-md-3">Dummy</div>
+			<div class="col-md-3">Dummy</div>
+			<div class="col-md-3">Dummy</div>
+		</div>
 	</div>
-	<table class="courses">
-		<thead>
-			<tr class="row">
-				<th class="col-md-3">Teacher</th>
-				<th class="col-md-3">Dummy</th>
-				<th class="col-md-3">Dummy</th>
-				<th class="col-md-3">Dummy</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for course in subject.course_set.all %}
-				<tr class="row">
-					<td class="col-md-3">
-						{% for teacher in course.teacher.all %}
-							{{ teacher }}<br />
-						{% endfor %}
-					</td>
-					<td class="col-md-3"></td>
-					<td class="col-md-3"></td>
-					<td class="col-md-3"></td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+	{% for course in subject.course_set.all %}
+	<div class="tbody">
+		<div class="row">
+			<div class="col-md-3">
+				<a href="{% url 'course' course.id %}">
+					{% for teacher in course.teacher.all %}
+					  {{ teacher }}<br />
+					{% endfor %}
+				</a>
+			</div>
+			<div class="col-md-3"></div>
+			<div class="col-md-3"></div>
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
 
 {% endblock %}
