@@ -9,7 +9,7 @@
 <body class="container">
   {% block header %}
     <header class="row">
-      <a href="{% url 'index' %}" class="col-md-10 headline">
+      <a href="{% url 'index' %}" class="col-md-7 headline">
         <span>iFSR Course Management</span>
       </a>
       <a href="https://ifsr.de" class="col-md-2" id="top_logo">
@@ -34,8 +34,20 @@
     <section class="col-md-10">
       <div class="content shadow">
 		    <div class="heading green nav">
-			    <a href="{% url 'register' %}">Sign up</a>
-			    <a href="{% url 'login' %}">Sign in</a>
+		      {% if user.is_authenticated %}
+						<div class="userpanel">
+							<strong>{{ user.student }}</strong>
+							<div>
+								<ul>
+									<li><a href="">Change pass</a></li>
+									<li><a href="">Logout</a></li>
+								</ul>
+							</div>
+						</div>
+					{% else %}
+				    <a href="{% url 'register' %}">Sign up</a>
+				    <a href="{% url 'login' %}">Sign in</a>
+					{% endif %}
 			    {% if backurl %}
 				    <a href="{{ backurl }}">
 					    <span class="glyphicon glyphicon-chevron-left" title="back"></span>
