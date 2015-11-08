@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^enrollment/remove/(?P<subject>)$', enroll.remove, name='enrollment-remove'),
     url(r'^enrollment/add/(?P<subject>)/done$', enroll.add_response, name='enrollment-add-done'),
     url(r'^enrollment/remove/(?P<subject>)/done$', enroll.remove_response, name='enrollment-remove-done'),
-    url(r'^user/edit$', user.modify, name='modify-user'),
+    url(r'^accounts/edit$', user.modify, name='modify-user'),
+    url(r'^accounts/profile', user.profile, name='user-profile'),
     url('^', include('django.contrib.auth.urls')),
 ]

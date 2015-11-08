@@ -33,4 +33,9 @@ def modify(request):
         return redirect('modify-user')
     else:
         form = ModifyUserForm()
-        return render_with_default(request, 'modify-user.html', {'form': form})
+        return render_with_default(request, 'user/modify.html', {'form': form})
+
+
+@login_required()
+def profile(request):
+    return render_with_default(request, 'user/profile.html', {})
