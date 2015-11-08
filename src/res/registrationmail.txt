@@ -1,0 +1,9 @@
+Dear {user},
+
+you have successfully signed up for your iFSR Course Enrollment system account.
+Note that you need to verify your account before you will be able to log in.
+
+Please click the following link to activate your account:
+{url}
+
+If you have trouble confirming your account, don't hesitate to mail to manuel@ifsr.de!

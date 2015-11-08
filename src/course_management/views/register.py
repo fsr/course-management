@@ -1,8 +1,10 @@
+from django.http import HttpRequest
 from course_management.views.base import render_with_default
 from course_management.forms import RegistrationForm
 from course_management.models.student import Student
 from course_management.models.activation import Activation
-from django.shortcuts import redirect
+from django.core.mail import send_mail
+from course_management import mailsettings
 import random
 import string
 
@@ -22,12 +24,12 @@ def register(request):
             if createduser is None:
                 return render_with_default(
                     request,
-                    'register.html',
+                    'registration/register.html',
                     {'title': 'Registration | iFSR Course Management',
                      'error': 'The s-Number you entered is already in use!',
                      'form': form})
             else:
-                activationMail(createduser.user)
+                activationMail(createduser.user, request)
                 return render_with_default(
                     request,
                     'registration/registrationsuccess.html',
@@ -36,22 +38,39 @@ def register(request):
         else:
             return render_with_default(
                 request,
-                'register.html',
+                'registration/register.html',
                 {'title': 'Registration | iFSR Course Management',
                  'error': 'Please check your input.',
                  'form': form})
     else:
         form = RegistrationForm()
-        return render_with_default(request, 'register.html', {'title': 'Registration | iFSR Course Management',
-                                                              'form': form})
+        return render_with_default(
+            request,
+            'registration/register.html',
+            {'title': 'Registration | iFSR Course Management',
+             'form': form})
 
 
 def generateToken(size=50, chars=string.ascii_uppercase + string.digits + string.ascii_lowercase):
     return ''.join(random.choice(chars) for _ in range(size))
 
 
-def activationMail(user):
+def activationMail(user, request):
     user_token = generateToken()
     newActivation = Activation(user=user, token=user_token)
     newActivation.save()
+    message = ''
+    activateurl = request.build_absolute_uri() + '?token=' + user_token
+    print(activateurl)
+    with open('res/registrationmail.txt') as f:
+        message = f.read()
+        message = message.format(user=user.first_name,
+                       url=activateurl)
+    print(message)
+    send_mail('Your registration at the iFSR course enrollment system',
+              message,
+              mailsettings.sender,
+              [user.email],
+              mailsettings.auth_user,
+              mailsettings.auth_pass)
     print(user_token)
