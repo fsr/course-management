@@ -32,11 +32,13 @@ header {
     justify-content: center;
 }
 .userpanel {
-    padding: .5em 0;
+    padding: .5em;
     position: relative;
 }
 .userpanel > strong {
     margin: 0 .5em;
+    transition-property: background, color;
+    transition-duration: .2s;
 }
 .userpanel > div{
     max-height: 0;
@@ -44,12 +46,17 @@ header {
     position: absolute;
     background-color: #fafafa;
     margin-top: .5em;
+    left: 0;
     transition-property: max-height;
     transition-duration: .2s;
     min-width: 100%;
     border: solid 1px #dddddd;
     border-top: none;
     border-bottom: none;
+}
+.userpanel:hover {
+    color:#fafafa;
+    background: #79BE0E;
 }
 .userpanel:hover > div{
     max-height: 10em;
@@ -60,19 +67,22 @@ header {
     border-radius: .7em .7em 0 0;
 }
 .heading.green.nav {
-    padding: 0 1.5em;
+    padding: 0;
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
 }
+.heading.green.nav > *:first-child {
+    padding-right: 1em;
+    border-top-right-radius: .7em;
+}
 .heading.green.nav > a {
-    padding: .5em;
-    margin-left: .5em;
+    padding: .5em 1em;
     transition-property: background, color;
     transition-duration: .2s;
 }
 .heading.green.nav > a:hover {
-    color:white;
+    color:#fafafa;
     background: #79BE0E;
     text-decoration: none;
 }
@@ -121,7 +131,7 @@ div.courses .row {
     transition-property: border-color;
     transition-duration: .2s;
 }
-div.courses .tbody:first-child {
+div.courses .thead .row:first-child {
     border-top: solid 1px #dddddd;
 }
 div.courses a:nth-child(even) .row {
@@ -131,15 +141,23 @@ div.courses div.tbody .row:hover {
     border-color: #888888;
 }
 ul.subjectlist li {
+    pointer-events: none;
     padding: .1em 0;
     background: #fafafa;
     border-bottom: solid 1px #dddddd;
 }
+ul.subjectlist li:first-child {
+    border-top: solid 1px #dddddd;
+}
 ul.subjectlist li a{
+    pointer-events: auto;
     display: block;
     width: 100%;
     padding-left: 1em
 }
-ul.subjectlist li:nth-child(even){
+ul.subjectlist li a:hover {
+    text-decoration: none;
+}
+ul.subjectlist li:hover{
     background: #eeeeee;
 }

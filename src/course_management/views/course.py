@@ -16,8 +16,9 @@ def render_course(request, course_id):
         {
             'title': active_course.subject.name,
             'course_id': course_id,
+            'course': active_course,
             'is_subbed': active_course.participants.filter(id=request.user.student.id).exists(),
-            'backurl': reverse('subject', args=[course_id]),
+            'backurl': reverse('subject', args=[active_course.subject.name]),
         }
     )
 

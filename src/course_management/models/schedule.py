@@ -19,7 +19,7 @@ class Schedule(models.Model):
     def __str__(self):
         #return "{type} - {slots}".format(type=self.get__type_display(), slots="; ".join(map(str,self.slots)))
         course = self.course
-        return "{} - {}".format(course.id, course.subject.name)
+        return "{} - {} - {}".format(self._type, course.id, course.subject.name)
 
 
 class WeeklySlot(models.Model):
