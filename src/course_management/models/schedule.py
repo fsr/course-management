@@ -17,22 +17,9 @@ class Schedule(models.Model):
             return DateSlot.objects.filter(schedule=self)
 
     def __str__(self):
-        slots = ""
-        first = True
-        if self._type == 'W':
-            for slot in self.slots:
-                if first:
-                    slots += "{weekday} {timeslot}".format(weekday=slot.weekday, timeslot=slot.timeslot)
-                    first = False
-                else:
-                    slots += ", {weekday} {timeslot}".format(weekday=slot.weekday, timeslot=slot.timeslot)
-        else:
-            for slot in self.slots:
-                if first:
-                    slots += "{date}".format(date=slot.date)
-                else:
-                    slots += ", {date}".format(date=slot.date)
-        return "{type} - {slots}".format(type=self._type, slots=slots)
+        #return "{type} - {slots}".format(type=self.get__type_display(), slots="; ".join(map(str,self.slots)))
+        course = self.course
+        return "{} - {}".format(course.id, course.subject.name)
 
 
 class WeeklySlot(models.Model):
@@ -60,7 +47,7 @@ class WeeklySlot(models.Model):
     schedule = models.ForeignKey(Schedule)
 
     def __str__(self):
-        return "{weekday} {timeslot}".format(weekday=self.weekday, timeslot=self.timeslot)
+        return "{weekday}, {timeslot}".format(weekday=self.get_weekday_display(), timeslot=self.get_timeslot_display())
 
 
 

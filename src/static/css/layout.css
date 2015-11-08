@@ -106,30 +106,28 @@ ul {
 div.courses {
     margin: 2em 0;
     width: 100%;
-    border-radius: 1em 1em 0 0;
 }
-div.courses > div {
-    padding: .25em .5em;
+div.courses .thead {
+    font-weight: bolder;
     font-size: 1em;
 }
-div.courses div.head {
-    font-weight: bolder;
-    font-size: 1.5em;
+div.courses .thead .row {
     background-color: #eeeeee;
 }
-div.courses div.tbody {
+div.courses .row {
+    margin: 0;
+    padding: .5em 0;
     border-bottom: solid 1px #dddddd;
-    height: 2em;
     transition-property: border-color;
     transition-duration: .2s;
 }
-div.courses div.tbody:first-child {
+div.courses .tbody:first-child {
     border-top: solid 1px #dddddd;
 }
-div.courses div.tbody:nth-child(odd) {
+div.courses a:nth-child(even) .row {
     background-color: #eeeeee;
 }
-div.courses div.tbody:hover {
+div.courses div.tbody .row:hover {
     border-color: #888888;
 }
 ul.subjectlist li {

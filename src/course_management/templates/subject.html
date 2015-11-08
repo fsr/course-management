@@ -5,30 +5,34 @@
 	{{ subject.description }}
 </div>
 <div class="courses">
-	<div class="head">
+	<div class="thead">
 		<div class="row">
-			<div class="col-md-3">Teacher</div>
-			<div class="col-md-3">Dummy</div>
-			<div class="col-md-3">Dummy</div>
-			<div class="col-md-3">Dummy</div>
+			<div class="col-md-5">Teacher</div>
+			<div class="col-md-5">Timeslots</div>
+			<div class="col-md-2">Participants</div>
 		</div>
 	</div>
-	{% for course in subject.course_set.all %}
 	<div class="tbody">
-		<div class="row">
-			<div class="col-md-3">
-				<a href="{% url 'course' course.id %}">
-					{% for teacher in course.teacher.all %}
-					  {{ teacher }}<br />
-					{% endfor %}
-				</a>
-			</div>
-			<div class="col-md-3"></div>
-			<div class="col-md-3"></div>
-			<div class="col-md-3"></div>
-		</div>
+		{% for course in subject.course_set.all %}
+			<a href="{% url 'course' course.id %}">
+				<div class="row">
+					<div class="col-md-5">
+						{% for teacher in course.teacher.all %}
+						  {{ teacher }}<br />
+						{% endfor %}
+					</div>
+					<div class="col-md-5">
+						{% for slot in course.schedule.slots %}
+							{{ slot }}<br />
+						{% endfor %}
+					</div>
+					<div class="col-md-2">
+
+					</div>
+				</div>
+			</a>
+		{% endfor %}
 	</div>
-	{% endfor %}
 </div>
 
 {% endblock %}
