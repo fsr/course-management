@@ -23,12 +23,13 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', index.index, name='index'),
     url(r'^register$', register.register, name='register'),
-    url(r'^login$', login.login, name='login'),
+    #url(r'^login$', login.login, name='login'),
     url(r'^subject/(?P<subjectname>\w+)$', subject.render_course_overview, name='subject'),
     url(r'^course/(?P<courseid>[0-9]+)$', course.render_course, name='course'),
     url(r'^enrollment/add/(?P<subject>)$', enroll.add, name='enrollment-add'),
     url(r'^enrollment/remove/(?P<subject>)$', enroll.remove, name='enrollment-remove'),
     url(r'^enrollment/add/(?P<subject>)/done$', enroll.add_response, name='enrollment-add-done'),
     url(r'^enrollment/remove/(?P<subject>)/done$', enroll.remove_response, name='enrollment-remove-done'),
-    url(r'^user/edit$', user.modify, name='modify-user')
+    url(r'^user/edit$', user.modify, name='modify-user'),
+    url('^', include('django.contrib.auth.urls')),
 ]
