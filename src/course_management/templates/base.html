@@ -22,7 +22,7 @@
     <nav class="col-md-2">
       <div class="sidebar shadow">
 			  {% block nav %}
-					<header class="green">Subjects</header>
+					<div class="heading green">Subjects</div>
           <ul>
             {% for subject in active_subjects %}
               <li><a href="/subject/{{ subject.name }}/">{{ subject.name }}</a></li>
@@ -33,13 +33,13 @@
 		</nav>
     <section class="col-md-10">
       <div class="content shadow">
-		    <header class="green nav">
+		    <div class="heading green nav">
 			    <a href="/register/">Sign up</a>
 			    <a href="/login/">Sign in</a>
 			    <a href="">
 				    <span class="glyphicon glyphicon-chevron-left" title="back"></span>
 		      </a>
-		    </header>
+		    </div>
 	      <div class="main">
 		      {% block content %}
 				  {% endblock content %}

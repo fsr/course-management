@@ -25,30 +25,30 @@ a.headline {
     align-self: center;
     flex-grow: 1;
 }
-body > header {
+header {
     display: flex;
     padding: 0 15px;
     flex-wrap: wrap;
     justify-content: center;
 }
-header.green {
+.heading.green {
     padding: 5px 15px;
     background: #B1E11C;
     border-radius: 1em 1em 0 0;
 }
-header.green.nav {
+.heading.green.nav {
     padding: 0 15px;
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
 }
-header.green.nav > a {
+.heading.green.nav > a {
     padding: 5px;
     margin-left: 5px;
     transition-property: background color;
     transition-duration: .2s;
 }
-header.green.nav > a:hover {
+.heading.green.nav > a:hover {
     color:white;
     background: #79BE0E;
     text-decoration: none;
