@@ -52,7 +52,7 @@ header {
     border-bottom: none;
 }
 .userpanel:hover > div{
-    max-height: 5em;
+    max-height: 10em;
 }
 .heading.green {
     padding: .5em 1.5em;
@@ -129,6 +129,7 @@ table.courses tbody tr:hover {
 ul.subjectlist li {
     padding: .1em 0;
     background: #fafafa;
+    border-bottom: solid 1px #dddddd;
 }
 ul.subjectlist li a{
     display: block;
@@ -136,7 +137,5 @@ ul.subjectlist li a{
     padding-left: 1em
 }
 ul.subjectlist li:nth-child(even){
-    border-top: solid 1px #dddddd;
-    border-bottom: solid 1px #dddddd;
     background: #eeeeee;
 }

@@ -21,6 +21,27 @@ class Schedule(models.Model):
 
 
 class WeeklySlot(models.Model):
+    WEEKDAYS = [
+        ("MON", "Mondays"),
+        ("TUE", "Tuesdays"),
+        ("WED", "Wednesdays"),
+        ("THU", "Thursdays"),
+        ("FRI", "Fridays"),
+        ("SAT", "Saturdays"),
+        ("SUN", "Sundays"),
+    ]
+    TIMESLOTS = [
+        ("I", "1st"),
+        ("II", "2nd"),
+        ("III", "3rd"),
+        ("IV", "4th"),
+        ("V", "5th"),
+        ("VI", "6th"),
+        ("VII", "7th"),
+    ]
+    weekday = models.CharField(max_length=3, choices=WEEKDAYS)
+    timeslot = models.CharField(max_length=3, choices=TIMESLOTS)
+    place = models.CharField(max_length=100)
     schedule = models.ForeignKey(Schedule)
 
 
