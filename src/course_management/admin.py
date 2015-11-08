@@ -5,6 +5,8 @@ from .models import course, faculty, schedule, student, subject, activation
 admin.site.register(course.Course)
 admin.site.register(faculty.Faculty)
 admin.site.register(schedule.Schedule)
+admin.site.register(schedule.WeeklySlot)
+admin.site.register(schedule.DateSlot)
 admin.site.register(student.Student)
 admin.site.register(subject.Subject)
 admin.site.register(activation.Activation)
