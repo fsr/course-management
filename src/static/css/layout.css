@@ -1,7 +1,12 @@
 body {
     zoom: 1;
+    font-family: 'Exo 2', sans-serif;
+    color: #424242;
 }
 a {
+    color: #424242;
+}
+a:hover {
     color: #424242;
 }
 #top_logo {
@@ -11,9 +16,12 @@ a {
     width: 100%;
     margin-left: 20%;
 }
-#headline {
-    padding-left: 0;
+.headline {
+    font-size: 2em;
+}
+a.headline {
     font-size: 2.5em;
+    padding-left: 0;
     align-self: center;
     flex-grow: 1;
 }
@@ -26,6 +34,7 @@ body > header {
 header.green {
     padding: 5px 15px;
     background: #B1E11C;
+    border-radius: 1em 1em 0 0;
 }
 header.green.nav {
     padding: 0 15px;
@@ -36,6 +45,8 @@ header.green.nav {
 header.green.nav > a {
     padding: 5px;
     margin-left: 5px;
+    transition-property: background color;
+    transition-duration: .2s;
 }
 header.green.nav > a:hover {
     color:white;
@@ -44,4 +55,39 @@ header.green.nav > a:hover {
 }
 .shadow {
     background: #fafafa;
+    border-radius: 1em 1em 0 0;
+    padding-bottom: .25em;
+}
+.sidebar ul {
+    padding: 0;
+    list-style: none;
+    margin: .5em 1em;
+}
+.main {
+    margin: 1em 0;
+}
+.description {
+    margin: 0 1em;
+    padding: .25em 1em .5em 1em;
+    background: #60CA60;
+    border-radius: 0 1em;
+    border: solid .25em #3c763d;
+}
+table.courses {
+    margin: 2em 0;
+    width: 100%;
+    border-radius: 1em 1em 0 0;
+}
+table.courses th{
+    background-color: #eeeeee;
+}
+table.courses tr {
+    border-top: solid 1px #dddddd;
+    height: 2em;
+}
+table.courses tr:last-child {
+    border-bottom: solid 1px #dddddd;
+}
+table.courses tr:nth-child(even) {
+    background-color: #eeeeee;
 }

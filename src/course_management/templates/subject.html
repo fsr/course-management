@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-	<table>
+	<div class="description">
+		<div class="headline">{{ subject.name }}</div>
+		{{ subject.description }}
+	</div>
+	<table class="courses">
 		<thead>
 			<tr class="row">
-				<th class="col-md-2">Teacher</th>
+				<th class="col-md-3">Teacher</th>
+				<th class="col-md-3">Dummy</th>
+				<th class="col-md-3">Dummy</th>
+				<th class="col-md-3">Dummy</th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for course in courses %}
+			{% for course in subject.course_set.all %}
 				<tr class="row">
 					<td class="col-md-3">{{ course.teacher }}</td>
+					<td class="col-md-3"></td>
+					<td class="col-md-3"></td>
+					<td class="col-md-3"></td>
 				</tr>
 			{% endfor %}
 		</tbody>

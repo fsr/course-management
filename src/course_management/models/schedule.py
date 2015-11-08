@@ -16,7 +16,6 @@ class Schedule(models.Model):
         else:
             return DateSlot.objects.get(schedule=self)
 
-
     def __str__(self):
         return self._type
 
