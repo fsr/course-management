@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+	<table>
+		<thead>
+			<tr class="row">
+				<th class="col-md-2">Teacher</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for course in courses %}
+				<tr class="row">
+					<td class="col-md-3">{{ course.teacher }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

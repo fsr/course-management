@@ -8,7 +8,7 @@
 <body class="container">
   {% block header %}
     <header class="row">
-      <a href="" class="col-md-10" id="headline">
+      <a href="/" class="col-md-10" id="headline">
         <span>iFSR Course Management</span>
       </a>
       <a href="https://ifsr.de" class="col-md-2" id="top_logo">
@@ -24,7 +24,7 @@
 					<header class="green">Subjects</header>
           <ul>
             {% for subject in active_subjects %}
-              <li>{{ subject.name }}</li>
+              <li><a href="/subject/{{ subject.name }}/">{{ subject.name }}</a></li>
             {% endfor %}
           </ul>
 			  {% endblock nav %}
@@ -33,8 +33,8 @@
     <section class="col-md-10">
       <div class="content shadow">
 		    <header class="green nav">
-			    <a href="">Menu Item</a>
-			    <a href="">Menu Item</a>
+			    <a href="/register/">Sign up</a>
+			    <a href="/login/">Sign in</a>
 			    <a href="">
 				    <span class="glyphicon glyphicon-chevron-left" title="back"></span>
 		      </a>

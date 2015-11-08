@@ -12,13 +12,18 @@ class Schedule(models.Model):
     @property
     def slots(self):
         if self._type == 'W':
-            return WeeklySlots.objects.get(schedule=self)
+            return WeeklySlot.objects.get(schedule=self)
         else:
-            return DateSlots.objects.get(schedule=self)
+            return DateSlot.objects.get(schedule=self)
+
+
+    def __str__(self):
+        return self._type
 
 
 class WeeklySlot(models.Model):
     schedule = models.ForeignKey(Schedule)
+
 
 class DateSlot(models.Model):
     schedule = models.ForeignKey(Schedule)
