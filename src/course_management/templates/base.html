@@ -23,9 +23,9 @@
       <div class="sidebar shadow">
 			  {% block nav %}
 					<div class="heading green">Subjects</div>
-          <ul id='subjectlist'>
+          <ul class="subjectlist">
             {% for subject in active_subjects %}
-              <li class='subject'><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></li>
+              <li><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></li>
             {% endfor %}
           </ul>
 			  {% endblock nav %}
