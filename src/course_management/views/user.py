@@ -2,6 +2,7 @@ from course_management.models.student import Student
 from course_management.forms import ModifyUserForm
 from django.contrib.auth.decorators import login_required
 from course_management.views.base import render_with_default
+from django.shortcuts import redirect
 
 
 @login_required()

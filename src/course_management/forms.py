@@ -24,6 +24,6 @@ class ModifyUserForm(forms.Form):
     first_name = forms.CharField(required=False)
     family_name = forms.CharField(required=False)
     password = forms.CharField(min_length=8, widget=forms.PasswordInput, required=False)
-    password_repeat = forms.CharField(min_length=8, widget=forms.PasswordInput, reqired=False)
+    password_repeat = forms.CharField(min_length=8, widget=forms.PasswordInput, required=False)
     email = forms.EmailField(required=False)
     faculty = forms.ChoiceField(choices=get_faculties, required=False)

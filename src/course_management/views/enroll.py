@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
-from course_management.models,course import Course
+from django.views.decorators.http import require_POST
+from course_management.models.course import Course
+
 
 
 @require_POST
@@ -9,7 +11,7 @@ def add(request, course_id):
     ps = Course.obects.get(id=course_id).participants_set
     ps.add(stud)
     ps.save()
-    return redirect('enrollment-add-success')
+    return redirect('enrollment-add-done')
 
 
 @require_POST
@@ -19,11 +21,11 @@ def remove(request, course_id):
     ps = Course.obects.get(id=course_id).participants_set
     ps.remove(stud)
     ps.save()
-    return redirect('enrollment-remove-success')
+    return redirect('enrollment-remove-done')
 
 
 @login_required()
-def add_success(request, course_id):
+def add_response(request, course_id):
     return render(
         request,
         'enroll-response.html',
@@ -36,7 +38,7 @@ def add_success(request, course_id):
 
 
 @login_required()
-def remove_success(request, course_id):
+def remove_response(request, course_id):
     return render(
         request,
         'enroll-response.html',
