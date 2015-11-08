@@ -31,10 +31,26 @@ header {
     flex-wrap: wrap;
     justify-content: center;
 }
+.userpanel {
+    position: relative;
+}
+.userpanel > div{
+    max-height: 0;
+    overflow: hidden;
+    position: absolute;
+    background-color: white;
+    margin-top: 5px;
+    transition-property: max-height;
+    transition-duration: .2s;
+    min-width: 100%;
+}
+.userpanel:hover > div{
+    max-height: 5em;
+}
 .heading.green {
     padding: 5px 15px;
     background: #B1E11C;
-    border-radius: 1em 1em 0 0;
+    border-radius: .7em .7em 0 0;
 }
 .heading.green.nav {
     padding: 0 15px;
@@ -42,7 +58,7 @@ header {
     flex-direction: row-reverse;
     flex-wrap: wrap;
 }
-.heading.green.nav > a {
+.heading.green.nav > a, .userpanel {
     padding: 5px;
     margin-left: 5px;
     transition-property: background, color;
@@ -58,7 +74,7 @@ header {
     border-radius: 1em 1em 0 0;
     padding-bottom: .25em;
 }
-.sidebar ul {
+ul {
     padding: 0;
     list-style: none;
     margin: .5em 0em;
@@ -111,7 +127,5 @@ li.subject {
     background: #fafafa;
 }
 li.subject:nth-child(even){
-    border-top: solid 1px #dddddd;
-    border-bottom: solid 1px #dddddd;
     background: #eeeeee;
 }
