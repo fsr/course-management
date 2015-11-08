@@ -27,40 +27,47 @@ a.headline {
 }
 header {
     display: flex;
-    padding: 0 15px;
+    padding: 0 1em;
     flex-wrap: wrap;
     justify-content: center;
 }
 .userpanel {
+    padding: .5em 0;
     position: relative;
+}
+.userpanel > strong {
+    margin: 0 .5em;
 }
 .userpanel > div{
     max-height: 0;
     overflow: hidden;
     position: absolute;
-    background-color: white;
-    margin-top: 5px;
+    background-color: #fafafa;
+    margin-top: .5em;
     transition-property: max-height;
     transition-duration: .2s;
     min-width: 100%;
+    border: solid 1px #dddddd;
+    border-top: none;
+    border-bottom: none;
 }
 .userpanel:hover > div{
     max-height: 5em;
 }
 .heading.green {
-    padding: 5px 15px;
+    padding: .5em 1.5em;
     background: #B1E11C;
     border-radius: .7em .7em 0 0;
 }
 .heading.green.nav {
-    padding: 0 15px;
+    padding: 0 1.5em;
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
 }
-.heading.green.nav > a, .userpanel {
-    padding: 5px;
-    margin-left: 5px;
+.heading.green.nav > a {
+    padding: .5em;
+    margin-left: .5em;
     transition-property: background, color;
     transition-duration: .2s;
 }
@@ -72,19 +79,18 @@ header {
 .shadow {
     background: #fafafa;
     border-radius: 1em 1em 0 0;
-    padding-bottom: .25em;
 }
 ul {
     padding: 0;
     list-style: none;
-    margin: .5em 0em;
+    margin: 0;
 }
 .main {
     margin: 1em 0;
 }
 .auth_form{
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
 .errors{
     color: #FF0000;
@@ -121,10 +127,13 @@ table.courses tbody tr:hover {
     border-color: #888888;
 }
 li.subject {
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 10px;
+    padding: .1em 0;
     background: #fafafa;
+}
+li.subject a{
+    display: block;
+    width: 100%;
+    padding-left: 1em
 }
 li.subject:nth-child(even){
     border-top: solid 1px #dddddd;
