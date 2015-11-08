@@ -38,5 +38,5 @@
   pk: 1
   fields:
     user: 1
-    s_nummer: s1234567
+    s_number: s1234567
     faculty: 1

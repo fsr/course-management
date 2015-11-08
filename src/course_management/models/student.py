@@ -5,7 +5,7 @@ from . import faculty
 
 class Student(models.Model):
     user = models.OneToOneField(User)
-    s_nummer = models.CharField(max_length=50)
+    s_number = models.CharField(max_length=50)
     faculty = models.ForeignKey(faculty.Faculty)
 
     def __str__(self):
