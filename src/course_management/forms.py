@@ -16,7 +16,6 @@ class RegistrationForm(forms.Form):
     password = forms.CharField(min_length=8, widget=forms.PasswordInput)
     password_repeat = forms.CharField(min_length=8, widget=forms.PasswordInput)
     s_number = forms.CharField(min_length=6)
-    email = forms.EmailField()
     faculty = forms.ChoiceField(choices=get_faculties)
 
 

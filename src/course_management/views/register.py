@@ -13,7 +13,7 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             userdata = form.cleaned_data
-            createduser = Student.create(email=userdata['email'],
+            createduser = Student.create(email=userdata['s_number'] + '@mail.zih.tu-dresden.de',
                                          password=userdata['password'],
                                          first_name=userdata['first_name'],
                                          last_name=userdata['family_name'],
@@ -28,7 +28,11 @@ def register(request):
                      'form': form})
             else:
                 activationMail(createduser.user)
-                return redirect('register')
+                return render_with_default(
+                    request,
+                    'registration/registrationsuccess.html',
+                    {'title': 'Registration successfull | iFSR Course Management',
+                     'acc': userdata['s_number']})
         else:
             return render_with_default(
                 request,
