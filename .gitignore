@@ -63,3 +63,6 @@ target/
 
 # databases
 *.sqlite3
+
+# Vim Swap File
+*.swp

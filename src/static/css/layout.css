@@ -65,6 +65,12 @@ header {
 }
 .main {
     margin: 1em 0;
+    padding-left: 15px;
+    padding-right: 15px
+}
+.errors{
+    color: #FF0000;
+    font-weight: bolder;
 }
 .description {
     margin: 0 1em;
