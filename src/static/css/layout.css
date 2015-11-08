@@ -77,12 +77,14 @@ header {
 ul {
     padding: 0;
     list-style: none;
-    margin: .5em 1em;
+    margin: .5em 0em;
 }
 .main {
     margin: 1em 0;
+}
+.auth_form{
     padding-left: 15px;
-    padding-right: 15px
+    padding-right: 15px;
 }
 .errors{
     color: #FF0000;
@@ -117,4 +119,13 @@ table.courses tr:nth-child(even) {
 }
 table.courses tbody tr:hover {
     border-color: #888888;
+}
+li.subject {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    background: #fafafa;
+}
+li.subject:nth-child(even){
+    background: #eeeeee;
 }

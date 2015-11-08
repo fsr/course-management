@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% if error %}
-    <p class='errors'>
-      {{error}}
+  <div class='auth_form'>
+    {% if error %}
+      <p class='errors'>
+        {{error}}
+      </p>
+    {% endif %}
+    <p >
+      <form action="/register/" method="post">
+        {% csrf_token %}
+        <table>
+          {{ form.as_table }}
+        </table>
+          <input type="submit" value="Submit" />
+      </form>
     </p>
-  {% endif %}
-  <p>
-    <form action="{% url 'register' %}" method="post">
-      {% csrf_token %}
-      <table>
-        {{ form.as_table }}
-      </table>
-        <input type="submit" value="Submit" />
-    </form>
-  </p>
+  </div>
 {% endblock %}
