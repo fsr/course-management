@@ -1,1 +1,1 @@
-from . import course, faculty, schedule, student, subject
+from . import course, faculty, schedule, student, subject, activation

@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from .views import index, register, subject, course, login, enroll, user
+from .views import index, register, subject, course, login, enroll, user, activate
 
 
 urlpatterns = [
@@ -32,5 +32,6 @@ urlpatterns = [
     url(r'^enrollment/remove/(?P<subject>)/done$', enroll.remove_response, name='enrollment-remove-done'),
     url(r'^accounts/edit$', user.modify, name='modify-user'),
     url(r'^accounts/profile', user.profile, name='user-profile'),
+    url(r'^activate$', activate.activate, name='activate-user'),
     url('^', include('django.contrib.auth.urls')),
 ]

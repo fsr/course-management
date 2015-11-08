@@ -1,7 +1,10 @@
 from course_management.views.base import render_with_default
 from course_management.forms import RegistrationForm
 from course_management.models.student import Student
-from django.http import HttpResponseRedirect
+from course_management.models.activation import Activation
+from django.shortcuts import redirect
+import random
+import string
 
 
 def register(request):
@@ -24,8 +27,8 @@ def register(request):
                      'error': 'The s-Number you entered is already in use!',
                      'form': form})
             else:
-                generateToken(createduser.user)
-                return HttpResponseRedirect('/register/')
+                activationMail(createduser.user)
+                return redirect('register')
         else:
             return render_with_default(
                 request,
@@ -39,5 +42,12 @@ def register(request):
                                                               'form': form})
 
 
-def generateToken(user):
-    pass
+def generateToken(size=50, chars=string.ascii_uppercase + string.digits + string.ascii_lowercase):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+
+def activationMail(user):
+    user_token = generateToken()
+    newActivation = Activation(user=user, token=user_token)
+    newActivation.save()
+    print(user_token)

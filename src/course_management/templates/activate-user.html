@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if error %}
+  <p class='errors'>
+    {{error}}
+  </p>
+{% else %}
+  <p>
+    Your account has been successfully activated.
+  </p>
+{% endif %}
+{% endblock %}
