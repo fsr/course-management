@@ -1,4 +1,4 @@
-{% extend 'base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <form action="{% url 'modify-user' %}" method="post">
@@ -8,4 +8,7 @@
   </table>
     <input type="submit" value="Submit" />
 </form>
-{% endbolck %}
+<p>
+  Oder vielleicht möchtest du dein <a href="{% url 'password_change' %}">Passwort ändern?</a>
+</p>
+{% endblock %}

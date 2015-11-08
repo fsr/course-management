@@ -13,19 +13,21 @@ def modify(request):
         user = request.user
         student = user.student
         if form.is_valid():
+            cleaned = form.cleaned_data
+            print(cleaned)
             for prop in (
                 'first_name',
                 'last_name',
-                'email',
-                'password'
+                'email'
             ):
-                if prop in form:
-                    user.__setattr__(prop, form[prop])
+                if prop in cleaned:
+                    print(cleaned[prop])
+                    user.__setattr__(prop, cleaned[prop])
             for prop in (
                 'faculty'
             ):
-                if prop in form:
-                    student.__setattr__(prop, form[prop])
+                if prop in cleaned:
+                    student.__setattr__(prop, cleaned[prop])
             user.save()
             student.save()
         return redirect('modify-user')
