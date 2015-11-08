@@ -15,6 +15,11 @@ class Student(models.Model):
 
     @classmethod
     def create(cls, email, password, first_name, last_name, s_number, faculty):
+        '''
+        This function creates a new user/student and saves it to the database.
+        When using this function, the created user will be set 'inactive'
+        by default.
+        '''
         try:
             user = User.objects.create_user(
                 username=s_number,
@@ -22,6 +27,9 @@ class Student(models.Model):
                 password=password,
                 first_name=first_name,
                 last_name=last_name)
+            # set user inactive
+            user.is_active = False
+            user.save()
             newstudent = Student(
                 user=user,
                 s_number=s_number,

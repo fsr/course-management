@@ -21,18 +21,23 @@ def register(request):
                     request,
                     'register.html',
                     {'title': 'Registration | iFSR Course Management',
-                     'error': 'The s number you entered is already in use!',
+                     'error': 'The s-Number you entered is already in use!',
                      'form': form})
             else:
+                generateToken(createduser.user)
                 return HttpResponseRedirect('/register/')
         else:
             return render_with_default(
                 request,
                 'register.html',
-                {'title': 'Registration failed | iFSR Course Management',
-                 'error': 'Your input was not correct.',
+                {'title': 'Registration | iFSR Course Management',
+                 'error': 'Please check your input.',
                  'form': form})
     else:
         form = RegistrationForm()
         return render_with_default(request, 'register.html', {'title': 'Registration | iFSR Course Management',
                                                               'form': form})
+
+
+def generateToken(user):
+    pass
