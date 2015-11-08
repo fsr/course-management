@@ -4,7 +4,7 @@ from . import schedule, student, subject
 
 class Course(models.Model):
     schedule = models.OneToOneField(schedule.Schedule)
-    teacher = models.ForeignKey(student.Student, related_name="teacher")
+    teacher = models.ManyToManyField(student.Student, related_name="teacher")
     participants = models.ManyToManyField(student.Student)
     active = models.BooleanField(default=False)
     subject = models.ForeignKey(subject.Subject)

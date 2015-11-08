@@ -30,7 +30,7 @@
     subject: 1
     active: true
     schedule: 1
-    teacher: 1
+    teacher: [1]
     participants: []
 - model: course_management.course
   pk: 2
@@ -38,7 +38,7 @@
     subject: 2
     active: true
     schedule: 2
-    teacher: 1
+    teacher: [1]
     participants: []
 - model: course_management.course
   pk: 3
@@ -46,7 +46,7 @@
     subject: 2
     active: true
     schedule: 3
-    teacher: 2
+    teacher: [2]
     participants: []
 - model: auth.user
   pk: 1

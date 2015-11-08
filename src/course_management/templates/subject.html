@@ -17,7 +17,10 @@
 			{% for course in subject.course_set.all %}
 				<tr class="row">
 					<td class="col-md-3">
-						<a href="{% url 'course' course.id %}">{{ course.teacher }}</a></td>
+						{% for teacher in course.teacher.all %}
+							{{ teacher }}<br />
+						{% endfor %}
+					</td>
 					<td class="col-md-3"></td>
 					<td class="col-md-3"></td>
 					<td class="col-md-3"></td>
