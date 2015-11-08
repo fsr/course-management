@@ -1,8 +1,6 @@
 from course_management.views.base import render_with_default
 from course_management.forms import RegistrationForm
 from course_management.models.student import Student
-from course_management.models.faculty import Faculty
-from django.contrib.auth.models import User
 
 
 def register(request):
@@ -11,9 +9,11 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             userdata = form.cleaned_data
-            user = User.objects.create_user(userdata['s_number'], userdata['email'], userdata['password'])
-            newstudent = Student(user=user, s_number=userdata['s_number'], faculty=Faculty.objects.get(name="Fakultät Informatik"))
-            newstudent.save()
+            Student.create(email=userdata['email'],
+                           password=userdata['password'],
+                           first_name=userdata['first_name'],
+                           last_name=userdata['family_name'],
+                           s_number=userdata['s_number'])
             print("YES")
 
         else:
