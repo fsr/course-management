@@ -10,7 +10,7 @@ def activate(request):
         if 'token' not in reqdict:
             return render_with_default(
                 request,
-                'activate-user.html',
+                'user/activate.html',
                 {'title': 'Failure | iFSR Course Management',
                  'error': 'You didn\'t provide a token.'})
         else:
@@ -19,7 +19,7 @@ def activate(request):
             except ObjectDoesNotExist:
                 return render_with_default(
                     request,
-                    'activate-user.html',
+                    'user/activate.html',
                     {'title': 'Failure | iFSR Course Management',
                      'error': 'The token you provided is invalid.'})
             db_entry.user.is_active = True
@@ -27,7 +27,7 @@ def activate(request):
             db_entry.delete()
             return render_with_default(
                 request,
-                'activate-user.html',
+                'user/activate.html',
                 {'title': 'Success | iFSR Course Management'})
     else:
         return redirect('index')
