@@ -13,3 +13,7 @@ class Course(models.Model):
 
     def __str__(self):
         return '{sub}'.format(sub=self.subject.name)
+
+    @property
+    def saturation_level(self):
+        return (self.participants.count(), self.max_participants)

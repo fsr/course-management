@@ -25,7 +25,8 @@ def add(request, course_id):
 @login_required()
 def remove(request, course_id):
     stud = request.user.student
-    ps = Course.obects.get(id=course_id).participants_set
+    course = Course.obects.get(id=course_id)
+    ps = course.participants_set
     ps.remove(stud)
     ps.save()
     return redirect('enrollment-remove-done')

@@ -1,18 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <div>
   <h2>{{ course.subject.title }}</h2>
   <p><b>Teachers:</b>{% for teacher in course.teacher.all %} {{ teacher }} {% endfor %}</p>
   <p>{{ course.description }}</p>
+  <p>Participants: {{ participants_count }}/{{ max_participants }}</p>
 </div>
 {% if user.is_authenticated %}
+  {% if is_teacher %}
+    <ul>
+      {% for student in students %}
+        <li>{{ student }}</li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'edit-course' course_id %}">Edit course</a>
+  {% else %}
   <form action="{% if is_subbed %}{% url 'enrollment-remove' course_id %}{% else %}{% url 'enrollment-add' course_id %}{% endif %}" method="post">
     {% csrf_token %}
     <input type="submit" value="{% if is_subbed %}enroll{% else %}leave{% endif %}" />
   </form>
+  {% endif %}
 {% else %}
-<div>
-  If you <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> you can join this course too.
-</div>
+  <div>
+    If you <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> you can join this course too.
+    </div>
 {% endif %}
 {% endblock %}
