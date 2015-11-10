@@ -39,12 +39,12 @@ def edit_course(request, course_id):
             c = course.Course.objects.get(id=course_id)
             cleaned = form.cleaned_data
 
-            for prop in (
+            for prop in filter(cleaned.__contains__,(
                 'active',
                 'max_participants'
-            ):
-                if prop in cleaned:
-                    c.__setattr__(prop,cleaned[prop])
+            )):
+
+                c.__setattr__(prop,cleaned[prop])
 
 
             if 'description' in cleaned:
@@ -55,11 +55,11 @@ def edit_course(request, course_id):
 
     else:
         c = course.Course.objects.get(id=course_id)
-        form = EditCourseForm(dict(
-                active = c.active,
-                description = c.description,
-                max_participants = c.max_participants
-            ))
+        form = EditCourseForm({
+                'active': c.active,
+                'description': c.description,
+                'max_participants': c.max_participants
+            })
 
     return render_with_default(
         request,

@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+<p>
+  You can set a description for your course here. It accepts basic html like &lt;b&gt; and &lt;i&gt;.
+</p>
 <form method="post" action="{% url 'edit-course' course_id %}">
   {% csrf_token %}
   <table>

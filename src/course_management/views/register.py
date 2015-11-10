@@ -25,7 +25,7 @@ def register(request):
                 return render_with_default(
                     request,
                     'registration/register.html',
-                    {'title': 'Registration | iFSR Course Management',
+                    {'title': 'Registration',
                      'error': 'The s-Number you entered is already in use!',
                      'form': form})
             else:
@@ -33,13 +33,13 @@ def register(request):
                 return render_with_default(
                     request,
                     'registration/registrationsuccess.html',
-                    {'title': 'Registration successfull | iFSR Course Management',
+                    {'title': 'Registration successfull',
                      'acc': userdata['s_number']})
         else:
             return render_with_default(
                 request,
                 'registration/register.html',
-                {'title': 'Registration | iFSR Course Management',
+                {'title': 'Registration',
                  'error': 'Please check your input.',
                  'form': form})
     else:
@@ -47,7 +47,7 @@ def register(request):
         return render_with_default(
             request,
             'registration/register.html',
-            {'title': 'Registration | iFSR Course Management',
+            {'title': 'Registration',
              'form': form})
 
 

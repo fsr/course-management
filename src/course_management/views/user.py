@@ -15,25 +15,22 @@ def modify(request):
         if form.is_valid():
             cleaned = form.cleaned_data
             print(cleaned)
-            for prop in (
+            for prop in filter(cleaned.__contains__, (
                 'first_name',
                 'last_name',
                 'email'
-            ):
-                if prop in cleaned:
-                    print(cleaned[prop])
-                    user.__setattr__(prop, cleaned[prop])
-            for prop in (
+            )):
+                user.__setattr__(prop, cleaned[prop])
+            for prop in filter(cleaned.__contains__, (
                 'faculty'
-            ):
-                if prop in cleaned:
-                    student.__setattr__(prop, cleaned[prop])
+            )):
+                student.__setattr__(prop, cleaned[prop])
             user.save()
             student.save()
         return redirect('modify-user')
     else:
         form = ModifyUserForm()
-        return render_with_default(request, 'user/modify.html', {'form': form})
+        return render_with_default(request, 'user/edit.html', {'form': form})
 
 
 @login_required()
