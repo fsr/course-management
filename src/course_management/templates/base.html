@@ -36,7 +36,9 @@
 		    <div class="heading green nav">
 		      {% if user.is_authenticated %}
 						<div class="userpanel">
-							<strong>{{ user.student }}</strong>
+              <a href="{% url 'user-profile' %}">
+							  <strong>{{ user.student }}</strong>
+              </a>
 							<div>
 								<ul class="subjectlist">
                   <li><a href="{% url 'modify-user' %}">Edit your data</a>

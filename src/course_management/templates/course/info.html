@@ -18,7 +18,7 @@
   {% else %}
   <form action="{% if is_subbed %}{% url 'enrollment-remove' course_id %}{% else %}{% url 'enrollment-add' course_id %}{% endif %}" method="post">
     {% csrf_token %}
-    <input type="submit" value="{% if is_subbed %}enroll{% else %}leave{% endif %}" />
+    <input type="submit" value="{% if is_subbed %}leave{% else %}enroll{% endif %}" />
   </form>
   {% endif %}
 {% else %}

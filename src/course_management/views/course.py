@@ -11,19 +11,20 @@ from course_management.models import course
 def render_course(request, course_id):
     active_course = course.Course.objects.get(id=course_id)
     participants_count, max_participants = active_course.saturation_level
+    sub_name = active_course.subject.name
     context = {
-        'title': active_course.subject.name,
+        'title': sub_name,
         'course_id': course_id,
         'course': active_course,
-        'backurl': reverse('subject', args=[active_course.subject.name]),
+        'backurl': reverse('subject', args=[sub_name]),
         'participants_count': participants_count,
         'max_participants': max_participants,
     }
+    user = request.user
+    if user.is_authenticated():
+        context['is_subbed'] = user.student.course_set.filter(id=course_id).exists()
 
-    if request.user.is_authenticated():
-        context['is_subbed'] = active_course.participants.filter(id=request.user.student.id).exists()
-
-        if active_course.teacher.filter(user=request.user).exists():
+        if active_course.teacher.filter(user=user).exists():
             context['is_teacher'] = True
             context['students'] = active_course.participants.all()
 

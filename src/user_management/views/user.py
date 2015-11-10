@@ -14,14 +14,13 @@ def modify(request):
         student = user.student
         if form.is_valid():
             cleaned = form.cleaned_data
-            print(cleaned)
-            for prop in filter(cleaned.__contains__, (
+            for prop in filter(lambda p: p in cleaned and cleaned[p] != '', (
                 'first_name',
                 'last_name',
                 'email'
             )):
                 user.__setattr__(prop, cleaned[prop])
-            for prop in filter(cleaned.__contains__, (
+            for prop in filter(lambda p: p in cleaned and cleaned[p] != '', (
                 'faculty'
             )):
                 student.__setattr__(prop, cleaned[prop])

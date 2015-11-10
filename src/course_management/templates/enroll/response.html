@@ -1,20 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 <div>
-  {% if error %}
+
   <p>
-    Deine {% if action == 'subscribe' %}Registrierung{% elif action == 'unsubscribe' %}Abmeldung{% endif %} vom Kurs {{ subject }} war leider nicht erfolgreich.
+    Your {% if action == 'subscribe' %}subscription to{% elif action == 'unsubscribe' %}unsubscription from{% endif %} the course {{ subject }} {% if error %}un{% endif %}fortunately was {% if error %}unsuccessful{% else %}successful{% endif %}.
   </p>
+  {% if error %}
   <p>
     {{ error }}
   </p>
-  {% else %}
-  <p>
-    Deine {% if action == 'subscribe' %}Registrierung{% elif action == 'unsubscribe' %}Abmeldung{% endif %} vom Kurs {{ subject }} war erfolgreich.
-  </p>
   {% endif %}
   <p>
-    <a href="{% url 'course' course_id %}">Zur Kurs Beschreibung</a>
+    <a href="{% url 'course' course_id %}">Go to course description.</a>
   </p>
 </div>
 {% endblock content %}
