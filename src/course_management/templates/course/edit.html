@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <p>
-  You can set a description for your course here. It accepts basic html like &lt;b&gt; and &lt;i&gt;.
+  You can edit the description for your course here. You can use html to do so, allowed_tags are {{ allowed_tags|join:", " }}.
 </p>
 <form method="post" action="{% url 'edit-course' course_id %}">
   {% csrf_token %}
@@ -10,4 +10,6 @@
   </table>
   <input type="submit" value="Submit" />
 </form>
+
+<form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">{% csrf_token %}<input type="submit" value="Set course {% if course_is_active %}inactive{% else %}active{% endif %}" /></form>
 {% endblock %}

@@ -3,7 +3,9 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from course_management.forms import EditCourseForm
 from django.shortcuts import redirect
-import bleach
+from util import html_clean
+from django.views.decorators.http import require_POST
+
 
 from course_management.models import course
 
@@ -19,12 +21,13 @@ def render_course(request, course_id):
         'backurl': reverse('subject', args=[sub_name]),
         'participants_count': participants_count,
         'max_participants': max_participants,
+        'course_is_active': active_course.active,
     }
     user = request.user
     if user.is_authenticated():
         context['is_subbed'] = user.student.course_set.filter(id=course_id).exists()
 
-        if active_course.teacher.filter(user=user).exists():
+        if active_course.is_teacher(user):
             context['is_teacher'] = True
             context['students'] = active_course.participants.all()
 
@@ -51,7 +54,7 @@ def edit_course(request, course_id):
 
 
             if 'description' in cleaned:
-                c.description = bleach.clean(cleaned['description'], strip=True)
+                c.description = html_clean.clean_for_description(cleaned['description'])
 
             c.save()
             return redirect('course', course_id)
@@ -69,6 +72,28 @@ def edit_course(request, course_id):
         'course/edit.html',
         {
             'form': form,
-            'course_id': course_id
+            'course_id': course_id,
+            'allowed_tags': html_clean.DESCR_ALLOWED_TAGS,
+            'course_is_active': active_course.active,
         }
     )
+
+
+@login_required()
+@require_POST
+def activate(request, course_id):
+    curr_course = course.Course.objects.get(id=course_id)
+    if curr_course.is_teacher(request.user):
+        curr_course.active = True
+        curr_course.save()
+    return redirect('course', course_id)
+
+
+@login_required()
+@require_POST
+def deactivate(request, course_id):
+    curr_course = course.Course.objects.get(id=course_id)
+    if curr_course.is_teacher(request.user):
+        curr_course.active = False
+        curr_course.save()
+    return redirect('course', course_id)

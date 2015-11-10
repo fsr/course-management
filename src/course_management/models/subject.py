@@ -12,3 +12,7 @@ class Subject(models.Model):
     @classmethod
     def get_active(cls):
         return cls.objects.annotate(course_count=Count(Q(course__active=True))).filter(course_count__gt=0)
+
+    @property
+    def active_courses(self):
+        return self.course_set.filter(active=True)
