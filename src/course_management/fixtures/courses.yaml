@@ -10,7 +10,7 @@
   pk: 3
   fields:
     _type: O
-- model: course_management.faculty
+- model: user_management.faculty
   pk: 1
   fields:
     name: Fakultät Informatik
@@ -81,13 +81,13 @@
     groups: []
     password: pbkdf2_sha256$20000$MLoWiQfJswUs$K/nA3yZ1hQuexxPZFKB0gv8sADmMWNGPp2kwbPx/0B4=
     first_name: Mila
-- model: course_management.student
+- model: user_management.student
   pk: 1
   fields:
     user: 1
     s_number: s1234567
     faculty: 1
-- model: course_management.student
+- model: user_management.student
   pk: 2
   fields:
     user: 2

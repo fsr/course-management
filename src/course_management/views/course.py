@@ -15,15 +15,17 @@ def render_course(request, course_id):
         'title': active_course.subject.name,
         'course_id': course_id,
         'course': active_course,
-        'is_subbed': active_course.participants.filter(id=request.user.student.id).exists(),
         'backurl': reverse('subject', args=[active_course.subject.name]),
         'participants_count': participants_count,
         'max_participants': max_participants,
     }
 
-    if active_course.teacher.filter(user=request.user).exists():
-        context['is_teacher'] = True
-        context['students'] = active_course.participants.all()
+    if request.user.is_authenticated():
+        context['is_subbed'] = active_course.participants.filter(id=request.user.student.id).exists()
+
+        if active_course.teacher.filter(user=request.user).exists():
+            context['is_teacher'] = True
+            context['students'] = active_course.participants.all()
 
     return render_with_default(
         request,

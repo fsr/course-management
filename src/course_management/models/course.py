@@ -1,18 +1,19 @@
 from django.db import models
-from . import schedule, student, subject
+from . import schedule, subject
+from user_management.models import Student
 
 
 class Course(models.Model):
     schedule = models.OneToOneField(schedule.Schedule)
-    teacher = models.ManyToManyField(student.Student, related_name="teacher")
-    participants = models.ManyToManyField(student.Student)
+    teacher = models.ManyToManyField(Student, related_name="teacher")
+    participants = models.ManyToManyField(Student)
     active = models.BooleanField(default=False)
     subject = models.ForeignKey(subject.Subject)
     max_participants = models.IntegerField()
     description = models.TextField(default="No description provided for this course.")
 
     def __str__(self):
-        return '{sub}'.format(sub=self.subject.name)
+        return self.subject.name
 
     @property
     def saturation_level(self):

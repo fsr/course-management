@@ -16,13 +16,13 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from .views import index, register, subject, course, login, enroll, user, activate
+from .views import index, subject, course, enroll
+import user_management
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', index.index, name='index'),
-    url(r'^register$', register.register, name='register'),
     #url(r'^login$', login.login, name='login'),
     url(r'^subject/(?P<subjectname>\w+)$', subject.render_course_overview, name='subject'),
     url(r'^course/(?P<course_id>[0-9]+)$', course.render_course, name='course'),
@@ -31,8 +31,5 @@ urlpatterns = [
     url(r'^enrollment/remove/(?P<course_id>[0-9]+)$', enroll.remove, name='enrollment-remove'),
     url(r'^enrollment/add/(?P<course_id>[0-9]+)/done$', enroll.add_response, name='enrollment-add-done'),
     url(r'^enrollment/remove/(?P<course_id>[0-9]+)/done$', enroll.remove_response, name='enrollment-remove-done'),
-    url(r'^accounts/edit$', user.modify, name='modify-user'),
-    url(r'^accounts/profile', user.profile, name='user-profile'),
-    url(r'^activate$', activate.activate, name='activate-user'),
-    url('^', include('django.contrib.auth.urls')),
+    url('^', include(user_management.urls))
 ]

@@ -1,14 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
-from course_management.models.faculty import Faculty
-from . import faculty
 from django.db import IntegrityError
+
+
+
+class Faculty(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
 
 
 class Student(models.Model):
     user = models.OneToOneField(User)
     s_number = models.CharField(max_length=50)
-    faculty = models.ForeignKey(faculty.Faculty)
+    faculty = models.ForeignKey(Faculty)
 
     def __str__(self):
         return '{first} {last}'.format(first=self.user.first_name, last=self.user.last_name)
@@ -38,3 +44,7 @@ class Student(models.Model):
             return newstudent
         except IntegrityError:
             return None
+
+class Activation(models.Model):
+    user = models.OneToOneField(User)
+    token = models.CharField(max_length=50)

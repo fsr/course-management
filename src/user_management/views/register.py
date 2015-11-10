@@ -1,10 +1,10 @@
 from django.http import HttpRequest
 from course_management.views.base import render_with_default
-from course_management.forms import RegistrationForm
-from course_management.models.student import Student
-from course_management.models.activation import Activation
+from user_management.forms import RegistrationForm
+from user_management.models import Student
+from user_management.models import Activation
 from django.core.mail import send_mail
-from course_management import mailsettings
+from user_management import mailsettings
 import random
 import string
 
@@ -32,7 +32,7 @@ def register(request):
                 activationMail(createduser.user, request)
                 return render_with_default(
                     request,
-                    'registration/registrationsuccess.html',
+                    'registration/success.html',
                     {'title': 'Registration successfull',
                      'acc': userdata['s_number']})
         else:

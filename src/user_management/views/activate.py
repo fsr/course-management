@@ -1,5 +1,5 @@
 from course_management.views.base import render_with_default
-from course_management.models.activation import Activation
+from user_management.models import Activation
 from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
 
