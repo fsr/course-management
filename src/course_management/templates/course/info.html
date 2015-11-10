@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% block enroll_response %}
+{% endblock %}
 <div>
   <h2>{{ course.subject.title }}</h2>
   <p><b>Teachers:</b>{% for teacher in course.teacher.all %} {{ teacher }} {% endfor %}</p>
@@ -26,5 +27,6 @@
   <div>
     If you <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> you can join this course too.
     </div>
+
 {% endif %}
 {% endblock %}

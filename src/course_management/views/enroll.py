@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 from course_management.models.course import Course
 from django.shortcuts import redirect
 from course_management.views.base import render_with_default
+from .course import _course_context
 
 
 
@@ -37,31 +38,15 @@ def remove(request, course_id):
 
 
 @login_required()
-def add_response(request, course_id):
+def enroll_response(request, course_id, action=None):
     session = request.session
-    context = {
-        'action': 'subscribe',
-        'subject': Course.objects.get(id=course_id).subject.name,
-        'course_id': course_id
-    }
+    course = Course.objects.get(id=course_id)
+    context = _course_context(request, course)
+    context['action'] = action
+    context['subject'] = course.subject.name
+    context['course_id'] = course_id
+
     if 'enroll-error' in session:
         context['error'] = session['enroll-error']
         del session['enroll-error']
-    return render_with_default(
-        request,
-        'enroll/response.html',
-        context
-    )
-
-
-@login_required()
-def remove_response(request, course_id):
-    return render_with_default(
-        request,
-        'enroll/response.html',
-        {
-            'action': 'unsubscribe',
-            'subject': Course.objects.get(id=course_id).subject.name,
-            'course_id': course_id
-        }
-    )
+    return render_with_default(request, 'enroll/response.html', context)

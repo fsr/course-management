@@ -13,7 +13,18 @@ from course_management.models.course import Course
 
 
 def course(request, course_id):
-    active_course = Course.objects.get(id=course_id)
+    return render_with_default(
+        request,
+        'course/info.html',
+        _course_context(request, course_id)
+    )
+
+def _course_context(request, course_id):
+    if isinstance(course_id, Course):
+        active_course = course_id
+        course_id = course_id.id
+    else:
+        active_course = Course.objects.get(id=course_id)
     participants_count, max_participants = active_course.saturation_level
     sub_name = active_course.subject.name
     context = {
@@ -33,11 +44,7 @@ def course(request, course_id):
             context['is_teacher'] = True
             context['students'] = active_course.participants.all()
 
-    return render_with_default(
-        request,
-        'course/info.html',
-        context
-    )
+    return context
 
 @login_required()
 def edit_course(request, course_id):

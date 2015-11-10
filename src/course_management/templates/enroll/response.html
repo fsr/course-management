@@ -1,17 +1,14 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'course/info.html' %}
+{% block enroll_response %}
 <div>
 
   <p>
-    Your {% if action == 'subscribe' %}subscription to{% elif action == 'unsubscribe' %}unsubscription from{% endif %} the course {{ subject }} {% if error %}un{% endif %}fortunately was {% if error %}unsuccessful{% else %}successful{% endif %}.
+    Your {% if action == 'register' %}subscription to{% elif action == 'unregister' %}unsubscription from{% endif %} the course {{ subject }} {% if error %}un{% endif %}fortunately was {% if error %}unsuccessful{% else %}successful{% endif %}.
   </p>
   {% if error %}
   <p>
     {{ error }}
   </p>
   {% endif %}
-  <p>
-    <a href="{% url 'course' course_id %}">Go to course description.</a>
-  </p>
 </div>
-{% endblock content %}
+{% endblock %}

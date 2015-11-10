@@ -17,14 +17,10 @@
 			<a href="{% url 'course' course.id %}">
 				<div class="row">
 					<div class="col-md-5">
-						{% for teacher in course.teacher.all %}
-						  {{ teacher }}<br />
-						{% endfor %}
+						{{ course.teacher.all|join:"<br />" }}
 					</div>
 					<div class="col-md-5">
-						{% for slot in course.schedule.slots %}
-							{{ slot }}<br />
-						{% endfor %}
+						{{ course.schedule.slots|join:"<br />" }}
 					</div>
 					<div class="col-md-2">
 						{{ course.participants.count }}/{{ course.max_participants }}
