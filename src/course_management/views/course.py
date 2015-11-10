@@ -5,13 +5,15 @@ from course_management.forms import EditCourseForm
 from django.shortcuts import redirect
 from util import html_clean
 from django.views.decorators.http import require_POST
+import functools
+from django.core.exceptions import PermissionDenied
 
 
-from course_management.models import course
+from course_management.models.course import Course
 
 
-def render_course(request, course_id):
-    active_course = course.Course.objects.get(id=course_id)
+def course(request, course_id):
+    active_course = Course.objects.get(id=course_id)
     participants_count, max_participants = active_course.saturation_level
     sub_name = active_course.subject.name
     context = {
@@ -42,7 +44,7 @@ def edit_course(request, course_id):
     if request.method == "POST":
         form = EditCourseForm(request.POST)
         if form.is_valid():
-            c = course.Course.objects.get(id=course_id)
+            c = Course.objects.get(id=course_id)
             cleaned = form.cleaned_data
 
             for prop in filter(cleaned.__contains__,(
@@ -60,7 +62,7 @@ def edit_course(request, course_id):
             return redirect('course', course_id)
 
     else:
-        c = course.Course.objects.get(id=course_id)
+        c = Course.objects.get(id=course_id)
         form = EditCourseForm({
                 'active': c.active,
                 'description': c.description,
@@ -74,26 +76,37 @@ def edit_course(request, course_id):
             'form': form,
             'course_id': course_id,
             'allowed_tags': html_clean.DESCR_ALLOWED_TAGS,
-            'course_is_active': active_course.active,
+            'course_is_active': c.active,
         }
     )
 
 
-@login_required()
+
+def must_be_teacher(func):
+    @functools.wraps(func)
+    @login_required()
+    def wrapped(request, course_id, *args, **kwargs):
+        curr_course = Course.objects.get(id=course_id)
+        if curr_course.is_teacher(request.user):
+            return func(request, course_id, *args, **kwargs)
+        else:
+            raise PermissionDenied()
+    return wrapped
+
+
+@must_be_teacher
 @require_POST
 def activate(request, course_id):
-    curr_course = course.Course.objects.get(id=course_id)
-    if curr_course.is_teacher(request.user):
-        curr_course.active = True
-        curr_course.save()
+    curr_course = Course.objects.get(id=course_id)
+    curr_course.active = True
+    curr_course.save()
     return redirect('course', course_id)
 
 
-@login_required()
+@must_be_teacher
 @require_POST
 def deactivate(request, course_id):
-    curr_course = course.Course.objects.get(id=course_id)
-    if curr_course.is_teacher(request.user):
-        curr_course.active = False
-        curr_course.save()
+    curr_course = Course.objects.get(id=course_id)
+    curr_course.active = False
+    curr_course.save()
     return redirect('course', course_id)

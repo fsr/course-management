@@ -23,7 +23,7 @@ def add(request, course_id):
         if 'enroll-error' in session:
             del session['enroll-error']
         ps.add(stud)
-    return redirect('enrollment-add-done', course_id)
+    return redirect('register-course-done', course_id)
 
 
 @require_POST
@@ -33,7 +33,7 @@ def remove(request, course_id):
     course = Course.objects.get(id=course_id)
     ps = course.participants
     ps.remove(stud)
-    return redirect('enrollment-remove-done', course_id)
+    return redirect('unregister-course-done', course_id)
 
 
 @login_required()
