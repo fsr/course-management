@@ -36,5 +36,5 @@ urlpatterns = [
         url(r'^register/done$', enroll.enroll_response, dict(action='register'), name='register-course-done'),
         url(r'^unregister/done$', enroll.enroll_response, dict(action='unregister'), name='unregister-course-done'),
     ])),
-    url('^', include(user_management.urls))
+    url(r'^accounts/', include(user_management.urls))
 ]

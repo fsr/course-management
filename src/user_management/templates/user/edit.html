@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<p>
+    Here you may change your user information.
+</p>
 <form action="{% url 'modify-user' %}" method="post">
   {% csrf_token %}
   <table>
     {{ form.as_table }}
   </table>
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Change" />
 </form>
 <p>
-  Oder vielleicht möchtest du dein <a href="{% url 'password_change' %}">Passwort ändern?</a>
+  Perhaps you'd like to <a href="{% url 'password_change' %}">change your password?</a>
 </p>
 {% endblock %}
