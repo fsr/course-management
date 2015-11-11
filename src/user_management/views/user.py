@@ -7,26 +7,32 @@ from django.shortcuts import redirect
 
 @login_required()
 def modify(request):
+
     user = request.user
     student = user.student
+
     if request.method == "POST":
+
         form = ModifyUserForm(request.POST)
+
         if form.is_valid():
+
             cleaned = form.cleaned_data
-            for prop in filter(lambda p: p in cleaned and cleaned[p] != '', (
-                'first_name',
-                'last_name',
-                'email'
-            )):
-                user.__setattr__(prop, cleaned[prop])
-            for prop in filter(lambda p: p in cleaned and cleaned[p] != '', (
-                'faculty'
-            )):
-                student.__setattr__(prop, cleaned[prop])
+
+            # should we verify something here?
+            user.first_name = cleaned['first_name']
+            user.last_name = cleaned['last_name']
+            user.email = cleaned['email']
+
+            student.faculty = cleaned['faculty']
+
             user.save()
             student.save()
+
         return redirect('modify-user')
+
     else:
+
         form = ModifyUserForm({
             'first_name': user.first_name,
             'last_name': user.last_name,
