@@ -3,12 +3,16 @@
 	<div class="description">
 		Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.
 	</div>
-	<table class="table">
-		{% for subject in subjects %}
-			<tr>
-				<td>{{ subject.name }}</td>
-				<td>{{ subject.active_courses.count }}</td>
-			</tr>
-		{% endfor %}
-	</table>
+	<div class="courses">
+    <div class="tbody">
+      {% for subject in subjects %}
+        <a href="{% url 'subject' subject.name %}">
+          <div class="row">
+            <div class="col-md-6">{{ subject.name }}</div>
+            <div class="col-md-6">{{ subject.active_courses.count }}</div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+	</div>
 {% endblock %}

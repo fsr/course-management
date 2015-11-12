@@ -3,7 +3,8 @@
 <div>
 
   <p>
-    Your {% if action == 'register' %}subscription to{% elif action == 'unregister' %}unsubscription from{% endif %} the course {{ subject }} {% if error %}un{% endif %}fortunately was {% if error %}unsuccessful{% else %}successful{% endif %}.
+    Your {% if action == 'register' %}subscription to{% elif action == 'unregister' %}unsubscription from{% endif %}
+    the course {{ subject }} was {% if error %}unsuccessful{% else %}successful{% endif %}.
   </p>
   {% if error %}
   <p>
