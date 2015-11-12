@@ -42,20 +42,26 @@ header {
     padding: .5em;
     position: relative;
 }
-.userpanel > strong {
-    margin: 0 .5em;
-    transition-property: background, color;
-    transition-duration: .2s;
+.userpanel > a {
+    display: block;
+    padding: .5em;
+    padding-right: 1em;
+    border-top-right-radius: .7em;
+    transition-property: color;
+    transition-duration: .3s;
+}
+.userpanel:hover > a {
+    text-decoration: none;
+    color: #fafafa;
 }
 .userpanel > div{
     max-height: 0;
     overflow: hidden;
     position: absolute;
     background-color: #fafafa;
-    margin-top: .5em;
     left: 0;
-    transition-property: max-height;
-    transition-duration: .2s;
+    transition-property: max-height, background;
+    transition-duration: .3s;
     min-width: 100%;
     border: solid 1px #dddddd;
     border-top: none;
@@ -83,6 +89,10 @@ header {
     padding-right: 1em;
     border-top-right-radius: .7em;
 }
+.heading.green.nav > *:first-child.userpanel {
+    padding: 0;
+}
+
 .heading.green.nav > a {
     padding: .5em 1em;
     transition-property: background, color;
@@ -118,6 +128,9 @@ header {
 div.courses {
     margin: 2em 0;
     width: 100%;
+}
+div.courses a{
+    color: #626262;
 }
 div.courses .thead {
     font-weight: bolder;
@@ -157,6 +170,7 @@ ul.subjectlist li:first-child {
     border-top: solid 1px #dddddd;
 }
 ul.subjectlist li a{
+    color: #626262;
     pointer-events: auto;
     display: block;
     width: 100%;
