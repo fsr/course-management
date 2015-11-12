@@ -1,4 +1,7 @@
 from django.db import models
+from markdown import markdown
+
+from util.html_clean import clean_for_description
 from . import schedule, subject
 from django.contrib.auth.models import User
 from user_management.models import Student
@@ -18,7 +21,10 @@ class Course(models.Model):
 
     @property
     def saturation_level(self):
-        return (self.participants.count(), self.max_participants)
+        return self.participants.count(), self.max_participants
+
+    def get_description_as_html(self):
+        return clean_for_description(markdown(self.description))
 
     def is_teacher(self, user):
         if isinstance(user, User):

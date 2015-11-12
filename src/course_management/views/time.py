@@ -28,7 +28,7 @@ def add_slot(request: HttpRequest, course_id) -> HttpResponse:
         raise PermissionDenied()
 
 
-def _add_weekly_slot(request: HttpRequest, course_id:int, schedule: Schedule):
+def _add_weekly_slot(request: HttpRequest, course_id: int, schedule: Schedule):
 
     if request.method == 'POST':
         data = forms.AddWeeklySlotForm(request.POST)
@@ -61,7 +61,7 @@ def _add_weekly_slot(request: HttpRequest, course_id:int, schedule: Schedule):
     )
 
 
-def _add_date_slot(request:HttpRequest, course_id, schedule:Schedule):
+def _add_date_slot(request:HttpRequest, course_id, schedule: Schedule):
 
     if request.method == 'POST':
         data = forms.AddDateForm(request.POST)

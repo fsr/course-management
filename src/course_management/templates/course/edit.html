@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>
-  You can edit the description for your course here. You can use html to do so, allowed tags are {{ allowed_tags|join:", " }}.
-</p>
-<form method="post" action="{% url 'edit-course' course_id %}">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <input type="submit" value="Submit" />
-</form>
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        You can edit the description for your course here. You may use markdown to do so.
+      </p>
+      <form method="post" action="{% url 'edit-course' course_id %}">
+        {% csrf_token %}
+        <table class="table">
+          {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </div>
 {% endblock %}

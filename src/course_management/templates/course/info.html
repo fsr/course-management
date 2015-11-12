@@ -5,7 +5,7 @@
 <div>
   <h2>{{ course.subject.title }}</h2>
   <p><b>Teachers:</b>{% for teacher in course.teacher.all %} {{ teacher }} {% endfor %}</p>
-  <p>{{ course.description|safe }}</p>
+  <p>{{ course.get_description_as_html|safe }}</p>
   <p>Participants: {{ participants_count }}/{{ max_participants }}</p>
 </div>
 {% if user.is_authenticated %}

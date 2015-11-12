@@ -1,7 +1,7 @@
 import bleach
 
 
-DESCR_ALLOWED_TAGS = bleach.ALLOWED_TAGS + ['h5', 'h6']
+DESCR_ALLOWED_TAGS = bleach.ALLOWED_TAGS + ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 
 
 def clean_for_description(html):

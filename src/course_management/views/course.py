@@ -70,9 +70,8 @@ def edit_course(request, course_id):
 
                 c.__setattr__(prop,cleaned[prop])
 
-
             if 'description' in cleaned:
-                c.description = html_clean.clean_for_description(cleaned['description'])
+                c.description = cleaned['description']
 
             c.save()
             return redirect('course', course_id)
