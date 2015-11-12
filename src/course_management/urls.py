@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from course_management.views import index, subject, course, enroll
+from course_management.views import index, subject, course, enroll, time
 import user_management
 
 
@@ -34,6 +34,8 @@ urlpatterns = [
         url(r'^unregister/$', enroll.remove, name='unregister-course'),
         url(r'^register/done/$', enroll.enroll_response, dict(action='register'), name='register-course-done'),
         url(r'^unregister/done/$', enroll.enroll_response, dict(action='unregister'), name='unregister-course-done'),
+        url(r'^schedule/add/$', time.add_slot, name='course-add-slot'),
+        url(r'^schedule/remove/(?P<slot_id>[0-9]+)/$', time.remove_slot, name='course-remove-slot')
     ])),
     url(r'^accounts/', include(user_management.urls))
 ]

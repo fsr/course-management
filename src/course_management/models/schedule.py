@@ -1,6 +1,26 @@
 from django.db import models
 
 
+WEEKDAYS = [
+    ("MON", "Mondays"),
+    ("TUE", "Tuesdays"),
+    ("WED", "Wednesdays"),
+    ("THU", "Thursdays"),
+    ("FRI", "Fridays"),
+    ("SAT", "Saturdays"),
+    ("SUN", "Sundays"),
+]
+TIMESLOTS = [
+    ("I", "1st"),
+    ("II", "2nd"),
+    ("III", "3rd"),
+    ("IV", "4th"),
+    ("V", "5th"),
+    ("VI", "6th"),
+    ("VII", "7th"),
+]
+
+
 class Schedule(models.Model):
     TYPES = [
         ('W', "weekly"),
@@ -8,6 +28,9 @@ class Schedule(models.Model):
     ]
 
     _type = models.CharField(max_length=1, choices=TYPES)
+
+    def is_weekly(self):
+        return self._type == 'W'
 
     @property
     def slots(self):
@@ -23,24 +46,6 @@ class Schedule(models.Model):
 
 
 class WeeklySlot(models.Model):
-    WEEKDAYS = [
-        ("MON", "Mondays"),
-        ("TUE", "Tuesdays"),
-        ("WED", "Wednesdays"),
-        ("THU", "Thursdays"),
-        ("FRI", "Fridays"),
-        ("SAT", "Saturdays"),
-        ("SUN", "Sundays"),
-    ]
-    TIMESLOTS = [
-        ("I", "1st"),
-        ("II", "2nd"),
-        ("III", "3rd"),
-        ("IV", "4th"),
-        ("V", "5th"),
-        ("VI", "6th"),
-        ("VII", "7th"),
-    ]
     weekday = models.CharField(max_length=3, choices=WEEKDAYS)
     timeslot = models.CharField(max_length=3, choices=TIMESLOTS)
     place = models.CharField(max_length=100, blank=True)
@@ -49,7 +54,8 @@ class WeeklySlot(models.Model):
     def __str__(self):
         return "{weekday}, {timeslot}".format(weekday=self.get_weekday_display(), timeslot=self.get_timeslot_display())
 
-
+    def as_summary(self):
+        return '{} {} at {}'.format(self.weekday, self.timeslot, self.place)
 
 
 class DateSlot(models.Model):
@@ -58,4 +64,7 @@ class DateSlot(models.Model):
     schedule = models.ForeignKey(Schedule)
 
     def __str__(self):
-        return "{date}".format(date=self.date)
+        return str(self.date)
+
+    def as_summary(self):
+        return '{} at {}'.format(self.date, self.place)

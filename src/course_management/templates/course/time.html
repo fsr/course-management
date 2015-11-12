@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <ul>
+    {% for slot in schedule.slots %}
+      <li>{{ slot.as_summary }} |
+        <form method="post" action="{% url 'course-remove-slot' course_id slot.id %}{% if target %}?target={{ target }}{% endif %}">
+          {% csrf_token %}
+          <input type="submit" value="remove">
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+  <form action="{% url 'course-add-slot' course_id %}" method="post">
+    <table>
+      {{ form.as_table }}
+    </table>
+    {% csrf_token %}
+    <input type="submit" value="Add">
+  </form>
+{% endblock %}

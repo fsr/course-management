@@ -16,6 +16,7 @@
       {% endfor %}
     </ul>
     <a href="{% url 'edit-course' course_id %}">Edit course</a>
+    <a href="{% url 'course-add-slot' course_id %}">Edit schedule</a>
     <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">
         {% csrf_token %}
         <input type="submit" value="Set course {% if course_is_active %}inactive{% else %}active{% endif %}" />
