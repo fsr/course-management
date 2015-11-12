@@ -9,6 +9,9 @@ a {
 a:hover {
     color: #424242;
 }
+form {
+    margin: 0;
+}
 #top_logo {
     padding-right: 0;
 }

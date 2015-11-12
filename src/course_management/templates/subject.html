@@ -4,31 +4,6 @@
 	<div class="headline">{{ subject.name }}</div>
 	{{ subject.description }}
 </div>
-<div class="courses">
-	<div class="thead">
-		<div class="row">
-			<div class="col-md-5">Teacher</div>
-			<div class="col-md-5">Timeslots/Dates</div>
-			<div class="col-md-2">Participants</div>
-		</div>
-	</div>
-	<div class="tbody">
-		{% for course in subject.course_set.all %}
-			<a href="{% url 'course' course.id %}">
-				<div class="row">
-					<div class="col-md-5">
-						{{ course.teacher.all|join:"<br />" }}
-					</div>
-					<div class="col-md-5">
-						{{ course.schedule.slots|join:"<br />" }}
-					</div>
-					<div class="col-md-2">
-						{{ course.participants.count }}/{{ course.max_participants }}
-					</div>
-				</div>
-			</a>
-		{% endfor %}
-	</div>
-</div>
+{% include 'course_list.html' %}
 
 {% endblock %}

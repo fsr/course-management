@@ -1,0 +1,37 @@
+<div class="courses">
+	<div class="thead">
+		<div class="row">
+			<div class="col-md-4">Teacher</div>
+			<div class="col-md-4">Timeslots/Dates</div>
+			<div class="col-md-2">Participants</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+	<div class="tbody">
+		{% for course in course_list %}
+			<a href="{% url 'course' course.id %}">
+				<div class="row">
+					<div class="col-md-4">
+						{{ course.teacher.all|join:"<br />" }}
+					</div>
+					<div class="col-md-4">
+						{{ course.schedule.slots|join:"<br />" }}
+					</div>
+					<div class="col-md-2">
+						{{ course.participants.count }}/{{ course.max_participants }}
+					</div>
+					<div class="col-md-2">
+						{% if user.student not in course.teacher.all %}
+							<form action="{% if course in user.student.course_set.all %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}" method="post">
+			          {% csrf_token %}
+			          <input class="btn btn-default" type="submit" value="{% if course in user.student.course_set.all %}unregister{% else %}register{% endif %}" />
+			        </form>
+						{% else %}
+							You are teacher.
+						{% endif %}
+					</div>
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+</div>
