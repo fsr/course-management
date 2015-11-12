@@ -4,7 +4,7 @@ body {
     color: #424242;
 }
 a {
-    color: #424242;
+    color: #1b70ff;
 }
 a:hover {
     color: #424242;
@@ -24,6 +24,10 @@ a.headline {
     padding-left: 0;
     align-self: center;
     flex-grow: 1;
+    color: #424242;
+}
+.heading a {
+    color: #424242;
 }
 header {
     display: flex;
@@ -90,11 +94,6 @@ header {
     background: #fafafa;
     border-radius: 1em 1em 0 0;
 }
-ul {
-    padding: 0;
-    list-style: none;
-    margin: 0;
-}
 .main {
     margin: 1em 0;
 }
@@ -139,6 +138,11 @@ div.courses a:nth-child(even) .row {
 }
 div.courses div.tbody .row:hover {
     border-color: #888888;
+}
+ul.subjectlist {
+    padding: 0;
+    list-style: none;
+    margin: 0;
 }
 ul.subjectlist li {
     pointer-events: none;
