@@ -1,9 +1,9 @@
 from django.db import models
-from django.db.models import Count, F, Q
+from django.db.models import Count, Q
 
 
 class Subject(models.Model):
-    name = models.CharField(max_length=40)
+    name = models.CharField(max_length=100, unique=True)
     description = models.TextField(default="")
 
     def __str__(self):

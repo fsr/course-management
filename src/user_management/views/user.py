@@ -1,13 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
-from course_management.views.base import render_with_default
-from user_management.models import Student
 from user_management.forms import ModifyUserForm
+from user_management.render_tools import adaptive_render
 
 
 @login_required()
-def modify(request):
+@adaptive_render
+def modify(request, render):
 
     user = request.user
     student = user.student
@@ -40,9 +40,10 @@ def modify(request):
             'email': user.email,
             'faculty': student.faculty.id
         })
-        return render_with_default(request, 'user/edit.html', {'form': form})
+        return render(request, 'user/edit.html', {'form': form})
 
 
 @login_required()
-def profile(request):
-    return render_with_default(request, 'user/profile.html', {})
+@adaptive_render
+def profile(request, render):
+    return render(request, 'user/profile.html', {})

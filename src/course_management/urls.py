@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from course_management.models.subject import Subject
 from course_management.views import index, subject, course, enroll, time
 import user_management
 
@@ -23,7 +24,7 @@ import user_management
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^/?$', index.index, name='index'),
-    url(r'^subject/(?P<subjectname>\w+)$', subject.course_overview, name='subject'),
+    url(r'^subject/(?P<subjectname>\w+)/$', subject.course_overview, name='subject'),
 
     url(r'^course/(?P<course_id>[0-9]+)/', include([
         url(r'^$', course.course, name='course'),
@@ -37,5 +38,9 @@ urlpatterns = [
         url(r'^schedule/add/$', time.add_slot, name='course-add-slot'),
         url(r'^schedule/remove/(?P<slot_id>[0-9]+)/$', time.remove_slot, name='course-remove-slot')
     ])),
-    url(r'^accounts/', include(user_management.urls))
+    url(r'^accounts/', include(user_management.urls), {
+            'extra_context': {
+                'active_subjects': Subject.get_active()
+            }
+    })
 ]

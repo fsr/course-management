@@ -1,14 +1,16 @@
-from course_management.views.base import render_with_default
 from user_management.models import Activation
 from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
 
+from user_management.render_tools import adaptive_render
 
-def activate(request):
+
+@adaptive_render
+def activate(request, render):
     if request.method == 'GET':
         reqdict = request.GET.dict()
         if 'token' not in reqdict:
-            return render_with_default(
+            return render(
                 request,
                 'user/activate.html',
                 {'title': 'Failure | iFSR Course Management',
@@ -17,7 +19,7 @@ def activate(request):
             try:
                 db_entry = Activation.objects.get(token=reqdict['token'])
             except ObjectDoesNotExist:
-                return render_with_default(
+                return render(
                     request,
                     'user/activate.html',
                     {'title': 'Failure | iFSR Course Management',
@@ -25,7 +27,7 @@ def activate(request):
             db_entry.user.is_active = True
             db_entry.user.save()
             db_entry.delete()
-            return render_with_default(
+            return render(
                 request,
                 'user/activate.html',
                 {'title': 'Success | iFSR Course Management'})

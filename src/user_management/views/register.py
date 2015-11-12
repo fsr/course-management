@@ -1,5 +1,3 @@
-from django.http import HttpRequest
-from course_management.views.base import render_with_default
 from user_management.forms import RegistrationForm
 from user_management.models import Student
 from user_management.models import Activation
@@ -8,8 +6,11 @@ from user_management import mailsettings
 import random
 import string
 
+from user_management.render_tools import adaptive_render
 
-def register(request):
+
+@adaptive_render
+def register(request, render):
 
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -22,7 +23,7 @@ def register(request):
                                          s_number=userdata['s_number'],
                                          faculty=userdata['faculty'])
             if createduser is None:
-                return render_with_default(
+                return render(
                     request,
                     'registration/register.html',
                     {'title': 'Registration',
@@ -30,13 +31,13 @@ def register(request):
                      'form': form})
             else:
                 activationMail(createduser.user, request)
-                return render_with_default(
+                return render(
                     request,
                     'registration/success.html',
                     {'title': 'Registration successfull',
                      'acc': userdata['s_number']})
         else:
-            return render_with_default(
+            return render(
                 request,
                 'registration/register.html',
                 {'title': 'Registration',
@@ -44,7 +45,7 @@ def register(request):
                  'form': form})
     else:
         form = RegistrationForm()
-        return render_with_default(
+        return render(
             request,
             'registration/register.html',
             {'title': 'Registration',
