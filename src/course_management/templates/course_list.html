@@ -5,7 +5,7 @@
 				<div class="col-md-3">Subject</div>
 			{% endif %}
 			<div class="col-md-3">Timeslots/Dates</div>
-			<div class="col-md-4">Teacher</div>
+			<div class="col-md-3">Teacher</div>
       {% if not course_list_show_subject %}
 				<div class="col-md-2">Participants</div>
 			{% endif %}
@@ -19,11 +19,11 @@
 					{% if course_list_show_subject%}
 						<div class="col-md-3">{{ course.subject }}</div>
 					{% endif %}
-					<div class="col-md-4">
-						{{ course.teacher.all|join:"<br />" }}
-					</div>
 					<div class="col-md-3">
 						{{ course.schedule.slots|join:"<br />" }}
+					</div>
+					<div class="col-md-3">
+						{{ course.teacher.all|join:"<br />" }}
 					</div>
           {% if not course_list_show_subject %}
 						<div class="col-md-2">
@@ -31,7 +31,7 @@
 						</div>
 					{% endif %}
 					<div class="col-md-2">
-						{% if user.student not in course.teacher.all and user.has_permission %}
+						{% if user.student not in course.teacher.all and user.is_authenticated %}
 							<form action="{% if course in user.student.course_set.all %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}" method="post">
 			          {% csrf_token %}
 			          <input class="btn btn-default" type="submit" value="{% if course in user.student.course_set.all %}unregister{% else %}register{% endif %}" />
