@@ -1,8 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from course_management.models.course import Course
 from django.shortcuts import redirect
+
+
 from course_management.views.base import render_with_default
+from course_management.models.course import Course
+
 from .course import _course_context
 
 

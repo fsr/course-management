@@ -22,19 +22,18 @@ import user_management
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', index.index, name='index'),
-    #url(r'^login$', login.login, name='login'),
+    url(r'^/?$', index.index, name='index'),
     url(r'^subject/(?P<subjectname>\w+)$', subject.course_overview, name='subject'),
 
     url(r'^course/(?P<course_id>[0-9]+)/', include([
         url(r'^$', course.course, name='course'),
-        url(r'^edit$', course.edit_course, name='edit-course'),
-        url(r'^activate$', course.activate, name='activate-course'),
-        url(r'^deactivate$', course.deactivate, name='deactivate-course'),
-        url(r'^register$', enroll.add, name='register-course'),
-        url(r'^unregister$', enroll.remove, name='unregister-course'),
-        url(r'^register/done$', enroll.enroll_response, dict(action='register'), name='register-course-done'),
-        url(r'^unregister/done$', enroll.enroll_response, dict(action='unregister'), name='unregister-course-done'),
+        url(r'^edit/$', course.edit_course, name='edit-course'),
+        url(r'^activate/$', course.activate, name='activate-course'),
+        url(r'^deactivate/$', course.deactivate, name='deactivate-course'),
+        url(r'^register/$', enroll.add, name='register-course'),
+        url(r'^unregister/$', enroll.remove, name='unregister-course'),
+        url(r'^register/done/$', enroll.enroll_response, dict(action='register'), name='register-course-done'),
+        url(r'^unregister/done/$', enroll.enroll_response, dict(action='unregister'), name='unregister-course-done'),
     ])),
     url(r'^accounts/', include(user_management.urls))
 ]

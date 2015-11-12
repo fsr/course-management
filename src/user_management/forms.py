@@ -1,18 +1,23 @@
 from django import forms
-from user_management.models import Faculty
 from django.core.validators import RegexValidator
+
+from user_management.models import Faculty
 
 
 def get_faculties():
     return map(lambda fak: (fak.id, fak.name), Faculty.objects.all())
 
 
-name_validator = RegexValidator(r'^\w+((-| )\w+)*$',
+name_validator = RegexValidator(
+    r'^\w+((-| )\w+)*$',
     message='Names should start with capital letters, only contain regular'
-    ' characters and be separated with spaces or dashes.')
-s_number_validator = RegexValidator(r'^s?\d{7}$',
+            ' characters and be separated with spaces or dashes.'
+)
+s_number_validator = RegexValidator(
+    r'^s?\d{7}$',
     message='S numbers can start with an \'s\' and otherwise consist of a '
-    'string of seven digits.')
+            'string of seven digits.'
+)
 
 
 class LoginForm(forms.Form):

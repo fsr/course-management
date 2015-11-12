@@ -16,7 +16,10 @@
       {% endfor %}
     </ul>
     <a href="{% url 'edit-course' course_id %}">Edit course</a>
-    <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">{% csrf_token %}<input type="submit" value="Set course {% if course_is_active %}inactive{% else %}active{% endif %}" /></form>
+    <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">
+        {% csrf_token %}
+        <input type="submit" value="Set course {% if course_is_active %}inactive{% else %}active{% endif %}" />
+    </form>
   {% else %}
   <form action="{% if is_subbed %}{% url 'unregister-course' course_id %}{% else %}{% url 'register-course' course_id %}{% endif %}" method="post">
     {% csrf_token %}

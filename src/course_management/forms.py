@@ -1,7 +1,6 @@
 from django import forms
 
 
-
 class EditCourseForm(forms.Form):
     active = forms.BooleanField(initial=False)
     description = forms.CharField(widget=forms.Textarea)

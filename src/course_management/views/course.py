@@ -1,15 +1,14 @@
-from course_management.views.base import render_with_default
+import functools
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from course_management.forms import EditCourseForm
 from django.shortcuts import redirect
-from util import html_clean
 from django.views.decorators.http import require_POST
-import functools
 from django.core.exceptions import PermissionDenied
 
-
+from course_management.views.base import render_with_default
 from course_management.models.course import Course
+from course_management.forms import EditCourseForm
+from util import html_clean
 
 
 def course(request, course_id):
@@ -19,12 +18,15 @@ def course(request, course_id):
         _course_context(request, course_id)
     )
 
+
 def _course_context(request, course_id):
+
     if isinstance(course_id, Course):
         active_course = course_id
         course_id = course_id.id
     else:
         active_course = Course.objects.get(id=course_id)
+
     participants_count, max_participants = active_course.saturation_level
     sub_name = active_course.subject.name
     context = {
@@ -37,7 +39,9 @@ def _course_context(request, course_id):
         'course_is_active': active_course.active,
     }
     user = request.user
+
     if user.is_authenticated():
+
         context['is_subbed'] = user.student.course_set.filter(id=course_id).exists()
 
         if active_course.is_teacher(user):
@@ -46,11 +50,16 @@ def _course_context(request, course_id):
 
     return context
 
+
 @login_required()
 def edit_course(request, course_id):
+
     if request.method == "POST":
+
         form = EditCourseForm(request.POST)
+
         if form.is_valid():
+
             c = Course.objects.get(id=course_id)
             cleaned = form.cleaned_data
 
@@ -86,7 +95,6 @@ def edit_course(request, course_id):
             'course_is_active': c.active,
         }
     )
-
 
 
 def must_be_teacher(func):

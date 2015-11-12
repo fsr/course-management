@@ -1,8 +1,9 @@
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+
+from course_management.views.base import render_with_default
 from user_management.models import Student
 from user_management.forms import ModifyUserForm
-from django.contrib.auth.decorators import login_required
-from course_management.views.base import render_with_default
-from django.shortcuts import redirect
 
 
 @login_required()
