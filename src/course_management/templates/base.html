@@ -41,6 +41,9 @@
               </a>
 							<div>
 								<ul class="subjectlist">
+                  {% if perms.course_management.add_course %}
+                    <li><a href="{% url 'create-course' %}">Create course</a></li>
+                  {% endif %}
                   <li><a href="{% url 'modify-user' %}">Edit your data</a>
 									<li><a href="">Change pass</a></li>
 									<li><a href="{% url 'logout' %}">Logout</a></li>

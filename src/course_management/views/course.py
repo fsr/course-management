@@ -1,13 +1,14 @@
 import functools
 from django.core.urlresolvers import reverse
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
 from django.core.exceptions import PermissionDenied
 
+from course_management.models.schedule import Schedule
 from course_management.views.base import render_with_default
 from course_management.models.course import Course
-from course_management.forms import EditCourseForm
+from course_management.forms import EditCourseForm, CreateCourseForm
 from util import html_clean
 
 
@@ -124,3 +125,27 @@ def deactivate(request, course_id):
     curr_course.active = False
     curr_course.save()
     return redirect('course', course_id)
+
+
+@permission_required('course.add_course')
+def create(request):
+
+    if request.method == 'POST':
+        form = CreateCourseForm(request.POST)
+        if form.is_valid():
+            cleaned = form.cleaded_data
+
+            created = Course.objects.create(
+                teacher=[request.user.student],
+                schedule=Schedule.objects.create(_type=cleaned.schedule),
+                active=cleaned.active,
+                subject=int(cleaned.subject),
+                max_participants=cleaned.max_participants,
+                description=cleaned.description
+            )
+
+            return redirect('course', created.id)
+    else:
+        form = CreateCourseForm()
+
+    return render_with_default(request, 'course/create.html', {'form': form})

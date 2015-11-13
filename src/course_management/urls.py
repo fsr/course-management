@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^/?$', index.index, name='index'),
     url(r'^subject/(?P<subjectname>\w+)/$', subject.course_overview, name='subject'),
 
+    url(r'^course/new/$', course.create, name='create-course'),
+
     url(r'^course/(?P<course_id>[0-9]+)/', include([
         url(r'^$', course.course, name='course'),
         url(r'^edit/$', course.edit_course, name='edit-course'),
@@ -40,7 +42,7 @@ urlpatterns = [
     ])),
     url(r'^accounts/', include(user_management.urls), {
             'extra_context': {
-                'active_subjects': Subject.get_active()
+                'active_subjects': lambda: Subject.get_active()
             }
     })
 ]

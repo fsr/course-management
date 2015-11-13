@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <p>On this page you can create a new course.
+    You'll automatically be assigned as teacher for this course
+    , so that you may be able to edit it. You can assign new teachers once the course is created
+    and even unassign yourself as teacher</p>
+  <form action="{% url 'create-course' %}">
+    {% csrf_token %}
+    <table class="table">
+      {{ form.as_table }}
+    </table>
+    <input class="btn btn-default" type="submit" value="Create">
+  </form>
+{% endblock %}
