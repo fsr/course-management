@@ -35,14 +35,18 @@
 						{{ course.get_distinct_locations|join:", " }}
 					</div>
 					<div class="col-md-2">
-						{% if user.student not in course.teacher.all and user.is_authenticated %}
-							<form action="{% if course in user.student.course_set.all %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}" method="post">
-			          {% csrf_token %}
-			          <input class="btn btn-default" type="submit" value="{% if course in user.student.course_set.all %}unregister{% else %}register{% endif %}" />
-			        </form>
-						{% elif user.has_permission %}
-							You are teacher.
-						{% endif %}
+            {% if user.is_authenticated %}
+              {% if user.student in course.teacher.all %}
+                You are teacher.
+              {% else %}
+                <form action="{% if course in user.student.course_set.all %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}{% if target %}?target={{ target }}{% endif %}" method="post">
+                  {% csrf_token %}
+                  <input class="btn btn-default" type="submit" value="{% if course in user.student.course_set.all %}unregister{% else %}register{% endif %}" />
+                </form>
+              {% endif %}
+            {% else %}
+              <a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">register</a> to join this course.
+            {% endif %}
 					</div>
 				</div>
 			</a>

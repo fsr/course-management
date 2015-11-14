@@ -15,7 +15,7 @@
         <td>{{ slot }}</td>
         <td>{{ slot.location }}</td>
         <td>
-          <form method="post" action="{% url 'course-remove-slot' course_id slot.id %}{% if target %}?target={{ target }}{% endif %}">
+          <form method="post" action="{% url 'course-remove-slot' course_id slot.id %}{% if target %}?target={% url target course_id %}{% endif %}">
             {% csrf_token %}
             <input type="submit" class="btn btn-default" value="remove">
           </form>
@@ -24,7 +24,7 @@
     {% endfor %}
   </tbody>
   </table>
-  <form action="{% url 'course-add-slot' course_id %}" method="post">
+  <form action="{% url 'course-edit-slot' course_id %}" method="post">
     <table>
       {{ form.as_table }}
     </table>

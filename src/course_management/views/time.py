@@ -8,27 +8,25 @@ from course_management.models.course import Course
 from course_management import forms
 from course_management.models.schedule import Schedule, WeeklySlot, DateSlot
 from course_management.views.base import render_with_default
+from course_management.views.course import must_be_teacher
+from util.routing import redirect_unless_target
 
 
 @login_required
-def add_slot(request: HttpRequest, course_id) -> HttpResponse:
+@must_be_teacher
+def edit_slot(request: HttpRequest, course_id) -> HttpResponse:
 
     course = Course.objects.get(id=course_id)
 
-    if course.is_teacher(request.user):
+    schedule = course.schedule
 
-        schedule = course.schedule
-
-        if schedule.is_weekly():
-            return _add_weekly_slot(request, course_id, schedule)
-        else:
-            return _add_date_slot(request, course_id, schedule)
-
+    if schedule.is_weekly():
+        return _edit_weekly_slot(request, course_id, schedule)
     else:
-        raise PermissionDenied()
+        return _edit_date_slot(request, course_id, schedule)
 
 
-def _add_weekly_slot(request: HttpRequest, course_id: int, schedule: Schedule):
+def _edit_weekly_slot(request: HttpRequest, course_id: int, schedule: Schedule):
 
     if request.method == 'POST':
         data = forms.AddWeeklySlotForm(request.POST)
@@ -44,7 +42,7 @@ def _add_weekly_slot(request: HttpRequest, course_id: int, schedule: Schedule):
             )
             slot.save()
 
-            return redirect('course-add-slot', course_id)
+            return redirect('course-edit-slot', course_id)
 
     else:
         data = forms.AddWeeklySlotForm()
@@ -56,12 +54,12 @@ def _add_weekly_slot(request: HttpRequest, course_id: int, schedule: Schedule):
             'form': data,
             'schedule': schedule,
             'course_id': course_id,
-            'target': 'edit',
+            'target': 'course-edit-slot',
         }
     )
 
 
-def _add_date_slot(request:HttpRequest, course_id, schedule: Schedule):
+def _edit_date_slot(request:HttpRequest, course_id, schedule: Schedule):
 
     if request.method == 'POST':
         data = forms.AddDateForm(request.POST)
@@ -76,7 +74,7 @@ def _add_date_slot(request:HttpRequest, course_id, schedule: Schedule):
             )
             slot.save()
 
-            return redirect('course-add-slot', course_id)
+            return redirect('course-edit-slot', course_id)
     else:
         data = forms.AddDateForm()
 
@@ -87,7 +85,7 @@ def _add_date_slot(request:HttpRequest, course_id, schedule: Schedule):
             'form': data,
             'schedule': schedule,
             'course_id': course_id,
-            'target': 'edit'
+            'target': 'course-edit-slot'
         }
     )
 
@@ -96,15 +94,13 @@ def _add_date_slot(request:HttpRequest, course_id, schedule: Schedule):
 @require_POST
 def remove_slot(request, course_id, slot_id):
 
-    target = request.GET.get('target', None)
-
     course = Course.objects.get(id=course_id)
 
     if course.is_teacher(request.user):
 
         course.schedule.slots.get(id=slot_id).delete()
 
-        return redirect('course-add-slot' if target == 'edit' else 'course', course_id)
+        return redirect_unless_target(request, 'course', course_id)
 
     else:
         raise PermissionDenied()

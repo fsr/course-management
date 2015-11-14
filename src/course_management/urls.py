@@ -36,7 +36,7 @@ urlpatterns = [
         url(r'^unregister/$', enroll.remove, name='unregister-course'),
         url(r'^register/done/$', enroll.enroll_response, dict(action='register'), name='register-course-done'),
         url(r'^unregister/done/$', enroll.enroll_response, dict(action='unregister'), name='unregister-course-done'),
-        url(r'^schedule/add/$', time.add_slot, name='course-add-slot'),
+        url(r'^schedule/edit/$', time.edit_slot, name='course-edit-slot'),
         url(r'^schedule/remove/(?P<slot_id>[0-9]+)/$', time.remove_slot, name='course-remove-slot'),
         url(r'^teachers/$', course.add_teacher, name='add-teacher'),
         url(r'^teachers/remove/(?P<teacher_id>[0-9]+)/$', course.remove_teacher, name='remove-teacher'),

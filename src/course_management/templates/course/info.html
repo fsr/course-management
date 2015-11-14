@@ -20,7 +20,7 @@
       <td>
       <ul>
         <li><a href="{% url 'edit-course' course_id %}">Edit course</a></li>
-        <li><a href="{% url 'course-add-slot' course_id %}">Edit schedule</a></li>
+        <li><a href="{% url 'course-edit-slot' course_id %}">Edit schedule</a></li>
         <li><a href="{% url 'add-teacher' course_id %}">Add/Remove teachers</a></li>
       </ul>
         <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">

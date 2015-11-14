@@ -1,13 +1,13 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpRequest
 from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
 
 
 from course_management.views.base import render_with_default
 from course_management.models.course import Course
-
+from util.routing import redirect_unless_target
 from .course import _course_context
-
 
 
 @require_POST
@@ -27,7 +27,9 @@ def add(request, course_id):
         if 'enroll-error' in session:
             del session['enroll-error']
         ps.add(stud)
-    return redirect('register-course-done', course_id)
+
+    # redirect to course overview or specified target
+    return redirect_unless_target(request, 'unregister-course-done', course_id)
 
 
 @require_POST
@@ -37,7 +39,9 @@ def remove(request, course_id):
     course = Course.objects.get(id=course_id)
     ps = course.participants
     ps.remove(stud)
-    return redirect('unregister-course-done', course_id)
+
+    # redirect to course overview or specified target
+    return redirect_unless_target(request, 'register-course-done', course_id)
 
 
 @login_required()

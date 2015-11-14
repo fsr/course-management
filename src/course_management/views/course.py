@@ -14,6 +14,7 @@ from course_management.models.course import Course
 from course_management.forms import EditCourseForm, CreateCourseForm, AddTeacherForm
 from user_management.models import Student
 from util import html_clean
+from util.routing import redirect_unless_target
 
 
 def course(request, course_id):
@@ -192,7 +193,5 @@ def add_teacher(request, course_id):
 @must_be_teacher
 @require_POST
 def remove_teacher(request, course_id, teacher_id):
-    t = request.GET.get('target', None)
     Course.objects.get(id=course_id).teacher.remove(Student.objects.get(id=teacher_id))
-    target = reverse('course', args=(course_id,)) if t is None else t
-    return redirect(target)
+    return redirect_unless_target(request, 'course', course_id)
