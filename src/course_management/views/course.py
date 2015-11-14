@@ -1,4 +1,6 @@
 import functools
+
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect
@@ -6,9 +8,11 @@ from django.views.decorators.http import require_POST
 from django.core.exceptions import PermissionDenied
 
 from course_management.models.schedule import Schedule
+from course_management.models.subject import Subject
 from course_management.views.base import render_with_default
 from course_management.models.course import Course
-from course_management.forms import EditCourseForm, CreateCourseForm
+from course_management.forms import EditCourseForm, CreateCourseForm, AddTeacherForm
+from user_management.models import Student
 from util import html_clean
 
 
@@ -133,19 +137,60 @@ def create(request):
     if request.method == 'POST':
         form = CreateCourseForm(request.POST)
         if form.is_valid():
-            cleaned = form.cleaded_data
+            cleaned = form.cleaned_data
 
             created = Course.objects.create(
-                teacher=[request.user.student],
-                schedule=Schedule.objects.create(_type=cleaned.schedule),
-                active=cleaned.active,
-                subject=int(cleaned.subject),
-                max_participants=cleaned.max_participants,
-                description=cleaned.description
+                schedule=Schedule.objects.create(_type=cleaned['schedule']),
+                active=cleaned['active'],
+                subject=Subject.objects.get(id=int(cleaned['subject'])),
+                max_participants=cleaned['max_participants'],
+                description=cleaned['description']
             )
+
+            created.teacher.add(request.user.student)
 
             return redirect('course', created.id)
     else:
         form = CreateCourseForm()
 
     return render_with_default(request, 'course/create.html', {'form': form})
+
+
+@login_required()
+@must_be_teacher
+def add_teacher(request, course_id):
+    context = {'course_id': course_id, 'target': reverse('add-teacher', args=(course_id,))}
+    curr_course = Course.objects.get(id=course_id)
+
+    if request.method == 'POST':
+        form = AddTeacherForm(request.POST)
+        if form.is_valid():
+            try:
+                user = User.objects.get(username=form.cleaned_data['username'])
+
+                curr_course.teacher.add(user.student)
+
+                return redirect('add-teacher', course_id)
+            except User.DoesNotExist:
+                context['error'] = 'The username you entered does not exist in my database, sorry :('
+    else:
+        form = AddTeacherForm()
+
+    context['form'] = form
+    context['teachers'] = curr_course.teacher
+
+    return render_with_default(
+        request,
+        'course/teacher.html',
+        context
+    )
+
+
+@login_required()
+@must_be_teacher
+@require_POST
+def remove_teacher(request, course_id, teacher_id):
+    t = request.GET.get('target', None)
+    Course.objects.get(id=course_id).teacher.remove(Student.objects.get(id=teacher_id))
+    target = reverse('course', args=(course_id,)) if t is None else t
+    return redirect(target)

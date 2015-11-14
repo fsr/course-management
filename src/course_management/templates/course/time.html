@@ -16,9 +16,9 @@
         <td>{{ slot.place }}</td>
         <td>
           <form method="post" action="{% url 'course-remove-slot' course_id slot.id %}{% if target %}?target={{ target }}{% endif %}">
-          {% csrf_token %}
-          <input type="submit" class="btn btn-default" value="remove">
-        </form>
+            {% csrf_token %}
+            <input type="submit" class="btn btn-default" value="remove">
+          </form>
         </td>
       </tr>
     {% endfor %}

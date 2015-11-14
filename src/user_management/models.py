@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 
 
-
 class Faculty(models.Model):
     name = models.CharField(max_length=200)
 

@@ -1,12 +1,22 @@
 from django import forms
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from course_management.models.schedule import WEEKDAYS, TIMESLOTS, Schedule
 from course_management.models.subject import Subject
 
-place_validator = RegexValidator(
+location_validator = RegexValidator(
     r'^.*$', # does absolutely nothing yet
-    message='Invalid place name.'
+    message='Invalid location name.'
 )
+
+
+def username_exists_validator(value):
+    try:
+        User.objects.get(username=value)
+
+    except User.DoesNotExist:
+        raise ValidationError('This username does not exist')
 
 
 class EditCourseForm(forms.Form):
@@ -17,13 +27,13 @@ class EditCourseForm(forms.Form):
 
 class AddDateForm(forms.Form):
     date = forms.DateTimeField()
-    place = forms.CharField(validators=[place_validator])
+    location = forms.CharField(validators=[location_validator])
 
 
 class AddWeeklySlotForm(forms.Form):
     weekday = forms.ChoiceField(WEEKDAYS)
     timeslot = forms.ChoiceField(TIMESLOTS)
-    place = forms.CharField(validators=[place_validator])
+    location = forms.CharField(validators=[location_validator])
 
 
 class CreateCourseForm(forms.Form):
@@ -39,10 +49,19 @@ class CreateCourseForm(forms.Form):
     )
     description = forms.CharField(
         widget=forms.Textarea,
-        help_text='A good description is half the battle. You can use markdown for formatting.'
+        help_text='A good description is half the battle. You can use markdown for formatting.',
+        initial='# My course\n\nWe will explore the universe.\n\n## Materials\n\n- a spaceship\n- lots of courage'
     )
     max_participants = forms.DecimalField(
         min_value=1,
+        initial=30,
         label='Max nr. of participants',
         help_text='How many people can join your course. (Can be changed later)'
+    )
+
+
+class AddTeacherForm(forms.Form):
+    username = forms.CharField(
+        help_text='Username of the person you want to be a teacher for this course',
+        validators=[username_exists_validator]
     )

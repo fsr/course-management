@@ -4,7 +4,7 @@
     You'll automatically be assigned as teacher for this course
     , so that you may be able to edit it. You can assign new teachers once the course is created
     and even unassign yourself as teacher</p>
-  <form action="{% url 'create-course' %}">
+  <form action="{% url 'create-course' %}" method="post">
     {% csrf_token %}
     <table class="table">
       {{ form.as_table }}
