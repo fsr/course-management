@@ -1,0 +1,19 @@
+{
+  "name": "course-management",
+  "homepage": "https://github.com/fsr/course-management",
+  "authors": [
+    "Justus Adam <dev@justus.science>"
+  ],
+  "description": "Extra files for the course manager",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "src/static/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
