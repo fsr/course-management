@@ -10,13 +10,9 @@
 
  * go to folder *src*
  * Initialize the database
-```bash
- python3 manage.py migrate
-```
 
- * Add some fixtures
 ```bash
- python3 manage.py loaddata course_management/fixtures/courses.yaml
+./init.sh
 ```
 
  * Start the server
