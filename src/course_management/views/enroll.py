@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 
 from course_management.views.base import render_with_default
 from course_management.models.course import Course
+from util.error.reporting import db_error
 from util.routing import redirect_unless_target
 from .course import _course_context
 
@@ -15,7 +16,10 @@ from .course import _course_context
 def add(request, course_id):
     user = request.user
     stud = user.student
-    course = Course.objects.get(id=course_id)
+    try:
+        course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        return db_error('Requested course does not exist.')
     ps = course.participants
     session = request.session
 
@@ -36,7 +40,10 @@ def add(request, course_id):
 @login_required()
 def remove(request, course_id):
     stud = request.user.student
-    course = Course.objects.get(id=course_id)
+    try:
+        course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        return db_error('Requested course does not exist.')
     ps = course.participants
     ps.remove(stud)
 
@@ -47,7 +54,10 @@ def remove(request, course_id):
 @login_required()
 def enroll_response(request, course_id, action=None):
     session = request.session
-    course = Course.objects.get(id=course_id)
+    try:
+        course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        return db_error('Requested course does not exist.')
     context = _course_context(request, course)
     context['action'] = action
     context['subject'] = course.subject.name

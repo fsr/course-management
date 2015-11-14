@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="{% static "vendor/bootstrap/dist/css/bootstrap.min.css" %}">
+  <link type="text/css" rel="stylesheet" href="{% static "css/layout.css" %}">
+	<link href='https://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+  <title>{% if title %}{{ title }} | {% endif %}Course Management</title>
+</head>
+<body class="container">
+  {% block header %}
+    <header class="row">
+      <a href="{% url 'index' %}" class="col-md-7 headline">
+        <span>iFSR Course Management</span>
+      </a>
+      <a href="https://ifsr.de" class="col-md-2" id="top_logo">
+        <img src="{% static "img/LogoStandard.svg" %}">
+      </a>
+    </header>
+  {% endblock header %}
+
+  <div class="row">
+    <nav class="col-md-2">
+      <div class="sidebar shadow">
+			  {% block nav %}
+					&nbsp;
+			  {% endblock nav %}
+      </div>
+		</nav>
+    <section class="col-md-10">
+      <div class="content shadow">
+		    <div class="heading green nav">
+		      {% block content_heading %}
+            &nbsp;
+          {% endblock %}
+		    </div>
+	      <div class="main">
+		      {% block content %}
+				  {% endblock content %}
+        </div>
+      </div>
+	  </section>
+  </div>
+  <script src="{% static "vendor/jquery/dist/jquery.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "vendor/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+</body>
+</html>

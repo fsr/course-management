@@ -30,8 +30,8 @@ urlpatterns = [
     url(r'^course/(?P<course_id>[0-9]+)/', include([
         url(r'^$', course.course, name='course'),
         url(r'^edit/$', course.edit_course, name='edit-course'),
-        url(r'^activate/$', course.activate, name='activate-course'),
-        url(r'^deactivate/$', course.deactivate, name='deactivate-course'),
+        url(r'^activate/$', course.toggle, {'active': True}, name='activate-course'),
+        url(r'^deactivate/$', course.toggle, {'active': False}, name='deactivate-course'),
         url(r'^register/$', enroll.add, name='register-course'),
         url(r'^unregister/$', enroll.remove, name='unregister-course'),
         url(r'^register/done/$', enroll.enroll_response, dict(action='register'), name='register-course-done'),

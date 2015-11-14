@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from user_management.forms import ModifyUserForm
 from user_management.models import Faculty
 from user_management.render_tools import adaptive_render
+from util.error.reporting import db_error
 
 
 @login_required()
@@ -26,7 +27,13 @@ def modify(request, render):
             user.last_name = cleaned['last_name']
             user.email = cleaned['email']
 
-            student.faculty = Faculty.objects.get(id=int(cleaned['faculty']))
+            try:
+                student.faculty = Faculty.objects.get(id=int(cleaned['faculty']))
+            except Faculty.DoesNotExist:
+                return db_error(
+                    'Oops, it seems that faculty does not exist. Please try again and should the problem persist '
+                    'contact an administrator.'
+                )
 
             user.save()
             student.save()

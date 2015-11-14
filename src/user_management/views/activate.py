@@ -18,7 +18,7 @@ def activate(request, render):
         else:
             try:
                 db_entry = Activation.objects.get(token=reqdict['token'])
-            except ObjectDoesNotExist:
+            except Activation.DoesNotExist:
                 return render(
                     request,
                     'user/activate.html',

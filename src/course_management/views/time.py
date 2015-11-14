@@ -9,6 +9,7 @@ from course_management import forms
 from course_management.models.schedule import Schedule, WeeklySlot, DateSlot
 from course_management.views.base import render_with_default
 from course_management.util.permissions import needs_teacher_permissions
+from util.error.reporting import db_error
 from util.routing import redirect_unless_target
 
 
@@ -16,7 +17,10 @@ from util.routing import redirect_unless_target
 @needs_teacher_permissions
 def edit_slot(request: HttpRequest, course_id) -> HttpResponse:
 
-    course = Course.objects.get(id=course_id)
+    try:
+        course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        return db_error('This course does not exist.')
 
     schedule = course.schedule
 

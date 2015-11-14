@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
@@ -12,15 +12,19 @@ from course_management.util.permissions import needs_teacher_permissions
 from course_management.views.base import render_with_default
 from user_management.models import Student
 from util import html_clean
+from util.error.reporting import db_error
 from util.routing import redirect_unless_target
 
 
 def course(request, course_id):
-    return render_with_default(
-        request,
-        'course/info.html',
-        _course_context(request, course_id)
-    )
+    try:
+        return render_with_default(
+            request,
+            'course/info.html',
+            _course_context(request, course_id)
+        )
+    except Course.DoesNotExist:
+        return db_error('Requested course does not exist.')
 
 
 def _course_context(request, course_id):
@@ -57,6 +61,10 @@ def _course_context(request, course_id):
 
 @needs_teacher_permissions
 def edit_course(request, course_id):
+    try:
+        current_course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        return db_error('Requested course does not exist.')
 
     if request.method == "POST":
 
@@ -64,7 +72,6 @@ def edit_course(request, course_id):
 
         if form.is_valid():
 
-            c = Course.objects.get(id=course_id)
             cleaned = form.cleaned_data
 
             for prop in filter(cleaned.__contains__,(
@@ -72,20 +79,19 @@ def edit_course(request, course_id):
                 'max_participants'
             )):
 
-                c.__setattr__(prop,cleaned[prop])
+                current_course.__setattr__(prop,cleaned[prop])
 
             if 'description' in cleaned:
-                c.description = cleaned['description']
+                current_course.description = cleaned['description']
 
-            c.save()
+            current_course.save()
             return redirect('course', course_id)
 
     else:
-        c = Course.objects.get(id=course_id)
         form = EditCourseForm({
-                'active': c.active,
-                'description': c.description,
-                'max_participants': c.max_participants
+                'active': current_course.active,
+                'description': current_course.description,
+                'max_participants': current_course.max_participants
             })
 
     return render_with_default(
@@ -95,25 +101,20 @@ def edit_course(request, course_id):
             'form': form,
             'course_id': course_id,
             'allowed_tags': html_clean.DESCR_ALLOWED_TAGS,
-            'course_is_active': c.active,
+            'course_is_active': current_course.active,
         }
     )
 
 
 @needs_teacher_permissions
 @require_POST
-def activate(request, course_id):
-    curr_course = Course.objects.get(id=course_id)
-    curr_course.active = True
-    curr_course.save()
-    return redirect('course', course_id)
+def toggle(request, course_id, active):
+    try:
+        curr_course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        return db_error('Requested course does not exist.')
 
-
-@needs_teacher_permissions
-@require_POST
-def deactivate(request, course_id):
-    curr_course = Course.objects.get(id=course_id)
-    curr_course.active = False
+    curr_course.active = active
     curr_course.save()
     return redirect('course', course_id)
 
@@ -128,13 +129,20 @@ def create(request):
 
             active = cleaned.get('active', False)
 
-            created = Course.objects.create(
-                schedule=Schedule.objects.create(_type=cleaned['schedule']),
-                active=active if active is not None else False,
-                subject=Subject.objects.get(id=int(cleaned['subject'])),
-                max_participants=cleaned['max_participants'],
-                description=cleaned['description']
-            )
+            try:
+                created = Course.objects.create(
+                    schedule=Schedule.objects.create(_type=cleaned['schedule']),
+                    active=active if active is not None else False,
+                    subject=Subject.objects.get(id=int(cleaned['subject'])),
+                    max_participants=cleaned['max_participants'],
+                    description=cleaned['description']
+                )
+            except Subject.DoesNotExist:
+                return db_error(
+                    'The subject entered does not exist. This error should never occur, please try again. '
+                    'Should the error repeat please contact an administrator and include the following url "{}".'
+                    ''.format(request.path)
+                )
 
             created.teacher.add(request.user.student)
 
@@ -148,7 +156,11 @@ def create(request):
 @needs_teacher_permissions
 def add_teacher(request, course_id):
     context = {'course_id': course_id, 'target': reverse('add-teacher', args=(course_id,))}
-    curr_course = Course.objects.get(id=course_id)
+
+    try:
+        curr_course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        return db_error('This course does not exist ... ')
 
     if request.method == 'POST':
         form = AddTeacherForm(request.POST)
@@ -177,5 +189,10 @@ def add_teacher(request, course_id):
 @needs_teacher_permissions
 @require_POST
 def remove_teacher(request, course_id, teacher_id):
-    Course.objects.get(id=course_id).teacher.remove(Student.objects.get(id=teacher_id))
+    try:
+        Course.objects.get(id=course_id).teacher.remove(Student.objects.get(id=teacher_id))
+    except Course.DoesNotExist:
+        return db_error('This course does not exist.')
+    except Student.DoesNotExist:
+        return db_error('This student does not exist.')
     return redirect_unless_target(request, 'course', course_id)
