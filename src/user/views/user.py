@@ -54,8 +54,6 @@ def modify(request, render):
 @login_required()
 @adaptive_render
 def profile(request, render):
-    user = request.user
     return render(request, 'user/profile.html', {
-        'course_list': user.student.course_set.all(),
         'course_list_show_subject': True,
     })

@@ -10,7 +10,9 @@
 				<div class="col-md-2">Participants</div>
 			{% endif %}
 			<div class="col-md-2">Location</div>
-			<div class="col-md-2"></div>
+      {% if user.is_authenticated and not hide_actions %}
+			  <div class="col-md-2"></div>
+      {% endif %}
 		</div>
 	</div>
 	<div class="tbody">
@@ -46,22 +48,20 @@
               {% endif %}
             {% endwith %}
 					</div>
-					<div class="col-md-2">
-            {% if user.is_authenticated %}
-              {% if user.student in course.teacher.all %}
-                You are teacher.
-              {% else %}
-                {% with user.student.course_set.all as courses %}
-                <form action="{% if course in courses %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}{% if target %}?target={{ target }}{% endif %}" method="post">
-                  {% csrf_token %}
-                  <input class="btn btn-default" type="submit" value="{% if course in courses %}unregister{% else %}register{% endif %}" />
-                </form>
-                {% endwith %}
-              {% endif %}
+          {% if user.is_authenticated and not hide_actions %}
+            <div class="col-md-2">
+            {% if user.student in course.teacher.all %}
+              You are teacher. Click to view the course.
             {% else %}
-              <a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">register</a> to join this course.
+              {% with user.student.course_set.all as courses %}
+              <form action="{% if course in courses %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}{% if target %}?target={{ target }}{% endif %}" method="post">
+                {% csrf_token %}
+                <input class="btn btn-default" type="submit" value="{% if course in courses %}unregister{% else %}register{% endif %}" />
+              </form>
+              {% endwith %}
             {% endif %}
-					</div>
+            </div>
+          {% endif %}
 				</div>
 			</a>
 		{% endfor %}
