@@ -21,7 +21,13 @@
 						<div class="col-md-2">{{ course.subject }}</div>
 					{% endif %}
 					<div class="col-md-3">
-						{{ course.schedule.slots|join:"<br />" }}
+            {% with course.schedule.slots as slots %}
+              {% if slots %}
+                {{ slots|join:"<br />" }}
+              {% else %}
+                No dates set yet
+              {% endif %}
+            {% endwith %}
 					</div>
 					<div class="col-md-3">
 						{{ course.teacher.all|join:"<br />" }}
@@ -32,17 +38,25 @@
 						</div>
 					{% endif %}
 					<div class="col-md-2">
-						{{ course.get_distinct_locations|join:", " }}
+            {% with course.get_distinct_locations as locs %}
+              {% if locs %}
+                {{ locs|join:", " }}
+              {% else %}
+                No locations set yet.
+              {% endif %}
+            {% endwith %}
 					</div>
 					<div class="col-md-2">
             {% if user.is_authenticated %}
               {% if user.student in course.teacher.all %}
                 You are teacher.
               {% else %}
-                <form action="{% if course in user.student.course_set.all %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}{% if target %}?target={{ target }}{% endif %}" method="post">
+                {% with user.student.course_set.all as courses %}
+                <form action="{% if course in courses %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}{% if target %}?target={{ target }}{% endif %}" method="post">
                   {% csrf_token %}
-                  <input class="btn btn-default" type="submit" value="{% if course in user.student.course_set.all %}unregister{% else %}register{% endif %}" />
+                  <input class="btn btn-default" type="submit" value="{% if course in courses %}unregister{% else %}register{% endif %}" />
                 </form>
+                {% endwith %}
               {% endif %}
             {% else %}
               <a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">register</a> to join this course.

@@ -1,17 +1,15 @@
-import functools
-
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
-from django.core.exceptions import PermissionDenied
 
+from course_management.forms import EditCourseForm, CreateCourseForm, AddTeacherForm
+from course_management.models.course import Course
 from course_management.models.schedule import Schedule
 from course_management.models.subject import Subject
+from course_management.util.permissions import needs_teacher_permissions
 from course_management.views.base import render_with_default
-from course_management.models.course import Course
-from course_management.forms import EditCourseForm, CreateCourseForm, AddTeacherForm
 from user_management.models import Student
 from util import html_clean
 from util.routing import redirect_unless_target
@@ -57,7 +55,7 @@ def _course_context(request, course_id):
     return context
 
 
-@login_required()
+@needs_teacher_permissions
 def edit_course(request, course_id):
 
     if request.method == "POST":
@@ -102,19 +100,7 @@ def edit_course(request, course_id):
     )
 
 
-def must_be_teacher(func):
-    @functools.wraps(func)
-    @login_required()
-    def wrapped(request, course_id, *args, **kwargs):
-        curr_course = Course.objects.get(id=course_id)
-        if curr_course.is_teacher(request.user):
-            return func(request, course_id, *args, **kwargs)
-        else:
-            raise PermissionDenied()
-    return wrapped
-
-
-@must_be_teacher
+@needs_teacher_permissions
 @require_POST
 def activate(request, course_id):
     curr_course = Course.objects.get(id=course_id)
@@ -123,7 +109,7 @@ def activate(request, course_id):
     return redirect('course', course_id)
 
 
-@must_be_teacher
+@needs_teacher_permissions
 @require_POST
 def deactivate(request, course_id):
     curr_course = Course.objects.get(id=course_id)
@@ -159,8 +145,7 @@ def create(request):
     return render_with_default(request, 'course/create.html', {'form': form})
 
 
-@login_required()
-@must_be_teacher
+@needs_teacher_permissions
 def add_teacher(request, course_id):
     context = {'course_id': course_id, 'target': reverse('add-teacher', args=(course_id,))}
     curr_course = Course.objects.get(id=course_id)
@@ -189,8 +174,7 @@ def add_teacher(request, course_id):
     )
 
 
-@login_required()
-@must_be_teacher
+@needs_teacher_permissions
 @require_POST
 def remove_teacher(request, course_id, teacher_id):
     Course.objects.get(id=course_id).teacher.remove(Student.objects.get(id=teacher_id))

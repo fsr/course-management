@@ -2,22 +2,22 @@
 
 ## Gettin' started
 
- * install requirements
+* install dependencies
 
 ```bash
-./install.sh
+bower install
+python3 -m pip install -r requirements.txt
 ```
 
- * go to folder *src*
- * Initialize the database
+* Initialize the database
 
 ```bash
 ./init.sh
 ```
 
- * Start the server
+* Start the server
 ```bash
- python3 manage.py runserver
+python3 manage.py runserver
 ```
 
 * You now can login with the super user **foo** pass: *bar*

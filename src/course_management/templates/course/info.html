@@ -12,13 +12,19 @@
     <tr>
       <td>Participants list</td>
       <td>
-        {{ students|join:"<br />" }}
+        <ul>
+          {% for student in students %}
+            <li>{{ student }}</li>
+          {% empty %}
+            Oh no, there don't seem to be any students enrolled in this course yet :(, perhaps you should advertise more.
+          {% endfor %}
+        </ul>
       </td>
     </tr>
     <tr>
       <td>Administrative actions</td>
       <td>
-      <ul>
+      <ul class="course administration">
         <li><a href="{% url 'edit-course' course_id %}">Edit course</a></li>
         <li><a href="{% url 'course-edit-slot' course_id %}">Edit schedule</a></li>
         <li><a href="{% url 'add-teacher' course_id %}">Add/Remove teachers</a></li>
@@ -40,13 +46,14 @@
       </td>
     </tr>
   {% endif %}
-  </table>
 {% else %}
-</table>
-<div>
-  If you <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> you can join this course too.
-</div>
-
+    <tr>
+      <td>Actions</td>
+      <td>
+        If you <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> you can join this course.
+      </td>
+    </tr>
+  </table>
 {% endif %}
   <div class="course-description">{{ course.get_description_as_html|safe }}</div>
 {% endblock %}

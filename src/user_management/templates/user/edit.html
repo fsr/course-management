@@ -6,10 +6,10 @@
 </p>
 <form action="{% url 'modify-user' %}" method="post">
   {% csrf_token %}
-  <table>
+  <table class="table table-condensed table-bordered">
     {{ form.as_table }}
   </table>
-    <input type="submit" value="Change" />
+    <input class="btn btn-default" type="submit" value="Change" />
 </form>
 <p>
   Perhaps you'd like to <a href="{% url 'password_change' %}">change your password?</a>

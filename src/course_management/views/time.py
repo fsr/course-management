@@ -8,12 +8,12 @@ from course_management.models.course import Course
 from course_management import forms
 from course_management.models.schedule import Schedule, WeeklySlot, DateSlot
 from course_management.views.base import render_with_default
-from course_management.views.course import must_be_teacher
+from course_management.util.permissions import needs_teacher_permissions
 from util.routing import redirect_unless_target
 
 
 @login_required
-@must_be_teacher
+@needs_teacher_permissions
 def edit_slot(request: HttpRequest, course_id) -> HttpResponse:
 
     course = Course.objects.get(id=course_id)
