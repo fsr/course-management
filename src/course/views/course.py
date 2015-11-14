@@ -4,13 +4,13 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
 
-from course_management.forms import EditCourseForm, CreateCourseForm, AddTeacherForm
-from course_management.models.course import Course
-from course_management.models.schedule import Schedule
-from course_management.models.subject import Subject
-from course_management.util.permissions import needs_teacher_permissions
-from course_management.views.base import render_with_default
-from user_management.models import Student
+from course.forms import EditCourseForm, CreateCourseForm, AddTeacherForm
+from course.models.course import Course
+from course.models.schedule import Schedule
+from course.models.subject import Subject
+from course.util.permissions import needs_teacher_permissions
+from course.views.base import render_with_default
+from user.models import Student
 from util import html_clean
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target

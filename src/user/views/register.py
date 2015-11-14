@@ -1,12 +1,12 @@
-from user_management.forms import RegistrationForm
-from user_management.models import Student
-from user_management.models import Activation
+from user.forms import RegistrationForm
+from user.models import Student
+from user.models import Activation
 from django.core.mail import send_mail
-from user_management import mailsettings
+from user import mailsettings
 import random
 import string
 
-from user_management.render_tools import adaptive_render
+from user.render_tools import adaptive_render
 
 
 @adaptive_render

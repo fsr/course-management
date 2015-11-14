@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
-from user_management.forms import ModifyUserForm
-from user_management.models import Faculty
-from user_management.render_tools import adaptive_render
+from user.forms import ModifyUserForm
+from user.models import Faculty
+from user.render_tools import adaptive_render
 from util.error.reporting import db_error
 
 

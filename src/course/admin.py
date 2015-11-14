@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import course, schedule, subject
-from user_management.models import Student, Activation, Faculty
+from user.models import Student, Activation, Faculty
 
 admin.site.register(course.Course)
 admin.site.register(Faculty)

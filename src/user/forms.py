@@ -1,7 +1,7 @@
 from django import forms
 from django.core.validators import RegexValidator
 
-from user_management.models import Faculty
+from user.models import Faculty
 
 
 def get_faculties():

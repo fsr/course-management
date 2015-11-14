@@ -1,8 +1,8 @@
 from django.core.urlresolvers import reverse
 
-from course_management.views.base import render_with_default
+from course.views.base import render_with_default
 
-from course_management.models import subject
+from course.models import subject
 from util.error.reporting import db_error
 
 

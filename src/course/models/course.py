@@ -4,7 +4,7 @@ from markdown import markdown
 from util.html_clean import clean_for_description
 from . import schedule, subject
 from django.contrib.auth.models import User
-from user_management.models import Student
+from user.models import Student
 
 
 class Course(models.Model):

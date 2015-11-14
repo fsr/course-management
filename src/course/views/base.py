@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from course_management.models import subject
+from course.models import subject
 import collections
 
 

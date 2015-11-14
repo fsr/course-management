@@ -1,8 +1,8 @@
-from user_management.models import Activation
+from user.models import Activation
 from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
 
-from user_management.render_tools import adaptive_render
+from user.render_tools import adaptive_render
 
 
 @adaptive_render

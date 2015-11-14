@@ -4,8 +4,8 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
 
 
-from course_management.views.base import render_with_default
-from course_management.models.course import Course
+from course.views.base import render_with_default
+from course.models.course import Course
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
 from .course import _course_context

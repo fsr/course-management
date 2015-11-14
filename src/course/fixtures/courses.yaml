@@ -1,30 +1,30 @@
-- model: course_management.schedule
+- model: course.schedule
   pk: 1
   fields:
     _type: W
-- model: course_management.schedule
+- model: course.schedule
   pk: 2
   fields:
     _type: W
-- model: course_management.schedule
+- model: course.schedule
   pk: 3
   fields:
     _type: O
-- model: user_management.faculty
+- model: user.faculty
   pk: 1
   fields:
     name: Fakultät Informatik
-- model: course_management.subject
+- model: course.subject
   pk: 1
   fields:
     description: "My money's in that office, right? If she start giving me some bullshit about it ain't there, and we got to go someplace else and get it, I'm gonna shoot you in the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find out where my goddamn money is. She gonna tell me too. Hey, look at me when I'm talking to you, motherfucker. You listen: we go in there, and that nigga Winston or anybody else is in there, you the first motherfucker to get shot. You understand?"
     name: Python
-- model: course_management.subject
+- model: course.subject
   pk: 2
   fields:
     description: "Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass."
     name: C
-- model: course_management.course
+- model: course.course
   pk: 1
   fields:
     subject: 1
@@ -33,7 +33,7 @@
     teacher: [1]
     participants: []
     max_participants: 30
-- model: course_management.course
+- model: course.course
   pk: 2
   fields:
     subject: 2
@@ -42,7 +42,7 @@
     teacher: [1]
     participants: []
     max_participants: 30
-- model: course_management.course
+- model: course.course
   pk: 3
   fields:
     subject: 2
@@ -81,13 +81,13 @@
     groups: []
     password: pbkdf2_sha256$20000$MLoWiQfJswUs$K/nA3yZ1hQuexxPZFKB0gv8sADmMWNGPp2kwbPx/0B4=
     first_name: Mila
-- model: user_management.student
+- model: user.student
   pk: 1
   fields:
     user: 1
     s_number: s1234567
     faculty: 1
-- model: user_management.student
+- model: user.student
   pk: 2
   fields:
     user: 2

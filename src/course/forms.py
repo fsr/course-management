@@ -2,8 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
-from course_management.models.schedule import WEEKDAYS, TIMESLOTS, Schedule
-from course_management.models.subject import Subject
+from course.models.schedule import WEEKDAYS, TIMESLOTS, Schedule
+from course.models.subject import Subject
 
 location_validator = RegexValidator(
     r'^.*$', # does absolutely nothing yet
