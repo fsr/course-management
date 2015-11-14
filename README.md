@@ -5,7 +5,7 @@
  * install requirements
 
 ```bash
-python3 -m pip install -r requirements.txt
+./install.sh
 ```
 
  * go to folder *src*
