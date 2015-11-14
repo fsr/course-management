@@ -13,7 +13,7 @@
     {% for slot in schedule.slots %}
       <tr>
         <td>{{ slot }}</td>
-        <td>{{ slot.place }}</td>
+        <td>{{ slot.location }}</td>
         <td>
           <form method="post" action="{% url 'course-remove-slot' course_id slot.id %}{% if target %}?target={{ target }}{% endif %}">
             {% csrf_token %}

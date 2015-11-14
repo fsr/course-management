@@ -139,9 +139,11 @@ def create(request):
         if form.is_valid():
             cleaned = form.cleaned_data
 
+            active = cleaned.get('active', False)
+
             created = Course.objects.create(
                 schedule=Schedule.objects.create(_type=cleaned['schedule']),
-                active=cleaned['active'],
+                active=active if active is not None else False,
                 subject=Subject.objects.get(id=int(cleaned['subject'])),
                 max_participants=cleaned['max_participants'],
                 description=cleaned['description']

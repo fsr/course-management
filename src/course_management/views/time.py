@@ -39,7 +39,7 @@ def _add_weekly_slot(request: HttpRequest, course_id: int, schedule: Schedule):
             slot = WeeklySlot(
                 weekday=cleaned['weekday'],
                 timeslot=cleaned['timeslot'],
-                place=cleaned['place'],
+                location=cleaned['location'],
                 schedule=schedule
             )
             slot.save()
@@ -71,7 +71,7 @@ def _add_date_slot(request:HttpRequest, course_id, schedule: Schedule):
 
             slot = DateSlot(
                 date=cleaned['date'],
-                place=cleaned['place'],
+                location=cleaned['location'],
                 schedule=schedule
             )
             slot.save()

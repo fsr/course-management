@@ -32,7 +32,7 @@
 						</div>
 					{% endif %}
 					<div class="col-md-2">
-						TODO
+						{{ course.get_distinct_locations|join:", " }}
 					</div>
 					<div class="col-md-2">
 						{% if user.student not in course.teacher.all and user.is_authenticated %}

@@ -32,3 +32,6 @@ class Course(models.Model):
         elif not isinstance(user, Student):
             return False
         return self.teacher.filter(id=user.id).exists()
+
+    def get_distinct_locations(self):
+        return self.schedule.slots.values_list('location', flat=True).distinct()

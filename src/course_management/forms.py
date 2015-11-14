@@ -45,6 +45,7 @@ class CreateCourseForm(forms.Form):
     schedule = forms.ChoiceField(Schedule.TYPES)
     active = forms.BooleanField(
         initial=False,
+        required=False,
         help_text='Choose whether people should be able to join this course right now.'
     )
     description = forms.CharField(
