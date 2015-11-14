@@ -1,5 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render_to_response
 
 
 def db_error(message):
-    return render('error/db.html', {'error': message})
+    return render_to_response('error/db.html', {'error': message})

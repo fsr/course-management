@@ -63,7 +63,7 @@ def _edit_weekly_slot(request: HttpRequest, course_id: int, schedule: Schedule):
     )
 
 
-def _edit_date_slot(request:HttpRequest, course_id, schedule: Schedule):
+def _edit_date_slot(request: HttpRequest, course_id, schedule: Schedule):
 
     if request.method == 'POST':
         data = forms.AddDateForm(request.POST)
@@ -94,18 +94,28 @@ def _edit_date_slot(request:HttpRequest, course_id, schedule: Schedule):
     )
 
 
-@login_required()
+@needs_teacher_permissions
 @require_POST
 def remove_slot(request, course_id, slot_id):
 
-    course = Course.objects.get(id=course_id)
+    try:
+        course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        return db_error(
+            'The specified course does not exist. Please try again. '
+            'If this error persists, contact an administrator and include the url "{}"'
+            ''.format(request.path)
+        )
 
-    if course.is_teacher(request.user):
-
+    try:
         course.schedule.slots.get(id=slot_id).delete()
+    except (WeeklySlot.DoesNotExist, DateSlot.DoesNotExist):
+        return db_error(
+            'The slot you\'re trying to remove does not exist. Please try again. '
+            'If this error persists, contact an administrator and include the url "{}"'
+            ''.format(request.path)
+        )
 
-        return redirect_unless_target(request, 'course', course_id)
+    return redirect_unless_target(request, 'course', course_id)
 
-    else:
-        raise PermissionDenied()
 
