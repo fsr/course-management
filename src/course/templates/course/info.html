@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+{% block enroll_response %}
+{% endblock %}
+<table class="table">
+  <tr><td>Teachers</td>
+    <td>
+      {% for teacher in course.teacher.all %}{% if teacher.public_profile %}<a href="{% url 'user-profile' teacher.user.id %}">{{ teacher }}</a>{% else %}{{ teacher }}{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}
+    </td>
+  </tr>
+
+  <tr><td>Participants</td><td>{{ participants_count }} of {{ max_participants }}</td></tr>
+
+  <tr>
+    <td>Schedule</td>
+    <td>
+      {% with course.schedule.slots as slots %}
+        {% if slots %}
+          <ul>
+            {% for slot in slots %}
+              <li>{{ slot }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          No schedule has been set.
+        {% endif %}
+      {% endwith %}
+    </td>
+  </tr>
+
+{% if user.is_authenticated %}
+  {% if is_teacher %}
+    <tr>
+      <td>Participants list</td>
+      <td>
+        <ul>
+          {% for student in students %}
+            <li>{{ student }}</li>
+          {% empty %}
+            Oh no, there don't seem to be any students enrolled in this course yet :(, perhaps you should advertise more.
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Administrative actions</td>
+      <td>
+      <ul class="course administration">
+        <li><a href="{% url 'edit-course' course_id %}">Edit course</a></li>
+        <li><a href="{% url 'course-edit-slot' course_id %}">Edit schedule</a></li>
+        <li><a href="{% url 'add-teacher' course_id %}">Add/Remove teachers</a></li>
+      </ul>
+        <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-default" value="Set course {% if course_is_active %}inactive{% else %}active{% endif %}" />
+        </form>
+      </td>
+    </tr>
+  {% else %}
+    <tr>
+      <td>Actions</td>
+      <td>
+        <form action="{% if is_subbed %}{% url 'unregister-course' course_id %}{% else %}{% url 'register-course' course_id %}{% endif %}" method="post">
+          {% csrf_token %}
+          <input class="btn btn-default" type="submit" value="{% if is_subbed %}unregister{% else %}register{% endif %}" />
+        </form>
+      </td>
+    </tr>
+  {% endif %}
+{% else %}
+    <tr>
+      <td>Actions</td>
+      <td>
+        If you <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> you can join this course.
+      </td>
+    </tr>
+  </table>
+{% endif %}
+  <div class="course-description">{{ course.get_description_as_html|safe }}</div>
+{% endblock %}

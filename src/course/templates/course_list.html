@@ -1,0 +1,69 @@
+<div class="courses">
+	<div class="thead">
+		<div class="row">
+			{% if course_list_show_subject %}
+				<div class="col-md-2">Subject</div>
+			{% endif %}
+			<div class="col-md-3">Timeslots/Dates</div>
+			<div class="col-md-3">Teacher</div>
+      {% if not course_list_show_subject %}
+				<div class="col-md-2">Participants</div>
+			{% endif %}
+			<div class="col-md-2">Location</div>
+      {% if user.is_authenticated and not hide_actions %}
+			  <div class="col-md-2"></div>
+      {% endif %}
+		</div>
+	</div>
+	<div class="tbody">
+		{% for course in course_list %}
+			<a href="{% url 'course' course.id %}">
+				<div class="row">
+					{% if course_list_show_subject%}
+						<div class="col-md-2">{{ course.subject }}</div>
+					{% endif %}
+					<div class="col-md-3">
+            {% with course.schedule.slots as slots %}
+              {% if slots %}
+                {{ slots|join:"<br />" }}
+              {% else %}
+                No dates set yet
+              {% endif %}
+            {% endwith %}
+					</div>
+					<div class="col-md-3">
+						{{ course.teacher.all|join:"<br />" }}
+					</div>
+          {% if not course_list_show_subject %}
+						<div class="col-md-2">
+							{{ course.participants.count }}/{{ course.max_participants }}
+						</div>
+					{% endif %}
+					<div class="col-md-2">
+            {% with course.get_distinct_locations as locs %}
+              {% if locs %}
+                {{ locs|join:", " }}
+              {% else %}
+                No locations set yet.
+              {% endif %}
+            {% endwith %}
+					</div>
+          {% if user.is_authenticated and not hide_actions %}
+            <div class="col-md-2">
+            {% if user.student in course.teacher.all %}
+              You are teacher. Click to view the course.
+            {% else %}
+              {% with user.student.course_set.all as courses %}
+              <form action="{% if course in courses %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}{% if target %}?target={{ target }}{% endif %}" method="post">
+                {% csrf_token %}
+                <input class="btn btn-default" type="submit" value="{% if course in courses %}unregister{% else %}register{% endif %}" />
+              </form>
+              {% endwith %}
+            {% endif %}
+            </div>
+          {% endif %}
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+</div>

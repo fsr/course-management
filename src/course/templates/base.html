@@ -1,0 +1,38 @@
+{% extends 'base-shell.html' %}
+
+{% block content_heading %}
+  {% if user.is_authenticated %}
+    <div class="userpanel">
+      <a href="{% url 'user-profile' %}">
+        <strong>{{ user.student }}</strong>
+      </a>
+      <div>
+        <ul class="subjectlist">
+          {% if perms.course_management.add_course %}
+            <li><a href="{% url 'create-course' %}">Create course</a></li>
+          {% endif %}
+          <li><a href="{% url 'modify-user' %}">Edit your data</a>
+          <li><a href="">Change pass</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  {% else %}
+    <a href="{% url 'register' %}">Sign up</a>
+    <a href="{% url 'login' %}">Sign in</a>
+  {% endif %}
+  {% if backurl %}
+    <a href="{{ backurl }}">
+      <span class="glyphicon glyphicon-chevron-left" title="back"></span>
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block nav %}
+  <div class="heading green">Subjects</div>
+    <ul class="subjectlist">
+      {% for subject in active_subjects %}
+        <li><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></li>
+      {% endfor %}
+    </ul>
+{% endblock %}
