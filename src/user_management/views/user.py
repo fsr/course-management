@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
 from user_management.forms import ModifyUserForm
+from user_management.models import Faculty
 from user_management.render_tools import adaptive_render
 
 
@@ -25,7 +26,7 @@ def modify(request, render):
             user.last_name = cleaned['last_name']
             user.email = cleaned['email']
 
-            student.faculty = cleaned['faculty']
+            student.faculty = Faculty.objects.get(id=int(cleaned['faculty']))
 
             user.save()
             student.save()
