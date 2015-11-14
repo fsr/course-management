@@ -215,17 +215,17 @@ def notify(request: HttpRequest, course_id):
 
             show_sender = data.get('show_sender', False) and email
 
-            for student in course.participants:
+            for student in course.participants.all():
                 if show_sender:
                     student.user.email_user(
-                        data['subject'],
-                        data['content'],
+                        html_clean.clean_all(data['subject']),
+                        html_clean.clean_all(data['content']),
                         email
                     )
                 else:
                     student.user.email_user(
-                        data['subject'],
-                        data['content']
+                        html_clean.clean_all(['subject']),
+                        html_clean.clean_all(['content']),
                     )
 
             redirect('notify-course-done', course_id)
