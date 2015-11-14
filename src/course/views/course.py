@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.shortcuts import redirect
+from django.http import HttpRequest
+from django.shortcuts import redirect, render_to_response
 from django.views.decorators.http import require_POST
 
-from course.forms import EditCourseForm, CreateCourseForm, AddTeacherForm
+from course.forms import EditCourseForm, CreateCourseForm, AddTeacherForm, NotifyCourseForm
 from course.models.course import Course
 from course.models.schedule import Schedule
 from course.models.subject import Subject
@@ -196,3 +197,52 @@ def remove_teacher(request, course_id, teacher_id):
     except Student.DoesNotExist:
         return db_error('This student does not exist.')
     return redirect_unless_target(request, 'course', course_id)
+
+
+@needs_teacher_permissions
+def notify(request: HttpRequest, course_id):
+    if request.method == 'POST':
+        form = NotifyCourseForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+
+            try:
+                course = Course.objects.get(id=course_id)
+            except Course.DoesNotExist:
+                return db_error('Course does not exist.')
+
+            email = request.user.email
+
+            show_sender = data.get('show_sender', False) and email
+
+            for student in course.participants:
+                if show_sender:
+                    student.user.email_user(
+                        data['subject'],
+                        data['content'],
+                        email
+                    )
+                else:
+                    student.user.email_user(
+                        data['subject'],
+                        data['content']
+                    )
+
+            redirect('notify-course-done', course_id)
+
+    else:
+        form = NotifyCourseForm()
+
+    return render_with_default(
+        request,
+        'course/notify.html',
+        {
+            'form': form,
+            'course_id': course_id
+        }
+    )
+
+
+@needs_teacher_permissions
+def notify_done(request, course_id):
+    return render_to_response('course/notify-done.html')

@@ -32,6 +32,8 @@ urlpatterns = [
         url(r'^edit/$', course.edit_course, name='edit-course'),
         url(r'^activate/$', course.toggle, {'active': True}, name='activate-course'),
         url(r'^deactivate/$', course.toggle, {'active': False}, name='deactivate-course'),
+        url(r'notify/$', course.notify, name='notify-course'),
+        url(r'notify/done/$', course.notify_done, name='notify-course-done'),
         url(r'^register/$', enroll.add, name='register-course'),
         url(r'^unregister/$', enroll.remove, name='unregister-course'),
         url(r'^register/done/$', enroll.enroll_response, dict(action='register'), name='register-course-done'),

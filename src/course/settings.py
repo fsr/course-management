@@ -107,3 +107,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     # '/var/www/static/',
 )
+
+
+DEFAULT_FROM_EMAIL = 'noreply@ifsr.de'

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <p>You can use this form to send an email to all people enrolled in your course.</p>
+  <p><strong>Be aware that lots of email spam will most likely put off your students.</strong></p>
+
+  <form method="post" action="{% url 'notify-course' course_id %}">
+    <table class="table">
+      {{ form.as_table }}
+    </table>
+  </form>
+{% endblock %}

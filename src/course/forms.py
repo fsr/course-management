@@ -66,3 +66,19 @@ class AddTeacherForm(forms.Form):
         help_text='Username of the person you want to be a teacher for this course',
         validators=[username_exists_validator]
     )
+
+
+class NotifyCourseForm(forms.Form):
+    subject = forms.CharField(
+        min_length=1,
+        help_text='This will become the subject field of the resulting email.'
+    )
+    content = forms.CharField(
+        widget=forms.Textarea,
+        help_text='This will be the content of the email. HTML is not allowed and any html tags will be removed.'
+    )
+    show_sender = forms.BooleanField(
+        initial=False,
+        required=False,
+        help_text='Whether to set the email sender to your email address or not.'
+    )

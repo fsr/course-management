@@ -42,7 +42,7 @@ def modify(request, render):
             user.save()
             student.save()
 
-        return redirect('user-profile')
+            return redirect('user-profile')
 
     else:
 
@@ -54,7 +54,7 @@ def modify(request, render):
             'public_profile': student.public_profile,
             'description': student.description
         })
-        return render(request, 'user/edit.html', {'form': form})
+    return render(request, 'user/edit.html', {'form': form})
 
 
 @adaptive_render
@@ -71,6 +71,7 @@ def profile(request, user_id=None, render=None):
             user = User.objects.get(id=user_id)
         except User.DoesNotExist:
             return db_error('This user does not exist')
+
         return render(request, 'user/public-profile.html', {
             'course_list_show_subject': True,
             'profiled_user': user
