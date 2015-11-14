@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ profiled_user.first_name }} {{ profiled_user.last_name }}</h1>
+    {% with student=profiled_user.student %}
+      {{ student.render_description|safe }}
+      {% if student.teacher.count > 0 %}
+        <h2>Courses this user teaches</h2>
+        {% include 'course_list.html' with course_list=student.teacher.all target=request.path hide_actions=False %}
+      {% endif %}
+  {% endwith %}
+{% endblock %}

@@ -39,3 +39,14 @@ class ModifyUserForm(forms.Form):
     last_name = forms.CharField(required=False, validators=[name_validator])
     email = forms.EmailField(required=False)
     faculty = forms.ChoiceField(choices=get_faculties, required=False)
+    public_profile = forms.BooleanField(
+        required=False,
+        help_text='Whether some of your data should be visible to others. Visible data would be first_name, last_name, '
+                  'the courses you teach and the description you provide.'
+    )
+    description = forms.CharField(
+        widget=forms.Textarea,
+        required=False,
+        help_text='You can provide some information about yourself. '
+                  'You can use markdown formatted text to do so. '
+    )

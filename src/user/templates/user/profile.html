@@ -29,7 +29,7 @@
     </tr>
   </table>
   <a href="{% url 'modify-user' %}">Edit</a>
-
+  <hr>
   {% with student=user.student %}
     {% if student.teacher.count > 0 %}
       <h2>Courses you teach</h2>
@@ -39,5 +39,7 @@
       <h2>Courses you attend</h2>
       {% include 'course_list.html' with course_list=student.course_set.all target=request.path %}
     {% endif %}
+    <hr>
+    {{ student.render_description|safe }}
   {% endwith %}
 {% endblock %}

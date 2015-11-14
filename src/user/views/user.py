@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import redirect
 
 from user.forms import ModifyUserForm
@@ -35,10 +36,13 @@ def modify(request, render):
                     'contact an administrator.'
                 )
 
+            student.public_profile = cleaned['public_profile']
+            student.description = cleaned['description']
+
             user.save()
             student.save()
 
-        return redirect('modify-user')
+        return redirect('user-profile')
 
     else:
 
@@ -46,14 +50,28 @@ def modify(request, render):
             'first_name': user.first_name,
             'last_name': user.last_name,
             'email': user.email,
-            'faculty': student.faculty.id
+            'faculty': student.faculty.id,
+            'public_profile': student.public_profile,
+            'description': student.description
         })
         return render(request, 'user/edit.html', {'form': form})
 
 
-@login_required()
 @adaptive_render
-def profile(request, render):
-    return render(request, 'user/profile.html', {
-        'course_list_show_subject': True,
-    })
+def profile(request, user_id=None, render=None):
+    if user_id is None:
+        if request.user.is_authenticated():
+            return render(request, 'user/profile.html', {
+                'course_list_show_subject': True,
+            })
+        else:
+            return redirect('login')
+    else:
+        try:
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return db_error('This user does not exist')
+        return render(request, 'user/public-profile.html', {
+            'course_list_show_subject': True,
+            'profiled_user': user
+        })
