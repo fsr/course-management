@@ -2,7 +2,7 @@
 {% block content %}
 {% block enroll_response %}
 {% endblock %}
-<table>
+<table class="table">
   <tr><td>Teachers</td><td>{{ course.teacher.all|join:"<br />" }}</td></tr>
 
   <tr><td>Participants</td><td>{{ participants_count }} of {{ max_participants }}</td></tr>
@@ -18,9 +18,11 @@
     <tr>
       <td>Administrative actions</td>
       <td>
-        <a href="{% url 'edit-course' course_id %}">Edit course</a>
-        <a href="{% url 'course-add-slot' course_id %}">Edit schedule</a>
-        <a href="{% url 'add-teacher' course_id %}">Add/Remove teachers</a>
+      <ul>
+        <li><a href="{% url 'edit-course' course_id %}">Edit course</a></li>
+        <li><a href="{% url 'course-add-slot' course_id %}">Edit schedule</a></li>
+        <li><a href="{% url 'add-teacher' course_id %}">Add/Remove teachers</a></li>
+      </ul>
         <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">
             {% csrf_token %}
             <input type="submit" class="btn btn-default" value="Set course {% if course_is_active %}inactive{% else %}active{% endif %}" />
