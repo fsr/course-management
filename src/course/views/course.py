@@ -75,8 +75,7 @@ def edit_course(request, course_id):
 
             cleaned = form.cleaned_data
 
-            for prop in filter(cleaned.__contains__,(
-                'active',
+            for prop in filter(cleaned.__contains__, (
                 'max_participants'
             )):
 
@@ -116,6 +115,8 @@ def toggle(request, course_id, active):
         return db_error('Requested course does not exist.')
 
     curr_course.active = active
+    if not active:
+        curr_course.participants.clear()
     curr_course.save()
     return redirect('course', course_id)
 

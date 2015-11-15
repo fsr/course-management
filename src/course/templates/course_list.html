@@ -51,7 +51,8 @@
           {% if user.is_authenticated and not hide_actions %}
             <div class="col-md-2">
             {% if user.student in course.teacher.all %}
-              You are teacher. Click to view the course.
+              You are teacher.
+              This course is currently {% if course.active %}active{% else %}suspended{% endif %}.
             {% else %}
               {% with user.student.course_set.all as courses %}
               <form action="{% if course in courses %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}{% if target %}?target={{ target }}{% endif %}" method="post">

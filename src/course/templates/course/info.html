@@ -28,6 +28,11 @@
     </td>
   </tr>
 
+  <tr>
+    <td>Status</td>
+    <td>This course is currently {% if course.active %}active{% else %}suspended{% endif %}.</td>
+  </tr>
+
 {% if user.is_authenticated %}
   {% if is_teacher %}
     <tr>
@@ -53,7 +58,7 @@
       </ul>
         <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">
             {% csrf_token %}
-            <input type="submit" class="btn btn-default" value="Set course {% if course_is_active %}inactive{% else %}active{% endif %}" />
+            <input type="submit" class="btn btn-default" value="{% if course_is_active %}Suspend course (unenrolls all participants){% else %}Set course active{% endif %}" />
         </form>
       </td>
     </tr>
