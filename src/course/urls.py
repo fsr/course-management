@@ -23,7 +23,7 @@ from course.views import index, subject, course, enroll, time
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', index.index, name='index'),
-    url(r'^subject/(?P<subjectname>\w+)/$', subject.course_overview, name='subject'),
+    url(r'^subject/(?P<subjectname>[^/?]+)/$', subject.course_overview, name='subject'),
 
     url(r'^course/new/$', course.create, name='create-course'),
 
