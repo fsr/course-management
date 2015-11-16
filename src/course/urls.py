@@ -15,7 +15,11 @@ urlpatterns = [
         # 'forms.py'.
         url(r'^overview/$', subject.subject_overview, name='subject-overview'),
         url(r'^new/$', subject.create, name='create-subject'),
-        url(r'^(?P<subjectname>[^/?]+)/$', subject.course_overview, name='subject'),
+        url(r'^(?P<subjectname>[^/?]+)/', include([
+            url(r'^$', subject.course_overview, name='subject'),
+            url(r'^edit/$', subject.edit, name='edit-subject'),
+            url(r'^delete/$', subject.delete, name='delete-subject'),
+        ]))
     ])),
 
 
@@ -24,6 +28,7 @@ urlpatterns = [
     url(r'^course/(?P<course_id>[0-9]+)/', include([
         url(r'^$', course.course, name='course'),
         url(r'^edit/$', course.edit_course, name='edit-course'),
+        url(r'^delete/$', course.delete, name='delete-course'),
         url(r'^activate/$', course.toggle, {'active': True}, name='activate-course'),
         url(r'^deactivate/$', course.toggle, {'active': False}, name='deactivate-course'),
         url(r'^notify/$', course.notify, name='notify-course'),

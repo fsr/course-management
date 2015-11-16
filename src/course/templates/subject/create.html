@@ -8,4 +8,10 @@
     </table>
     <input class="btn btn-default" type="submit" value="Create" />
   </form>
+  {% if subject and perms.course.delete_subject %}
+    <form action="{% url 'delete-subject' subject.id %}">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-default" value="Delete" />
+    </form>
+  {% endif %}
 {% endblock %}

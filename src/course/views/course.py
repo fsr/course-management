@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import permission_required, login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpRequest
@@ -153,6 +153,21 @@ def create(request):
         form = CreateCourseForm()
 
     return render_with_default(request, 'course/create.html', {'form': form})
+
+
+@login_required()
+@require_POST
+@permission_required('course.delete_course')
+def delete(request, course_id):
+    try:
+        course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        return db_error('This course does not exist.')
+
+    subj = course.subject.name
+
+    course.delete()
+    return redirect('subject', subj)
 
 
 @needs_teacher_permissions

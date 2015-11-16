@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect
 
+from django.views.decorators.http import require_POST
 from course.views.base import render_with_default
 
 from course.models import subject
@@ -71,3 +72,56 @@ def create(request):
         'subject/create.html',
         {'form': form}
     )
+
+
+@login_required()
+@permission_required('subject.change_subject')
+def edit(request, subjectname):
+
+    try:
+        subj = subject.Subject.objects.get(name=subjectname)
+    except subject.Subject.DoesNotExist:
+        return db_error('This subject does not exist.')
+
+    if request.method == 'POST':
+        form = CreateSubjectForm(request.POST)
+
+        if form.is_valid():
+
+            data = form.cleaned_data
+
+            subj.name = data['name']
+            subj.description = data['description']
+
+            subj.save()
+
+            return redirect('subject', subj.name)
+
+    else:
+        form = CreateSubjectForm({
+            'name': subj.name,
+            'description': subj.description
+        })
+
+    return render_with_default(
+        request,
+        'subject/create.html',
+        {
+            'form': form,
+            'subject': subj
+        }
+    )
+
+
+@login_required()
+@require_POST
+@permission_required('subject.delete_subject')
+def delete(request, subject_id):
+    try:
+        subj = subject.Subject.objects.get(name=subject_name)
+    except subject.Subject.DoesNotExist:
+        return db_error('This subject does not exist.')
+
+    subj.delete()
+
+    return redirect('subject')

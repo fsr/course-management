@@ -24,7 +24,7 @@ def needs_teacher_permissions(func):
             curr_course = Course.objects.get(id=course_id) if not isinstance(course_id, Course) else course_id
         except Course.DoesNotExist:
             return db_error('This course does not seem to exist, sorry.')
-        if curr_course.is_teacher(request.user):
+        if curr_course.is_teacher(request.user) or request.user.has_perm('course.edit_course'):
             return func(request, course_id, *args, **kwargs)
         else:
             raise PermissionDenied()
