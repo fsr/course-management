@@ -116,12 +116,12 @@ def edit(request, subjectname):
 @login_required()
 @require_POST
 @permission_required('subject.delete_subject')
-def delete(request, subject_id):
+def delete(request, subjectname):
     try:
-        subj = subject.Subject.objects.get(name=subject_name)
+        subj = subject.Subject.objects.get(name=subjectname)
     except subject.Subject.DoesNotExist:
         return db_error('This subject does not exist.')
 
     subj.delete()
 
-    return redirect('subject')
+    return redirect('subject-overview')

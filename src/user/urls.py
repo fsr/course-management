@@ -15,5 +15,5 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {
         'template_name': 'registration/login.html'
     }, name='login'),
-    url('^', include(auth_urls)),
+    url(r'^', include(auth_urls)),
 ]

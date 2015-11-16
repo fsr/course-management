@@ -42,13 +42,13 @@ class EditCourseForm(forms.Form):
 
 class AddDateForm(forms.Form):
     date = forms.DateTimeField()
-    location = forms.CharField(validators=[location_validator])
+    location = forms.CharField(max_length=100, validators=[location_validator])
 
 
 class AddWeeklySlotForm(forms.Form):
     weekday = forms.ChoiceField(WEEKDAYS)
     timeslot = forms.ChoiceField(TIMESLOTS)
-    location = forms.CharField(validators=[location_validator])
+    location = forms.CharField(max_length=100, validators=[location_validator])
 
 
 class CreateCourseForm(forms.Form):
@@ -61,12 +61,15 @@ class CreateCourseForm(forms.Form):
     active = forms.BooleanField(
         initial=False,
         required=False,
-        help_text='Choose whether people should be able to join this course right now.'
+        help_text='Choose whether people should be able to join this course '
+                  'right now.'
     )
     description = forms.CharField(
         widget=forms.Textarea,
-        help_text='A good description is half the battle. You can use markdown for formatting.',
-        initial='# My course\n\nWe will explore the universe.\n\n## Materials\n\n- a spaceship\n- lots of courage'
+        help_text='A good description is half the battle. You can use markdown '
+                  'for formatting.',
+        initial='# The Hitchhikers Guide To The Galaxy\n\nWe will explore the '
+                'universe.\n\n## Materials\n\n- a towel\n- lots of courage'
     )
     max_participants = forms.DecimalField(
         min_value=1,
@@ -90,7 +93,8 @@ class NotifyCourseForm(forms.Form):
     )
     content = forms.CharField(
         widget=forms.Textarea,
-        help_text='This will be the content of the email. HTML is not allowed and any html tags will be removed.'
+        help_text='This will be the content of the email. HTML is not allowed '
+                  'and any html tags will be removed.'
     )
     show_sender = forms.BooleanField(
         initial=False,
@@ -102,12 +106,17 @@ class NotifyCourseForm(forms.Form):
 class CreateSubjectForm(forms.Form):
     name = forms.CharField(
         min_length=1,
+        max_length=100,
         help_text='Name of the subject, also decides its url. '
                   'Allowed characters are word characters, numbers, spaces, '
-                  '\'-\' and \'_\' and it cannot be \'new\'.',
-        validators=[subject_name_validator, lambda a: a not in SUBJECT_DISALLOWED_NAMES]
+                  '\'-\' and \'_\' and it cannot be \'new\' or \'overview\'.',
+        validators=[subject_name_validator,
+                    lambda a: a not in SUBJECT_DISALLOWED_NAMES]
     )
     description = forms.CharField(
         min_length=1,
-        widget=forms.Textarea
+        widget=forms.Textarea,
+        initial='English is a weakly typed, interpreted language and runs on a '
+                'lange number of modern humanoids with varying support for '
+                'advanced syntax features. Website: https://oed.com'
     )

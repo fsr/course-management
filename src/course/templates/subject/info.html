@@ -8,5 +8,7 @@
 	</p>
 </div>
 {% include 'course_list.html' %}
-
+{% if perms.course.create_course %}
+	<a href="{% url 'create-course' %}?subject={{ subject.id }}" class="btn btn-default">Create new course</a>
+{% endif %}
 {% endblock %}

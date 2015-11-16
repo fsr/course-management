@@ -141,9 +141,10 @@ def create(request):
                 )
             except Subject.DoesNotExist:
                 return db_error(
-                    'The subject entered does not exist. This error should never occur, please try again. '
-                    'Should the error repeat please contact an administrator and include the following url "{}".'
-                    ''.format(request.path)
+                    'The subject entered does not exist. This error should '
+                    'never occur, please try again. Should the error repeat '
+                    'please contact an administrator and include the following '
+                    'url "{}".'.format(request.path)
                 )
 
             created.teacher.add(request.user.student)
@@ -151,6 +152,12 @@ def create(request):
             return redirect('course', created.id)
     else:
         form = CreateCourseForm()
+        if 'subject' in request.GET:
+            subj = int(request.GET['subject'][0])
+            if Subject.objects.filter(id=subj).exists():
+                form.initial['subject'] = subj
+
+
 
     return render_with_default(request, 'course/create.html', {'form': form})
 
@@ -172,7 +179,10 @@ def delete(request, course_id):
 
 @needs_teacher_permissions
 def add_teacher(request, course_id):
-    context = {'course_id': course_id, 'target': reverse('add-teacher', args=(course_id,))}
+    context = {
+        'course_id': course_id,
+        'target': reverse('add-teacher', args=(course_id,))
+    }
 
     try:
         curr_course = Course.objects.get(id=course_id)
@@ -189,7 +199,8 @@ def add_teacher(request, course_id):
 
                 return redirect('add-teacher', course_id)
             except User.DoesNotExist:
-                context['error'] = 'The username you entered does not exist in my database, sorry :('
+                context['error'] = 'The username you entered does not exist in '\
+                                   'my database, sorry :('
     else:
         form = AddTeacherForm()
 

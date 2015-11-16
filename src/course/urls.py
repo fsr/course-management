@@ -8,7 +8,7 @@ from course.views import index, subject, course, enroll, time
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', index.index, name='index'),
-    url(r'subject/', include([
+    url(r'^subject/', include([
         # If you want to add new urls for subjects, you have to add them
         # before the generic subject url (last entry).
         # Also add the string in question to the SUBJECT_DISALLOWED_NAMES in

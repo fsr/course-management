@@ -52,7 +52,10 @@ class WeeklySlot(models.Model):
     schedule = models.ForeignKey(Schedule)
 
     def __str__(self):
-        return "{weekday}, {timeslot}".format(weekday=self.get_weekday_display(), timeslot=self.get_timeslot_display())
+        return "{weekday}, {timeslot}".format(
+            weekday=self.get_weekday_display(),
+            timeslot=self.get_timeslot_display()
+        )
 
     def as_summary(self):
         return '{} {} at {}'.format(self.weekday, self.timeslot, self.place)

@@ -158,8 +158,9 @@
   pk: 3
 - fields:
     active: false
-    description: "# My course\r\n\r\nWe will explore the universe.\r\n\r\n## Materials\r\n\r\n-
-      a spaceship\r\n- lots of courage"
+    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\n
+      We will explore the universe.\r\n\r\n## Materials\r\n\r\n-
+      a towel\r\n- lots of courage"
     max_participants: 30
     participants: []
     schedule: 4
@@ -169,8 +170,9 @@
   pk: 4
 - fields:
     active: false
-    description: "# My course nr 2\r\n\r\nWe will explore the universe.\r\n\r\n##
-      Materials\r\n\r\n- a spaceship\r\n- lots of courage"
+    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\n
+      We will explore the universe.\r\n\r\n##
+      Materials\r\n\r\n- a towel\r\n- lots of courage"
     max_participants: 30
     participants: []
     schedule: 5
