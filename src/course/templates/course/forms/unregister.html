@@ -1,0 +1,4 @@
+<form action="{% url 'unregister-course' course.id %}{% if target %}?target={{ target }}{% endif %}" method="post">
+  {% csrf_token %}
+  <input class="btn btn-default" type="submit" value="unregister" />
+</form>

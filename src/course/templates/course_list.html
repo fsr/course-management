@@ -16,55 +16,58 @@
 		</div>
 	</div>
 	<div class="tbody">
-		{% for course in course_list %}
-			<a href="{% url 'course' course.id %}">
-				<div class="row">
-					{% if course_list_show_subject%}
-						<div class="col-md-2">{{ course.subject }}</div>
-					{% endif %}
-					<div class="col-md-3">
-            {% with course.schedule.slots as slots %}
-              {% if slots %}
-                {{ slots|join:"<br />" }}
-              {% else %}
-                No dates set yet
-              {% endif %}
-            {% endwith %}
-					</div>
-					<div class="col-md-3">
-						{{ course.teacher.all|join:"<br />" }}
-					</div>
-          {% if not course_list_show_subject %}
-						<div class="col-md-2">
-							{{ course.participants.count }}/{{ course.max_participants }}
+		{% with user.student.course_set.all as courses %}
+			{% for course in course_list %}
+				<a href="{% url 'course' course.id %}">
+					<div class="row">
+						{% if course_list_show_subject%}
+							<div class="col-md-2">{{ course.subject }}</div>
+						{% endif %}
+						<div class="col-md-3">
+	            {% with course.schedule.slots as slots %}
+	              {% if slots %}
+	                {{ slots|join:"<br />" }}
+	              {% else %}
+	                No dates set yet
+	              {% endif %}
+	            {% endwith %}
 						</div>
-					{% endif %}
-					<div class="col-md-2">
-            {% with course.get_distinct_locations as locs %}
-              {% if locs %}
-                {{ locs|join:", " }}
-              {% else %}
-                No locations set yet.
-              {% endif %}
-            {% endwith %}
+						<div class="col-md-3">
+							{{ course.teacher.all|join:"<br />" }}
+						</div>
+	          {% if not course_list_show_subject %}
+							<div class="col-md-2">
+								{{ course.participants.count }}/{{ course.max_participants }}
+							</div>
+						{% endif %}
+						<div class="col-md-2">
+	            {% with course.get_distinct_locations as locs %}
+	              {% if locs %}
+	                {{ locs|join:", " }}
+	              {% else %}
+	                No locations set yet.
+	              {% endif %}
+	            {% endwith %}
+						</div>
+	          {% if user.is_authenticated and not hide_actions %}
+	            <div class="col-md-2">
+	            {% if user.student in course.teacher.all %}
+	              You are teacher.
+	              This course is currently {% if course.active %}active{% else %}suspended{% endif %}.
+	            {% else %}
+								{% if course in courses %}
+									{% include "course/forms/unregister.html" %}
+								{% elif course.joinable %}
+									{% include "course/forms/register.html" %}
+								{% else %}
+									<form action="#"><input disabled="true" type="submit" class="btn btn-default" value="This course is full" /></form>
+								{% endif %}
+	            {% endif %}
+	            </div>
+	          {% endif %}
 					</div>
-          {% if user.is_authenticated and not hide_actions %}
-            <div class="col-md-2">
-            {% if user.student in course.teacher.all %}
-              You are teacher.
-              This course is currently {% if course.active %}active{% else %}suspended{% endif %}.
-            {% else %}
-              {% with user.student.course_set.all as courses %}
-              <form action="{% if course in courses %}{% url 'unregister-course' course.id %}{% else %}{% url 'register-course' course.id %}{% endif %}{% if target %}?target={{ target }}{% endif %}" method="post">
-                {% csrf_token %}
-                <input class="btn btn-default" type="submit" value="{% if course in courses %}unregister{% else %}register{% endif %}" />
-              </form>
-              {% endwith %}
-            {% endif %}
-            </div>
-          {% endif %}
-				</div>
-			</a>
-		{% endfor %}
+				</a>
+			{% endfor %}
+		{% endwith %}
 	</div>
 </div>

@@ -2,7 +2,8 @@
   "name": "course-management",
   "homepage": "https://github.com/fsr/course-management",
   "authors": [
-    "Justus Adam <dev@justus.science>"
+    "Justus Adam <dev@justus.science>",
+    "Manuel Thieme <manuel@ifsr.de>"
   ],
   "description": "Extra files for the course manager",
   "private": true,

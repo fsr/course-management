@@ -21,7 +21,14 @@ def username_exists_validator(value):
 
 class EditCourseForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
-    max_participants = forms.DecimalField(min_value=1, label="Maximum number of allowed participants")
+    max_participants = forms.DecimalField(
+        min_value=1,
+        label="Maximum number of allowed participants",
+        help_text='Set a new limit for how many people can join the course. '
+                  'This does not unenroll any students.'
+                  'If the new limit is below the number of currently enrolled '
+                  'students it simply disables the option for joining the course.'
+    )
 
 
 class AddDateForm(forms.Form):

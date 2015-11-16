@@ -20,7 +20,16 @@ class Course(models.Model):
         return self.subject.name
 
     @property
+    def joinable(self):
+        (curr, max) = self.saturation_level
+        return curr <= max
+
+    @property
     def saturation_level(self):
+        """
+        Returns the ratio of currently enrolled participants to maximum allowed
+        participants.
+        """
         return self.participants.count(), self.max_participants
 
     def get_description_as_html(self):

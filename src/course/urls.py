@@ -22,7 +22,7 @@ from course.views import index, subject, course, enroll, time
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^/?$', index.index, name='index'),
+    url(r'^$', index.index, name='index'),
     url(r'^subject/(?P<subjectname>\w+)/$', subject.course_overview, name='subject'),
 
     url(r'^course/new/$', course.create, name='create-course'),
@@ -32,11 +32,11 @@ urlpatterns = [
         url(r'^edit/$', course.edit_course, name='edit-course'),
         url(r'^activate/$', course.toggle, {'active': True}, name='activate-course'),
         url(r'^deactivate/$', course.toggle, {'active': False}, name='deactivate-course'),
-        url(r'notify/$', course.notify, name='notify-course'),
-        url(r'notify/done/$', course.notify_done, name='notify-course-done'),
+        url(r'^notify/$', course.notify, name='notify-course'),
+        url(r'^notify/done/$', course.notify_done, name='notify-course-done'),
         url(r'^register/$', enroll.add, name='register-course'),
-        url(r'^unregister/$', enroll.remove, name='unregister-course'),
         url(r'^register/done/$', enroll.enroll_response, dict(action='register'), name='register-course-done'),
+        url(r'^unregister/$', enroll.remove, name='unregister-course'),
         url(r'^unregister/done/$', enroll.enroll_response, dict(action='unregister'), name='unregister-course-done'),
         url(r'^schedule/edit/$', time.edit_slot, name='course-edit-slot'),
         url(r'^schedule/remove/(?P<slot_id>[0-9]+)/$', time.remove_slot, name='course-remove-slot'),

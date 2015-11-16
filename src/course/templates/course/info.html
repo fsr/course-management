@@ -66,10 +66,13 @@
     <tr>
       <td>Actions</td>
       <td>
-        <form action="{% if is_subbed %}{% url 'unregister-course' course_id %}{% else %}{% url 'register-course' course_id %}{% endif %}" method="post">
-          {% csrf_token %}
-          <input class="btn btn-default" type="submit" value="{% if is_subbed %}unregister{% else %}register{% endif %}" />
-        </form>
+        {% if is_subbed %}
+          {% include "course/forms/unregister.html" %}
+        {% elif course.joinable %}
+          {% include "course/forms/register.html" %}
+        {% else %}
+          <form action="#"><input disabled="true" type="submit" class="btn btn-default" value="This course is full" /></form>
+        {% endif %}
       </td>
     </tr>
   {% endif %}
