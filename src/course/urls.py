@@ -8,8 +8,16 @@ from course.views import index, subject, course, enroll, time
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', index.index, name='index'),
-    url(r'^subject/new/$', subject.create, name='create-subject'),
-    url(r'^subject/(?P<subjectname>[^/?]+)/$', subject.course_overview, name='subject'),
+    url(r'subject/', include([
+        # If you want to add new urls for subjects, you have to add them
+        # before the generic subject url (last entry).
+        # Also add the string in question to the SUBJECT_DISALLOWED_NAMES in
+        # 'forms.py'.
+        url(r'^overview/$', subject.subject_overview, name='subject-overview'),
+        url(r'^new/$', subject.create, name='create-subject'),
+        url(r'^(?P<subjectname>[^/?]+)/$', subject.course_overview, name='subject'),
+    ])),
+
 
     url(r'^course/new/$', course.create, name='create-course'),
 

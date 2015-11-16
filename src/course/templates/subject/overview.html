@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Courses</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for subject in subjects %}
+        <tr>
+          <td><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></td>
+          <td>{{ subject.course_set.count }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

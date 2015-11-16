@@ -38,4 +38,10 @@
         <li><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></li>
       {% endfor %}
     </ul>
+    <p>
+      {% comment %}
+        TODO Show this only if appropriate permissions exist
+      {% endcomment %}
+      <a href="{% url 'subject-overview' %}">Complete overview</a>
+    </p>
 {% endblock %}

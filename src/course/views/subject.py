@@ -39,6 +39,16 @@ def course_overview(request, subjectname):
 
 
 @login_required()
+# TODO add permission for viewing this overview, maybe?
+def subject_overview(request):
+    return render_with_default(
+        request,
+        'subject/overview.html',
+        {'subjects': subject.Subject.objects.all() }
+    )
+
+
+@login_required()
 @permission_required('subject.add_subject')
 def create(request):
     if request.method == 'POST':

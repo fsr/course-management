@@ -11,7 +11,7 @@ location_validator = RegexValidator(
 )
 
 
-not_new_validator = lambda a: not a == 'new'
+SUBJECT_DISALLOWED_NAMES = ['new', 'overview']
 
 
 subject_name_validator = RegexValidator(
@@ -105,7 +105,7 @@ class CreateSubjectForm(forms.Form):
         help_text='Name of the subject, also decides its url. '
                   'Allowed characters are word characters, numbers, spaces, '
                   '\'-\' and \'_\' and it cannot be \'new\'.',
-        validators=[subject_name_validator, not_new_validator]
+        validators=[subject_name_validator, lambda a: a not in SUBJECT_DISALLOWED_NAMES]
     )
     description = forms.CharField(
         min_length=1,
