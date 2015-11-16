@@ -11,6 +11,15 @@ location_validator = RegexValidator(
 )
 
 
+not_new_validator = lambda a: not a == 'new'
+
+
+subject_name_validator = RegexValidator(
+    r'^\w(\w|[0-9_ -])+$',
+    message='Invalid subject name.'
+)
+
+
 def username_exists_validator(value):
     try:
         User.objects.get(username=value)
@@ -87,4 +96,18 @@ class NotifyCourseForm(forms.Form):
         initial=False,
         required=False,
         help_text='Whether to set the email sender to your email address or not.'
+    )
+
+
+class CreateSubjectForm(forms.Form):
+    name = forms.CharField(
+        min_length=1,
+        help_text='Name of the subject, also decides its url. '
+                  'Allowed characters are word characters, numbers, spaces, '
+                  '\'-\' and \'_\' and it cannot be \'new\'.',
+        validators=[subject_name_validator, not_new_validator]
+    )
+    description = forms.CharField(
+        min_length=1,
+        widget=forms.Textarea
     )
