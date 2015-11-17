@@ -79,3 +79,9 @@ class Course(models.Model):
             context['students'] = self.participants.all()
 
         return context
+
+
+class Notification(models.Model):
+    subject = models.CharField(max_length=100)
+    content = models.TextField()
+    user = models.ManyToManyField(Student)

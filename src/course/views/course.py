@@ -187,31 +187,30 @@ def notify(request: HttpRequest, course_id):
     if request.method == 'POST':
         form = NotifyCourseForm(request.POST)
         if form.is_valid():
-            data = form.cleaned_data
 
             try:
                 course = Course.objects.get(id=course_id)
             except Course.DoesNotExist:
                 return db_error('Course does not exist.')
 
+            notification = form.save(commit=False)
+            notification.user = request.user
+            notification.save()
+
             email = request.user.email
 
             show_sender = data.get('show_sender', False) and email
 
+            subject = notification.subject
+            content = notification.content
+
             for student in course.participants.all():
                 if show_sender:
-                    student.user.email_user(
-                        html_clean.clean_all(data['subject']),
-                        html_clean.clean_all(data['content']),
-                        email
-                    )
+                    student.user.email_user(subject, content, email)
                 else:
-                    student.user.email_user(
-                        html_clean.clean_all(['subject']),
-                        html_clean.clean_all(['content']),
-                    )
+                    student.user.email_user(subject, content)
 
-            redirect('notify-course-done', course_id)
+            return redirect('notify-course-done', course_id)
 
     else:
         form = NotifyCourseForm()

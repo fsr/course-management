@@ -3,9 +3,14 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
+
 from course.models.schedule import WEEKDAYS, TIMESLOTS, Schedule, DateSlot, WeeklySlot
 from course.models.subject import Subject
-from course.models.course import Course
+from course.models.course import Course, Notification
+
+from util import html_clean
+
+
 
 location_validator = RegexValidator(
     r'^.*$', # does absolutely nothing yet
@@ -80,21 +85,32 @@ class AddTeacherForm(forms.Form):
     )
 
 
-class NotifyCourseForm(forms.Form):
-    subject = forms.CharField(
-        min_length=1,
-        help_text='This will become the subject field of the resulting email.'
-    )
-    content = forms.CharField(
-        widget=forms.Textarea,
-        help_text='This will be the content of the email. HTML is not allowed '
-                  'and any html tags will be removed.'
-    )
+class NotifyCourseForm(ModelForm):
     show_sender = forms.BooleanField(
         initial=False,
         required=False,
         help_text='Whether to set the email sender to your email address or not.'
     )
+
+    class Meta:
+        model = Notification
+        fields = (
+            'subject',
+            'content',
+        )
+
+        help_texts = {
+            'subject':
+                'This will become the subject field of the resulting email.',
+            'content':
+                'This will be the content of the email. HTML is not allowed '
+                          'and any html tags will be removed.'
+        }
+
+    def clean(self):
+        super().clean()
+        self.subject = html_clean.clean_all(self.subject)
+        self.content = html_clean.clean_all(self.content)
 
 
 class SubjectForm(ModelForm):
