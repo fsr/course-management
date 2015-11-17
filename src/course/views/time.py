@@ -55,6 +55,7 @@ def _edit_weekly_slot(request: HttpRequest, course_id: int, schedule: Schedule):
         request,
         'course/time.html',
         {
+            'title': 'Edit Schedule',
             'form': data,
             'schedule': schedule,
             'course_id': course_id,
@@ -86,6 +87,7 @@ def _edit_date_slot(request: HttpRequest, course_id, schedule: Schedule):
         request,
         'course/time.html',
         {
+            'title': 'Edit Schedule',
             'form': data,
             'schedule': schedule,
             'course_id': course_id,
@@ -117,5 +119,3 @@ def remove_slot(request, course_id, slot_id):
         )
 
     return redirect_unless_target(request, 'course', course_id)
-
-

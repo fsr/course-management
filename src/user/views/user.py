@@ -46,7 +46,7 @@ def modify(request, render):
 
     else:
 
-        form = ModifyUserForm({
+        form = ModifyUserForm(initial={
             'first_name': user.first_name,
             'last_name': user.last_name,
             'email': user.email,
@@ -54,16 +54,23 @@ def modify(request, render):
             'public_profile': student.public_profile,
             'description': student.description
         })
-    return render(request, 'user/edit.html', {'form': form})
+    return render(
+        request,
+        'user/edit.html',
+        {
+            'title': '{} {}'.format(user.first_name, user.last_name),
+            'form': form
+        }
+    )
 
 
 @adaptive_render
 def profile(request, user_id=None, render=None):
+
     if user_id is None:
         if request.user.is_authenticated():
-            return render(request, 'user/profile.html', {
-                'course_list_show_subject': True,
-            })
+            user = request.user
+            template = 'user/profile.html'
         else:
             return redirect('login')
     else:
@@ -72,7 +79,14 @@ def profile(request, user_id=None, render=None):
         except User.DoesNotExist:
             return db_error('This user does not exist')
 
-        return render(request, 'user/public-profile.html', {
+        template = 'user/public-profile.html'
+
+    return render(
+        request,
+        template,
+        {
             'course_list_show_subject': True,
-            'profiled_user': user
-        })
+            'profiled_user': user,
+            'title': '{} {}'.format(user.first_name, user.last_name)
+        }
+    )

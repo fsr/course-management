@@ -31,7 +31,7 @@ def course_overview(request, subjectname):
         request,
         'subject/info.html',
         {
-            'title': '{name} | iFSR Course Management'.format(name=subjectname),
+            'title': subjectname,
             'subject': active_subject,
             'course_list': cl,
             'target': reverse('subject', args=(subjectname,))
@@ -45,7 +45,10 @@ def subject_overview(request):
     return render_with_default(
         request,
         'subject/overview.html',
-        {'subjects': subject.Subject.objects.all() }
+        {
+            'title': 'Subject Overview',
+            'subjects': subject.Subject.objects.all()
+        }
     )
 
 
@@ -70,7 +73,10 @@ def create(request):
     return render_with_default(
         request,
         'subject/create.html',
-        {'form': form}
+        {
+            'title': 'New Subject',
+            'form': form
+        }
     )
 
 
@@ -98,7 +104,7 @@ def edit(request, subjectname):
             return redirect('subject', subj.name)
 
     else:
-        form = CreateSubjectForm({
+        form = CreateSubjectForm(initial={
             'name': subj.name,
             'description': subj.description
         })
@@ -107,6 +113,7 @@ def edit(request, subjectname):
         request,
         'subject/create.html',
         {
+            'title': subj.name,
             'form': form,
             'subject': subj
         }

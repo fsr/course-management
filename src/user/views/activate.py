@@ -13,7 +13,7 @@ def activate(request, render):
             return render(
                 request,
                 'user/activate.html',
-                {'title': 'Failure | iFSR Course Management',
+                {'title': 'Activation Failed',
                  'error': 'You didn\'t provide a token.'})
         else:
             try:
@@ -22,7 +22,7 @@ def activate(request, render):
                 return render(
                     request,
                     'user/activate.html',
-                    {'title': 'Failure | iFSR Course Management',
+                    {'title': 'Activation Failed',
                      'error': 'The token you provided is invalid.'})
             db_entry.user.is_active = True
             db_entry.user.save()
@@ -30,6 +30,6 @@ def activate(request, render):
             return render(
                 request,
                 'user/activate.html',
-                {'title': 'Success | iFSR Course Management'})
+                {'title': 'Activation Succeded'})
     else:
         return redirect('index')

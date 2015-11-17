@@ -88,7 +88,7 @@ def edit_course(request, course_id):
             return redirect('course', course_id)
 
     else:
-        form = EditCourseForm({
+        form = EditCourseForm(initial={
                 'active': current_course.active,
                 'description': current_course.description,
                 'max_participants': current_course.max_participants
@@ -98,6 +98,7 @@ def edit_course(request, course_id):
         request,
         'course/edit.html',
         {
+            'title': 'Edit course',
             'form': form,
             'course_id': course_id,
             'allowed_tags': html_clean.DESCR_ALLOWED_TAGS,
@@ -159,7 +160,14 @@ def create(request):
 
 
 
-    return render_with_default(request, 'course/create.html', {'form': form})
+    return render_with_default(
+        request,
+        'course/create.html',
+        {
+            'title': 'New Course',
+            'form': form
+        }
+    )
 
 
 @login_required()
@@ -180,6 +188,7 @@ def delete(request, course_id):
 @needs_teacher_permissions
 def add_teacher(request, course_id):
     context = {
+        'title': 'Edit Teachers',
         'course_id': course_id,
         'target': reverse('add-teacher', args=(course_id,))
     }
@@ -264,6 +273,7 @@ def notify(request: HttpRequest, course_id):
         request,
         'course/notify.html',
         {
+            'title': 'Notify Course',
             'form': form,
             'course_id': course_id
         }
