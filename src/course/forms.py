@@ -35,18 +35,6 @@ def username_exists_validator(value):
         raise ValidationError('This username does not exist')
 
 
-# class EditCourseForm(forms.Form):
-#     description = forms.CharField(widget=forms.Textarea)
-#     max_participants = forms.DecimalField(
-#         min_value=1,
-#         label="Maximum number of allowed participants",
-#         help_text='Set a new limit for how many people can join the course. '
-#                   'This does not unenroll any students. '
-#                   'If the new limit is below the number of currently enrolled '
-#                   'students it simply disables the option for joining the course.'
-#     )
-
-
 class DateForm(ModelForm):
     location = forms.CharField(max_length=100, validators=[location_validator])
     class Meta:
@@ -55,11 +43,11 @@ class DateForm(ModelForm):
 
 
 
-class WeeklySlotForm(forms.Form):
+class WeeklySlotForm(ModelForm):
     location = forms.CharField(max_length=100, validators=[location_validator])
     class Meta:
         model = WeeklySlot
-        field = ('weekday', 'timeslot')
+        fields = ('weekday', 'timeslot')
 
 
 class CourseForm(ModelForm):
