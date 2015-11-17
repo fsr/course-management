@@ -8,7 +8,6 @@ from course.views.base import render_with_default
 from course.models.course import Course
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
-from .course import _course_context
 
 
 @require_POST
@@ -20,17 +19,16 @@ def add(request, course_id):
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
         return db_error('Requested course does not exist.')
-    ps = course.participants
     session = request.session
 
-    if ps.filter(id=user.id).exists():
+    if course.is_participant(stud):
         session['enroll-error'] = 'You are already enrolled in this course.'
-    elif ps.count() >= course.max_participants:
+    elif course.joinable:
         session['enroll-error'] = 'Sorry, this course is full.'
     else:
         if 'enroll-error' in session:
             del session['enroll-error']
-        ps.add(stud)
+        course.participants.add(stud)
 
     # redirect to course overview or specified target
     return redirect_unless_target(request, 'unregister-course-done', course_id)
@@ -45,7 +43,12 @@ def remove(request, course_id):
     except Course.DoesNotExist:
         return db_error('Requested course does not exist.')
     ps = course.participants
-    ps.remove(stud)
+
+    if course.is_participant(stud):
+        ps.remove(stud)
+    else:
+        request.session['enroll-error'] = 'You do not seem to be enrolled in this course.'
+        return redirect('register-course-done', course_id)
 
     # redirect to course overview or specified target
     return redirect_unless_target(request, 'register-course-done', course_id)
@@ -58,7 +61,7 @@ def enroll_response(request, course_id, action=None):
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
         return db_error('Requested course does not exist.')
-    context = _course_context(request, course)
+    context = course.as_context(request.user)
     context['action'] = action
     context['subject'] = course.subject.name
     context['course_id'] = course_id

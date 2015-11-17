@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 
 from user.forms import ModifyUserForm
 from user.models import Faculty
-from user.render_tools import adaptive_render
+from util.render_tools import adaptive_render
 from util.error.reporting import db_error
 
 

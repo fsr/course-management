@@ -46,5 +46,5 @@ urlpatterns = [
             'extra_context': {
                 'active_subjects': lambda: Subject.get_active()
             }
-    })
+    }),
 ]

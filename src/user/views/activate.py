@@ -2,7 +2,7 @@ from user.models import Activation
 from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
 
-from user.render_tools import adaptive_render
+from util.render_tools import adaptive_render
 
 
 @adaptive_render

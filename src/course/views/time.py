@@ -15,7 +15,7 @@ from util.routing import redirect_unless_target
 
 @login_required
 @needs_teacher_permissions
-def edit_slot(request: HttpRequest, course_id) -> HttpResponse:
+def edit_slot(request: HttpRequest, course_id):
 
     try:
         course = Course.objects.get(id=course_id)
@@ -25,73 +25,32 @@ def edit_slot(request: HttpRequest, course_id) -> HttpResponse:
     schedule = course.schedule
 
     if schedule.is_weekly():
-        return _edit_weekly_slot(request, course_id, schedule)
+        form_type = forms.WeeklySlotForm
     else:
-        return _edit_date_slot(request, course_id, schedule)
-
-
-def _edit_weekly_slot(request: HttpRequest, course_id: int, schedule: Schedule):
+        form_type = forms.DateForm
 
     if request.method == 'POST':
-        data = forms.AddWeeklySlotForm(request.POST)
+        form = form_type(request.POST)
 
-        if data.is_valid():
-            cleaned = data.cleaned_data
+        if form.is_valid():
 
-            slot = WeeklySlot(
-                weekday=cleaned['weekday'],
-                timeslot=cleaned['timeslot'],
-                location=cleaned['location'],
-                schedule=schedule
-            )
+            slot = form.save(commit=False)
+            slot.schedule = schedule
             slot.save()
-
             return redirect('course-edit-slot', course_id)
 
     else:
-        data = forms.AddWeeklySlotForm()
+        form = form_type()
 
     return render_with_default(
         request,
         'course/time.html',
         {
             'title': 'Edit Schedule',
-            'form': data,
+            'form': form,
             'schedule': schedule,
             'course_id': course_id,
             'target': 'course-edit-slot',
-        }
-    )
-
-
-def _edit_date_slot(request: HttpRequest, course_id, schedule: Schedule):
-
-    if request.method == 'POST':
-        data = forms.AddDateForm(request.POST)
-
-        if data.is_valid():
-            cleaned = data.cleaned_data
-
-            slot = DateSlot(
-                date=cleaned['date'],
-                location=cleaned['location'],
-                schedule=schedule
-            )
-            slot.save()
-
-            return redirect('course-edit-slot', course_id)
-    else:
-        data = forms.AddDateForm()
-
-    return render_with_default(
-        request,
-        'course/time.html',
-        {
-            'title': 'Edit Schedule',
-            'form': data,
-            'schedule': schedule,
-            'course_id': course_id,
-            'target': 'course-edit-slot'
         }
     )
 

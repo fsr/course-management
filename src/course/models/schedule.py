@@ -30,11 +30,20 @@ class Schedule(models.Model):
     _type = models.CharField(max_length=1, choices=TYPES)
 
     def is_weekly(self):
+        """
+        Returns whether this course operates on a weekly schedule
+        """
         return self._type == 'W'
+
+    def is_one_time(self):
+        """
+        Returns whether this course happens only a distinct number of times.
+        """
+        return self._type == 'O'
 
     @property
     def slots(self):
-        if self._type == 'W':
+        if self.is_weekly():
             return WeeklySlot.objects.filter(schedule=self)
         else:
             return DateSlot.objects.filter(schedule=self)

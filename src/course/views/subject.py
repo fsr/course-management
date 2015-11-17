@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST
 from course.views.base import render_with_default
 
 from course.models import subject
-from course.forms import CreateSubjectForm
+from course.forms import SubjectForm
 from util.error.reporting import db_error
 
 
@@ -56,19 +56,19 @@ def subject_overview(request):
 @permission_required('subject.add_subject')
 def create(request):
     if request.method == 'POST':
-        form = CreateSubjectForm(request.POST)
+        form = SubjectForm(request.POST)
         if form.is_valid():
 
-            data = form.cleaned_data
-
-            created = subject.Subject.objects.create(
-                name=data['name'],
-                description=data['description']
-            )
+            created = form.save()
             return redirect('subject', created.name)
 
     else:
-        form = CreateSubjectForm()
+        form = SubjectForm()
+        form.initial['description'] = (
+            'English is a weakly typed, interpreted language and runs on a '
+            'lange number of modern humanoids with varying support for '
+            'advanced syntax features. Website: https://oed.com'
+        )
 
     return render_with_default(
         request,
@@ -90,24 +90,16 @@ def edit(request, subjectname):
         return db_error('This subject does not exist.')
 
     if request.method == 'POST':
-        form = CreateSubjectForm(request.POST)
+        form = SubjectForm(request.POST, instance=subj)
 
         if form.is_valid():
-
-            data = form.cleaned_data
-
-            subj.name = data['name']
-            subj.description = data['description']
 
             subj.save()
 
             return redirect('subject', subj.name)
 
     else:
-        form = CreateSubjectForm(initial={
-            'name': subj.name,
-            'description': subj.description
-        })
+        form = SubjectForm(instance=subj)
 
     return render_with_default(
         request,

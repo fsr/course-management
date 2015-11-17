@@ -6,7 +6,7 @@ from user import mailsettings
 import random
 import string
 
-from user.render_tools import adaptive_render
+from util.render_tools import adaptive_render
 
 
 @adaptive_render

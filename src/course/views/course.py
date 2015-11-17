@@ -5,7 +5,7 @@ from django.http import HttpRequest
 from django.shortcuts import redirect, render_to_response
 from django.views.decorators.http import require_POST
 
-from course.forms import EditCourseForm, CreateCourseForm, AddTeacherForm, NotifyCourseForm
+from course.forms import CourseForm, CourseForm, AddTeacherForm, NotifyCourseForm
 from course.models.course import Course
 from course.models.schedule import Schedule
 from course.models.subject import Subject
@@ -19,45 +19,21 @@ from util.routing import redirect_unless_target
 
 def course(request, course_id):
     try:
+        current_course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        return db_error('Requested course does not exist.')
+
+    try:
         return render_with_default(
             request,
             'course/info.html',
-            _course_context(request, course_id)
+            current_course.as_context(request.user)
         )
     except Course.DoesNotExist:
         return db_error('Requested course does not exist.')
 
 
-def _course_context(request, course_id):
 
-    if isinstance(course_id, Course):
-        active_course = course_id
-        course_id = course_id.id
-    else:
-        active_course = Course.objects.get(id=course_id)
-
-    participants_count, max_participants = active_course.saturation_level
-    sub_name = active_course.subject.name
-    context = {
-        'title': sub_name,
-        'course_id': course_id,
-        'course': active_course,
-        'backurl': reverse('subject', args=[sub_name]),
-        'participants_count': participants_count,
-        'max_participants': max_participants,
-        'course_is_active': active_course.active,
-    }
-    user = request.user
-
-    if user.is_authenticated():
-
-        context['is_subbed'] = user.student.course_set.filter(id=course_id).exists()
-
-        if active_course.is_teacher(user):
-            context['is_teacher'] = True
-            context['students'] = active_course.participants.all()
-
-    return context
 
 
 @needs_teacher_permissions
@@ -69,31 +45,14 @@ def edit_course(request, course_id):
 
     if request.method == "POST":
 
-        form = EditCourseForm(request.POST)
+        form = CourseForm(request.POST, instance=current_course)
 
         if form.is_valid():
-
-            cleaned = form.cleaned_data
-
-            for prop in filter(cleaned.__contains__, (
-                'max_participants'
-            )):
-
-                current_course.__setattr__(prop,cleaned[prop])
-
-            if 'description' in cleaned:
-                current_course.description = cleaned['description']
-
             current_course.save()
             return redirect('course', course_id)
 
     else:
-        form = EditCourseForm(initial={
-                'active': current_course.active,
-                'description': current_course.description,
-                'max_participants': current_course.max_participants
-            })
-
+        form = CourseForm(instance=current_course)
     return render_with_default(
         request,
         'course/edit.html',
@@ -126,38 +85,26 @@ def toggle(request, course_id, active):
 def create(request):
 
     if request.method == 'POST':
-        form = CreateCourseForm(request.POST)
+        form = CourseForm(request.POST)
         if form.is_valid():
-            cleaned = form.cleaned_data
+            created = form.save(commit=False)
 
-            active = cleaned.get('active', False)
-
-            try:
-                created = Course.objects.create(
-                    schedule=Schedule.objects.create(_type=cleaned['schedule']),
-                    active=active if active is not None else False,
-                    subject=Subject.objects.get(id=int(cleaned['subject'])),
-                    max_participants=cleaned['max_participants'],
-                    description=cleaned['description']
-                )
-            except Subject.DoesNotExist:
-                return db_error(
-                    'The subject entered does not exist. This error should '
-                    'never occur, please try again. Should the error repeat '
-                    'please contact an administrator and include the following '
-                    'url "{}".'.format(request.path)
-                )
-
+            created.schedule = Schedule.objects.create(_type=form['schedule_type'])
+            created.save()
             created.teacher.add(request.user.student)
 
             return redirect('course', created.id)
     else:
-        form = CreateCourseForm()
+        form = CourseForm()
         if 'subject' in request.GET:
             subj = int(request.GET['subject'][0])
             if Subject.objects.filter(id=subj).exists():
                 form.initial['subject'] = subj
-
+        form.initial['description'] = (
+            '# The Hitchhikers Guide To The Galaxy\n\nWe will explore the '
+            'universe.\n\n## Materials\n\n- a towel\n- lots of courage'
+        )
+        form.initial['max_participants'] = 30
 
 
     return render_with_default(

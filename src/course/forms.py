@@ -1,9 +1,11 @@
 from django import forms
+from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
-from course.models.schedule import WEEKDAYS, TIMESLOTS, Schedule
+from course.models.schedule import WEEKDAYS, TIMESLOTS, Schedule, DateSlot, WeeklySlot
 from course.models.subject import Subject
+from course.models.course import Course
 
 location_validator = RegexValidator(
     r'^.*$', # does absolutely nothing yet
@@ -15,9 +17,14 @@ SUBJECT_DISALLOWED_NAMES = ['new', 'overview']
 
 
 subject_name_validator = RegexValidator(
-    r'^\w(\w|[0-9_ -])+$',
+    r'^(\w|[0-9_ -])+$',
     message='Invalid subject name.'
 )
+
+
+def subject_disallowed_names_validator(name):
+    if name in SUBJECT_DISALLOWED_NAMES:
+        raise ValidationError('Invalid subject name.')
 
 
 def username_exists_validator(value):
@@ -28,55 +35,54 @@ def username_exists_validator(value):
         raise ValidationError('This username does not exist')
 
 
-class EditCourseForm(forms.Form):
-    description = forms.CharField(widget=forms.Textarea)
-    max_participants = forms.DecimalField(
-        min_value=1,
-        label="Maximum number of allowed participants",
-        help_text='Set a new limit for how many people can join the course. '
-                  'This does not unenroll any students.'
-                  'If the new limit is below the number of currently enrolled '
-                  'students it simply disables the option for joining the course.'
-    )
+# class EditCourseForm(forms.Form):
+#     description = forms.CharField(widget=forms.Textarea)
+#     max_participants = forms.DecimalField(
+#         min_value=1,
+#         label="Maximum number of allowed participants",
+#         help_text='Set a new limit for how many people can join the course. '
+#                   'This does not unenroll any students. '
+#                   'If the new limit is below the number of currently enrolled '
+#                   'students it simply disables the option for joining the course.'
+#     )
 
 
-class AddDateForm(forms.Form):
-    date = forms.DateTimeField()
+class DateForm(ModelForm):
     location = forms.CharField(max_length=100, validators=[location_validator])
+    class Meta:
+        model = DateSlot
+        fields = ('date', 'location')
 
 
-class AddWeeklySlotForm(forms.Form):
-    weekday = forms.ChoiceField(WEEKDAYS)
-    timeslot = forms.ChoiceField(TIMESLOTS)
+
+class WeeklySlotForm(forms.Form):
     location = forms.CharField(max_length=100, validators=[location_validator])
+    class Meta:
+        model = WeeklySlot
+        field = ('weekday', 'timeslot')
 
 
-class CreateCourseForm(forms.Form):
-    subject = forms.ChoiceField(
-        lambda: map(lambda s: (s.id, s.name), Subject.objects.all()),
-        help_text='Choose a subject for your course. '
-                  'Beware that this choice may not be changed later'
-    )
-    schedule = forms.ChoiceField(Schedule.TYPES)
-    active = forms.BooleanField(
-        initial=False,
-        required=False,
-        help_text='Choose whether people should be able to join this course '
-                  'right now.'
-    )
-    description = forms.CharField(
-        widget=forms.Textarea,
-        help_text='A good description is half the battle. You can use markdown '
-                  'for formatting.',
-        initial='# The Hitchhikers Guide To The Galaxy\n\nWe will explore the '
-                'universe.\n\n## Materials\n\n- a towel\n- lots of courage'
-    )
-    max_participants = forms.DecimalField(
-        min_value=1,
-        initial=30,
-        label='Max nr. of participants',
-        help_text='How many people can join your course. (Can be changed later)'
-    )
+class CourseForm(ModelForm):
+    schedule_type = forms.ChoiceField(Schedule.TYPES)
+    class Meta:
+        model = Course
+        fields = [
+            'subject',
+            'active',
+            'description',
+            'max_participants'
+        ]
+        help_texts = {
+            'subject': 'Choose a subject for your course. ',
+            'active': 'Choose whether people should be able to join this course '
+                      'right now.',
+            'description': 'A good description is half the battle. '
+                           'You can use markdown for formatting.',
+            'max_participants': 'How many people can join your course. (Can be changed later)'
+        }
+        labels = {
+            'max_participants': 'Max nr. of participants'
+        }
 
 
 class AddTeacherForm(forms.Form):
@@ -103,20 +109,20 @@ class NotifyCourseForm(forms.Form):
     )
 
 
-class CreateSubjectForm(forms.Form):
+class SubjectForm(ModelForm):
     name = forms.CharField(
-        min_length=1,
-        max_length=100,
-        help_text='Name of the subject, also decides its url. '
-                  'Allowed characters are word characters, numbers, spaces, '
-                  '\'-\' and \'_\' and it cannot be \'new\' or \'overview\'.',
         validators=[subject_name_validator,
-                    lambda a: a not in SUBJECT_DISALLOWED_NAMES]
+                    subject_disallowed_names_validator],
+        help_text=
+            'Name of the subject, also decides its url. '
+            'Allowed characters are word characters, numbers, spaces, '
+            '\'-\' and \'_\' and it cannot be any of '
+            + ', '.join(map(lambda a: '\'' + a + '\'', SUBJECT_DISALLOWED_NAMES)) + '.'
+
     )
-    description = forms.CharField(
-        min_length=1,
-        widget=forms.Textarea,
-        initial='English is a weakly typed, interpreted language and runs on a '
-                'lange number of modern humanoids with varying support for '
-                'advanced syntax features. Website: https://oed.com'
-    )
+    class Meta:
+        model = Subject
+        fields = [
+            'name',
+            'description'
+        ]
