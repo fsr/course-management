@@ -1,7 +1,7 @@
 from django import forms
 from django.core.validators import RegexValidator
 
-from user.models import Faculty
+from user.models import Faculty, Student
 
 
 def get_faculties():
@@ -18,6 +18,11 @@ s_number_validator = RegexValidator(
     message='S numbers can start with an \'s\' and otherwise consist of a '
             'string of seven digits.'
 )
+def s_number_existence_validator(number):
+    try:
+        User.objects.get(username=number)
+    except User.DoesNotExist:
+        raise ValidationError('This s-number is already taken')
 
 
 class LoginForm(forms.Form):
@@ -44,7 +49,7 @@ class RegistrationForm(forms.Form):
     password_repeat = forms.CharField(min_length=8, widget=forms.PasswordInput)
     s_number = forms.CharField(
         min_length=6,
-        validators=[s_number_validator],
+        validators=[s_number_validator, s_number_existence_validator],
         help_text='The s-number as assigned by the university. This will become your (private) username for this site. '
                   'The verification email will be sent to the address associated with this s-number. '
                   'Cannot be modified later.'

@@ -16,40 +16,34 @@ def register(request, render):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             userdata = form.cleaned_data
-            createduser = Student.create(email=userdata['s_number'] + '@mail.zih.tu-dresden.de',
-                                         password=userdata['password'],
-                                         first_name=userdata['first_name'],
-                                         last_name=userdata['family_name'],
-                                         s_number=userdata['s_number'],
-                                         faculty=userdata['faculty'])
-            if createduser is None:
-                return render(
-                    request,
-                    'registration/register.html',
-                    {'title': 'Registration',
-                     'error': 'The s-Number you entered is already in use!',
-                     'form': form})
-            else:
-                activationMail(createduser.user, request)
-                return render(
-                    request,
-                    'registration/success.html',
-                    {'title': 'Registration successfull',
-                     'acc': userdata['s_number']})
-        else:
+            createduser = Student.create(
+                email=userdata['s_number'] + '@mail.zih.tu-dresden.de',
+                password=userdata['password'],
+                first_name=userdata['first_name'],
+                last_name=userdata['family_name'],
+                s_number=userdata['s_number'],
+                faculty=userdata['faculty']
+            )
+            activationMail(createduser.user, request)
             return render(
                 request,
-                'registration/register.html',
-                {'title': 'Registration',
-                 'error': 'Please check your input.',
-                 'form': form})
+                'registration/success.html',
+                {
+                    'title': 'Registration successfull',
+                    'acc': userdata['s_number']
+                }
+            )
     else:
         form = RegistrationForm()
-        return render(
-            request,
-            'registration/register.html',
-            {'title': 'Registration',
-             'form': form})
+
+    return render(
+        request,
+        'registration/register.html',
+        {
+            'title': 'Registration',
+            'form': form
+        }
+    )
 
 
 def generateToken(size=50, chars=string.ascii_uppercase + string.digits + string.ascii_lowercase):
@@ -65,13 +59,15 @@ def activationMail(user, request):
     print(activateurl)
     with open('res/registrationmail.txt') as f:
         message = f.read()
-        message = message.format(user=user.first_name,
-                       url=activateurl)
-    print(message)
+        message = message.format(
+            user=user.first_name,
+            url=activateurl
+        )
+    # print(message)
     send_mail('Your registration at the iFSR course enrollment system',
               message,
               mailsettings.sender,
               [user.email],
               mailsettings.auth_user,
               mailsettings.auth_pass)
-    print(user_token)
+    # print(user_token)
