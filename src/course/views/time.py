@@ -7,7 +7,7 @@ from django.views.decorators.http import require_POST
 from course.models.course import Course
 from course import forms
 from course.models.schedule import Schedule, WeeklySlot, DateSlot
-from course.views.base import render_with_default
+from django.shortcuts import render
 from course.util.permissions import needs_teacher_permissions
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
@@ -42,7 +42,7 @@ def edit_slot(request: HttpRequest, course_id):
     else:
         form = form_type()
 
-    return render_with_default(
+    return render(
         request,
         'course/time.html',
         {

@@ -1,7 +1,8 @@
+from markdown import markdown
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from markdown import markdown
 
 from util.html_clean import clean_for_user_description
 
@@ -24,7 +25,7 @@ class Student(models.Model):
         return '{first} {last}'.format(first=self.user.first_name, last=self.user.last_name)
 
     @classmethod
-    def create(cls, email, password, first_name, last_name, s_number, faculty):
+    def create(cls, password, first_name, last_name, s_number, faculty):
         '''
         This function creates a new user/student and saves it to the database.
         When using this function, the created user will be set 'inactive'
@@ -32,18 +33,20 @@ class Student(models.Model):
         '''
         try:
             user = User.objects.create_user(
+                email=s_number + '@mail.zih.tu-dresden.de',
                 username=s_number,
-                email=email,
                 password=password,
                 first_name=first_name,
-                last_name=last_name)
+                last_name=last_name
+            )
             # set user inactive
             user.is_active = False
             user.save()
             newstudent = Student(
                 user=user,
                 s_number=s_number,
-                faculty=Faculty.objects.get(pk=faculty))
+                faculty=Faculty.objects.get(pk=faculty)
+            )
             newstudent.save()
             return newstudent
         except IntegrityError:

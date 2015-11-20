@@ -1,5 +1,7 @@
 {% extends 'base-shell.html' %}
 
+{% load subject_list %}
+
 {% block content_heading %}
   {% if user.is_authenticated %}
     <div class="userpanel">
@@ -33,11 +35,7 @@
 
 {% block nav %}
   <div class="heading green">Subjects</div>
-    <ul class="subjectlist">
-      {% for subject in active_subjects %}
-        <li><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></li>
-      {% endfor %}
-    </ul>
+    {% show_active_subjects %}
     <p>
       {% comment %}
         TODO Show this only if appropriate permissions exist

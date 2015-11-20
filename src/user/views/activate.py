@@ -4,12 +4,11 @@ from django.views.decorators.http import require_GET
 
 from user.models import Activation
 
-from util.render_tools import adaptive_render
+from django.shortcuts import render
 
 
-@adaptive_render
 @require_GET
-def activate(request, render):
+def activate(request):
 
     def activation_error(error):
         return render(
@@ -35,4 +34,5 @@ def activate(request, render):
         return render(
             request,
             'user/activate.html',
-            {'title': 'Activation Succeded'})
+            {'title': 'Activation Succeded'}
+        )

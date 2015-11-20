@@ -10,11 +10,23 @@ from course.models.course import Course
 from course.models.schedule import Schedule
 from course.models.subject import Subject
 from course.util.permissions import needs_teacher_permissions
-from course.views.base import render_with_default
+from django.shortcuts import render
 from user.models import Student
 from util import html_clean
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
+
+
+DEFAULT_COURSE_DESCRIPTION = \
+"""# The Hitchhikers Guide To The Galaxy
+
+We will explore the universe.
+
+## Materials
+
+- a towel
+- lots of courage
+"""
 
 
 def course(request, course_id):
@@ -24,7 +36,7 @@ def course(request, course_id):
         return db_error('Requested course does not exist.')
 
     try:
-        return render_with_default(
+        return render(
             request,
             'course/info.html',
             current_course.as_context(request.user)
@@ -53,7 +65,7 @@ def edit_course(request, course_id):
 
     else:
         form = CourseForm(instance=current_course)
-    return render_with_default(
+    return render(
         request,
         'course/edit.html',
         {
@@ -100,14 +112,11 @@ def create(request):
             subj = int(request.GET['subject'][0])
             if Subject.objects.filter(id=subj).exists():
                 form.initial['subject'] = subj
-        form.initial['description'] = (
-            '# The Hitchhikers Guide To The Galaxy\n\nWe will explore the '
-            'universe.\n\n## Materials\n\n- a towel\n- lots of courage'
-        )
+        form.initial['description'] = DEFAULT_COURSE_DESCRIPTION
         form.initial['max_participants'] = 30
 
 
-    return render_with_default(
+    return render(
         request,
         'course/create.html',
         {
@@ -163,7 +172,7 @@ def add_teacher(request, course_id):
     context['form'] = form
     context['teachers'] = curr_course.teacher
 
-    return render_with_default(
+    return render(
         request,
         'course/teacher.html',
         context
@@ -215,7 +224,7 @@ def notify(request: HttpRequest, course_id):
     else:
         form = NotifyCourseForm()
 
-    return render_with_default(
+    return render(
         request,
         'course/notify.html',
         {

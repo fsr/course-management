@@ -1,23 +1,22 @@
-from user.forms import RegistrationForm
-from user.models import Student
-from user.models import Activation
-from django.core.mail import send_mail
-from user import mailsettings
 import random
 import string
 
-from util.render_tools import adaptive_render
+from django.core.mail import send_mail
+
+from user.forms import RegistrationForm
+from user.models import Student
+from user.models import Activation
+from user import mailsettings
+from django.shortcuts import render
 
 
-@adaptive_render
-def register(request, render):
+def register(request):
 
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             userdata = form.cleaned_data
             createduser = Student.create(
-                email=userdata['s_number'] + '@mail.zih.tu-dresden.de',
                 password=userdata['password'],
                 first_name=userdata['first_name'],
                 last_name=userdata['family_name'],
@@ -46,17 +45,20 @@ def register(request, render):
     )
 
 
-def generateToken(size=50, chars=string.ascii_uppercase + string.digits + string.ascii_lowercase):
-    return ''.join(random.choice(chars) for _ in range(size))
+def generateToken(size=50, chars=None):
+    chars = (chars
+        if chars is not None
+        else string.ascii_uppercase + string.digits + string.ascii_lowercase
+    )
+    return ''.join(random.sample(chars, size))
 
 
 def activationMail(user, request):
     user_token = generateToken()
-    newActivation = Activation(user=user, token=user_token)
-    newActivation.save()
+    newActivation = Activation.objects.create(user=user, token=user_token)
     message = ''
     activateurl = request.build_absolute_uri() + '?token=' + user_token
-    print(activateurl)
+    # print(activateurl)
     with open('res/registrationmail.txt') as f:
         message = f.read()
         message = message.format(

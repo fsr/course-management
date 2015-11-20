@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect
 
 from django.views.decorators.http import require_POST
-from course.views.base import render_with_default
+from django.shortcuts import render
 
 from course.models import subject
 from course.forms import SubjectForm
@@ -27,7 +27,7 @@ def course_overview(request, subjectname):
     else:
         cl = active_subject.course_set.filter(active=True)
 
-    return render_with_default(
+    return render(
         request,
         'subject/info.html',
         {
@@ -42,7 +42,7 @@ def course_overview(request, subjectname):
 @login_required()
 # TODO add permission for viewing this overview, maybe?
 def subject_overview(request):
-    return render_with_default(
+    return render(
         request,
         'subject/overview.html',
         {
@@ -70,7 +70,7 @@ def create(request):
             'advanced syntax features. Website: https://oed.com'
         )
 
-    return render_with_default(
+    return render(
         request,
         'subject/create.html',
         {
@@ -101,7 +101,7 @@ def edit(request, subjectname):
     else:
         form = SubjectForm(instance=subj)
 
-    return render_with_default(
+    return render(
         request,
         'subject/create.html',
         {

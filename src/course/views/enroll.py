@@ -4,7 +4,7 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
 
 
-from course.views.base import render_with_default
+from django.shortcuts import render
 from course.models.course import Course
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
@@ -69,4 +69,4 @@ def enroll_response(request, course_id, action=None):
     if 'enroll-error' in session:
         context['error'] = session['enroll-error']
         del session['enroll-error']
-    return render_with_default(request, 'enroll/response.html', context)
+    return render(request, 'enroll/response.html', context)

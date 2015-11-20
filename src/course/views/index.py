@@ -1,9 +1,9 @@
-from course.views.base import render_with_default
 from course.models import subject
+from django.shortcuts import render
 
 
 def index(request):
-    return render_with_default(
+    return render(
         request,
         'index.html',
         {

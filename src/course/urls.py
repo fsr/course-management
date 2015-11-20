@@ -42,9 +42,5 @@ urlpatterns = [
         url(r'^teachers/$', course.add_teacher, name='add-teacher'),
         url(r'^teachers/remove/(?P<teacher_id>[0-9]+)/$', course.remove_teacher, name='remove-teacher'),
     ])),
-    url(r'^accounts/', include('user.urls'), {
-            'extra_context': {
-                'active_subjects': lambda: Subject.get_active()
-            }
-    }),
+    url(r'^accounts/', include('user.urls')),
 ]

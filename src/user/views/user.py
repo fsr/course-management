@@ -4,13 +4,13 @@ from django.shortcuts import redirect
 
 from user.forms import ModifyUserForm
 from user.models import Faculty
-from util.render_tools import adaptive_render
 from util.error.reporting import db_error
+
+from django.shortcuts import render
 
 
 @login_required()
-@adaptive_render
-def modify(request, render):
+def modify(request):
 
     user = request.user
     student = user.student
@@ -64,8 +64,7 @@ def modify(request, render):
     )
 
 
-@adaptive_render
-def profile(request, user_id=None, render=None):
+def profile(request, user_id=None):
 
     if user_id is None:
         if request.user.is_authenticated():
