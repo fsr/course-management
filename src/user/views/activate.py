@@ -1,10 +1,8 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.http import require_GET
 
 from user.models import Activation
-
-from django.shortcuts import render
 
 
 @require_GET

@@ -1,12 +1,14 @@
-from django.db import models
 from markdown import markdown
-from django.core.urlresolvers import reverse
 
+from django.db import models
+from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+
+from . import schedule, subject
+
+from user.models import Student
 
 from util.html_clean import clean_for_description
-from . import schedule, subject
-from django.contrib.auth.models import User
-from user.models import Student
 
 
 class Course(models.Model):

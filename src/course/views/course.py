@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import permission_required, login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpRequest
-from django.shortcuts import redirect, render_to_response
+from django.shortcuts import redirect, render_to_response, render
 from django.views.decorators.http import require_POST
 
 from course.forms import CourseForm, CourseForm, AddTeacherForm, NotifyCourseForm
@@ -10,8 +10,9 @@ from course.models.course import Course
 from course.models.schedule import Schedule
 from course.models.subject import Subject
 from course.util.permissions import needs_teacher_permissions
-from django.shortcuts import render
+
 from user.models import Student
+
 from util import html_clean
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target

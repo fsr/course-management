@@ -2,12 +2,12 @@ import random
 import string
 
 from django.core.mail import send_mail
+from django.shortcuts import render
 
+from user import mailsettings
 from user.forms import RegistrationForm
 from user.models import Student
 from user.models import Activation
-from user import mailsettings
-from django.shortcuts import render
 
 
 def register(request):

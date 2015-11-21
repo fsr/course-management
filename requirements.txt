@@ -2,3 +2,4 @@ django>=1.8
 PyYAML>=3
 bleach
 markdown
+requests

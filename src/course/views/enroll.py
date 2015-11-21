@@ -1,11 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
 from django.views.decorators.http import require_POST
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
-
-from django.shortcuts import render
 from course.models.course import Course
+
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
 

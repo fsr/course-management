@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>Your captcha could not be verified. Please retry the request.</p>
+  {% if message %}<p>{{ message }}</p>{% endif %}
+{% endblock %}

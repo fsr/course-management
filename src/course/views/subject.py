@@ -1,12 +1,11 @@
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, permission_required
-from django.shortcuts import redirect
-
+from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
-from django.shortcuts import render
 
 from course.models import subject
 from course.forms import SubjectForm
+
 from util.error.reporting import db_error
 
 

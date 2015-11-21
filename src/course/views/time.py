@@ -1,14 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
 
 from course.models.course import Course
 from course import forms
 from course.models.schedule import Schedule, WeeklySlot, DateSlot
-from django.shortcuts import render
 from course.util.permissions import needs_teacher_permissions
+
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
 

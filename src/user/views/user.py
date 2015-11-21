@@ -1,12 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from user.forms import ModifyUserForm
 from user.models import Faculty
-from util.error.reporting import db_error
 
-from django.shortcuts import render
+from util.error.reporting import db_error
 
 
 @login_required()
