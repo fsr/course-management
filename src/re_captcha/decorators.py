@@ -1,12 +1,19 @@
 from functools import wraps
-from django.conf import settings
+
 import requests
+
+from django.conf import settings
 from django.shortcuts import render
+
+
+SECRET = settings.RE_CAPTCHA_SECRET_KEY
+VERIFY = getattr(settings, 'RE_CAPTCHA_VERIFY', True)
+URL = 'https://www.google.com/recaptcha/api/siteverify'
 
 
 def re_captcha_verify(func):
 
-    if settings.RE_CAPTCHA_VERIFY:
+    if VERIFY:
 
         @wraps(func)
         def wrapper(request, *args, **kwargs):
@@ -15,9 +22,9 @@ def re_captcha_verify(func):
 
                 if 'g-recaptcha-response' in request.POST:
                     r = request.post(
-                        'https://www.google.com/recaptcha/api/siteverify',
+                        URL,
                         data={
-                            'secret': settings.RE_CAPTCHA_SECRET_KEY,
+                            'secret': SECRET_KEY,
                             'response': request.POST['g-recaptcha-response'],
                             'remoteip': request.META['REMOTE_ADDR']
                         }

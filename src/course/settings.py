@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# TODO Change this before deploying
 SECRET_KEY = '=z%&5y*h9-sw!&o-2rb53wyrtze!)r^()k0(&o1sovi9bm(4%1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -113,6 +114,12 @@ STATICFILES_DIRS = (
 DEFAULT_FROM_EMAIL = 'noreply@ifsr.de'
 
 
+# Settings for the re_captcha module
+
+# whether to verify that the recaptcha has been checked by google
 RE_CAPTCHA_VERIFY = True
+# the public recaptcha key for this site
 RE_CAPTCHA_SITE_KEY = '6LdQdhETAAAAAD-uv2YJhtsYLvskvdKj_dT9YMLg'
+# the secret key key for this site (Don't commit it)
+# TODO Add this in when deploying
 RE_CAPTCHA_SECRET_KEY = ''
