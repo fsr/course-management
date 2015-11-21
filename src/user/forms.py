@@ -1,7 +1,8 @@
 from django import forms
 from django.core.validators import RegexValidator
 
-from user.models import Faculty, Student
+from user.models import Faculty, Student, User
+from django.core.exceptions import ValidationError
 
 
 def get_faculties():
@@ -22,7 +23,8 @@ def s_number_existence_validator(number):
     try:
         User.objects.get(username=number)
     except User.DoesNotExist:
-        raise ValidationError('This s-number is already taken')
+        return
+    raise ValidationError('This s-number is already taken')
 
 
 class LoginForm(forms.Form):

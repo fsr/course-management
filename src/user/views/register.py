@@ -9,7 +9,10 @@ from user.forms import RegistrationForm
 from user.models import Student
 from user.models import Activation
 
+from re_captcha.decorators import re_captcha_verify
 
+
+@re_captcha_verify
 def register(request):
 
     if request.method == 'POST':

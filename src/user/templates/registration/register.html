@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load re_captcha %}
 
 {% block content %}
   <div class='auth_form'>
@@ -14,6 +15,7 @@
           {{ form.as_table }}
         </table>
           <input type="submit" value="Submit" />
+        {% captcha_tag %}
       </form>
     </p>
   </div>

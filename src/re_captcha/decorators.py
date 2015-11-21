@@ -9,7 +9,7 @@ def re_captcha_verify(func):
     if settings.RE_CAPTCHA_VERIFY:
 
         @wraps(func)
-        def wapper(request, *args, **kwargs):
+        def wrapper(request, *args, **kwargs):
 
             if request.method == 'post':
 
