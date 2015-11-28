@@ -69,11 +69,13 @@ def profile(request, user_id=None):
         if request.user.is_authenticated():
             user = request.user
             template = 'user/profile.html'
+            is_own = True
         else:
             return redirect('login')
     else:
         try:
             user = User.objects.get(id=user_id)
+            is_own = request.user.id == user.id
         except User.DoesNotExist:
             return db_error('This user does not exist')
 
@@ -85,6 +87,7 @@ def profile(request, user_id=None):
         {
             'course_list_show_subject': True,
             'profiled_user': user,
+            'is_own': is_own,
             'title': '{} {}'.format(user.first_name, user.last_name)
         }
     )

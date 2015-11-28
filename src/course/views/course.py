@@ -18,8 +18,8 @@ from util.error.reporting import db_error
 from util.routing import redirect_unless_target
 
 
-DEFAULT_COURSE_DESCRIPTION = \
-"""# The Hitchhikers Guide To The Galaxy
+DEFAULT_COURSE_DESCRIPTION = """\
+# The Hitchhikers Guide To The Galaxy
 
 We will explore the universe.
 
@@ -44,9 +44,6 @@ def course(request, course_id):
         )
     except Course.DoesNotExist:
         return db_error('Requested course does not exist.')
-
-
-
 
 
 @needs_teacher_permissions
@@ -108,13 +105,15 @@ def create(request):
 
             return redirect('course', created.id)
     else:
-        form = CourseForm()
+        form = CourseForm(initial={
+            'description': DEFAULT_COURSE_DESCRIPTION,
+            'max_participants': 30,
+            'archiving': 't'
+        })
         if 'subject' in request.GET:
             subj = int(request.GET['subject'][0])
             if Subject.objects.filter(id=subj).exists():
                 form.initial['subject'] = subj
-        form.initial['description'] = DEFAULT_COURSE_DESCRIPTION
-        form.initial['max_participants'] = 30
 
 
     return render(

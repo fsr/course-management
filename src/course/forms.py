@@ -6,11 +6,10 @@ from django.core.validators import RegexValidator
 
 from modeltranslation.forms import TranslationModelForm
 
-from course.models.schedule import WEEKDAYS, TIMESLOTS, Schedule, DateSlot, WeeklySlot
+from course.models.schedule import Schedule, DateSlot, WeeklySlot
 from course.models.subject import Subject
-from course.models.course import Course, Notification
-
-from util import html_clean
+from course.models.course import Course
+from user.forms import AbstractContactForm
 
 
 
@@ -59,13 +58,15 @@ class WeeklySlotForm(ModelForm):
 
 class CourseForm(ModelForm):
     schedule_type = forms.ChoiceField(Schedule.TYPES)
+
     class Meta:
         model = Course
         fields = [
             'subject',
             'active',
             'description',
-            'max_participants'
+            'max_participants',
+            'archiving'
         ]
         help_texts = {
             'subject': 'Choose a subject for your course. ',
@@ -87,32 +88,12 @@ class AddTeacherForm(forms.Form):
     )
 
 
-class NotifyCourseForm(ModelForm):
+class NotifyCourseForm(AbstractContactForm):
     show_sender = forms.BooleanField(
         initial=False,
         required=False,
         help_text='Whether to set the email sender to your email address or not.'
     )
-
-    class Meta:
-        model = Notification
-        fields = (
-            'subject',
-            'content',
-        )
-
-        help_texts = {
-            'subject':
-                'This will become the subject field of the resulting email.',
-            'content':
-                'This will be the content of the email. HTML is not allowed '
-                          'and any html tags will be removed.'
-        }
-
-    def clean(self):
-        super().clean()
-        self.subject = html_clean.clean_all(self.subject)
-        self.content = html_clean.clean_all(self.content)
 
 
 class SubjectForm(ModelForm):

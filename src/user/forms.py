@@ -1,8 +1,10 @@
 from django import forms
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, EmailValidator
+from django.forms import ModelForm
 
-from user.models import Faculty, Student, User
+from user.models import Faculty, User
 from django.core.exceptions import ValidationError
+from util import html_clean
 
 
 def get_faculties():
@@ -90,4 +92,25 @@ class ModifyUserForm(forms.Form):
         widget=forms.Textarea,
         help_text='Here you can provide some information about yourself. '
                   'You can use markdown formatted text to do so. '
+    )
+
+
+class AbstractContactForm(forms.Form):
+    subject = forms.CharField(help_text='This will become the subject field of the resulting email.')
+    content = forms.CharField(
+        widget=forms.Textarea,
+        help_text='This will be the content of the email. HTML is not allowed '
+                          'and any html tags will be removed.'
+    )
+
+    def clean(self):
+        super().clean()
+        self.subject = html_clean.clean_all(self.subject)
+        self.content = html_clean.clean_all(self.content)
+
+
+class ContactForm(AbstractContactForm):
+    sender = forms.CharField(
+        help_text='An email address where the recipient may reach you.',
+        validators=[EmailValidator]
     )

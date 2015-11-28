@@ -10,7 +10,11 @@
         {% include 'course_list.html' with course_list=student.teacher.all target=request.path hide_actions=False %}
       {% endif %}
     {% else %}
-      <p>This user does not wish to publicise any additional information. Please respect this decision.</p>
+      <p>{% if is_own %}You do{% else %}This user does{% endif %} not wish to publicise any additional information.{% if not is_own %} Please respect this decision.{% endif %}</p>
     {% endif %}
+    {% if is_own %}<a href="{% url 'user-profile' %}">Visit your private profile</a>{% endif %}
   {% endwith %}
+  {% if user.is_authenticated %}
+    <a href="{% url 'contact-form' profiled_user.id %}">Contact this user.</a>
+  {% endif %}
 {% endblock %}

@@ -11,6 +11,13 @@ from user.models import Student
 from util.html_clean import clean_for_description
 
 
+ARCHIVE_STATUSES = (
+    ('auto', 't'),
+    ('never', 'n'),
+    ('archived', 'a'),
+)
+
+
 class Course(models.Model):
     schedule = models.OneToOneField(schedule.Schedule)
     teacher = models.ManyToManyField(Student, related_name="teacher")
@@ -19,6 +26,7 @@ class Course(models.Model):
     subject = models.ForeignKey(subject.Subject)
     max_participants = models.IntegerField()
     description = models.TextField(default="No description provided for this course.")
+    archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)
 
     def __str__(self):
         return self.subject.name
@@ -37,7 +45,7 @@ class Course(models.Model):
         Returns whether this course can currently be joined.
         """
         (curr, max) = self.saturation_level
-        return curr <= max
+        return curr <= max and self.active
 
     @property
     def saturation_level(self):
@@ -54,7 +62,7 @@ class Course(models.Model):
         if isinstance(user, User):
             user = user.student
         elif not isinstance(user, Student):
-            raise TypeError('Expected {} or {} instance, got {}', Student, User, type(student))
+            raise TypeError('Expected {} or {} instance, got {}', Student, User, type(user))
         return self.teacher.filter(id=user.id).exists()
 
     def get_distinct_locations(self):
@@ -81,6 +89,12 @@ class Course(models.Model):
             context['students'] = self.participants.all()
 
         return context
+
+    def can_be_archived(self):
+        return self.archiving == 't'
+
+    def is_archived(self):
+        return self.archiving == 'a'
 
 
 class Notification(models.Model):

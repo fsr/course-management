@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import urls as auth_urls
-from .views import user, register, activate
+from .views import user, register, activate, contact
 
 urlpatterns = [
     url(r'^register/$', register.register, name='register'),
@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {
         'template_name': 'registration/login.html'
     }, name='login'),
+    url(r'contact/(?P<user_id>[0-9]+)/', contact.contact_form, name='contact-form'),
     url(r'^', include(auth_urls)),
 ]

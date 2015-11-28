@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form action="{% url 'contact-form' user_id %}" method="post">
+    <table>
+      {{ form.as_table }}
+    </table>
+    <input type="submit" value="Send">
+  </form>
+{% endblock %}

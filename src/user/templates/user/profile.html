@@ -28,7 +28,10 @@
       <td>{{ user.student.faculty.name }}</td>
     </tr>
   </table>
-  <a href="{% url 'modify-user' %}">Edit</a>
+  <ul>
+    <li><a href="{% url 'modify-user' %}">Edit</a></li>
+    <li><a href="{% url 'user-profile' user.id %}">Visit your public profile.</a></li>
+  </ul>
   <hr>
   {% with student=user.student %}
     {% if student.teacher.count > 0 %}

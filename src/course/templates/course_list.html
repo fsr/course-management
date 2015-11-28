@@ -60,7 +60,7 @@
 								{% elif course.joinable %}
 									{% include "course/forms/register.html" %}
 								{% else %}
-									<form action="#"><input disabled="true" type="submit" class="btn btn-default" value="{% trans "This course is full" %}" /></form>
+									<form action="#"><input disabled type="submit" class="button" value="{% trans "This course is full" %}" /></form>
 								{% endif %}
 	            {% endif %}
             </p>
