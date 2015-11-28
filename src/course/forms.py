@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 
+from modeltranslation.forms import TranslationModelForm
+
 from course.models.schedule import WEEKDAYS, TIMESLOTS, Schedule, DateSlot, WeeklySlot
 from course.models.subject import Subject
 from course.models.course import Course, Notification
@@ -128,5 +130,6 @@ class SubjectForm(ModelForm):
         model = Subject
         fields = [
             'name',
-            'description'
+            'description_en',
+            'description_de',
         ]

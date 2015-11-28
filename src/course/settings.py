@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -89,7 +91,13 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('en', gettext('English')),
+    ('de', gettext('German')),
+)
 
 TIME_ZONE = 'Europe/Berlin'
 
@@ -109,6 +117,13 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     # '/var/www/static/',
 )
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, "locale"),
+
+)
+
+PROJECT_DIR = (__file__)
 
 
 DEFAULT_FROM_EMAIL = 'noreply@ifsr.de'

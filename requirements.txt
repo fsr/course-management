@@ -3,3 +3,4 @@ PyYAML>=3
 bleach
 markdown
 requests
+django-modeltranslation

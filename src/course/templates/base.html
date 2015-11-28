@@ -1,6 +1,7 @@
 {% extends 'base-shell.html' %}
 
 {% load subject_list %}
+{% load i18n %}
 
 {% block content_heading %}
   {% if user.is_authenticated %}
@@ -11,35 +12,47 @@
       <div>
         <ul class="subjectlist">
           {% if perms.course_management.add_course %}
-            <li><a href="{% url 'create-course' %}">Create course</a></li>
+            <li><a href="{% url 'create-course' %}">{% trans "Create course" %}</a></li>
           {% endif %}
           {% if perms.course_management.add_subject %}
-            <li><a href="{% url 'create-subject' %}">Create subject</a></li>
+            <li><a href="{% url 'create-subject' %}">{% trans "Create subject" %}</a></li>
           {% endif %}
-          <li><a href="{% url 'modify-user' %}">Edit your data</a>
-          <li><a href="{% url 'password_change' %}">Change pass</a></li>
-          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li><a href="{% url 'modify-user' %}">{% trans "Edit your data" %}</a>
+          <li><a href="{% url 'password_change' %}">{% trans "Change pass" %}</a></li>
+          <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
         </ul>
       </div>
     </div>
   {% else %}
-    <a href="{% url 'register' %}">Sign up</a>
-    <a href="{% url 'login' %}">Sign in</a>
+    <a href="{% url 'register' %}">{% trans "Sign up" %}</a>
+    <a href="{% url 'login' %}">{% trans "Sign in" %}</a>
   {% endif %}
   {% if backurl %}
     <a href="{{ backurl }}">
       <span class="glyphicon glyphicon-chevron-left" title="back"></span>
     </a>
   {% endif %}
+
+	<form action="{% url 'set_language' %}" method="post" id="language-form" name="language-form">
+    {% csrf_token %}
+    <input type="hidden" name="language" id="language" value="de" />
+		<input type="submit" value="de" />
+	</form>
+	<form action="{% url 'set_language' %}" method="post" id="language-form" name="language-form">
+    {% csrf_token %}
+    <input type="hidden" name="language" id="language" value="en" />
+		<input type="submit" value="en" />
+	</form>
+
 {% endblock %}
 
 {% block nav %}
-  <div class="heading green">Subjects</div>
+  <div class="heading green">{% trans "Subjects" %}</div>
     {% show_active_subjects %}
     <p>
       {% comment %}
         TODO Show this only if appropriate permissions exist
       {% endcomment %}
-      <a href="{% url 'subject-overview' %}">Complete overview</a>
+      <a href="{% url 'subject-overview' %}">{% trans "Complete overview" %}</a>
     </p>
 {% endblock %}

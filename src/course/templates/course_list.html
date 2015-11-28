@@ -1,5 +1,7 @@
-<div>
+{% load i18n %}
+{% trans "No dates set yet" as tr_noslotsset %}
 
+<div>
 	{% with user.student.course_set.all as courses %}
 
 		{% for course in course_list %}
@@ -14,7 +16,7 @@
 									{% if slots %}
 										{{ slots|join:"<br />" }}
 									{% else %}
-										No dates set yet
+										{{ tr_noslotsset }}
 									{% endif %}
 								{% endwith %}
 							{% endif %}
@@ -22,27 +24,27 @@
 					</large>
 				</div>
 				<div class="col-xs-6">
-					{% if not course_list_show_subject %}
+					{% if course_list_show_subject %}
 						<p>
-							<b>Locations:</b>
+							<b>{% trans "Timeslots" %}:</b>
 							{% if slots %}
 								{{ slots|join:", " }}
 							{% else %}
-								not set yet
+								{{ tr_noslotsset }}
 							{% endif %}
 						</p>
 					{% endif %}
-					<p><b>Teachers: </b>{{ course.teacher.all|join:", " }}</p>
+					<p><b>{% trans "Teachers" %}: </b>{{ course.teacher.all|join:", " }}</p>
 					{% if not course_list_show_subject %}
-						<p><b>Participants: </b>{{ course.participants.count }}/{{ course.max_participants }}</p>
+						<p><b>{% trans "Participants" %}: </b>{{ course.participants.count }}/{{ course.max_participants }}</p>
 					{% endif %}
 					<p>
-						<b>Locations:</b>
+						<b>{% trans "Locations" %}:</b>
 						{% with course.get_distinct_locations as locs %}
 							{% if locs %}
 								{{ locs|join:", " }}
 							{% else %}
-								none set yet
+								{% trans "No location set." %}
 							{% endif %}
 						{% endwith %}
 					</p>
@@ -50,15 +52,15 @@
 					{% if user.is_authenticated and not hide_actions %}
           	<p>
 	            {% if user.student in course.teacher.all %}
-	              You are teacher.
-	              This course is currently {% if course.active %}active{% else %}suspended{% endif %}.
+	              {% trans "You are teacher." %}
+	              {% trans "This course is currently" %} {% if course.active %}{% trans "active" %}{% else %}{% trans "suspended" %}{% endif %}.
 	            {% else %}
 								{% if course in courses %}
 									{% include "course/forms/unregister.html" %}
 								{% elif course.joinable %}
 									{% include "course/forms/register.html" %}
 								{% else %}
-									<form action="#"><input disabled="true" type="submit" class="btn btn-default" value="This course is full" /></form>
+									<form action="#"><input disabled="true" type="submit" class="btn btn-default" value="{% trans "This course is full" %}" /></form>
 								{% endif %}
 	            {% endif %}
             </p>

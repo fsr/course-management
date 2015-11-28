@@ -8,6 +8,8 @@ from course.forms import SubjectForm
 
 from util.error.reporting import db_error
 
+from django.utils import translation
+
 
 def course_overview(request, subjectname):
     user = request.user
@@ -82,7 +84,6 @@ def create(request):
 @login_required()
 @permission_required('subject.change_subject')
 def edit(request, subjectname):
-
     try:
         subj = subject.Subject.objects.get(name=subjectname)
     except subject.Subject.DoesNotExist:
@@ -102,7 +103,7 @@ def edit(request, subjectname):
 
     return render(
         request,
-        'subject/create.html',
+        'subject/edit.html',
         {
             'title': subj.name,
             'form': form,

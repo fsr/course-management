@@ -1,16 +1,17 @@
 {% load staticfiles %}
+{% load i18n %}
 <html>
 <head>
   <link type="text/css" rel="stylesheet" href="{% static "vendor/bootstrap/dist/css/bootstrap.min.css" %}">
   <link type="text/css" rel="stylesheet" href="{% static "css/layout.css" %}">
 	<link href='https://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
-  <title>{% if title %}{{ title }} | {% endif %}Course Manager</title>
+  <title>{% if title %}{{ title }} | {% endif %}{% trans "Course Manager" %}</title>
 </head>
 <body class="container">
   {% block header %}
     <header class="row">
       <a href="{% url 'index' %}" class="col-md-7 headline">
-        <span>Course Manager</span>
+        <span>{% trans "Course Manager" %}</span>
       </a>
       <a href="https://ifsr.de" class="col-md-2" id="top_logo">
         <img src="{% static "img/LogoStandard.svg" %}">
