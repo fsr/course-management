@@ -31,13 +31,38 @@ class Course(models.Model):
     def __str__(self):
         return self.subject.name
 
-    def is_participant(self, student):
+    @staticmethod
+    def _get_student(student):
         if isinstance(student, User):
-            student = student.student
-        elif not isinstance(student, Student):
+            return student.student
+        elif isinstance(student, (int, str)):
+            return Student.objects.get(id=student)
+        elif isinstance(student, Student):
+            return student
+        else:
             raise TypeError('Expected {} or {} instance, got {}', Student, User, type(student))
 
-        return self.participants.filter(id=student.id).exists()
+    def enroll(self, student):
+        student = self._get_student(student)
+        if self._is_participant(student):
+            self.participants.add(student)
+        else:
+            raise Student.DoesNotExist('This student is not enrolled in this course')
+
+    def unenroll(self, student):
+
+        student = self._get_student(student)
+
+        if self._is_participant(student):
+            self.participants.remove(student)
+        else:
+            raise Student.DoesNotExist('This student is not enrolled in this course')
+
+    def _is_participant(self, student):
+        return student in self.participants.all()
+
+    def is_participant(self, student):
+        return self._is_participant(self._get_student(student))
 
     @property
     def joinable(self):

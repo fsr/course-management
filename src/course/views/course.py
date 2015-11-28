@@ -207,16 +207,14 @@ def notify(request: HttpRequest, course_id):
             except Course.DoesNotExist:
                 return db_error('Course does not exist.')
 
-            notification = form.save(commit=False)
-            notification.user = request.user
-            notification.save()
-
             email = request.user.email
+
+            data = form.cleaned_data
 
             show_sender = data.get('show_sender', False) and email
 
-            subject = notification.subject
-            content = notification.content
+            subject = form.subject
+            content = form.content
 
             for student in course.participants.all():
                 if show_sender:
@@ -243,3 +241,16 @@ def notify(request: HttpRequest, course_id):
 @needs_teacher_permissions
 def notify_done(request, course_id):
     return render_to_response('course/notify-done.html')
+
+
+@needs_teacher_permissions
+def remove_student(request: HttpRequest, course_id:str, student_id:str):
+    try:
+        course = Course.objects.get(id=course_id)
+        course.unenroll(student_id)
+    except Course.DoesNotExist:
+        return db_error('Course does not exist')
+    except Student.DoesNotExist:
+        return db_error('This student is not enrolled in this course.')
+
+    return redirect('course', course_id)

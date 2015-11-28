@@ -1,7 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from course.models.subject import Subject
 from course.views import index, subject, course, enroll, time
 
 
@@ -36,6 +35,7 @@ urlpatterns = [
         url(r'^register/$', enroll.add, name='register-course'),
         url(r'^register/done/$', enroll.enroll_response, dict(action='register'), name='register-course-done'),
         url(r'^unregister/$', enroll.remove, name='unregister-course'),
+        url(r'^unregister/(?P<student_id>[0-9]+)/$', course.remove_student, name='unregister-course'),
         url(r'^unregister/done/$', enroll.enroll_response, dict(action='unregister'), name='unregister-course-done'),
         url(r'^schedule/edit/$', time.edit_slot, name='course-edit-slot'),
         url(r'^schedule/remove/(?P<slot_id>[0-9]+)/$', time.remove_slot, name='course-remove-slot'),

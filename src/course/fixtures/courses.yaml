@@ -131,7 +131,7 @@
     archiving: t
     description: No description provided for this course.
     max_participants: 30
-    participants: []
+    participants: [2]
     schedule: 1
     subject: 1
     teacher: [1]
@@ -153,7 +153,7 @@
     archiving: t
     description: No description provided for this course.
     max_participants: 30
-    participants: []
+    participants: [1]
     schedule: 3
     subject: 2
     teacher: [2]

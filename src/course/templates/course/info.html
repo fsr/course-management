@@ -38,13 +38,21 @@
     <tr>
       <td>Participants list</td>
       <td>
-        <ul>
+        <table>
           {% for student in students %}
-            <li>{{ student }}</li>
+            <tr>
+              <td>{{ student }}</td>
+              <td>
+                <form action="{% url 'unregister-course' course.id student.id %}" method="post">
+                  {% csrf_token %}
+                  <input type="submit" value="kick">
+                </form>
+              </td>
+            </tr>
           {% empty %}
             Oh no, there don't seem to be any students enrolled in this course yet :(, perhaps you should advertise more.
           {% endfor %}
-        </ul>
+        </table>
       </td>
     </tr>
     <tr>
