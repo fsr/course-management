@@ -5,7 +5,7 @@
 <table class="table">
   <tr><td>Teachers</td>
     <td>
-      {% for teacher in course.teacher.all %}{% if teacher.public_profile %}<a href="{% url 'user-profile' teacher.user.id %}">{{ teacher }}</a>{% else %}{{ teacher }}{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}
+      {% for teacher in course.teacher.all %}<a href="{% url 'user-profile' teacher.user.id %}">{{ teacher }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
     </td>
   </tr>
 

@@ -37,10 +37,15 @@ def course(request, course_id):
         return db_error('Requested course does not exist.')
 
     try:
+        try:
+            context = current_course.as_context(request.user.student)
+        except AttributeError:
+            context = current_course.as_context()
+
         return render(
             request,
             'course/info.html',
-            current_course.as_context(request.user)
+            context
         )
     except Course.DoesNotExist:
         return db_error('Requested course does not exist.')

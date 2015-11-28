@@ -68,7 +68,7 @@ class Course(models.Model):
     def get_distinct_locations(self):
         return self.schedule.slots.values_list('location', flat=True).distinct()
 
-    def as_context(self, user):
+    def as_context(self, student=None):
 
         participants_count, max_participants = self.saturation_level
         sub_name = self.subject.name
@@ -81,12 +81,12 @@ class Course(models.Model):
             'max_participants': max_participants,
             'course_is_active': self.active,
         }
+        if isinstance(student, Student):
+            context['is_subbed'] = student.course_set.filter(id=self.id).exists()
 
-        context['is_subbed'] = user.student.course_set.filter(id=self.id).exists()
-
-        if self.is_teacher(user):
-            context['is_teacher'] = True
-            context['students'] = self.participants.all()
+            if self.is_teacher(student):
+                context['is_teacher'] = True
+                context['students'] = self.participants.all()
 
         return context
 
