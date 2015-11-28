@@ -92,6 +92,7 @@ def toggle(request, course_id, active):
     curr_course.active = active
     if not active:
         curr_course.participants.clear()
+        curr_course.queue.clear()
     curr_course.save()
     return redirect('course', course_id)
 
@@ -250,7 +251,7 @@ def remove_student(request: HttpRequest, course_id:str, student_id:str):
         course.unenroll(student_id)
     except Course.DoesNotExist:
         return db_error('Course does not exist')
-    except Student.DoesNotExist:
+    except course.IsEnrolled:
         return db_error('This student is not enrolled in this course.')
 
     return redirect('course', course_id)

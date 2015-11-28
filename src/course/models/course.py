@@ -27,6 +27,19 @@ class Course(models.Model):
     max_participants = models.IntegerField()
     description = models.TextField(default="No description provided for this course.")
     archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)
+    queue = models.ManyToManyField(Student, related_name='waiting_for')
+
+    class IsFull(Exception):
+        pass
+
+    class IsInactive(Exception):
+        pass
+
+    class IsNotEnrolled(Exception):
+        pass
+
+    class IsEnrolled(Exception):
+        pass
 
     def __str__(self):
         return self.subject.name
@@ -45,9 +58,13 @@ class Course(models.Model):
     def enroll(self, student):
         student = self._get_student(student)
         if self._is_participant(student):
-            self.participants.add(student)
+            raise self.IsEnrolled
+        elif not self.active:
+            raise self.IsInactive
+        elif self.saturated:
+            raise self.IsFull
         else:
-            raise Student.DoesNotExist('This student is not enrolled in this course')
+            self.participants.add(student)
 
     def unenroll(self, student):
 
@@ -56,7 +73,7 @@ class Course(models.Model):
         if self._is_participant(student):
             self.participants.remove(student)
         else:
-            raise Student.DoesNotExist('This student is not enrolled in this course')
+            raise self.IsNotEnrolled
 
     def _is_participant(self, student):
         return student in self.participants.all()
@@ -65,12 +82,16 @@ class Course(models.Model):
         return self._is_participant(self._get_student(student))
 
     @property
+    def saturated(self):
+        (curr, max) = self.saturation_level
+        return curr >= max
+
+    @property
     def joinable(self):
         """
         Returns whether this course can currently be joined.
         """
-        (curr, max) = self.saturation_level
-        return curr <= max and self.active
+        return not self.saturated and self.active
 
     @property
     def saturation_level(self):
