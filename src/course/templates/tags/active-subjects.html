@@ -1,5 +1,4 @@
-<ul class="subjectlist">
-  {% for subject in active_subjects %}
-    <li><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></li>
-  {% endfor %}
-</ul>
+{% for subject in active_subjects %}
+  <li><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></li>
+{% endfor %}
+

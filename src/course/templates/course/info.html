@@ -50,7 +50,7 @@
               </td>
             </tr>
           {% empty %}
-            Oh no, there don't seem to be any students enrolled in this course yet :(, perhaps you should advertise more.
+            <tr><td>Oh no, there don't seem to be any students enrolled in this course yet :(, perhaps you should advertise more.</td></tr>
           {% endfor %}
         </table>
       </td>
@@ -58,15 +58,15 @@
     <tr>
       <td>Administrative actions</td>
       <td>
-      <ul class="course administration">
-        <li><a href="{% url 'edit-course' course_id %}">Edit course</a></li>
-        <li><a href="{% url 'course-edit-slot' course_id %}">Edit schedule</a></li>
-        <li><a href="{% url 'add-teacher' course_id %}">Add/Remove teachers</a></li>
-        <li><a href="{% url 'notify-course' course_id %}">Notify course</a></li>
-      </ul>
+        <div class="button-group">
+          <a class="button" href="{% url 'edit-course' course_id %}">Edit course</a>
+          <a class="button" href="{% url 'course-edit-slot' course_id %}">Edit schedule</a>
+          <a class="button" href="{% url 'add-teacher' course_id %}">Add/Remove teachers</a>
+          <a class="button" href="{% url 'notify-course' course_id %}">Notify course</a>
+        </div>
         <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">
             {% csrf_token %}
-            <input type="submit" class="btn btn-default" value="{% if course_is_active %}Suspend course (unenrolls all participants){% else %}Set course active{% endif %}" />
+            <input type="submit" class="button" value="{% if course_is_active %}Suspend course (unenrolls all participants){% else %}Set course active{% endif %}" />
         </form>
       </td>
     </tr>
@@ -79,7 +79,7 @@
         {% elif course.joinable %}
           {% include "course/forms/register.html" %}
         {% else %}
-          <form action="#"><input disabled="true" type="submit" class="btn btn-default" value="This course is full" /></form>
+          <form action="#"><input disabled class="button" type="submit" value="This course is full" /></form>
         {% endif %}
       </td>
     </tr>
@@ -91,7 +91,7 @@
         If you <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> you can join this course.
       </td>
     </tr>
-  </table>
 {% endif %}
+</table>
   <div class="course-description">{{ course.get_description_as_html|safe }}</div>
 {% endblock %}

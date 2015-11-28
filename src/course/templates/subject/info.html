@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
-<div class="description">
-	<div class="headline">{{ subject.name }}</div>
-	<p>{{ subject.description }}</p>
-	<p>
-		<a href="{% url 'edit-subject' subject.name %}">{% trans "Edit" %}</a>
-	</p>
-</div>
-{% include 'course_list.html' %}
-{% if perms.course.create_course %}
-	<a href="{% url 'create-course' %}?subject={{ subject.id }}" class="btn btn-default">{% trans "Create new course" %}</a>
-{% endif %}
+  <h2>{{ subject.name }}</h2>
+  <div class="row">
+    <div class="description column small-12">
+
+    {{ subject.description }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="column"><a href="{% url 'edit-subject' subject.name %}">{% trans "Edit" %}</a></div>
+  </div>
+
+  <hr>
+  {% include 'course_list.html' %}
+  {% if perms.course.create_course %}
+    <div class="row">
+      <div class="collumn">
+        <a href="{% url 'create-course' %}?subject={{ subject.id }}" class="btn btn-default">{% trans "Create new course" %}</a>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}

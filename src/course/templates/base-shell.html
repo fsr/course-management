@@ -2,46 +2,64 @@
 {% load i18n %}
 <html>
 <head>
-  <link type="text/css" rel="stylesheet" href="{% static "vendor/bootstrap/dist/css/bootstrap.min.css" %}">
-  <link type="text/css" rel="stylesheet" href="{% static "css/layout.css" %}">
-	<link href='https://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+  <link type="text/css" rel="stylesheet" href="{% static "vendor/foundation/css/foundation.min.css" %}">
+  <script type="text/javascript" src="{% static "vendor/modernizr/modernizr.js" %}"></script>
+{#  <link type="text/css" rel="stylesheet" href="{% static "css/layout.css" %}">#}
+{#	<link href='https://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>#}
   <title>{% if title %}{{ title }} | {% endif %}{% trans "Course Manager" %}</title>
 </head>
-<body class="container">
+<body>
   {% block header %}
-    <header class="row">
-      <a href="{% url 'index' %}" class="col-md-7 headline">
-        <span>{% trans "Course Manager" %}</span>
-      </a>
-      <a href="https://ifsr.de" class="col-md-2" id="top_logo">
-        <img src="{% static "img/LogoStandard.svg" %}">
-      </a>
+    <header>
+      <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="{% url 'index' %}" class="column small-7 headline">{% trans "Course Manager" %}</a></h1>
+          </li>
+        </ul>
+        <section class="top-bar-section">
+          <div class="right">
+            {% block header_nav %}
+            {% endblock %}
+          </div>
+        </section>
+      </nav>
     </header>
   {% endblock header %}
-
-  <div class="row">
-    <nav class="col-md-2">
-      <div class="sidebar shadow">
-			  {% block nav %}
-					&nbsp;
-			  {% endblock nav %}
-      </div>
-		</nav>
-    <section class="col-md-10">
-      <div class="content">
-		    <div class="heading green nav">
-		      {% block content_heading %}
+  <div>
+    <div class="row">
+      <nav class="column small-2">
+        <ul class="side-nav">
+          {% block side_nav %}
             &nbsp;
-          {% endblock %}
-		    </div>
-	      <div class="main">
-		      {% block content %}
-				  {% endblock content %}
+          {% endblock side_nav %}
+        </ul>
+      </nav>
+      <section class="column small-10">
+        <div class="content">
+          <div class="heading green nav">
+            {% block content_heading %}
+              &nbsp;
+            {% endblock %}
+          </div>
+          <div class="main">
+            {% block content %}
+            {% endblock content %}
+          </div>
         </div>
-      </div>
-	  </section>
+      </section>
+    </div>
   </div>
+  <footer>
+    <a href="https://ifsr.de" class="column small-2" id="top_logo">
+      <img src="{% static "img/LogoStandard.svg" %}">
+    </a>
+  </footer>
   <script src="{% static "vendor/jquery/dist/jquery.min.js" %}"></script>
-  <script type="text/javascript" src="{% static "vendor/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "vendor/foundation/js/foundation.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "vendor/fastclick/lib/fastclick.js" %}"></script>
+  <script type="text/javascript">
+    $(document).foundation();
+  </script>
 </body>
 </html>
