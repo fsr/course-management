@@ -66,7 +66,8 @@ class CourseForm(ModelForm):
             'active',
             'description',
             'max_participants',
-            'archiving'
+            'archiving',
+            'student_only'
         ]
         help_texts = {
             'subject': 'Choose a subject for your course. ',
@@ -74,7 +75,8 @@ class CourseForm(ModelForm):
                       'right now.',
             'description': 'A good description is half the battle. '
                            'You can use markdown for formatting.',
-            'max_participants': 'How many people can join your course. (Can be changed later)'
+            'max_participants': 'How many people can join your course. (Can be changed later)',
+            'student_only': 'Should your course only be avaliable to students?'
         }
         labels = {
             'max_participants': 'Max nr. of participants'
