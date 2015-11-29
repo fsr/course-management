@@ -29,6 +29,8 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks 'grunt-contrib-sass'
 
+  grunt.loadNpmTasks 'grunt-npm-install'
+
   grunt.registerTask 'launch', 'Launch application', ->
     done = this.async()
     process.chdir 'src'
@@ -39,6 +41,25 @@ module.exports = (grunt) ->
       grunt.log.write data
     proc.stdout.on 'data', (data) ->
       grunt.log.write data
+
+  grunt.registerTask 'install-deps', ['npm-install', 'pip-install', 'bower-install']
+
+
+  grunt.registerTask 'pip-install', 'Get remaining dependencies', ->
+    grunt.log.writeln 'installing python dependencies...'
+    try
+      cp.spawnSync 'python3', ['-m', 'pip', 'install', '-r', 'requirements.txt']
+    catch error
+      grunt.log.writeln error
+      false
+
+  grunt.registerTask 'bower-install', 'Install bower dependencies', ->
+    grunt.log.writeln 'installing bower dependencies...'
+    try
+      cp.spawnSync 'bower', ['install']
+    catch error
+      grunt.log.writeln error
+      false
 
 
   grunt.registerTask 'clean-db', 'Clean the database', ->
