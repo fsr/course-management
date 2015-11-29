@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
+from django.utils.translation import ugettext as _
 
 from user.forms import ModifyUserForm
 from user.models import Faculty
@@ -30,10 +31,10 @@ def modify(request):
             try:
                 student.faculty = Faculty.objects.get(id=int(cleaned['faculty']))
             except Faculty.DoesNotExist:
-                return db_error(
+                return db_error(_(
                     'Oops, it seems that faculty does not exist. Please try again and should the problem persist '
                     'contact an administrator.'
-                )
+                ))
 
             student.public_profile = cleaned['public_profile']
             student.description = cleaned['description']
@@ -77,7 +78,7 @@ def profile(request, user_id=None):
             user = User.objects.get(id=user_id)
             is_own = request.user.id == user.id
         except User.DoesNotExist:
-            return db_error('This user does not exist')
+            return db_error(_('This user does not exist'))
 
         template = 'user/public-profile.html'
 

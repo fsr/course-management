@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
+from django.utils.translation import ugettext as _
 
 from user.forms import ContactForm
 from util.error.reporting import db_error
@@ -13,7 +14,7 @@ def contact_form(request:HttpRequest, user_id:int):
     try:
         user = User.objects.get(id=user_id)
     except User.DoesNotExist:
-        return db_error('User does not exist')
+        return db_error(_('Requested user does not exist.'))
     assert isinstance(user, User)
 
     if request.method == 'POST':

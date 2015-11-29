@@ -4,6 +4,7 @@ import string
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 from user import mailsettings
 from user.forms import RegistrationForm
@@ -33,9 +34,10 @@ def register(request):
                 request,
                 'registration/success.html',
                 {
-                    'title': 'Registration successfull',
+                    'title': _('Registration successfull'),
                     'acc': createduser.studentinformation.s_number + '@mail.zih.tu-dresden.de'
                     if createduser.is_student() else createduser.email
+                    'acc': userdata['email']
                 }
             )
     else:
@@ -45,7 +47,7 @@ def register(request):
         request,
         'registration/register.html',
         {
-            'title': 'Registration',
+            'title': _('Registration'),
             'form': form
         }
     )
@@ -79,7 +81,7 @@ def activationMail(user, request):
         userinf = user.userinformation
         # print(message)
         send_mail(
-            'Your registration at the iFSR course enrollment system',
+            _('Your registration at the iFSR course enrollment system'),
             message,
             mailsettings.sender,
             [userinf.studentinformation if userinf.is_student() else user.email],

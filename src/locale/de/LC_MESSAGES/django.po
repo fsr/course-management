@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-29 17:24+0100\n"
+"POT-Creation-Date: 2015-11-29 18:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,62 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: course/forms.py:17
+msgid "Invalid location name."
+msgstr "ungültiger Ortsname."
+
+#: course/forms.py:26 course/forms.py:32
+msgid "Invalid subject name."
+msgstr "Ungültiger Themenname"
+
+#: course/forms.py:40
+msgid "Requested username does not exist."
+msgstr "Der angeforderte Nutzername existiert nicht."
+
+#: course/forms.py:72
+msgid "Choose a subject for your course. "
+msgstr "Wählen Sie ein Thema für Ihren Kurs."
+
+#: course/forms.py:74
+msgid "Choose whether people should be able to join this course right now."
+msgstr "Wählen Sie aus, ob drekt einschreibungen zugelassen werden."
+
+#: course/forms.py:78
+msgid ""
+"A good description is half the battle. You can use markdown for formatting."
+msgstr ""
+"Eine gute Beschreibung ist die halbe Miete. Sie können Markdown zur "
+"Formatierung verwenden."
+
+#: course/forms.py:81
+msgid "How many people can join your course. (Can be changed later)"
+msgstr ""
+"Wie viele Teilnehmer sollen zugelassen werden (Kann später geändert werden)."
+
+#: course/forms.py:82
+msgid "Should your course only be avaliable to students?"
+msgstr "Soll der Kurs nur für Studenten zugänglich sein?"
+
+#: course/forms.py:85
+msgid "Max nr. of participants"
+msgstr "Maximale Anzahl an Teilnehmern"
+
+#: course/forms.py:91
+msgid "Username of the person you want to be a teacher for this course"
+msgstr "Nutzername der Person, die Tutor des Kurses sein soll"
+
+#: course/forms.py:100
+msgid "Whether to set the email sender to your email address or not."
+msgstr "Soll Ihr Mail adresse als absender verwendet werden?"
+
+#: course/forms.py:109
+msgid ""
+"Name of the subject, also decides its url. Allowed characters are word "
+"characters, numbers, spaces, '-' and '_' and it cannot be any of , "
+msgstr ""
+"Name des Themas, zuständig für die url. Erlaubte Zeichen sind Buchstaben, "
+"Ziffern,Spaces, '-' und '_'. folgende dürfen nicht gewählt werden."
 
 #: course/settings.py:98
 msgid "English"
@@ -25,7 +81,7 @@ msgstr ""
 msgid "German"
 msgstr ""
 
-#: course/templates/base-shell.html:9 course/templates/base-shell.html.py:17
+#: course/templates/base-shell.html:7 course/templates/base-shell.html.py:15
 msgid "Course Manager"
 msgstr "Kurs Manager"
 
@@ -60,6 +116,26 @@ msgstr "Login"
 #: course/templates/base.html:60
 msgid "Subjects"
 msgstr "Themen"
+
+#: course/templates/course/create.html:4
+msgid "On this page you can create a new course."
+msgstr "Auf Dieser Seite erstellen Sie einen neuen Kurs."
+
+#: course/templates/course/create.html:5
+msgid "You'll automatically be assigned as teacher for this course"
+msgstr "Sie werden automatisch Tutor dieses Kurses"
+
+#: course/templates/course/create.html:6
+msgid ""
+", so that you may be able to edit it. You can assign new teachers once the "
+"course is created"
+msgstr ""
+", damit Sie ihn Editieren können. Sie können neue Tutoren zuordnen, nachdem "
+"der Kurs erstellt ist"
+
+#: course/templates/course/create.html:7
+msgid "and even unassign yourself as teacher"
+msgstr "und sich selbst als Tutor entfernen."
 
 #: course/templates/course/create.html:13
 #: course/templates/subject/create.html:9
@@ -335,6 +411,110 @@ msgstr "neues Thema"
 msgid "Edit Schedule"
 msgstr "Zeitplan editieren"
 
+#: re_captcha/templates/captcha-error.html:5
+msgid "Your captcha could not be verified. Please retry the request."
+msgstr "Ihr captcha konnte nict verifiziert werden. Bitte erneut versuchen."
+
+#: user/forms.py:17
+msgid ""
+"Names should start with capital letters, only contain regular characters and "
+"be separated with spaces or dashes."
+msgstr ""
+"Namen sollten mit einem Großbuchstaben beginnen, nur reguläre buchstaben enthalten"
+"und mit Leerzeichen oder - abgegrenzt sein."
+
+#: user/forms.py:22
+msgid ""
+"S numbers can start with an 's' and otherwise consist of a string of seven "
+"digits."
+msgstr ""
+
+#: user/forms.py:30
+msgid "This s-number is already taken"
+msgstr ""
+
+#: user/forms.py:35
+#, fuzzy
+#| msgid "s number"
+msgid "Your s-number."
+msgstr "s-Nummer"
+
+#: user/forms.py:43
+msgid ""
+"First part of your public name, which should be your genuine first name. If "
+"you become a teacher this will be visible to any site visitor. Can be "
+"modified later."
+msgstr ""
+
+#: user/forms.py:49
+msgid ""
+"Second part of your public name, which should be your genuine familyname. If "
+"you become a teacher this will be visible to any site visitor. Can be "
+"modified later"
+msgstr ""
+
+#: user/forms.py:58
+msgid ""
+"The s-number as assigned by the university. This will become your (private) "
+"username for this site. The verification email will be sent to the address "
+"associated with this s-number. Cannot be modified later."
+msgstr ""
+
+#: user/forms.py:64
+msgid ""
+"The faculty at which you are enrolled. (Used for crediting purposes) Can be "
+"modified later."
+msgstr ""
+
+#: user/forms.py:71
+msgid ""
+"First part of your public name, which should be your genuine first name. If "
+"you become a teacher this will be visible to any site visitor."
+msgstr ""
+
+#: user/forms.py:77
+msgid ""
+"Second part of your public name, which should be your genuine familyname. If "
+"you become a teacher this will be visible to any site visitor."
+msgstr ""
+
+#: user/forms.py:83
+msgid "The faculty at which you are enrolled. (Used for crediting purposes)"
+msgstr ""
+
+#: user/forms.py:88
+msgid ""
+"Whether some of your data should be visible to others. Visible data would be "
+"first_name, last_name, the courses you teach and the description you provide "
+"below."
+msgstr ""
+
+#: user/forms.py:94
+#, fuzzy
+#| msgid ""
+#| "You can edit the description for your course here. You may use markdown "
+#| "to do so."
+msgid ""
+"Here you can provide some information about yourself. You can use markdown "
+"formatted text to do so. "
+msgstr ""
+"Sie können Die Kursbeschreibung hier editieren. Es ist möglich, dieses in "
+"markdown zu tun."
+
+#: user/forms.py:100
+msgid "This will become the subject field of the resulting email."
+msgstr ""
+
+#: user/forms.py:103
+msgid ""
+"This will be the content of the email. HTML is not allowed and any html tags "
+"will be removed."
+msgstr ""
+
+#: user/forms.py:115
+msgid "An email address where the recipient may reach you."
+msgstr ""
+
 #: user/templates/registration/login.html:5
 msgid "Your username and password didn't match. Please try again."
 msgstr ""
@@ -429,6 +609,54 @@ msgstr "Privates Profil anzeigen"
 #: user/templates/user/public-profile.html:19
 msgid "Contact this user."
 msgstr "Nutzer kontaktieren."
+
+#: user/views/activate.py:18
+msgid "Activation Failed"
+msgstr ""
+
+#: user/views/activate.py:25
+msgid "You didn't provide a token."
+msgstr ""
+
+#: user/views/activate.py:30
+msgid "The token you provided is invalid."
+msgstr ""
+
+#: user/views/activate.py:37
+msgid "Activation Succeded"
+msgstr ""
+
+#: user/views/contact.py:17
+#, fuzzy
+#| msgid "Requested username does not exist."
+msgid "Requested user does not exist."
+msgstr "Der angeforderte Nutzername existiert nicht."
+
+#: user/views/register.py:35
+msgid "Registration successfull"
+msgstr ""
+
+#: user/views/register.py:46
+#, fuzzy
+#| msgid "register"
+msgid "Registration"
+msgstr "einschreiben"
+
+#: user/views/register.py:73
+msgid "Your registration at the iFSR course enrollment system"
+msgstr ""
+
+#: user/views/user.py:35
+msgid ""
+"Oops, it seems that faculty does not exist. Please try again and should the "
+"problem persist contact an administrator."
+msgstr ""
+
+#: user/views/user.py:81
+#, fuzzy
+#| msgid "Requested username does not exist."
+msgid "This user does not exist"
+msgstr "Der angeforderte Nutzername existiert nicht."
 
 #~ msgid "Complete overview"
 #~ msgstr "Komplette Übersicht"
