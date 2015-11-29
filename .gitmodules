@@ -1,0 +1,3 @@
+[submodule "corporate-web-design"]
+	path = corporate-web-design
+	url = git@github.com:fsr/corporate-web-design.git
