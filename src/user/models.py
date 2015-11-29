@@ -18,21 +18,21 @@ class UserInformation(models.Model):
     user = models.OneToOneField(User)
     description = models.TextField(default="")
     public_profile = models.BooleanField(default=False)
-    
+
     def __str__(self):
         return '{first} {last}'.format(first=self.user.first_name, last=self.user.last_name)
-    
+
     def render_description(self):
         return clean_for_user_description(markdown(self.description))
-    
+
     @staticmethod
     def create(
-        username, 
-        email, 
-        password, 
-        first_name, 
-        last_name, 
-        s_number=None, 
+        username,
+        email,
+        password,
+        first_name,
+        last_name,
+        s_number=None,
         faculty=None
     ):
         user = User.objects.create_user(
@@ -44,7 +44,7 @@ class UserInformation(models.Model):
         )
         user.is_active = False
         user.save()
-        
+
         if s_number is None or s_number == '':
             if faculty is None or faculty == '':
                 return UserInformation.objects.create(user=user)
@@ -60,6 +60,13 @@ class UserInformation(models.Model):
                     faculty=Faculty.objects.get(pk=faculty)
                 )
 
+    def is_student(self):
+        try:
+            self.studentinformation
+            return True
+        except StudentInformation.DoesNotExist:
+            return False
+
 
 
 class StudentInformation(UserInformation):
@@ -70,3 +77,14 @@ class StudentInformation(UserInformation):
 class Activation(models.Model):
     user = models.OneToOneField(User)
     token = models.CharField(max_length=50)
+
+
+def get_user_information(obj):
+    if isinstance(obj, (User, StudentInformation)):
+        return user.userinformation
+    elif isinstance(obj, UserInformation):
+        return obj
+    elif isinstance(obj, (int, str)):
+        return UserInformation.objects.get(id=obj)
+    else:
+        raise TypeError('Cannot convert {} to {}'.format(type(obj, UserInformation)))

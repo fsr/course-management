@@ -1,3 +1,8 @@
 @import 'normalize',
         'foundation',
         'corporate-design/variables';
+
+
+input[type="submit"] {
+  @extend a;
+}

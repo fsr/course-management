@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 from . import schedule, subject
 
-from user.models import UserInformation
+from user.models import UserInformation, get_user_information
 
 from util.html_clean import clean_for_description
 
@@ -45,42 +45,32 @@ class Course(models.Model):
     def __str__(self):
         return self.subject.name
 
-    @staticmethod
-    def _get_UserInformation(UserInformation):
-        if isinstance(UserInformation, User):
-            return UserInformation.UserInformation
-        elif isinstance(UserInformation, (int, str)):
-            return UserInformation.objects.get(id=UserInformation)
-        elif isinstance(UserInformation, UserInformation):
-            return UserInformation
-        else:
-            raise TypeError('Expected {} or {} instance, got {}', UserInformation, User, type(UserInformation))
-
-    def enroll(self, UserInformation):
-        UserInformation = self._get_UserInformation(UserInformation)
-        if self._is_participant(UserInformation):
+    def enroll(self, student):
+        student = get_user_information(student)
+        if self._is_participant(student):
             raise self.IsEnrolled
         elif not self.active:
             raise self.IsInactive
         elif self.saturated:
             raise self.IsFull
         else:
-            self.participants.add(UserInformation)
+            self.participants.add(student)
 
-    def unenroll(self, UserInformation):
+    def unenroll(self, student):
 
-        UserInformation = self._get_UserInformation(UserInformation)
+        student = get_user_information(student)
 
-        if self._is_participant(UserInformation):
-            self.participants.remove(UserInformation)
+        if self._is_participant(student):
+            self.participants.remove(student)
         else:
             raise self.IsNotEnrolled
 
-    def _is_participant(self, UserInformation):
-        return UserInformation in self.participants.all()
+    def _is_participant(self, student):
+        student = get_user_information(student)
+        return student in self.participants.all()
 
-    def is_participant(self, UserInformation):
-        return self._is_participant(self._get_UserInformation(UserInformation))
+    def is_participant(self, student):
+        return self._is_participant(get_user_information(student))
 
     @property
     def saturated(self):
@@ -105,17 +95,14 @@ class Course(models.Model):
     def get_description_as_html(self):
         return clean_for_description(markdown(self.description))
 
-    def is_teacher(self, user):
-        if isinstance(user, User):
-            user = user.UserInformation
-        elif not isinstance(user, UserInformation):
-            raise TypeError('Expected {} or {} instance, got {}', UserInformation, User, type(user))
-        return self.teacher.filter(id=user.id).exists()
+    def is_teacher(self, student):
+        student = get_user_information(student)
+        return self.teacher.filter(id=student.id).exists()
 
     def get_distinct_locations(self):
         return self.schedule.slots.values_list('location', flat=True).distinct()
 
-    def as_context(self, UserInformation=None):
+    def as_context(self, student=None):
 
         participants_count, max_participants = self.saturation_level
         sub_name = self.subject.name
@@ -128,12 +115,13 @@ class Course(models.Model):
             'max_participants': max_participants,
             'course_is_active': self.active,
         }
-        if isinstance(UserInformation, UserInformation):
+        if student:
+            student = get_user_information(student)
             context['is_subbed'] = UserInformation.course_set.filter(id=self.id).exists()
 
-            if self.is_teacher(UserInformation):
+            if self.is_teacher(student):
                 context['is_teacher'] = True
-                context['UserInformations'] = self.participants.all()
+                context['students'] = self.participants.all()
 
         return context
 

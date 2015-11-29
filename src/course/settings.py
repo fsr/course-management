@@ -123,7 +123,7 @@ LOCALE_PATHS = (
 
 )
 
-PROJECT_DIR = (__file__)
+PROJECT_DIR = __file__
 
 
 DEFAULT_FROM_EMAIL = 'noreply@ifsr.de'

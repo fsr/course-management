@@ -28,6 +28,14 @@
     groups: []
     password: pbkdf2_sha256$20000$MLoWiQfJswUs$K/nA3yZ1hQuexxPZFKB0gv8sADmMWNGPp2kwbPx/0B4=
     first_name: Martha
+- model: user.userinformation
+  pk: 1
+  fields:
+    user: 1
+- model: user.userinformation
+  pk: 2
+  fields:
+    user: 2
 - model: user.studentinformation
   pk: 1
   fields:

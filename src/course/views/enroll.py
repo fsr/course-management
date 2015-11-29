@@ -13,7 +13,7 @@ from util.routing import redirect_unless_target
 @login_required()
 def add(request, course_id):
     user = request.user
-    stud = user.student
+    stud = user.userinformation
     try:
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
@@ -36,7 +36,7 @@ def add(request, course_id):
 @require_POST
 @login_required()
 def remove(request, course_id):
-    stud = request.user.student
+    stud = request.user.userinformation
     try:
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:

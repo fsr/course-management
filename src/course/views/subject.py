@@ -20,7 +20,7 @@ def course_overview(request, subjectname):
         return db_error('Requested subject does not exist.')
 
     if user.is_authenticated():
-        student = user.student
+        student = user.userinformation
         cl = filter(
             lambda c: c.active or c.is_teacher(student),
             active_subject.course_set.all()

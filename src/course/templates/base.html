@@ -8,7 +8,7 @@
     {% if user.is_authenticated %}
       <li class="has-dropdown">
         <a href="{% url 'user-profile' %}">
-          {{ user.student }}
+          {{ user.userinformation }}
         </a>
         <ul class="dropdown">
           {% if perms.course_management.add_course %}

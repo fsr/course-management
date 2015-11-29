@@ -3,8 +3,7 @@ from functools import wraps
 import requests
 
 from django.conf import settings
-from django.shortcuts import render
-
+from django.shortcuts import render, render_to_response
 
 SECRET = settings.RE_CAPTCHA_SECRET_KEY
 VERIFY = getattr(settings, 'RE_CAPTCHA_VERIFY', True)
@@ -24,18 +23,17 @@ def re_captcha_verify(func):
                     r = request.post(
                         URL,
                         data={
-                            'secret': SECRET_KEY,
+                            'secret': SECRET,
                             'response': request.POST['g-recaptcha-response'],
                             'remoteip': request.META['REMOTE_ADDR']
                         }
                     )
                     obj = r.json()
-                    if obj['success'] == True:
+                    if obj['success']:
                         return func(request, *args, **kwargs)
 
-                    elif setting.DEBUG:
+                    elif settings.DEBUG:
                         return captcha_error(obj['error-codes'])
-
 
                 return captcha_error()
             else:
@@ -48,4 +46,4 @@ def re_captcha_verify(func):
 
 
 def captcha_error(message=''):
-    return render_to_reponse('captcha-error.html', {'message':message})
+    return render_to_response('captcha-error.html', {'message':message})

@@ -2,7 +2,7 @@
 {% trans "No dates set yet" as tr_noslotsset %}
 
 
-{% with user.student.course_set.all as courses %}
+{% with user.userinformation.course_set.all as courses %}
 
   {% for course in course_list %}
     <div class="row">
@@ -52,7 +52,7 @@
 
         {% if user.is_authenticated and not hide_actions %}
           <p>
-            {% if user.student in course.teacher.all %}
+            {% if user.userinformation in course.teacher.all %}
               {% trans "You are teacher." %}
               {% trans "This course is currently" %} {% if course.active %}{% trans "active" %}{% else %}{% trans "suspended" %}{% endif %}.
             {% else %}

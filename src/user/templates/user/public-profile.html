@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block content %}
-  {% with student=profiled_user.student %}
+  {% with student=profiled_user.userinformation %}
     {% if student.public_profile %}
       <h1>{{ profiled_user.first_name }} {{ profiled_user.last_name }}</h1>
       {{ student.render_description|safe }}

@@ -12,7 +12,7 @@ from util.error.reporting import db_error
 def modify(request):
 
     user = request.user
-    student = user.student
+    student = user.userinformation
 
     if request.method == "POST":
 
