@@ -22,7 +22,7 @@ def add(request, course_id):
 
     if course.is_participant(stud):
         session['enroll-error'] = 'You are already enrolled in this course.'
-    elif course.joinable:
+    elif not course.joinable:
         session['enroll-error'] = 'Sorry, this course is full.'
     else:
         if 'enroll-error' in session:
