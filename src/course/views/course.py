@@ -11,7 +11,7 @@ from course.models.schedule import Schedule
 from course.models.subject import Subject
 from course.util.permissions import needs_teacher_permissions
 
-from user.models import Student
+from user.models import UserInformation
 
 from util import html_clean
 from util.error.reporting import db_error
@@ -38,7 +38,7 @@ def course(request, course_id):
 
     try:
         try:
-            context = current_course.as_context(request.user.student)
+            context = current_course.as_context(request.user.UserInformation)
         except AttributeError:
             context = current_course.as_context()
 
@@ -107,7 +107,7 @@ def create(request):
 
             created.schedule = Schedule.objects.create(_type=form['schedule_type'])
             created.save()
-            created.teacher.add(request.user.student)
+            created.teacher.add(request.user.UserInformation)
 
             return redirect('course', created.id)
     else:
@@ -166,7 +166,7 @@ def add_teacher(request, course_id):
             try:
                 user = User.objects.get(username=form.cleaned_data['username'])
 
-                curr_course.teacher.add(user.student)
+                curr_course.teacher.add(user.UserInformation)
 
                 return redirect('add-teacher', course_id)
             except User.DoesNotExist:
@@ -189,11 +189,11 @@ def add_teacher(request, course_id):
 @require_POST
 def remove_teacher(request, course_id, teacher_id):
     try:
-        Course.objects.get(id=course_id).teacher.remove(Student.objects.get(id=teacher_id))
+        Course.objects.get(id=course_id).teacher.remove(UserInformation.objects.get(id=teacher_id))
     except Course.DoesNotExist:
         return db_error('This course does not exist.')
-    except Student.DoesNotExist:
-        return db_error('This student does not exist.')
+    except UserInformation.DoesNotExist:
+        return db_error('This UserInformation does not exist.')
     return redirect_unless_target(request, 'course', course_id)
 
 
@@ -217,11 +217,11 @@ def notify(request: HttpRequest, course_id):
             subject = form.subject
             content = form.content
 
-            for student in course.participants.all():
+            for UserInformation in course.participants.all():
                 if show_sender:
-                    student.user.email_user(subject, content, email)
+                    UserInformation.user.email_user(subject, content, email)
                 else:
-                    student.user.email_user(subject, content)
+                    UserInformation.user.email_user(subject, content)
 
             return redirect('notify-course-done', course_id)
 
@@ -245,13 +245,13 @@ def notify_done(request, course_id):
 
 
 @needs_teacher_permissions
-def remove_student(request: HttpRequest, course_id:str, student_id:str):
+def remove_student(request: HttpRequest, course_id:str, UserInformation_id:str):
     try:
         course = Course.objects.get(id=course_id)
-        course.unenroll(student_id)
+        course.unenroll(UserInformation_id)
     except Course.DoesNotExist:
         return db_error('Course does not exist')
     except course.IsEnrolled:
-        return db_error('This student is not enrolled in this course.')
+        return db_error('This UserInformation is not enrolled in this course.')
 
     return redirect('course', course_id)

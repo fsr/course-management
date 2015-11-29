@@ -8,52 +8,63 @@ from util.html_clean import clean_for_user_description
 
 
 class Faculty(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
         return self.name
 
 
-class Student(models.Model):
+class UserInformation(models.Model):
     user = models.OneToOneField(User)
-    s_number = models.CharField(max_length=50)
-    faculty = models.ForeignKey(Faculty)
-    public_profile = models.BooleanField(default=False)
     description = models.TextField(default="")
-
+    public_profile = models.BooleanField(default=False)
+    
     def __str__(self):
         return '{first} {last}'.format(first=self.user.first_name, last=self.user.last_name)
-
-    @classmethod
-    def create(cls, password, first_name, last_name, s_number, faculty):
-        '''
-        This function creates a new user/student and saves it to the database.
-        When using this function, the created user will be set 'inactive'
-        by default.
-        '''
-        try:
-            user = User.objects.create_user(
-                email=s_number + '@mail.zih.tu-dresden.de',
-                username=s_number,
-                password=password,
-                first_name=first_name,
-                last_name=last_name
-            )
-            # set user inactive
-            user.is_active = False
-            user.save()
-            newstudent = Student(
-                user=user,
-                s_number=s_number,
-                faculty=Faculty.objects.get(pk=faculty)
-            )
-            newstudent.save()
-            return newstudent
-        except IntegrityError:
-            return None
-
+    
     def render_description(self):
         return clean_for_user_description(markdown(self.description))
+    
+    @staticmethod
+    def create(
+        username, 
+        email, 
+        password, 
+        first_name, 
+        last_name, 
+        s_number=None, 
+        faculty=None
+    ):
+        user = User.objects.create_user(
+            email=email,
+            username=username,
+            password=password,
+            first_name=first_name,
+            last_name=last_name
+        )
+        user.is_active = False
+        user.save()
+        
+        if s_number is None or s_number == '':
+            if faculty is None or faculty == '':
+                return UserInformation.objects.create(user=user)
+            else:
+                raise TypeError('I got a faculty but no s number?')
+        else:
+            if faculty is None or faculty == '':
+                raise TypeError('I got an s number but no faculty?')
+            else:
+                return StudentInformation.objects.create(
+                    user=user,
+                    s_number=s_number,
+                    faculty=Faculty.objects.get(pk=faculty)
+                )
+
+
+
+class StudentInformation(UserInformation):
+    s_number = models.CharField(max_length=50, unique=True)
+    faculty = models.ForeignKey(Faculty)
 
 
 class Activation(models.Model):

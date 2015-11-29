@@ -2,13 +2,18 @@ from django import forms
 from django.core.validators import RegexValidator, EmailValidator
 from django.forms import ModelForm
 
-from user.models import Faculty, User
+from user.models import Faculty, UserInformation, StudentInformation, User
 from django.core.exceptions import ValidationError
 from util import html_clean
 
 
 def get_faculties():
     return map(lambda fak: (fak.id, fak.name), Faculty.objects.all())
+
+
+def faculties_or_empty():
+    yield ('', 'none')
+    yield from get_faculties()
 
 
 name_validator = RegexValidator(
@@ -21,10 +26,17 @@ s_number_validator = RegexValidator(
     message='S numbers can start with an \'s\' and otherwise consist of a '
             'string of seven digits.'
 )
-def s_number_existence_validator(number):
+def username_existence_validator(number):
     try:
         User.objects.get(username=number)
     except User.DoesNotExist:
+        return
+    raise ValidationError('This s-number is already taken')
+
+def s_number_existence_validator(number):
+    try:
+        StudentInformation.objects.get(s_number=number)
+    except StudentInformation.DoesNotExist:
         return
     raise ValidationError('This s-number is already taken')
 
@@ -34,9 +46,10 @@ class LoginForm(forms.Form):
         help_text='Your s-number.'
     )
     password = forms.PasswordInput()
-
+    
 
 class RegistrationForm(forms.Form):
+    username = forms.CharField(validators=[username_existence_validator])
     first_name = forms.CharField(
         validators=[name_validator],
         help_text='First part of your public name, which should be your genuine first name. '
@@ -51,16 +64,19 @@ class RegistrationForm(forms.Form):
     )
     password = forms.CharField(min_length=8, widget=forms.PasswordInput)
     password_repeat = forms.CharField(min_length=8, widget=forms.PasswordInput)
+    email = forms.CharField(validators=[EmailValidator])
     s_number = forms.CharField(
         min_length=6,
         validators=[s_number_validator, s_number_existence_validator],
         help_text='The s-number as assigned by the university. This will become your (private) username for this site. '
                   'The verification email will be sent to the address associated with this s-number. '
-                  'Cannot be modified later.'
+                  'Cannot be modified later.',
+        required=False
     )
     faculty = forms.ChoiceField(
-        choices=get_faculties,
-        help_text='The faculty at which you are enrolled. (Used for crediting purposes) Can be modified later.'
+        choices=faculties_or_empty,
+        help_text='The faculty at which you are enrolled. (Used for crediting purposes) Can be modified later.',
+        required=False
     )
 
 
@@ -78,7 +94,7 @@ class ModifyUserForm(forms.Form):
     )
     email = forms.EmailField()
     faculty = forms.ChoiceField(
-        choices=get_faculties,
+        choices=faculties_or_empty,
         help_text='The faculty at which you are enrolled. (Used for crediting purposes)'
     )
     public_profile = forms.BooleanField(

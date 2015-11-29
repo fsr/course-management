@@ -3,11 +3,11 @@ import string
 
 from django.core.mail import send_mail
 from django.shortcuts import render
+from django.conf import settings
 
 from user import mailsettings
 from user.forms import RegistrationForm
-from user.models import Student
-from user.models import Activation
+from user.models import UserInformation, Activation
 
 from re_captcha.decorators import re_captcha_verify
 
@@ -19,12 +19,14 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             userdata = form.cleaned_data
-            createduser = Student.create(
+            createduser = UserInformation.create(
+                username=userdata['username'],
+                email=userdata['email'],
                 password=userdata['password'],
                 first_name=userdata['first_name'],
                 last_name=userdata['family_name'],
-                s_number=userdata['s_number'],
-                faculty=userdata['faculty']
+                s_number=userdata.get('s_number', None),
+                faculty=userdata.get('faculty', None)
             )
             activationMail(createduser.user, request)
             return render(
@@ -32,7 +34,7 @@ def register(request):
                 'registration/success.html',
                 {
                     'title': 'Registration successfull',
-                    'acc': userdata['s_number']
+                    'acc': userdata['email']
                 }
             )
     else:
@@ -57,22 +59,27 @@ def generateToken(size=50, chars=None):
 
 
 def activationMail(user, request):
-    user_token = generateToken()
-    newActivation = Activation.objects.create(user=user, token=user_token)
-    message = ''
-    activateurl = request.build_absolute_uri() + '?token=' + user_token
-    # print(activateurl)
-    with open('res/registrationmail.txt') as f:
-        message = f.read()
-        message = message.format(
-            user=user.first_name,
-            url=activateurl
-        )
-    # print(message)
-    send_mail('Your registration at the iFSR course enrollment system',
-              message,
-              mailsettings.sender,
-              [user.email],
-              mailsettings.auth_user,
-              mailsettings.auth_pass)
-    # print(user_token)
+    if settings.DEBUG:
+        print('activation email for user {} not sent'.format(user.username))
+        user.is_active = True
+        user.save()
+    else:
+        user_token = generateToken()
+        newActivation = Activation.objects.create(user=user, token=user_token)
+        message = ''
+        activateurl = request.build_absolute_uri() + '?token=' + user_token
+        # print(activateurl)
+        with open('res/registrationmail.txt') as f:
+            message = f.read()
+            message = message.format(
+                user=user.first_name,
+                url=activateurl
+            )
+        # print(message)
+        send_mail('Your registration at the iFSR course enrollment system',
+                  message,
+                  mailsettings.sender,
+                  [user.email],
+                  mailsettings.auth_user,
+                  mailsettings.auth_pass)
+        # print(user_token)

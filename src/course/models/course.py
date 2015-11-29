@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 from . import schedule, subject
 
-from user.models import Student
+from user.models import UserInformation
 
 from util.html_clean import clean_for_description
 
@@ -20,14 +20,14 @@ ARCHIVE_STATUSES = (
 
 class Course(models.Model):
     schedule = models.OneToOneField(schedule.Schedule)
-    teacher = models.ManyToManyField(Student, related_name="teacher")
-    participants = models.ManyToManyField(Student)
+    teacher = models.ManyToManyField(UserInformation, related_name="teacher")
+    participants = models.ManyToManyField(UserInformation)
     active = models.BooleanField(default=False)
     subject = models.ForeignKey(subject.Subject)
     max_participants = models.IntegerField()
     description = models.TextField(default="No description provided for this course.")
     archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)
-    queue = models.ManyToManyField(Student, related_name='waiting_for')
+    queue = models.ManyToManyField(UserInformation, related_name='waiting_for')
 
     class IsFull(Exception):
         pass
@@ -45,41 +45,41 @@ class Course(models.Model):
         return self.subject.name
 
     @staticmethod
-    def _get_student(student):
-        if isinstance(student, User):
-            return student.student
-        elif isinstance(student, (int, str)):
-            return Student.objects.get(id=student)
-        elif isinstance(student, Student):
-            return student
+    def _get_UserInformation(UserInformation):
+        if isinstance(UserInformation, User):
+            return UserInformation.UserInformation
+        elif isinstance(UserInformation, (int, str)):
+            return UserInformation.objects.get(id=UserInformation)
+        elif isinstance(UserInformation, UserInformation):
+            return UserInformation
         else:
-            raise TypeError('Expected {} or {} instance, got {}', Student, User, type(student))
+            raise TypeError('Expected {} or {} instance, got {}', UserInformation, User, type(UserInformation))
 
-    def enroll(self, student):
-        student = self._get_student(student)
-        if self._is_participant(student):
+    def enroll(self, UserInformation):
+        UserInformation = self._get_UserInformation(UserInformation)
+        if self._is_participant(UserInformation):
             raise self.IsEnrolled
         elif not self.active:
             raise self.IsInactive
         elif self.saturated:
             raise self.IsFull
         else:
-            self.participants.add(student)
+            self.participants.add(UserInformation)
 
-    def unenroll(self, student):
+    def unenroll(self, UserInformation):
 
-        student = self._get_student(student)
+        UserInformation = self._get_UserInformation(UserInformation)
 
-        if self._is_participant(student):
-            self.participants.remove(student)
+        if self._is_participant(UserInformation):
+            self.participants.remove(UserInformation)
         else:
             raise self.IsNotEnrolled
 
-    def _is_participant(self, student):
-        return student in self.participants.all()
+    def _is_participant(self, UserInformation):
+        return UserInformation in self.participants.all()
 
-    def is_participant(self, student):
-        return self._is_participant(self._get_student(student))
+    def is_participant(self, UserInformation):
+        return self._is_participant(self._get_UserInformation(UserInformation))
 
     @property
     def saturated(self):
@@ -106,15 +106,15 @@ class Course(models.Model):
 
     def is_teacher(self, user):
         if isinstance(user, User):
-            user = user.student
-        elif not isinstance(user, Student):
-            raise TypeError('Expected {} or {} instance, got {}', Student, User, type(user))
+            user = user.UserInformation
+        elif not isinstance(user, UserInformation):
+            raise TypeError('Expected {} or {} instance, got {}', UserInformation, User, type(user))
         return self.teacher.filter(id=user.id).exists()
 
     def get_distinct_locations(self):
         return self.schedule.slots.values_list('location', flat=True).distinct()
 
-    def as_context(self, student=None):
+    def as_context(self, UserInformation=None):
 
         participants_count, max_participants = self.saturation_level
         sub_name = self.subject.name
@@ -127,12 +127,12 @@ class Course(models.Model):
             'max_participants': max_participants,
             'course_is_active': self.active,
         }
-        if isinstance(student, Student):
-            context['is_subbed'] = student.course_set.filter(id=self.id).exists()
+        if isinstance(UserInformation, UserInformation):
+            context['is_subbed'] = UserInformation.course_set.filter(id=self.id).exists()
 
-            if self.is_teacher(student):
+            if self.is_teacher(UserInformation):
                 context['is_teacher'] = True
-                context['students'] = self.participants.all()
+                context['UserInformations'] = self.participants.all()
 
         return context
 
@@ -146,4 +146,4 @@ class Course(models.Model):
 class Notification(models.Model):
     subject = models.CharField(max_length=100)
     content = models.TextField()
-    user = models.ManyToManyField(Student)
+    user = models.ManyToManyField(UserInformation)
