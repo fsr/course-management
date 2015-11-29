@@ -1,3 +1,5 @@
+fs = require 'fs'
+
 module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
@@ -5,12 +7,11 @@ module.exports = (grunt) ->
       dist:
         options:
           loadPath: [
-            'bower_components/foundation/scss',
-            'corporate-web-design/src/corporate-design'
+            'corporate-web-design/src/corporate-design',
+            'bower_components/foundation/scss'
           ]
         files:
-          'scss/style.scss': 'src/static/css/style.css'
-
+          'src/static/css/style.css': 'scss/style.scss'
 
 
   grunt.loadNpmTasks 'grunt-contrib-sass'

@@ -75,3 +75,7 @@ node_modules/
 
 # bower
 bower_components/
+
+.sass-cache
+
+src/static/css
