@@ -7,7 +7,7 @@ module.exports = (grunt) ->
       dist:
         options:
           loadPath: [
-            'corporate-web-design/src/corporate-design',
+            'corporate-web-design/src',
             'bower_components/foundation/scss'
           ]
         files:
