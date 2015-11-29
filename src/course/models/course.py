@@ -25,7 +25,7 @@ class Course(models.Model):
     active = models.BooleanField(default=False)
     subject = models.ForeignKey(subject.Subject)
     max_participants = models.IntegerField()
-    description = models.TextField(default="No description provided for this course.")
+    description = models.TextField(blank=True, default="")
     archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)
     queue = models.ManyToManyField(UserInformation, related_name='waiting_for')
     student_only = models.BooleanField(default=False)
@@ -130,6 +130,9 @@ class Course(models.Model):
 
     def is_archived(self):
         return self.archiving == 'a'
+
+    def has_description(self):
+        return self.description != ''
 
 
 class Notification(models.Model):

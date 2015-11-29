@@ -2,13 +2,12 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
+from django.utils.translation import ugettext as _
 
 from course.models import subject
 from course.forms import SubjectForm
 
 from util.error.reporting import db_error
-
-from django.utils import translation
 
 
 def course_overview(request, subjectname):
@@ -17,7 +16,7 @@ def course_overview(request, subjectname):
     try:
         active_subject = subject.Subject.objects.get(name=subjectname)
     except subject.Subject.DoesNotExist:
-        return db_error('Requested subject does not exist.')
+        return db_error(_('Requested subject does not exist.'))
 
     if user.is_authenticated():
         student = user.userinformation
@@ -47,7 +46,7 @@ def subject_overview(request):
         request,
         'subject/overview.html',
         {
-            'title': 'Subject Overview',
+            'title': _('Subject Overview'),
             'subjects': subject.Subject.objects.all()
         }
     )
@@ -65,17 +64,17 @@ def create(request):
 
     else:
         form = SubjectForm()
-        form.initial['description'] = (
+        form.initial['description'] = _((
             'English is a weakly typed, interpreted language and runs on a '
-            'lange number of modern humanoids with varying support for '
+            'large number of modern humanoids with varying support for '
             'advanced syntax features. Website: https://oed.com'
-        )
+        ))
 
     return render(
         request,
         'subject/create.html',
         {
-            'title': 'New Subject',
+            'title': _('New Subject'),
             'form': form
         }
     )
@@ -87,7 +86,7 @@ def edit(request, subjectname):
     try:
         subj = subject.Subject.objects.get(name=subjectname)
     except subject.Subject.DoesNotExist:
-        return db_error('This subject does not exist.')
+        return db_error(_('Requested subject does not exist.'))
 
     if request.method == 'POST':
         form = SubjectForm(request.POST, instance=subj)
@@ -119,7 +118,7 @@ def delete(request, subjectname):
     try:
         subj = subject.Subject.objects.get(name=subjectname)
     except subject.Subject.DoesNotExist:
-        return db_error('This subject does not exist.')
+        return db_error(_('Requested subject does not exist.'))
 
     subj.delete()
 

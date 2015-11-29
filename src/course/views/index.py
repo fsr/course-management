@@ -1,5 +1,6 @@
 from course.models import subject
 from django.shortcuts import render
+from django.utils.translation import ugettext as _
 
 
 def index(request):
@@ -7,7 +8,7 @@ def index(request):
         request,
         'index.html',
         {
-            'title': 'Welcome',
+            'title': _('Welcome'),
             'subjects': subject.Subject.get_active()
         }
     )
