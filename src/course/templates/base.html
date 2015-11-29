@@ -27,6 +27,25 @@
       <li><a href="{% url 'register' %}">{% trans "Sign up" %}</a></li>
       <li><a href="{% url 'login' %}?next={{ request.path }}">{% trans "Sign in" %}</a></li>
     {% endif %}
+    <li class="has-dropdown">
+      <a href="#">Language</a>
+      <ul class="dropdown">
+        <li>
+          <form action="{% url 'set_language' %}" method="post" id="language-form" name="language-form">
+            {% csrf_token %}
+            <input type="hidden" name="language" id="language" value="de" />
+            <input type="submit" value="de" />
+          </form>
+        </li>
+        <li>
+          <form action="{% url 'set_language' %}" method="post" id="language-form" name="language-form">
+            {% csrf_token %}
+            <input type="hidden" name="language" id="language" value="en" />
+            <input type="submit" value="en" />
+          </form>
+        </li>
+      </ul>
+    </li>
   </ul>
 
   {% if backurl %}
@@ -34,17 +53,6 @@
       <span class="glyphicon glyphicon-chevron-left" title="back"></span>
     </a>
   {% endif %}
-
-	<form action="{% url 'set_language' %}" method="post" id="language-form" name="language-form">
-    {% csrf_token %}
-    <input type="hidden" name="language" id="language" value="de" />
-		<input type="submit" value="de" />
-	</form>
-	<form action="{% url 'set_language' %}" method="post" id="language-form" name="language-form">
-    {% csrf_token %}
-    <input type="hidden" name="language" id="language" value="en" />
-		<input type="submit" value="en" />
-	</form>
 
 {% endblock %}
 
