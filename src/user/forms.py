@@ -133,3 +133,12 @@ class ContactForm(AbstractContactForm):
         help_text=_('An email address where the recipient may reach you.'),
         validators=[EmailValidator]
     )
+
+
+class StudentVerificationForm(ModelForm):
+    class Meta:
+        model = StudentInformation
+        fields = [
+            's_number',
+            'faculty'
+        ]

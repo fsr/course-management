@@ -1,13 +1,14 @@
 import random
 import string
 
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
 from django.utils.translation import ugettext as _
 
 from user import mailsettings
-from user.forms import RegistrationForm
+from user.forms import RegistrationForm, StudentVerificationForm
 from user.models import UserInformation, Activation
 
 from re_captcha.decorators import re_captcha_verify
@@ -36,7 +37,7 @@ def register(request):
                 {
                     'title': _('Registration successfull'),
                     'acc': createduser.studentinformation.s_number + '@mail.zih.tu-dresden.de'
-                    if createduser.is_student() else createduser.email
+                    if createduser.is_student() else createduser.user.email
                 }
             )
     else:
@@ -88,3 +89,26 @@ def activationMail(user, request):
             mailsettings.auth_pass
         )
         # print(user_token)
+
+
+@login_required
+def verify_student(request):
+
+    if request.method == "POST":
+        form = StudentVerificationForm(request.POST)
+        if form.is_valid():
+            a = form.save(commit=False)
+            a.userinformation = request.user.userinformation
+            a.user = request.user   
+            a.save()
+            return redirect(
+                'user-profile'
+            )
+    else:
+        form = StudentVerificationForm()
+
+    return render(
+        request,
+        'registration/student-verification.html',
+        {'form': form}
+    )

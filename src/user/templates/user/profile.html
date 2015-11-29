@@ -36,6 +36,9 @@
   <ul>
     <li><a href="{% url 'modify-user' %}">{% trans "Edit" %}</a></li>
     <li><a href="{% url 'user-profile' user.id %}">{% trans "Visit your public profile." %}</a></li>
+    {% if not user.userinformation.is_student %}
+      <li><a href="{% url 'student-verification' %}">{% trans "Verify as a student" %}</a></li>
+    {% endif %}
   </ul>
   <hr>
   {% with student=user.userinformation %}

@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^profile/$', user.profile, name='user-profile'),
     url(r'^profile/(?P<user_id>[0-9]+)/$', user.profile, name='user-profile'),
     url(r'^activate/$', activate.activate, name='activate-user'),
+    url(r'^student/verify/$', register.verify_student, name='student-verification'),
     url(r'^logout/$', auth_views.logout, {
         'template_name': 'registration/logout.html'
     }, name='logout'),
