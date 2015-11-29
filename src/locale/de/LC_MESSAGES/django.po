@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-29 16:43+0100\n"
+"POT-Creation-Date: 2015-11-29 17:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,16 +71,18 @@ msgid ""
 "You can edit the description for your course here. You may use markdown to "
 "do so."
 msgstr ""
+"Sie können Die Kursbeschreibung hier editieren. Es ist möglich, dieses in "
+"markdown zu tun."
 
 #: course/templates/course/edit.html:19 course/templates/subject/edit.html:14
 msgid "Delete"
 msgstr "Löschen"
 
-#: course/templates/course/forms/register.html:3
+#: course/templates/course/forms/register.html:4
 msgid "register"
 msgstr "einschreiben"
 
-#: course/templates/course/forms/unregister.html:3
+#: course/templates/course/forms/unregister.html:4
 msgid "unregister"
 msgstr "austragen"
 
@@ -117,10 +119,8 @@ msgid "suspended"
 msgstr "unterbrochen"
 
 #: course/templates/course/info.html:40
-#, fuzzy
-#| msgid "Participants"
 msgid "Participants list"
-msgstr "Teilnehmer"
+msgstr "Teilnehmerliste"
 
 #: course/templates/course/info.html:49
 msgid "kick"
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Administrative actions"
 msgstr "Administrative Aktionen"
 
-#: course/templates/course/info.html:63
+#: course/templates/course/info.html:63 course/views/course.py:76
 msgid "Edit course"
 msgstr "Kurs editieren"
 
@@ -169,6 +169,10 @@ msgstr "Aktionen"
 #: course/templates/course/info.html:83 course/templates/course_list.html:64
 msgid "This course is full"
 msgstr "Dieser Kurs ist voll"
+
+#: course/templates/course/info.html:101
+msgid "No description provided for this course."
+msgstr "Für diesen Kurs liegt keine Beschreibung vor."
 
 #: course/templates/course/notify-done.html:5
 msgid "Your students have successfully been notified."
@@ -264,6 +268,72 @@ msgstr "Name"
 #: course/templates/subject/overview.html:8
 msgid "Courses"
 msgstr "Kurse"
+
+#: course/views/course.py:38 course/views/course.py:52
+#: course/views/course.py:60 course/views/course.py:91
+#: course/views/course.py:143 course/views/course.py:162
+#: course/views/course.py:195 course/views/course.py:210
+#: course/views/course.py:254 course/views/enroll.py:21
+#: course/views/enroll.py:44 course/views/enroll.py:63 course/views/time.py:24
+msgid "Requested course does not exist."
+msgstr "Der angeforderte Kurs existiert nicht."
+
+#: course/views/course.py:130
+msgid "New Course"
+msgstr "Neuer Kurs"
+
+#: course/views/course.py:154
+msgid "Edit Teachers"
+msgstr "Tutoren editieren"
+
+#: course/views/course.py:174
+msgid "The username you entered does not exist in my database, sorry :("
+msgstr "Der eingegebene Nutzername existiert nicht."
+
+#: course/views/course.py:197
+msgid "Requested student does not exist."
+msgstr "Der angeforderte Student existiert nicht."
+
+#: course/views/course.py:236
+msgid "Notify Course"
+msgstr "Kurs benachrichtigen"
+
+#: course/views/course.py:256
+msgid "Requested student is not enrolled in this course."
+msgstr "Der angeforderte Student ist in diesem Kurs nicht eingeschrieben."
+
+#: course/views/enroll.py:25
+msgid "You are already enrolled in this course."
+msgstr "Sie sind bereits in diesem Kurs eingeschrieben."
+
+#: course/views/enroll.py:27
+msgid "Sorry, this course is full."
+msgstr "Dieser Kurs ist voll"
+
+#: course/views/enroll.py:50
+msgid "You do not seem to be enrolled in this course."
+msgstr "Sie scheinen in diesem Kurs nicht eingetragen zu sein."
+
+#: course/views/index.py:11
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: course/views/subject.py:19 course/views/subject.py:89
+#: course/views/subject.py:121
+msgid "Requested subject does not exist."
+msgstr "Das angeforderte Thema existiert nicht."
+
+#: course/views/subject.py:49
+msgid "Subject Overview"
+msgstr "Themenübersicht"
+
+#: course/views/subject.py:77
+msgid "New Subject"
+msgstr "neues Thema"
+
+#: course/views/time.py:50
+msgid "Edit Schedule"
+msgstr "Zeitplan editieren"
 
 #: user/templates/registration/login.html:5
 msgid "Your username and password didn't match. Please try again."

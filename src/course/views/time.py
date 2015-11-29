@@ -3,6 +3,7 @@ from django.core.exceptions import PermissionDenied
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
+from django.utils.translation import ugettext as _
 
 from course.models.course import Course
 from course import forms
@@ -20,7 +21,7 @@ def edit_slot(request: HttpRequest, course_id):
     try:
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error('This course does not exist.')
+        return db_error(_('Requested course does not exist.'))
 
     schedule = course.schedule
 
@@ -46,7 +47,7 @@ def edit_slot(request: HttpRequest, course_id):
         request,
         'course/time.html',
         {
-            'title': 'Edit Schedule',
+            'title': _('Edit Schedule'),
             'form': form,
             'schedule': schedule,
             'course_id': course_id,

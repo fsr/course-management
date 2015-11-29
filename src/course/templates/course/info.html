@@ -94,5 +94,11 @@
     </tr>
 {% endif %}
 </table>
-  <div class="course-description">{{ course.get_description_as_html|safe }}</div>
+  <div class="course-description">
+	  {% if course.has_description %}
+	    {{ course.get_description_as_html|safe }}
+    {% else %}
+      {% trans "No description provided for this course." %}
+    {% endif %}
+  </div>
 {% endblock %}

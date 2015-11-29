@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpRequest
 from django.shortcuts import redirect, render_to_response, render
 from django.views.decorators.http import require_POST
+from django.utils.translation import ugettext as _
 
 from course.forms import CourseForm, CourseForm, AddTeacherForm, NotifyCourseForm
 from course.models.course import Course
@@ -34,7 +35,7 @@ def course(request, course_id):
     try:
         current_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error('Requested course does not exist.')
+        return db_error(_('Requested course does not exist.'))
 
     try:
         try:
@@ -48,7 +49,7 @@ def course(request, course_id):
             context
         )
     except Course.DoesNotExist:
-        return db_error('Requested course does not exist.')
+        return db_error(_('Requested course does not exist.'))
 
 
 @needs_teacher_permissions
@@ -56,7 +57,7 @@ def edit_course(request, course_id):
     try:
         current_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error('Requested course does not exist.')
+        return db_error(_('Requested course does not exist.'))
 
     if request.method == "POST":
 
@@ -72,7 +73,7 @@ def edit_course(request, course_id):
         request,
         'course/edit.html',
         {
-            'title': 'Edit course',
+            'title': _('Edit course'),
             'form': form,
             'course_id': course_id,
             'allowed_tags': html_clean.DESCR_ALLOWED_TAGS,
@@ -87,7 +88,7 @@ def toggle(request, course_id, active):
     try:
         curr_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error('Requested course does not exist.')
+        return db_error(_('Requested course does not exist.'))
 
     curr_course.active = active
     if not active:
@@ -126,7 +127,7 @@ def create(request):
         request,
         'course/create.html',
         {
-            'title': 'New Course',
+            'title': _('New Course'),
             'form': form
         }
     )
@@ -139,7 +140,7 @@ def delete(request, course_id):
     try:
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error('This course does not exist.')
+        return db_error(_('Requested course does not exist.'))
 
     subj = course.subject.name
 
@@ -150,7 +151,7 @@ def delete(request, course_id):
 @needs_teacher_permissions
 def add_teacher(request, course_id):
     context = {
-        'title': 'Edit Teachers',
+        'title': _('Edit Teachers'),
         'course_id': course_id,
         'target': reverse('add-teacher', args=(course_id,))
     }
@@ -158,7 +159,7 @@ def add_teacher(request, course_id):
     try:
         curr_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error('This course does not exist ... ')
+        return db_error(_('Requested course does not exist.'))
 
     if request.method == 'POST':
         form = AddTeacherForm(request.POST)
@@ -170,8 +171,8 @@ def add_teacher(request, course_id):
 
                 return redirect('add-teacher', course_id)
             except User.DoesNotExist:
-                context['error'] = 'The username you entered does not exist in '\
-                                   'my database, sorry :('
+                context['error'] = _('The username you entered does not exist in '\
+                                   'my database, sorry :(')
     else:
         form = AddTeacherForm()
 
@@ -191,9 +192,9 @@ def remove_teacher(request, course_id, teacher_id):
     try:
         Course.objects.get(id=course_id).teacher.remove(Student.objects.get(id=teacher_id))
     except Course.DoesNotExist:
-        return db_error('This course does not exist.')
+        return db_error(_('Requested course does not exist.'))
     except Student.DoesNotExist:
-        return db_error('This student does not exist.')
+        return db_error(_('Requested student does not exist.'))
     return redirect_unless_target(request, 'course', course_id)
 
 
@@ -206,7 +207,7 @@ def notify(request: HttpRequest, course_id):
             try:
                 course = Course.objects.get(id=course_id)
             except Course.DoesNotExist:
-                return db_error('Course does not exist.')
+                return db_error(_('Requested course does not exist.'))
 
             email = request.user.email
 
@@ -232,7 +233,7 @@ def notify(request: HttpRequest, course_id):
         request,
         'course/notify.html',
         {
-            'title': 'Notify Course',
+            'title': _('Notify Course'),
             'form': form,
             'course_id': course_id
         }
@@ -250,8 +251,8 @@ def remove_student(request: HttpRequest, course_id:str, student_id:str):
         course = Course.objects.get(id=course_id)
         course.unenroll(student_id)
     except Course.DoesNotExist:
-        return db_error('Course does not exist')
+        return db_error(_('Requested course does not exist.'))
     except course.IsEnrolled:
-        return db_error('This student is not enrolled in this course.')
+        return db_error(_('Requested student is not enrolled in this course.'))
 
     return redirect('course', course_id)
