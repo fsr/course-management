@@ -4,6 +4,8 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
+from guardian.models import UserObjectPermission
+
 from . import schedule, subject
 
 from user.models import UserInformation, get_user_information
@@ -95,6 +97,7 @@ class Course(models.Model):
     def get_description_as_html(self):
         return clean_for_description(markdown(self.description))
 
+    # deprecated
     def is_teacher(self, student):
         student = get_user_information(student)
         return self.teacher.filter(id=student.id).exists()
@@ -118,9 +121,9 @@ class Course(models.Model):
             student = get_user_information(student)
             context['is_subbed'] = student.course_set.filter(id=self.id).exists()
 
-            if self.is_teacher(student):
-                context['is_teacher'] = True
-                context['students'] = self.participants.all()
+        if student.user.has_perm('course.change_course', self):
+            context['is_teacher'] = True
+            context['students'] = self.participants.all()
 
         return context
 

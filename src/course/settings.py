@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'guardian',
     're_captcha',
     'user',
     'course',
@@ -87,6 +88,14 @@ DATABASES = {
     }
 }
 
+# django-guardian configuration
+
+AUTHENTICATION_BACKENDS = (
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend', # default
+)
+
+ANONYMOUS_USER_ID = -1
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

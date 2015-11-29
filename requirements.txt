@@ -4,3 +4,4 @@ bleach
 markdown
 requests
 django-modeltranslation
+django-guardian

@@ -6,6 +6,10 @@ from django.shortcuts import redirect, render_to_response, render
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext as _
 
+from guardian.models import UserObjectPermission
+from guardian.shortcuts import assign_perm
+from guardian.shortcuts import remove_perm
+
 from course.forms import CourseForm, AddTeacherForm, NotifyCourseForm
 from course.models.course import Course
 from course.models.schedule import Schedule
@@ -109,7 +113,12 @@ def create(request):
 
             created.schedule = Schedule.objects.create(_type=form['schedule_type'])
             created.save()
-            created.teacher.add(request.user.UserInformation)
+            created.teacher.add(request.user.userinformation)
+            assign_perm(
+                'change_course',
+                request.user,
+                created
+            )
 
             return redirect('course', created.id)
     else:
@@ -167,7 +176,12 @@ def add_teacher(request, course_id):
             try:
                 user = User.objects.get(username=form.cleaned_data['username'])
 
-                curr_course.teacher.add(user.UserInformation)
+                curr_course.teacher.add(user.userinformation)
+                assign_perm(
+                    'change_course',
+                    user,
+                    curr_course
+                )
 
                 return redirect('add-teacher', course_id)
             except User.DoesNotExist:
@@ -190,7 +204,14 @@ def add_teacher(request, course_id):
 @require_POST
 def remove_teacher(request, course_id, teacher_id):
     try:
-        Course.objects.get(id=course_id).teacher.remove(UserInformation.objects.get(id=teacher_id))
+        curr_course = Course.objects.get(id=course_id)
+        user = User.objects.get(id=teacher_id)
+        curr_course.teacher.remove(user.userinformation)
+        remove_perm(
+            'change_course',
+            user,
+            curr_course
+        )
     except Course.DoesNotExist:
         return db_error(_('Requested course does not exist.'))
     except UserInformation.DoesNotExist:
