@@ -1,30 +1,31 @@
 from django.db import models
+from django.utils.translation import ugettext as _
 
 
 WEEKDAYS = [
-    ("MON", "Mondays"),
-    ("TUE", "Tuesdays"),
-    ("WED", "Wednesdays"),
-    ("THU", "Thursdays"),
-    ("FRI", "Fridays"),
-    ("SAT", "Saturdays"),
-    ("SUN", "Sundays"),
+    ("MON", _("Mondays")),
+    ("TUE", _("Tuesdays")),
+    ("WED", _("Wednesdays")),
+    ("THU", _("Thursdays")),
+    ("FRI", _("Fridays")),
+    ("SAT", _("Saturdays")),
+    ("SUN", _("Sundays")),
 ]
 TIMESLOTS = [
-    ("I", "1st"),
-    ("II", "2nd"),
-    ("III", "3rd"),
-    ("IV", "4th"),
-    ("V", "5th"),
-    ("VI", "6th"),
-    ("VII", "7th"),
+    ("I", _("1st")),
+    ("II", _("2nd")),
+    ("III", _("3rd")),
+    ("IV", _("4th")),
+    ("V", _("5th")),
+    ("VI", _("6th")),
+    ("VII", _("7th")),
 ]
 
 
 class Schedule(models.Model):
     TYPES = [
-        ('W', "weekly"),
-        ('O', 'one time')
+        ('W', _("weekly")),
+        ('O', _('one time')),
     ]
 
     _type = models.CharField(max_length=1, choices=TYPES)

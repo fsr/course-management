@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-29 19:56+0100\n"
+"POT-Creation-Date: 2015-11-29 20:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgstr "Wählen Sie ein Thema für Ihren Kurs."
 
 #: src/course/forms.py:74
 msgid "Choose whether people should be able to join this course right now."
-msgstr "Wählen Sie aus, ob drekt einschreibungen zugelassen werden."
+msgstr "Wählen Sie aus, ob direkt einschreibungen zugelassen werden."
 
 #: src/course/forms.py:78
 msgid ""
@@ -73,13 +73,77 @@ msgstr ""
 "Name des Themas, zuständig für die url. Erlaubte Zeichen sind Buchstaben, "
 "Ziffern,Spaces, '-' und '_'. folgende dürfen nicht gewählt werden."
 
+#: src/course/models/schedule.py:6
+msgid "Mondays"
+msgstr "Montags"
+
+#: src/course/models/schedule.py:7
+msgid "Tuesdays"
+msgstr "Dienstags"
+
+#: src/course/models/schedule.py:8
+msgid "Wednesdays"
+msgstr "Mittwochs"
+
+#: src/course/models/schedule.py:9
+msgid "Thursdays"
+msgstr "Donnerstags"
+
+#: src/course/models/schedule.py:10
+msgid "Fridays"
+msgstr "Freitags"
+
+#: src/course/models/schedule.py:11
+msgid "Saturdays"
+msgstr "Samstags"
+
+#: src/course/models/schedule.py:12
+msgid "Sundays"
+msgstr "Sonntags"
+
+#: src/course/models/schedule.py:15
+msgid "1st"
+msgstr "1."
+
+#: src/course/models/schedule.py:16
+msgid "2nd"
+msgstr "2."
+
+#: src/course/models/schedule.py:17
+msgid "3rd"
+msgstr "3."
+
+#: src/course/models/schedule.py:18
+msgid "4th"
+msgstr "4."
+
+#: src/course/models/schedule.py:19
+msgid "5th"
+msgstr "5."
+
+#: src/course/models/schedule.py:20
+msgid "6th"
+msgstr "6."
+
+#: src/course/models/schedule.py:21
+msgid "7th"
+msgstr "7."
+
+#: src/course/models/schedule.py:27
+msgid "weekly"
+msgstr "wöchentlich"
+
+#: src/course/models/schedule.py:28
+msgid "one time"
+msgstr "einmalig"
+
 #: src/course/settings.py:98
 msgid "English"
-msgstr ""
+msgstr "Englisch"
 
 #: src/course/settings.py:99
 msgid "German"
-msgstr ""
+msgstr "Deutsch"
 
 #: src/course/templates/base-shell.html:7
 #: src/course/templates/base-shell.html:15
@@ -220,7 +284,7 @@ msgstr ""
 msgid "Administrative actions"
 msgstr "Administrative Aktionen"
 
-#: src/course/templates/course/info.html:63 src/course/views/course.py:76
+#: src/course/templates/course/info.html:63 src/course/views/course.py:77
 msgid "Edit course"
 msgstr "Kurs editieren"
 
@@ -330,6 +394,50 @@ msgstr "Keine Orte festgelegt."
 msgid "You are teacher."
 msgstr "Sie sind Tutor."
 
+#: src/course/templates/enroll/response.html:8
+#, python-format
+msgid ""
+"\n"
+"\t\t\t    Your subscription to the course %(s)s was unsuccessful.\n"
+"\t\t\t  "
+msgstr ""
+"\n"
+"\t\t\t    Ihre Einschreibung für den Kurs %(s)s war nicht erfolgreich.\n"
+"\t\t\t  "
+
+#: src/course/templates/enroll/response.html:12
+#, python-format
+msgid ""
+"\n"
+"\t\t\t    Your subscription to the course %(s)s was successful.\n"
+"\t\t\t  "
+msgstr ""
+"\n"
+"\t\t\t    Ihre Einschreibung für den Kurs %(s)s war erfolgreich.\n"
+"\t\t\t  "
+
+#: src/course/templates/enroll/response.html:18
+#, python-format
+msgid ""
+"\n"
+"\t\t\t    Your unsubscription to the course %(s)s was unsuccessful.\n"
+"\t\t\t  "
+msgstr ""
+"\n"
+"\t\t\t    Ihre Austragung aus dem Kurs %(s)s war nicht erfolgreich.\n"
+"\t\t\t  "
+
+#: src/course/templates/enroll/response.html:22
+#, python-format
+msgid ""
+"\n"
+"\t\t\t    Your unsubscription to the course %(s)s was successful.\n"
+"\t\t\t  "
+msgstr ""
+"\n"
+"\t\t\t    Ihre Austragung aus dem Kurs %(s)s war erfolgreich.\n"
+"\t\t\t  "
+
 #: src/course/templates/error/db.html:6
 msgid "Sorry, an error with our database occurred."
 msgstr "Entschuldigung, es ist ein Fehler mit der Datenbank aufgetreten"
@@ -358,8 +466,12 @@ msgstr "Name"
 msgid "Courses"
 msgstr "Kurse"
 
-#: src/course/views/course.py:38 src/course/views/course.py:52
-#: src/course/views/course.py:60 src/course/views/course.py:91
+#: src/course/util/permissions.py:27
+msgid "This course does not seem to exist, sorry."
+msgstr "Dieser Kurs scheint nicht zu existieren."
+
+#: src/course/views/course.py:38 src/course/views/course.py:53
+#: src/course/views/course.py:61 src/course/views/course.py:92
 #: src/course/views/course.py:143 src/course/views/course.py:162
 #: src/course/views/course.py:195 src/course/views/course.py:210
 #: src/course/views/course.py:254 src/course/views/enroll.py:21
@@ -547,6 +659,18 @@ msgstr "Abschicken"
 msgid "You have been logged out successfully."
 msgstr "Sie haben sich erfolgreich ausgeloggt."
 
+#: src/user/templates/registration/success.html:6
+msgid "You successfully registered you account!"
+msgstr "Sie haben sich erfolgreich registriert."
+
+#: src/user/templates/registration/success.html:7
+msgid "We sent a mail to the Email account"
+msgstr "Es wurde eine E-Mail an Ihre Adresse gesendet."
+
+#: src/user/templates/registration/success.html:8
+msgid "This Mail contains an account activation link."
+msgstr "Diese Mail beinhaltet einen Aktivierungslink für Ihr Konto."
+
 #: src/user/templates/user/activate.html:11
 msgid "Your account has been successfully activated."
 msgstr "Ihr Konto wurde erfolgreich aktiviert."
@@ -643,11 +767,11 @@ msgstr "Der angeforderte Nutzer existiert nicht."
 msgid "Registration successfull"
 msgstr "Registrierung erfolgreich"
 
-#: src/user/views/register.py:48
+#: src/user/views/register.py:49
 msgid "Registration"
 msgstr "Registrierung"
 
-#: src/user/views/register.py:80
+#: src/user/views/register.py:83
 msgid "Your registration at the iFSR course enrollment system"
 msgstr "Ihre Registrierung beim iFSR Kurs Management"
 

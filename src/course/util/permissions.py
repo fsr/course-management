@@ -2,6 +2,7 @@ import functools
 
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.utils.translation import ugettext as _
 
 from course.models.course import Course
 from util.error.reporting import db_error
@@ -23,7 +24,7 @@ def needs_teacher_permissions(func):
         try:
             curr_course = Course.objects.get(id=course_id) if not isinstance(course_id, Course) else course_id
         except Course.DoesNotExist:
-            return db_error('This course does not seem to exist, sorry.')
+            return db_error(_('This course does not seem to exist, sorry.'))
         if curr_course.is_teacher(request.user) or request.user.has_perm('course.edit_course'):
             return func(request, course_id, *args, **kwargs)
         else:

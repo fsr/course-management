@@ -3,8 +3,27 @@
 <div>
 
   <p>
-    Your {% if action == 'register' %}subscription to{% elif action == 'unregister' %}unsubscription from{% endif %}
-    the course {{ subject }} was {% if error %}unsuccessful{% else %}successful{% endif %}.
+    {% if action == 'register' %}
+	    {% if error %}
+	      {% blocktrans with s=subject %}
+			    Your subscription to the course {{ s }} was unsuccessful.
+			  {% endblocktrans %}
+		  {% else %}
+			  {% blocktrans with s=subject %}
+			    Your subscription to the course {{ s }} was successful.
+			  {% endblocktrans %}
+		  {% endif %}.
+    {% elif action == 'unregister' %}
+	    {% if error %}
+	      {% blocktrans with s=subject %}
+			    Your unsubscription to the course {{ s }} was unsuccessful.
+			  {% endblocktrans %}
+		  {% else %}
+			  {% blocktrans with s=subject %}
+			    Your unsubscription to the course {{ s }} was successful.
+			  {% endblocktrans %}
+		  {% endif %}.
+    {% endif %}.
   </p>
   {% if error %}
   <p>
