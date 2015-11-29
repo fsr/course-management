@@ -252,7 +252,7 @@ def remove_student(request: HttpRequest, course_id:str, UserInformation_id:str):
         course.unenroll(UserInformation_id)
     except Course.DoesNotExist:
         return db_error(_('Requested course does not exist.'))
-    except course.IsEnrolled:
+    except Course.IsEnrolled:
         return db_error(_('Requested student is not enrolled in this course.'))
 
     return redirect('course', course_id)
