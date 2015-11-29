@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 17:42+0100\n"
+"POT-Creation-Date: 2015-11-29 16:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,136 +17,333 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/course/settings.py:98
+#: course/settings.py:98
 msgid "English"
 msgstr ""
 
-#: src/course/settings.py:99
+#: course/settings.py:99
 msgid "German"
 msgstr ""
 
-#: src/course/templates/base-shell.html:8
-#: src/course/templates/base-shell.html:14
+#: course/templates/base-shell.html:9 course/templates/base-shell.html.py:17
 msgid "Course Manager"
 msgstr ""
 
-#: src/course/templates/base.html:15
+#: course/templates/base.html:15
 msgid "Create course"
 msgstr ""
 
-#: src/course/templates/base.html:18
+#: course/templates/base.html:18
 msgid "Create subject"
 msgstr ""
 
-#: src/course/templates/base.html:20
+#: course/templates/base.html:20
 msgid "Edit your data"
 msgstr ""
 
-#: src/course/templates/base.html:21
+#: course/templates/base.html:21
 msgid "Change pass"
 msgstr ""
 
-#: src/course/templates/base.html:22
+#: course/templates/base.html:22
 msgid "Logout"
 msgstr ""
 
-#: src/course/templates/base.html:27
+#: course/templates/base.html:27
 msgid "Sign up"
 msgstr ""
 
-#: src/course/templates/base.html:28
+#: course/templates/base.html:28
 msgid "Sign in"
 msgstr ""
 
-#: src/course/templates/base.html:50
+#: course/templates/base.html:60
 msgid "Subjects"
 msgstr ""
 
-#: src/course/templates/base.html:57
-msgid "Complete overview"
-msgstr ""
-
-#: src/course/templates/course_list.html:2
-msgid "No dates set yet"
-msgstr ""
-
-#: src/course/templates/course_list.html:29
-msgid "Timeslots"
-msgstr ""
-
-#: src/course/templates/course_list.html:37
-msgid "Teachers"
-msgstr ""
-
-#: src/course/templates/course_list.html:39
-msgid "Participants"
-msgstr ""
-
-#: src/course/templates/course_list.html:42
-msgid "Locations"
-msgstr ""
-
-#: src/course/templates/course_list.html:47
-msgid "No location set."
-msgstr ""
-
-#: src/course/templates/course_list.html:55
-msgid "You are teacher."
-msgstr ""
-
-#: src/course/templates/course_list.html:56
-msgid "This course is currently"
-msgstr ""
-
-#: src/course/templates/course_list.html:56
-msgid "active"
-msgstr ""
-
-#: src/course/templates/course_list.html:56
-msgid "suspended"
-msgstr ""
-
-#: src/course/templates/course_list.html:63
-msgid "This course is full"
-msgstr ""
-
-#: src/course/templates/error/db.html:6
-msgid "Sorry, an error with our database occurred."
-msgstr ""
-
-#: src/course/templates/error/db.html:11
-msgid "Database Error"
-msgstr ""
-
-#: src/course/templates/index.html:10
-msgid "Subject"
-msgstr ""
-
-#: src/course/templates/index.html:11
-msgid "Number of courses"
-msgstr ""
-
-#: src/course/templates/subject/create.html:9
+#: course/templates/course/create.html:13
+#: course/templates/subject/create.html:9
 msgid "Create"
 msgstr ""
 
-#: src/course/templates/subject/edit.html:9
-#: src/course/templates/subject/info.html:8
-msgid "Edit"
+#: course/templates/course/edit.html:7
+msgid ""
+"You can edit the description for your course here. You may use markdown to "
+"do so."
 msgstr ""
 
-#: src/course/templates/subject/edit.html:14
+#: course/templates/course/edit.html:19 course/templates/subject/edit.html:14
 msgid "Delete"
 msgstr ""
 
-#: src/course/templates/subject/info.html:13
+#: course/templates/course/forms/register.html:3
+msgid "register"
+msgstr ""
+
+#: course/templates/course/forms/unregister.html:3
+msgid "unregister"
+msgstr ""
+
+#: course/templates/course/info.html:13 course/templates/course_list.html:39
+msgid "Participants"
+msgstr ""
+
+#: course/templates/course/info.html:13
+msgid "of"
+msgstr ""
+
+#: course/templates/course/info.html:16
+msgid "Schedule"
+msgstr ""
+
+#: course/templates/course/info.html:26
+msgid "No schedule has been set."
+msgstr ""
+
+#: course/templates/course/info.html:33
+msgid "Status"
+msgstr ""
+
+#: course/templates/course/info.html:34 course/templates/course_list.html:57
+msgid "This course is currently"
+msgstr ""
+
+#: course/templates/course/info.html:34 course/templates/course_list.html:57
+msgid "active"
+msgstr ""
+
+#: course/templates/course/info.html:34 course/templates/course_list.html:57
+msgid "suspended"
+msgstr ""
+
+#: course/templates/course/info.html:40
+msgid "Participants list"
+msgstr ""
+
+#: course/templates/course/info.html:49
+msgid "kick"
+msgstr ""
+
+#: course/templates/course/info.html:54
+msgid ""
+"Oh no, there don't seem to be any students enrolled in this course yet :(, "
+"perhaps you should advertise more."
+msgstr ""
+
+#: course/templates/course/info.html:60
+msgid "Administrative actions"
+msgstr ""
+
+#: course/templates/course/info.html:63
+msgid "Edit course"
+msgstr ""
+
+#: course/templates/course/info.html:64
+msgid "Edit schedule"
+msgstr ""
+
+#: course/templates/course/info.html:65
+msgid "Add/Remove teachers"
+msgstr ""
+
+#: course/templates/course/info.html:66
+msgid "Notify course"
+msgstr ""
+
+#: course/templates/course/info.html:70
+msgid "Suspend course (unenrolls all participants)"
+msgstr ""
+
+#: course/templates/course/info.html:70
+msgid "Set course active"
+msgstr ""
+
+#: course/templates/course/info.html:76
+msgid "Actions"
+msgstr ""
+
+#: course/templates/course/info.html:83 course/templates/course_list.html:64
+msgid "This course is full"
+msgstr ""
+
+#: course/templates/course/notify-done.html:5
+msgid "Your students have successfully been notified."
+msgstr ""
+
+#: course/templates/course/notify.html:5
+msgid ""
+"You can use this form to send an email to all people enrolled in your course."
+msgstr ""
+
+#: course/templates/course/notify.html:6
+msgid ""
+"Be aware that lots of email spam will most likely put off your students."
+msgstr ""
+
+#: course/templates/course/notify.html:13 user/templates/contact-form.html:9
+msgid "Send"
+msgstr ""
+
+#: course/templates/course/teacher.html:12 course/templates/course/time.html:21
+msgid "Remove"
+msgstr ""
+
+#: course/templates/course/teacher.html:24 course/templates/course/time.html:33
+msgid "Add"
+msgstr ""
+
+#: course/templates/course/time.html:8
+msgid "Slot"
+msgstr ""
+
+#: course/templates/course/time.html:9
+msgid "Location"
+msgstr ""
+
+#: course/templates/course/time.html:10 course/templates/subject/edit.html:9
+#: course/templates/subject/info.html:12 user/templates/user/profile.html:33
+msgid "Edit"
+msgstr ""
+
+#: course/templates/course_list.html:2
+msgid "No dates set yet"
+msgstr ""
+
+#: course/templates/course_list.html:29
+msgid "Timeslots"
+msgstr ""
+
+#: course/templates/course_list.html:37
+msgid "Teachers"
+msgstr ""
+
+#: course/templates/course_list.html:43
+msgid "Locations"
+msgstr ""
+
+#: course/templates/course_list.html:48
+msgid "No location set."
+msgstr ""
+
+#: course/templates/course_list.html:56
+msgid "You are teacher."
+msgstr ""
+
+#: course/templates/error/db.html:6
+msgid "Sorry, an error with our database occurred."
+msgstr ""
+
+#: course/templates/error/db.html:11
+msgid "Database Error"
+msgstr ""
+
+#: course/templates/index.html:10
+msgid "Subject"
+msgstr ""
+
+#: course/templates/index.html:11
+msgid "Number of courses"
+msgstr ""
+
+#: course/templates/subject/info.html:20
 msgid "Create new course"
 msgstr ""
 
-#: src/course/templates/subject/overview.html:7
+#: course/templates/subject/overview.html:7
 msgid "Name"
 msgstr ""
 
-#: src/course/templates/subject/overview.html:8
+#: course/templates/subject/overview.html:8
 msgid "Courses"
+msgstr ""
+
+#: user/templates/registration/login.html:5
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+
+#: user/templates/registration/login.html:10
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+
+#: user/templates/registration/login.html:12
+msgid "Please login to see this page."
+msgstr ""
+
+#: user/templates/registration/login.html:21
+#: user/templates/registration/register.html:18
+msgid "Submit"
+msgstr ""
+
+#: user/templates/registration/logout.html:5
+msgid "You have been logged out successfully."
+msgstr ""
+
+#: user/templates/user/activate.html:11
+msgid "Your account has been successfully activated."
+msgstr ""
+
+#: user/templates/user/edit.html:6
+msgid "Here you may change your user information."
+msgstr ""
+
+#: user/templates/user/edit.html:13
+msgid "Change"
+msgstr ""
+
+#: user/templates/user/edit.html:16
+msgid "Perhaps you'd like to"
+msgstr ""
+
+#: user/templates/user/edit.html:16
+msgid "change your password?"
+msgstr ""
+
+#: user/templates/user/profile.html:5
+msgid "Your data"
+msgstr ""
+
+#: user/templates/user/profile.html:8
+msgid "Username"
+msgstr ""
+
+#: user/templates/user/profile.html:12
+msgid "First name"
+msgstr ""
+
+#: user/templates/user/profile.html:16
+msgid "Last name"
+msgstr ""
+
+#: user/templates/user/profile.html:20
+msgid "Email"
+msgstr ""
+
+#: user/templates/user/profile.html:24
+msgid "s number"
+msgstr ""
+
+#: user/templates/user/profile.html:28
+msgid "Faculty"
+msgstr ""
+
+#: user/templates/user/profile.html:34
+msgid "Visit your public profile."
+msgstr ""
+
+#: user/templates/user/profile.html:43
+msgid "Courses you attend"
+msgstr ""
+
+#: user/templates/user/public-profile.html:10
+msgid "Courses this user teaches"
+msgstr ""
+
+#: user/templates/user/public-profile.html:16
+msgid "Visit your private profile"
+msgstr ""
+
+#: user/templates/user/public-profile.html:19
+msgid "Contact this user."
 msgstr ""

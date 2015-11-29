@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
 {% block enroll_response %}
 {% endblock %}
@@ -9,10 +10,10 @@
     </td>
   </tr>
 
-  <tr><td>Participants</td><td>{{ participants_count }} of {{ max_participants }}</td></tr>
+  <tr><td>{% trans "Participants" %}</td><td>{{ participants_count }} {% trans "of" %}{{ max_participants }}</td></tr>
 
   <tr>
-    <td>Schedule</td>
+    <td>{% trans "Schedule" %}</td>
     <td>
       {% with course.schedule.slots as slots %}
         {% if slots %}
@@ -22,21 +23,21 @@
             {% endfor %}
           </ul>
         {% else %}
-          No schedule has been set.
+          {% trans "No schedule has been set." %}
         {% endif %}
       {% endwith %}
     </td>
   </tr>
 
   <tr>
-    <td>Status</td>
-    <td>This course is currently {% if course.active %}active{% else %}suspended{% endif %}.</td>
+    <td>{% trans "Status" %}</td>
+    <td>{% trans "This course is currently" %} {% if course.active %}{% trans "active" %}{% else %}{% trans "suspended" %}{% endif %}.</td>
   </tr>
 
 {% if user.is_authenticated %}
   {% if is_teacher %}
     <tr>
-      <td>Participants list</td>
+      <td>{% trans "Participants list" %}</td>
       <td>
         <table>
           {% for student in students %}
@@ -45,48 +46,48 @@
               <td>
                 <form action="{% url 'unregister-course' course.id student.id %}" method="post">
                   {% csrf_token %}
-                  <input type="submit" value="kick">
+                  <input type="submit" value="{% trans "kick" %}">
                 </form>
               </td>
             </tr>
           {% empty %}
-            <tr><td>Oh no, there don't seem to be any students enrolled in this course yet :(, perhaps you should advertise more.</td></tr>
+            <tr><td>{% trans "Oh no, there don't seem to be any students enrolled in this course yet :(, perhaps you should advertise more." %}</td></tr>
           {% endfor %}
         </table>
       </td>
     </tr>
     <tr>
-      <td>Administrative actions</td>
+      <td>{% trans "Administrative actions" %}</td>
       <td>
         <div class="button-group">
-          <a class="button" href="{% url 'edit-course' course_id %}">Edit course</a>
-          <a class="button" href="{% url 'course-edit-slot' course_id %}">Edit schedule</a>
-          <a class="button" href="{% url 'add-teacher' course_id %}">Add/Remove teachers</a>
-          <a class="button" href="{% url 'notify-course' course_id %}">Notify course</a>
+          <a class="button" href="{% url 'edit-course' course_id %}">{% trans "Edit course" %}</a>
+          <a class="button" href="{% url 'course-edit-slot' course_id %}">{% trans "Edit schedule" %}</a>
+          <a class="button" href="{% url 'add-teacher' course_id %}">{% trans "Add/Remove teachers" %}</a>
+          <a class="button" href="{% url 'notify-course' course_id %}">{% trans "Notify course" %}</a>
         </div>
         <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">
             {% csrf_token %}
-            <input type="submit" class="button" value="{% if course_is_active %}Suspend course (unenrolls all participants){% else %}Set course active{% endif %}" />
+            <input type="submit" class="button" value="{% if course_is_active %}{% trans "Suspend course (unenrolls all participants)" %}{% else %}{% trans "Set course active" %}{% endif %}" />
         </form>
       </td>
     </tr>
   {% else %}
     <tr>
-      <td>Actions</td>
+      <td>{% trans "Actions" %}</td>
       <td>
         {% if is_subbed %}
           {% include "course/forms/unregister.html" %}
         {% elif course.joinable %}
           {% include "course/forms/register.html" %}
         {% else %}
-          <form action="#"><input disabled class="button" type="submit" value="This course is full" /></form>
+          <form action="#"><input disabled class="button" type="submit" value="{% trans "This course is full" %}" /></form>
         {% endif %}
       </td>
     </tr>
   {% endif %}
 {% else %}
     <tr>
-      <td>Actions</td>
+      <td>{% trans "Actions</td>
       <td>
         If you <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> you can join this course.
       </td>

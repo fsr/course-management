@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
   <div class="row">
     <div class="col-md-12">
       <p>
-        You can edit the description for your course here. You may use markdown to do so.
+        {% trans "You can edit the description for your course here. You may use markdown to do so." %}
       </p>
       <form method="post" action="{% url 'edit-course' course_id %}">
         {% csrf_token %}
@@ -15,7 +16,7 @@
       {% if perms.course.delete_course %}
         <form action="{% url 'delete-course' course_id %}">
           {% csrf_token %}
-          <input type="submit" value="Delete" />
+          <input type="submit" value="{% trans "Delete" %}" />
         </form>
       {% endif %}
     </div>

@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
+{%  load i18n %}
 {% block content %}
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p>{% trans "Your username and password didn't match. Please try again." %}</p>
 {% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
+    <p>{% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access." %}</p>
     {% else %}
-    <p>Please login to see this page.</p>
+    <p>{% trans "Please login to see this page." %}</p>
     {% endif %}
 {% endif %}
 
@@ -18,7 +18,7 @@
   <table>
     {{ form.as_table }}
   </table>
-  <input type="submit" value="Submit" />
+  <input type="submit" value="{% trans "Submit" %}" />
   <input type="hidden" name="next" value="{{ next }}" />
 </form>
 {% endblock %}

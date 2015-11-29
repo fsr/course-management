@@ -60,9 +60,8 @@
   <li class="heading">{% trans "Subjects" %}</li>
   {% show_active_subjects %}
 
-  {% comment %}
-    TODO Show this only if appropriate permissions exist
-  {% endcomment %}
-  <li class="divider"></li>
-  <li><a href="{% url 'subject-overview' %}">Complete overview</a></li>
+	{% if true %}
+	  <li class="divider"></li>
+	  <li><a href="{% url 'subject-overview' %}">Complete overview</a></li>
+	{% endif %}
 {% endblock %}
