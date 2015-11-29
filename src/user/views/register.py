@@ -34,7 +34,8 @@ def register(request):
                 'registration/success.html',
                 {
                     'title': 'Registration successfull',
-                    'acc': userdata['email']
+                    'acc': createduser.studentinformation.s_number + '@mail.zih.tu-dresden.de'
+                    if createduser.is_student() else createduser.email
                 }
             )
     else:
@@ -65,8 +66,7 @@ def activationMail(user, request):
         user.save()
     else:
         user_token = generateToken()
-        newActivation = Activation.objects.create(user=user, token=user_token)
-        message = ''
+        Activation.objects.create(user=user, token=user_token)
         activateurl = request.build_absolute_uri() + '?token=' + user_token
         # print(activateurl)
         with open('res/registrationmail.txt') as f:
@@ -75,11 +75,15 @@ def activationMail(user, request):
                 user=user.first_name,
                 url=activateurl
             )
+
+        userinf = user.userinformation
         # print(message)
-        send_mail('Your registration at the iFSR course enrollment system',
-                  message,
-                  mailsettings.sender,
-                  [user.email],
-                  mailsettings.auth_user,
-                  mailsettings.auth_pass)
+        send_mail(
+            'Your registration at the iFSR course enrollment system',
+            message,
+            mailsettings.sender,
+            [userinf.studentinformation if userinf.is_student() else user.email],
+            mailsettings.auth_user,
+            mailsettings.auth_pass
+        )
         # print(user_token)

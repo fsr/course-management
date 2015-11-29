@@ -103,7 +103,6 @@ class Course(models.Model):
         return self.schedule.slots.values_list('location', flat=True).distinct()
 
     def as_context(self, student=None):
-
         participants_count, max_participants = self.saturation_level
         sub_name = self.subject.name
         context = {
@@ -117,7 +116,7 @@ class Course(models.Model):
         }
         if student:
             student = get_user_information(student)
-            context['is_subbed'] = UserInformation.course_set.filter(id=self.id).exists()
+            context['is_subbed'] = student.course_set.filter(id=self.id).exists()
 
             if self.is_teacher(student):
                 context['is_teacher'] = True

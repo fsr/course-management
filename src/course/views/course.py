@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render_to_response, render
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext as _
 
-from course.forms import CourseForm, CourseForm, AddTeacherForm, NotifyCourseForm
+from course.forms import CourseForm, AddTeacherForm, NotifyCourseForm
 from course.models.course import Course
 from course.models.schedule import Schedule
 from course.models.subject import Subject
@@ -38,9 +38,10 @@ def course(request, course_id):
         return db_error(_('Requested course does not exist.'))
 
     try:
-        try:
-            context = current_course.as_context(request.user.UserInformation)
-        except AttributeError:
+        user = request.user.userinformation
+        if isinstance(user, UserInformation):
+            context = current_course.as_context(user)
+        else:
             context = current_course.as_context()
 
         return render(
@@ -122,7 +123,6 @@ def create(request):
             if Subject.objects.filter(id=subj).exists():
                 form.initial['subject'] = subj
 
-
     return render(
         request,
         'course/create.html',
@@ -171,8 +171,8 @@ def add_teacher(request, course_id):
 
                 return redirect('add-teacher', course_id)
             except User.DoesNotExist:
-                context['error'] = _('The username you entered does not exist in '\
-                                   'my database, sorry :(')
+                context['error'] = _('The username you entered does not exist in '
+                                     'my database, sorry :(')
     else:
         form = AddTeacherForm()
 
@@ -218,11 +218,11 @@ def notify(request: HttpRequest, course_id):
             subject = form.subject
             content = form.content
 
-            for UserInformation in course.participants.all():
+            for student in course.participants.all():
                 if show_sender:
-                    UserInformation.user.email_user(subject, content, email)
+                    student.user.email_user(subject, content, email)
                 else:
-                    UserInformation.user.email_user(subject, content)
+                    student.user.email_user(subject, content)
 
             return redirect('notify-course-done', course_id)
 

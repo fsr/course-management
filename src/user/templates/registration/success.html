@@ -2,9 +2,9 @@
 {% load i18n %}
 
 {% block content %}
-  <p class="description">
-    {% trans"You successfully registered you account!" %}<br>
-    {% trans"We sent a mail to the Email account" %} <b>{{acc}}</b>.<br>
-    {% trans"This Mail contains an account activation link." %}
-  </p>
+  <div class="description">
+    <p>{% trans "You successfully registered you account!" %}</p>
+    <p>{% trans "We sent a mail to the Email account" %} <b>{{acc}}</b>.</p>
+    <p>{% trans "This Mail contains an account activation link." %}</p>
+  </div>
 {% endblock %}
