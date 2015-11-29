@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 17:42+0100\n"
+"POT-Creation-Date: 2015-11-29 16:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,137 +17,348 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/course/settings.py:98
+#: course/settings.py:98
 msgid "English"
 msgstr ""
 
-#: src/course/settings.py:99
+#: course/settings.py:99
 msgid "German"
 msgstr ""
 
-#: src/course/templates/base-shell.html:8
-#: src/course/templates/base-shell.html:14
+#: course/templates/base-shell.html:9 course/templates/base-shell.html.py:17
 msgid "Course Manager"
 msgstr "Kurs Manager"
 
-#: src/course/templates/base.html:15
+#: course/templates/base.html:15
 msgid "Create course"
 msgstr "Kurs erstellen"
 
-#: src/course/templates/base.html:18
+#: course/templates/base.html:18
 msgid "Create subject"
 msgstr "Thema erstellen"
 
-#: src/course/templates/base.html:20
+#: course/templates/base.html:20
 msgid "Edit your data"
 msgstr "Nutzerdaten editieren"
 
-#: src/course/templates/base.html:21
+#: course/templates/base.html:21
 msgid "Change pass"
 msgstr "Passwort ändern"
 
-#: src/course/templates/base.html:22
+#: course/templates/base.html:22
 msgid "Logout"
 msgstr "Logout"
 
-#: src/course/templates/base.html:27
+#: course/templates/base.html:27
 msgid "Sign up"
 msgstr "Registrieren"
 
-#: src/course/templates/base.html:28
+#: course/templates/base.html:28
 msgid "Sign in"
 msgstr "Login"
 
-#: src/course/templates/base.html:50
+#: course/templates/base.html:60
 msgid "Subjects"
 msgstr "Themen"
 
-#: src/course/templates/base.html:57
-msgid "Complete overview"
-msgstr "Komplette Übersicht"
-
-#: src/course/templates/course_list.html:2
-msgid "No dates set yet"
-msgstr "Noch keine Termine gesetzt"
-
-#: src/course/templates/course_list.html:29
-msgid "Timeslots"
-msgstr "Zeiten"
-
-#: src/course/templates/course_list.html:37
-msgid "Teachers"
-msgstr "Tutoren"
-
-#: src/course/templates/course_list.html:39
-msgid "Participants"
-msgstr "Teilnehmer"
-
-#: src/course/templates/course_list.html:42
-msgid "Locations"
-msgstr "Ort"
-
-#: src/course/templates/course_list.html:47
-msgid "No location set."
-msgstr "Keine Orte festgelegt"
-
-#: src/course/templates/course_list.html:55
-msgid "You are teacher."
-msgstr "Sie sind Tutor."
-
-#: src/course/templates/course_list.html:56
-msgid "This course is currently"
-msgstr "Dieser Kurs ist momentan"
-
-#: src/course/templates/course_list.html:56
-msgid "active"
-msgstr "aktiv"
-
-#: src/course/templates/course_list.html:56
-msgid "suspended"
-msgstr "unterbrochen"
-
-#: src/course/templates/course_list.html:63
-msgid "This course is full"
-msgstr "Dieser Kurs ist voll"
-
-#: src/course/templates/error/db.html:6
-msgid "Sorry, an error with our database occurred."
-msgstr "Entschuldigung, es ist ein Fehler mit der Datenbank aufgetreten"
-
-#: src/course/templates/error/db.html:11
-msgid "Database Error"
-msgstr "Datenbank Fehler"
-
-#: src/course/templates/index.html:10
-
-msgid "Subject"
-msgstr "Thema"
-
-#: src/course/templates/index.html:11
-msgid "Number of courses"
-msgstr "Anzahl an Kursen"
-
-#: src/course/templates/subject/create.html:9
+#: course/templates/course/create.html:13
+#: course/templates/subject/create.html:9
 msgid "Create"
 msgstr "Erstellen"
 
-#: src/course/templates/subject/edit.html:9
-#: src/course/templates/subject/info.html:8
-msgid "Edit"
-msgstr "Editieren"
+#: course/templates/course/edit.html:7
+msgid ""
+"You can edit the description for your course here. You may use markdown to "
+"do so."
+msgstr ""
 
-#: src/course/templates/subject/edit.html:14
+#: course/templates/course/edit.html:19 course/templates/subject/edit.html:14
 msgid "Delete"
 msgstr "Löschen"
 
-#: src/course/templates/subject/info.html:13
+#: course/templates/course/forms/register.html:3
+msgid "register"
+msgstr "einschreiben"
+
+#: course/templates/course/forms/unregister.html:3
+msgid "unregister"
+msgstr "austragen"
+
+#: course/templates/course/info.html:13 course/templates/course_list.html:39
+msgid "Participants"
+msgstr "Teilnehmer"
+
+#: course/templates/course/info.html:13
+msgid "of"
+msgstr "von"
+
+#: course/templates/course/info.html:16
+msgid "Schedule"
+msgstr "Zeiten"
+
+#: course/templates/course/info.html:26
+msgid "No schedule has been set."
+msgstr "Keine Zeiten gesetzt."
+
+#: course/templates/course/info.html:33
+msgid "Status"
+msgstr "Status"
+
+#: course/templates/course/info.html:34 course/templates/course_list.html:57
+msgid "This course is currently"
+msgstr "Dieser Kurs ist momentan"
+
+#: course/templates/course/info.html:34 course/templates/course_list.html:57
+msgid "active"
+msgstr "aktiv"
+
+#: course/templates/course/info.html:34 course/templates/course_list.html:57
+msgid "suspended"
+msgstr "unterbrochen"
+
+#: course/templates/course/info.html:40
+#, fuzzy
+#| msgid "Participants"
+msgid "Participants list"
+msgstr "Teilnehmer"
+
+#: course/templates/course/info.html:49
+msgid "kick"
+msgstr "austragen"
+
+#: course/templates/course/info.html:54
+msgid ""
+"Oh no, there don't seem to be any students enrolled in this course yet :(, "
+"perhaps you should advertise more."
+msgstr ""
+"Oh nein, es scheint sich noch niemand in diesen Kurs eingetragen zu haben :"
+"(, vielleicht solltest du mehr Werbung machen."
+
+#: course/templates/course/info.html:60
+msgid "Administrative actions"
+msgstr "Administrative Aktionen"
+
+#: course/templates/course/info.html:63
+msgid "Edit course"
+msgstr "Kurs editieren"
+
+#: course/templates/course/info.html:64
+msgid "Edit schedule"
+msgstr "Zeitplan editieren"
+
+#: course/templates/course/info.html:65
+msgid "Add/Remove teachers"
+msgstr "Tutoren hinzufügen/entfernen"
+
+#: course/templates/course/info.html:66
+msgid "Notify course"
+msgstr "Kurs benachrichtigen"
+
+#: course/templates/course/info.html:70
+msgid "Suspend course (unenrolls all participants)"
+msgstr "Kurs deaktivieren (trägt alle Teilnehmer aus)"
+
+#: course/templates/course/info.html:70
+msgid "Set course active"
+msgstr "Kurs aktivieren"
+
+#: course/templates/course/info.html:76
+msgid "Actions"
+msgstr "Aktionen"
+
+#: course/templates/course/info.html:83 course/templates/course_list.html:64
+msgid "This course is full"
+msgstr "Dieser Kurs ist voll"
+
+#: course/templates/course/notify-done.html:5
+msgid "Your students have successfully been notified."
+msgstr "Deine Kursteilnehmer wurden erfolgreich benachrichtigt."
+
+#: course/templates/course/notify.html:5
+msgid ""
+"You can use this form to send an email to all people enrolled in your course."
+msgstr ""
+"Du kannst dieses Formular nutzen, um eine Mail an alle Teilnehmer deines "
+"Kurses zu schreiben."
+
+#: course/templates/course/notify.html:6
+msgid ""
+"Be aware that lots of email spam will most likely put off your students."
+msgstr ""
+"Beachte, dass viele Mails wahrscheinlich dazu führen, dass diese ignoriert "
+"werden."
+
+#: course/templates/course/notify.html:13 user/templates/contact-form.html:9
+msgid "Send"
+msgstr "Senden"
+
+#: course/templates/course/teacher.html:12 course/templates/course/time.html:21
+msgid "Remove"
+msgstr "Entfernen"
+
+#: course/templates/course/teacher.html:24 course/templates/course/time.html:33
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: course/templates/course/time.html:8
+msgid "Slot"
+msgstr "Slot"
+
+#: course/templates/course/time.html:9
+msgid "Location"
+msgstr "Ort"
+
+#: course/templates/course/time.html:10 course/templates/subject/edit.html:9
+#: course/templates/subject/info.html:12 user/templates/user/profile.html:33
+msgid "Edit"
+msgstr "Editieren"
+
+#: course/templates/course_list.html:2
+msgid "No dates set yet"
+msgstr "Noch keine Termine gesetzt"
+
+#: course/templates/course_list.html:29
+msgid "Timeslots"
+msgstr "Zeiten"
+
+#: course/templates/course_list.html:37
+msgid "Teachers"
+msgstr "Tutoren"
+
+#: course/templates/course_list.html:43
+msgid "Locations"
+msgstr "Orte"
+
+#: course/templates/course_list.html:48
+msgid "No location set."
+msgstr "Keine Orte festgelegt."
+
+#: course/templates/course_list.html:56
+msgid "You are teacher."
+msgstr "Sie sind Tutor."
+
+#: course/templates/error/db.html:6
+msgid "Sorry, an error with our database occurred."
+msgstr "Entschuldigung, es ist ein Fehler mit der Datenbank aufgetreten"
+
+#: course/templates/error/db.html:11
+msgid "Database Error"
+msgstr "Datenbank Fehler"
+
+#: course/templates/index.html:10
+msgid "Subject"
+msgstr "Thema"
+
+#: course/templates/index.html:11
+msgid "Number of courses"
+msgstr "Anzahl an Kursen"
+
+#: course/templates/subject/info.html:20
 msgid "Create new course"
 msgstr "Kurs erstellen"
 
-#: src/course/templates/subject/overview.html:7
+#: course/templates/subject/overview.html:7
 msgid "Name"
 msgstr "Name"
 
-#: src/course/templates/subject/overview.html:8
+#: course/templates/subject/overview.html:8
 msgid "Courses"
 msgstr "Kurse"
+
+#: user/templates/registration/login.html:5
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+"Der Nutzername und das Passwort stimmen nicht überein. Bitte erneut "
+"versuchen."
+
+#: user/templates/registration/login.html:10
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+"Ihr Konto hat keinen Zugriff zu dieser Seite. Um fortzufahren, loggen Sie "
+"sich bitte mit einem Konto ein,welches über die nötigen Rechte verfügt."
+
+#: user/templates/registration/login.html:12
+msgid "Please login to see this page."
+msgstr "Bitte Loggen Sie sich ein, um diese seite zu sehen."
+
+#: user/templates/registration/login.html:21
+#: user/templates/registration/register.html:18
+msgid "Submit"
+msgstr "Abschicken"
+
+#: user/templates/registration/logout.html:5
+msgid "You have been logged out successfully."
+msgstr "Sie haben sich erfolgreich ausgeloggt."
+
+#: user/templates/user/activate.html:11
+msgid "Your account has been successfully activated."
+msgstr "Ihr Konto wurde erfolgreich aktiviert."
+
+#: user/templates/user/edit.html:6
+msgid "Here you may change your user information."
+msgstr "Hier können Sie ihre Nutzerinformationen ändern."
+
+#: user/templates/user/edit.html:13
+msgid "Change"
+msgstr "Ändern"
+
+#: user/templates/user/edit.html:16
+msgid "Perhaps you'd like to"
+msgstr "Vielleicht möchten Sie"
+
+#: user/templates/user/edit.html:16
+msgid "change your password?"
+msgstr "Ihr Passwort ändern"
+
+#: user/templates/user/profile.html:5
+msgid "Your data"
+msgstr "Ihre Daten"
+
+#: user/templates/user/profile.html:8
+msgid "Username"
+msgstr "Nutzername"
+
+#: user/templates/user/profile.html:12
+msgid "First name"
+msgstr "Vorname"
+
+#: user/templates/user/profile.html:16
+msgid "Last name"
+msgstr "Nachname"
+
+#: user/templates/user/profile.html:20
+msgid "Email"
+msgstr "E-Mail"
+
+#: user/templates/user/profile.html:24
+msgid "s number"
+msgstr "s-Nummer"
+
+#: user/templates/user/profile.html:28
+msgid "Faculty"
+msgstr "Fakultät"
+
+#: user/templates/user/profile.html:34
+msgid "Visit your public profile."
+msgstr "Öffentliches Profil anzeigen."
+
+#: user/templates/user/profile.html:43
+msgid "Courses you attend"
+msgstr "Kurse, die Sie besuchen"
+
+#: user/templates/user/public-profile.html:10
+msgid "Courses this user teaches"
+msgstr "Kurse, die dieser Nutzer hält"
+
+#: user/templates/user/public-profile.html:16
+msgid "Visit your private profile"
+msgstr "Privates Profil anzeigen"
+
+#: user/templates/user/public-profile.html:19
+msgid "Contact this user."
+msgstr "Nutzer kontaktieren."
+
+#~ msgid "Complete overview"
+#~ msgstr "Komplette Übersicht"

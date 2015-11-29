@@ -1,4 +1,5 @@
+{% load i18n %}
 <form action="{% url 'unregister-course' course.id %}{% if target %}?target={{ target }}{% endif %}" method="post">
   {% csrf_token %}
-  <input class="button" type="submit" value="unregister" />
+  <input class="button" type="submit" value="{% trans "unregister" %}" />
 </form>

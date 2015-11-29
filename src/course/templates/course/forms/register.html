@@ -1,4 +1,5 @@
+{% load i18n %}
 <form action="{% url 'register-course' course.id %}{% if target %}?target={{ target }}{% endif %}" method="post">
   {% csrf_token %}
-  <input class="button" type="submit" value="register" />
+  <input class="button" type="submit" value="{% trans "register" %}" />
 </form>

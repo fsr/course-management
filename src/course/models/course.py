@@ -12,9 +12,9 @@ from util.html_clean import clean_for_description
 
 
 ARCHIVE_STATUSES = (
-    ('auto', 't'),
-    ('never', 'n'),
-    ('archived', 'a'),
+    ('t', 'auto'),
+    ('n', 'never'),
+    ('a', 'archived'),
 )
 
 
@@ -28,6 +28,7 @@ class Course(models.Model):
     description = models.TextField(default="No description provided for this course.")
     archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)
     queue = models.ManyToManyField(UserInformation, related_name='waiting_for')
+    student_only = models.BooleanField(default=False)
 
     class IsFull(Exception):
         pass

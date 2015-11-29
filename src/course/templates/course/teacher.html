@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
   <table class="table">
     {% for teacher in teachers.all %}
@@ -8,7 +9,7 @@
         <td>
           <form action="{% url 'remove-teacher' course_id teacher.id %}{% if target %}?target={{ target }}{% endif %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="Remove" class="btn btn-default" />
+            <input type="submit" value="{% trans "Remove" %}" class="btn btn-default" />
           </form>
         </td>
       </tr>
@@ -20,6 +21,6 @@
       {% csrf_token %}
       {{ form.as_table }}
     </table>
-    <input type="submit" value="Add">
+    <input type="submit" value="{% trans "Add" %}">
   </form>
 {% endblock %}

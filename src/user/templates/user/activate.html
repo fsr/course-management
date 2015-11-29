@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 {% if error %}
@@ -7,7 +8,7 @@
   </p>
 {% else %}
   <p>
-    Your account has been successfully activated.
+    {% trans "Your account has been successfully activated." %}
   </p>
 {% endif %}
 {% endblock %}

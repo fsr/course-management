@@ -69,3 +69,13 @@ target/
 
 # vendor css and js
 vendor/
+
+# node
+node_modules/
+
+# bower
+bower_components/
+
+.sass-cache
+
+src/static/css

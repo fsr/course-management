@@ -1,36 +1,37 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
   <h1>{{ user.first_name }} {{ user.last_name }}  "{{ user.username }}"</h1>
-  <h2>Your data</h2>
+  <h2>{% trans "Your data" %}</h2>
   <table>
     <tr>
-      <th>Username</th>
+      <th>{% trans "Username" %}</th>
       <td>{{ user.username }}</td>
     </tr>
     <tr>
-      <th>First name</th>
+      <th>{% trans "First name" %}</th>
       <td>{{ user.first_name }}</td>
     </tr>
     <tr>
-      <th>Last name</th>
+      <th>{% trans "Last name" %}</th>
       <td>{{ user.last_name }}</td>
     </tr>
     <tr>
-      <td>Email</td>
+      <td>{% trans "Email" %}</td>
       <td>{{ user.email }}</td>
     </tr>
     <tr>
-      <th>s number</th>
+      <th>{% trans "s number" %}</th>
       <td>{{ user.student.s_number }}</td>
     </tr>
     <tr>
-      <th>Faculty</th>
+      <th>{% trans "Faculty" %}</th>
       <td>{{ user.student.faculty.name }}</td>
     </tr>
   </table>
   <ul>
-    <li><a href="{% url 'modify-user' %}">Edit</a></li>
-    <li><a href="{% url 'user-profile' user.id %}">Visit your public profile.</a></li>
+    <li><a href="{% url 'modify-user' %}">{% trans "Edit" %}</a></li>
+    <li><a href="{% url 'user-profile' user.id %}">{% trans "Visit your public profile." %}</a></li>
   </ul>
   <hr>
   {% with student=user.student %}
@@ -39,7 +40,7 @@
       {% include 'course_list.html' with course_list=student.teacher.all target=request.path %}
     {% endif %}
     {% if student.course_set.count > 0 %}
-      <h2>Courses you attend</h2>
+      <h2>{% trans "Courses you attend" %}</h2>
       {% include 'course_list.html' with course_list=student.course_set.all target=request.path %}
     {% endif %}
     <hr>
