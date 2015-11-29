@@ -37,7 +37,6 @@ def register(request):
                     'title': _('Registration successfull'),
                     'acc': createduser.studentinformation.s_number + '@mail.zih.tu-dresden.de'
                     if createduser.is_student() else createduser.email
-                    'acc': userdata['email']
                 }
             )
     else:

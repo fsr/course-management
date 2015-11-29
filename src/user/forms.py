@@ -85,18 +85,20 @@ class ModifyUserForm(forms.Form):
     first_name = forms.CharField(
         validators=[name_validator],
         help_text=_('First part of your public name, which should be your genuine first name. '
-                  'If you become a teacher this will be visible to any site visitor.')
+                  'If you become a teacher this will be visible to any site visitor. '
+                  'Can be modified later.')
     )
     last_name = forms.CharField(
         required=False,
         validators=[name_validator],
         help_text=_('Second part of your public name, which should be your genuine familyname. '
-                  'If you become a teacher this will be visible to any site visitor.')
+                  'If you become a teacher this will be visible to any site visitor. '
+                  'Can be modified later')
     )
     email = forms.EmailField()
     faculty = forms.ChoiceField(
         choices=faculties_or_empty,
-        help_text=_('The faculty at which you are enrolled. (Used for crediting purposes)')
+        help_text=_('The faculty at which you are enrolled. (Used for crediting purposes) Can be modified later.')
     )
     public_profile = forms.BooleanField(
         required=False,
