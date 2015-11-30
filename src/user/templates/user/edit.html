@@ -11,9 +11,9 @@
     {{ user_form.as_table }}
     {{ userinformation_form.as_table }}
   </table>
-    <input class="btn btn-default" type="submit" value="{% trans "Change" %}" />
+    <input class="button" type="submit" value="{% trans "Change" %}" />
 </form>
 <p>
-  {% trans "Perhaps you'd like to" %} <a href="{% url 'password_change' %}">{% trans "change your password?" %}</a>
+  {% trans "Perhaps you'd like to" %} <a href="{% url 'password_change' %}">{% trans "change your password" %}</a>?
 </p>
 {% endblock %}

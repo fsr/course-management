@@ -9,7 +9,8 @@ from django.utils.translation import ugettext as _
 
 from user import mailsettings
 from user.forms import StudentVerificationForm, UserInformationForm, StudentInformationForm, UserForm
-from user.models import UserInformation, Activation
+from user.models import UserInformation, Activation, ACTIVATION_TYPES
+from user.views.verify import VERIFICATIONS
 
 from re_captcha.decorators import re_captcha_verify
 
@@ -43,12 +44,10 @@ def register(request):
 
                 created_student_information.save()
 
-                mail = created_student_information.s_number + '@mail.zih.tu-dresden.de'
+                activation_mail(created_user, 'student', created_student_information.make_zih_mail())
 
-            else:
-                mail = created_user.email
 
-            activationMail(created_user, request)
+            activation_mail(created_user, 'mail', created_user.email)
             return render(
                 request,
                 'registration/success.html',
@@ -82,15 +81,16 @@ def generateToken(size=50, chars=None):
     return ''.join(random.sample(chars, size))
 
 
-def activationMail(user, request):
+def verification_mail(user, type_, email):
+    type_ = type_.lower()
+    type_val = ACTIVATION_TYPES[type_]
     if settings.DEBUG:
-        print('activation email for user {} not sent'.format(user.username))
-        user.is_active = True
-        user.save()
+        print('Verification email for user {} not sent'.format(user.username))
+        VERIFICATIONS[type_].action(user)
     else:
         user_token = generateToken()
-        Activation.objects.create(user=user, token=user_token)
-        activateurl = request.build_absolute_uri() + '?token=' + user_token
+        Activation.objects.create(user=user, token=user_token, type=type_val)
+        activateurl = reverse('activate', type_) + '?token=' + user_token
         # print(activateurl)
         with open('res/registrationmail.txt') as f:
             message = f.read()
@@ -102,34 +102,11 @@ def activationMail(user, request):
         userinf = user.userinformation
         # print(message)
         send_mail(
-            _('Your registration at the iFSR course enrollment system'),
+            _('Your {} verification at the iFSR course enrollment system.'.format(type_)),
             message,
             mailsettings.sender,
-            [userinf.studentinformation if userinf.is_student() else user.email],
+            email,
             mailsettings.auth_user,
             mailsettings.auth_pass
         )
         # print(user_token)
-
-
-@login_required
-def verify_student(request):
-
-    if request.method == "POST":
-        form = StudentVerificationForm(request.POST)
-        if form.is_valid():
-            a = form.save(commit=False)
-            a.userinformation = request.user.userinformation
-            a.user = request.user
-            a.save()
-            return redirect(
-                'user-profile'
-            )
-    else:
-        form = StudentVerificationForm()
-
-    return render(
-        request,
-        'registration/student-verification.html',
-        {'form': form}
-    )
