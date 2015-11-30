@@ -1,7 +1,21 @@
 'use strict'
 fs = require 'fs'
 cp = require 'child_process'
+path = require 'path'
 
+
+lazyCopyFile = (source, target, callback) ->
+  if fs.existsSync target
+    tstat = fs.statSync target
+    sstat = fs.statSync source
+    if tstat.mtime.value < sstat.mtime.value
+      reader = fs.createReadStream source
+      writer = fs.createWriteStream target
+      writer.on 'close', callback
+      writer.on 'error', callback
+      reader.pipe writer
+      return
+  callback()
 
 exec_promise = (func, args...) ->
   new Promise((resolve, reject) ->
@@ -17,6 +31,19 @@ exec_promise = (func, args...) ->
 
 module.exports = (grunt) ->
   grunt.initConfig
+    bower:
+      directory: 'bower_components'
+      relocate:
+        base: 'bower_components'
+        target: 'src/static/js'
+        files: [
+          ['jquery/dist/jquery.min.js', 'jquery.min.js'],
+          ['foundation/js/foundation.min.js', 'foundation.min.js'],
+          ['fastclick/lib/fastclick.js', 'fastclick.js'],
+          ['modernizr/modernizr.js', 'modernizr.js'],
+          ['jquery/dist/jquery.min.map', 'jquery.min.map']
+        ]
+
     pkg: grunt.file.readJSON 'package.json'
     sass:
       dist:
@@ -43,6 +70,55 @@ module.exports = (grunt) ->
     proc.stdout.on 'data', (data) ->
       grunt.log.write data
 
+  relocate = (arr, callback) ->
+    if Array.isArray arr
+      if Array.isArray arr[0] and arr[0].length == 2
+        relocateOne arr, callback
+      else
+        pendingCount = arr.length
+        success = true
+        arr.forEach (elem) ->
+          relocateOne elem, (succ) ->
+            pendingCount--
+            if not succ
+              success = false
+            if pendingCount == 0
+              callback(success)
+    else if typeof arr == "object"
+      relocateOne arr, callback
+    else
+      throw new TypeError('expected list of objects or strings, or object')
+
+
+  relocateOne = (obj, callback) ->
+    if Array.isArray obj
+      queue = obj
+      base = '.'
+      target = '.'
+    else if typeof obj == "object"
+      base = if obj.base then obj.base else '.'
+      target = if obj.base then obj.target else '.'
+      queue = obj.files
+    else
+      throw new TypeError("expected object, got #{typeof obj}")
+
+    pendingCount = queue.length
+
+    success = true
+
+    for [source, dest] in queue
+      dir = path.dirname(dest)
+      if not fs.existsSync(dir)
+        fs.mkdirSync(dir)
+      lazyCopyFile path.join(base, source), path.join(target, dest), (err) ->
+        if err != undefined
+          success = false
+          grunt.log.writeln err
+        pendingCount--
+        if pendingCount == 0
+          callback(success)
+
+
   grunt.registerTask 'install-deps', ['npm-install', 'pip-install', 'bower-install', 'init-submodules']
 
 
@@ -59,7 +135,17 @@ module.exports = (grunt) ->
     o = cp.spawnSync 'bower', ['install']
     if not o.error == null
       grunt.log.writeln o.stderr
-      false
+      return false
+
+    done = @async()
+    queue = grunt.config.get('bower.relocate')
+
+    try
+      relocate queue, done
+    catch err
+      grunt.log.writeln err
+
+
 
   grunt.registerTask 'init-submodules', 'Initialize git submodules', ->
     grunt.log.writeln 'fetching submodules...'
