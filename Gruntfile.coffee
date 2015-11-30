@@ -3,21 +3,7 @@ fs = require 'fs'
 cp = require 'child_process'
 path = require 'path'
 
-
-lazyCopyFile = (source, target, callback) ->
-  if fs.existsSync target
-    tstat = fs.statSync target
-    sstat = fs.statSync source
-    if tstat.mtime.value < sstat.mtime.value
-      reader = fs.createReadStream source
-      writer = fs.createWriteStream target
-      writer.on 'close', callback
-      writer.on 'error', callback
-      reader.pipe writer
-      return
-  callback()
-
-exec_promise = (func, args...) ->
+execPromise = (func, args...) ->
   new Promise((resolve, reject) ->
     nargs = args.concat( (errors...) ->
       if errors[0] == null
@@ -28,14 +14,36 @@ exec_promise = (func, args...) ->
     func.apply null, nargs
   )
 
+lazyCopyFile = (source, target, callback) ->
+  if fs.existsSync target
+    tstat = fs.statSync target
+    sstat = fs.statSync source
+    if tstat.mtime.value >= sstat.mtime.value
+      callback()
+      return
+  reader = fs.createReadStream source
+  writer = fs.createWriteStream target
+  writer.on 'close', callback
+  writer.on 'error', callback
+  reader.pipe writer
+
+
+mkTree = (p) ->
+  grunt.log.writeln p.split(path.sep)
+  p.split(path.sep).reduce (prev, curr) ->
+      n = path.normalize(path.join(prev, curr))
+      if not fs.existsSync n
+        fs.mkdirSync n
+      n
+    , '.'
+
 
 module.exports = (grunt) ->
   grunt.initConfig
     bower:
-      directory: 'bower_components'
       relocate:
         base: 'bower_components'
-        target: 'src/static/js'
+        target: 'src/static/vendor/js'
         files: [
           ['jquery/dist/jquery.min.js', 'jquery.min.js'],
           ['foundation/js/foundation.min.js', 'foundation.min.js'],
@@ -106,11 +114,18 @@ module.exports = (grunt) ->
 
     success = true
 
+    queue = queue.map ([source, dest]) ->
+      [path.normalize(path.join(base, source)), path.normalize(path.join(target, dest))]
+
     for [source, dest] in queue
+      grunt.log.writeln source, '->', dest
       dir = path.dirname(dest)
       if not fs.existsSync(dir)
-        fs.mkdirSync(dir)
-      lazyCopyFile path.join(base, source), path.join(target, dest), (err) ->
+        grunt.log.writeln true
+        mkTree dir
+      if not fs.existsSync(dir)
+        callback(false)
+      lazyCopyFile source, target, (err) ->
         if err != undefined
           success = false
           grunt.log.writeln err
@@ -172,10 +187,10 @@ module.exports = (grunt) ->
         resolve()
     ).then( ->
       grunt.log.writeln 'migrating...'
-      exec_promise cp.exec, 'python3 manage.py migrate', null
+      execPromise cp.exec, 'python3 manage.py migrate', null
     ).then( ->
       grunt.log.writeln 'loading sample data...'
-      exec_promise cp.exec, 'python3 manage.py loaddata courses', null
+      execPromise cp.exec, 'python3 manage.py loaddata courses', null
     ).then( ->
       done()
     ).catch((error) ->
