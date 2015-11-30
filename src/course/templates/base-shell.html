@@ -3,7 +3,7 @@
 <html>
 <head>
   <link type="text/css" rel="stylesheet" href="{% static "css/style.css" %}">
-  <script type="text/javascript" src="{% static "vendor/modernizr/modernizr.js" %}"></script>
+  <script type="text/javascript" src="{% static "vendor/js/modernizr.js" %}"></script>
   <title>{% if title %}{{ title }} | {% endif %}{% trans "Course Manager" %}</title>
 </head>
 <body>
@@ -53,9 +53,9 @@
       <img src="{% static "img/LogoStandard.svg" %}">
     </a>
   </footer>
-  <script src="{% static "vendor/jquery/dist/jquery.min.js" %}"></script>
-  <script type="text/javascript" src="{% static "vendor/foundation/js/foundation.min.js" %}"></script>
-  <script type="text/javascript" src="{% static "vendor/fastclick/lib/fastclick.js" %}"></script>
+  <script type="text/javascript" src="{% static "vendor/js/jquery.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "vendor/js/foundation.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "vendor/js/fastclick.js" %}"></script>
   <script type="text/javascript">
     $(document).foundation();
   </script>

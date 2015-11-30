@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 
 from user import mailsettings
-from user.forms import RegistrationForm, StudentVerificationForm
+from user.forms import StudentVerificationForm, UserInformationForm, StudentInformationForm, UserForm
 from user.models import UserInformation, Activation
 
 from re_captcha.decorators import re_captcha_verify
@@ -18,37 +18,58 @@ from re_captcha.decorators import re_captcha_verify
 def register(request):
 
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            userdata = form.cleaned_data
-            createduser = UserInformation.create(
-                username=userdata['username'],
-                email=userdata['email'],
-                password=userdata['password'],
-                first_name=userdata['first_name'],
-                last_name=userdata['family_name'],
-                s_number=userdata.get('s_number', None),
-                faculty=userdata.get('faculty', None)
-            )
-            activationMail(createduser.user, request)
+        user_form = UserForm(request.POST)
+        userinformation_form = UserInformationForm(request.POST)
+        studentinformation_form = StudentInformationForm(request.POST)
+
+        if (    user_form.is_valid()
+            and userinformation_form.is_valid()
+            and ( studentinformation_form.is_valid()
+                 or (    not studentinformation_form.faculty
+                     and not studentinformation_form.s_number))):
+
+            created_user = user_form.save()
+
+            created_user_information = userinformation_form.save(commit=False)
+
+            created_user_information.user = created_user
+
+            created_user_information.save()
+
+            if studentinformation_form.faculty and studentinformation_form.s_number:
+                created_student_information = studentinformation_form.save(commit=False)
+
+                created_student_information.userinformation = created_user_information
+
+                created_student_information.save()
+
+                mail = created_student_information.s_number + '@mail.zih.tu-dresden.de'
+
+            else:
+                mail = created_user.email
+
+            activationMail(created_user, request)
             return render(
                 request,
                 'registration/success.html',
                 {
                     'title': _('Registration successfull'),
-                    'acc': createduser.studentinformation.s_number + '@mail.zih.tu-dresden.de'
-                    if createduser.is_student() else createduser.user.email
+                    'acc': mail
                 }
             )
     else:
-        form = RegistrationForm()
+        user_form = UserForm()
+        userinformation_form = UserInformationForm()
+        studentinformation_form = StudentInformationForm()
 
     return render(
         request,
         'registration/register.html',
         {
             'title': _('Registration'),
-            'form': form
+            'user_form': user_form,
+            'userinformation_form': userinformation_form,
+            'studentinformation_form': studentinformation_form
         }
     )
 
@@ -99,7 +120,7 @@ def verify_student(request):
         if form.is_valid():
             a = form.save(commit=False)
             a.userinformation = request.user.userinformation
-            a.user = request.user   
+            a.user = request.user
             a.save()
             return redirect(
                 'user-profile'

@@ -2,6 +2,7 @@ from django import forms
 from django.core.validators import RegexValidator, EmailValidator
 from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.forms import UserCreationForm
 
 from user.models import Faculty, UserInformation, StudentInformation, User
 from django.core.exceptions import ValidationError
@@ -32,7 +33,7 @@ def username_existence_validator(number):
         User.objects.get(username=number)
     except User.DoesNotExist:
         return
-    raise ValidationError(_('This s-number is already taken'))
+    raise ValidationError(_('This username is already taken'))
 
 def s_number_existence_validator(number):
     try:
@@ -43,75 +44,47 @@ def s_number_existence_validator(number):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(
-        help_text=_('Your s-number.')
-    )
+    username = forms.CharField()
     password = forms.PasswordInput()
-    
-
-class RegistrationForm(forms.Form):
-    username = forms.CharField(validators=[username_existence_validator])
-    first_name = forms.CharField(
-        validators=[name_validator],
-        help_text=_('First part of your public name, which should be your genuine first name. '
-                  'If you become a teacher this will be visible to any site visitor. '
-                  'Can be modified later.')
-    )
-    family_name = forms.CharField(
-        validators=[name_validator],
-        help_text=_('Second part of your public name, which should be your genuine familyname. '
-                  'If you become a teacher this will be visible to any site visitor. '
-                  'Can be modified later')
-    )
-    password = forms.CharField(min_length=8, widget=forms.PasswordInput)
-    password_repeat = forms.CharField(min_length=8, widget=forms.PasswordInput)
-    email = forms.CharField(validators=[EmailValidator])
-    s_number = forms.CharField(
-        min_length=6,
-        validators=[s_number_validator, s_number_existence_validator],
-        help_text=_('The s-number as assigned by the university. This will become your (private) username for this site. '
-                  'The verification email will be sent to the address associated with this s-number. '
-                  'Cannot be modified later.'),
-        required=False
-    )
-    faculty = forms.ChoiceField(
-        choices=faculties_or_empty,
-        help_text=_('The faculty at which you are enrolled. (Used for crediting purposes) Can be modified later.'),
-        required=False
-    )
 
 
-class ModifyUserForm(forms.Form):
-    first_name = forms.CharField(
-        validators=[name_validator],
-        help_text=_('First part of your public name, which should be your genuine first name. '
-                  'If you become a teacher this will be visible to any site visitor. '
-                  'Can be modified later.')
-    )
-    last_name = forms.CharField(
-        required=False,
-        validators=[name_validator],
-        help_text=_('Second part of your public name, which should be your genuine familyname. '
-                  'If you become a teacher this will be visible to any site visitor. '
-                  'Can be modified later')
-    )
-    email = forms.EmailField()
-    faculty = forms.ChoiceField(
-        choices=faculties_or_empty,
-        help_text=_('The faculty at which you are enrolled. (Used for crediting purposes) Can be modified later.')
-    )
-    public_profile = forms.BooleanField(
-        required=False,
-        initial=False,
-        help_text=_('Whether some of your data should be visible to others. Visible data would be first_name, last_name, '
-                  'the courses you teach and the description you provide below.')
-    )
-    description = forms.CharField(
-        required=False,
-        widget=forms.Textarea,
-        help_text=_('Here you can provide some information about yourself. '
-                  'You can use markdown formatted text to do so. ')
-    )
+class UserForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        fields = UserCreationForm.Meta.fields + ('email', 'first_name', 'last_name')
+        help_texts = {
+            'email': _('An email adress where you can be reached the '
+                       'verification mail will be sent to this adress.'),
+            'first_name': _('First part of your public name, which should be your genuine first name. '
+                      'If you become a teacher this will be visible to any site visitor. '
+                      'Can be modified later.'),
+            'last_name': _('Second part of your public name, which should be your genuine familyname. '
+                      'If you become a teacher this will be visible to any site visitor. '
+                      'Can be modified later'),
+            'username': _('Unique username. Used for login. (cannot be changed later).')
+        }
+
+
+class UserEditForm(UserForm):
+    class Meta(UserForm.Meta):
+        exclude = ('username',)
+
+
+class UserInformationForm(ModelForm):
+    class Meta:
+        model = UserInformation
+        fields = ['public_profile']
+
+
+class StudentInformationForm(ModelForm):
+    class Meta:
+        model = StudentInformation
+        fields = ['s_number', 'faculty']
+        help_texts = {
+            's_number': _('The s-number as assigned by the university. '
+                      'The student verification email will be sent to the address associated with this s-number. '
+                      'Cannot be modified later.'),
+            'faculty': _('The faculty at which you are enrolled. (Used for crediting purposes) Can be modified later.')
+        }
 
 
 class AbstractContactForm(forms.Form):

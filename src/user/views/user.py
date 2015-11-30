@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.utils.translation import ugettext as _
 
-from user.forms import ModifyUserForm
+from user.forms import UserForm, UserInformationForm, UserEditForm
 from user.models import Faculty
 
 from util.error.reporting import db_error
@@ -17,49 +17,26 @@ def modify(request):
 
     if request.method == "POST":
 
-        form = ModifyUserForm(request.POST)
+        user_form = UserEditForm(request.POST, instance=request.user)
+        userinformation_form = UserInformationForm(request.POST, instance=request.user.userinformation)
 
-        if form.is_valid():
-
-            cleaned = form.cleaned_data
-
-            # should we verify something here?
-            user.first_name = cleaned['first_name']
-            user.last_name = cleaned['last_name']
-            user.email = cleaned['email']
-
-            try:
-                student.faculty = Faculty.objects.get(id=int(cleaned['faculty']))
-            except Faculty.DoesNotExist:
-                return db_error(_(
-                    'Oops, it seems that faculty does not exist. Please try again and should the problem persist '
-                    'contact an administrator.'
-                ))
-
-            student.public_profile = cleaned['public_profile']
-            student.description = cleaned['description']
+        if user_form.is_valid() and userinformation_form.is_valid:
 
             user.save()
-            student.save()
-
+            userinformation_form.save()
             return redirect('user-profile')
 
     else:
 
-        form = ModifyUserForm(initial={
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'email': user.email,
-            'faculty': student.faculty.id,
-            'public_profile': student.public_profile,
-            'description': student.description
-        })
+        user_form = UserEditForm(instance=request.user)
+        userinformation_form = UserInformationForm(instance=request.user.userinformation)
     return render(
         request,
         'user/edit.html',
         {
             'title': '{} {}'.format(user.first_name, user.last_name),
-            'form': form
+            'user_form': user_form,
+            'userinformation_form': userinformation_form
         }
     )
 
