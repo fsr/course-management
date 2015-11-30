@@ -4,21 +4,14 @@
 
 * install dependencies
 
-  ```bash
-  bower install
-  python3 -m pip install -r requirements.txt
   ```
-
-* Initialize the database
-
-  ```bash
-  ./init.sh
+  $ npm install
+  $ grunt install
   ```
+* Launch the program with
 
-* Start the server
-
-  ```bash
-  python3 manage.py runserver
+  ```
+  $ grunt launch
   ```
 
 * You now can login with the super user **foo** and password **bar**

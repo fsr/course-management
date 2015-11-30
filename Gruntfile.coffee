@@ -4,15 +4,15 @@ cp = require 'child_process'
 path = require 'path'
 
 execPromise = (func, args...) ->
-  new Promise((resolve, reject) ->
-    nargs = args.concat( (errors...) ->
+  new Promise (resolve, reject) ->
+    nargs = args.concat (errors...) ->
       if errors[0] == null
-        resolve(null)
+        resolve null
       else
-        reject(errors)
-    )
+        reject errors
+
     func.apply null, nargs
-  )
+
 
 lazyCopyFile = (source, target, callback) ->
   if fs.existsSync target
@@ -24,7 +24,7 @@ lazyCopyFile = (source, target, callback) ->
   reader = fs.createReadStream source
   writer = fs.createWriteStream target
   writer.on 'close', callback
-  writer.on 'error', callback
+  writer.on 'error', -> callback(false)
   reader.pipe writer
 
 
@@ -91,7 +91,7 @@ module.exports = (grunt) ->
             if not succ
               success = false
             if pendingCount == 0
-              callback(success)
+              callback success
     else if typeof arr == "object"
       relocateOne arr, callback
     else
@@ -120,12 +120,12 @@ module.exports = (grunt) ->
     for [source, dest] in queue
       grunt.log.writeln source, '->', dest
       dir = path.dirname(dest)
-      if not fs.existsSync(dir)
+      if not fs.existsSync dir
         grunt.log.writeln true
         mkTree dir
-      if not fs.existsSync(dir)
+      if not fs.existsSync dir
         callback(false)
-      lazyCopyFile source, target, (err) ->
+      lazyCopyFile source, dest, (err) ->
         if err != undefined
           success = false
           grunt.log.writeln err
@@ -133,8 +133,11 @@ module.exports = (grunt) ->
         if pendingCount == 0
           callback(success)
 
+  grunt.registerTask 'install-dependencies', ['npm-install', 'pip-install', 'bower-install', 'init-submodules']
 
-  grunt.registerTask 'install-deps', ['npm-install', 'pip-install', 'bower-install', 'init-submodules']
+  grunt.registerTask 'build', ['sass']
+
+  grunt.registerTask 'install', ['install-dependencies', 'build', 'init-db']
 
 
   grunt.registerTask 'pip-install', 'Get remaining dependencies', ->
@@ -179,23 +182,29 @@ module.exports = (grunt) ->
     done = this.async()
     process.chdir 'src'
 
-    new Promise((resolve) ->
-      grunt.log.writeln 'deleting database...'
-      fs.unlink 'db.sqlite3', (err) ->
-        if not err == null
-          grunt.log.writeln err
-        resolve()
-    ).then( ->
-      grunt.log.writeln 'migrating...'
-      execPromise cp.exec, 'python3 manage.py migrate', null
-    ).then( ->
+    grunt.log.writeln 'deleting database...'
+    fs.unlink 'db.sqlite3', (err) ->
+      if not err == null
+        grunt.log.writeln err
+        done(false)
+      else
+        grunt.task.run('init-db')
+        done()
+
+
+  grunt.registerTask 'init-db', 'Initialize the database', ->
+    done = this.async()
+    process.chdir 'src'
+
+    grunt.log.writeln 'migrating...'
+    execPromise(cp.exec, 'python3 manage.py migrate', null).then( ->
       grunt.log.writeln 'loading sample data...'
       execPromise cp.exec, 'python3 manage.py loaddata courses', null
     ).then( ->
       done()
     ).catch((error) ->
-      grunt.log.writeln(error)
-      done(false)
+      grunt.log.writeln error
+      done false
     )
 
   grunt.registerTask 'default', ['sass']
