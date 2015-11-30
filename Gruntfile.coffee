@@ -14,6 +14,7 @@ exec_promise = (func, args...) ->
     func.apply null, nargs
   )
 
+
 module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
@@ -42,24 +43,35 @@ module.exports = (grunt) ->
     proc.stdout.on 'data', (data) ->
       grunt.log.write data
 
-  grunt.registerTask 'install-deps', ['npm-install', 'pip-install', 'bower-install']
+  grunt.registerTask 'install-deps', ['npm-install', 'pip-install', 'bower-install', 'init-submodules']
 
 
   grunt.registerTask 'pip-install', 'Get remaining dependencies', ->
     grunt.log.writeln 'installing python dependencies...'
-    try
-      cp.spawnSync 'python3', ['-m', 'pip', 'install', '-r', 'requirements.txt']
-    catch error
-      grunt.log.writeln error
-      false
+
+    o = cp.spawnSync 'python3', ['-m', 'pip', 'install', '-r', 'requirements.txt']
+    if not o.error == null
+      grunt.log.writeln o.stderr
+      return false
 
   grunt.registerTask 'bower-install', 'Install bower dependencies', ->
     grunt.log.writeln 'installing bower dependencies...'
-    try
-      cp.spawnSync 'bower', ['install']
-    catch error
-      grunt.log.writeln error
+    o = cp.spawnSync 'bower', ['install']
+    if not o.error == null
+      grunt.log.writeln o.stderr
       false
+
+  grunt.registerTask 'init-submodules', 'Initialize git submodules', ->
+    grunt.log.writeln 'fetching submodules...'
+    o = cp.spawnSync 'git', ['submodule', 'init'], {cwd: process.cwd()}
+    if not o.error == null
+      grunt.log.writeln o.stderr
+      return false
+    o = cp.spawnSync 'git', ['submodule', 'update'], {cwd: process.cwd()}
+    if not o.error == null
+      grunt.log.writeln o.stderr
+      return false
+
 
 
   grunt.registerTask 'clean-db', 'Clean the database', ->
@@ -70,7 +82,7 @@ module.exports = (grunt) ->
       grunt.log.writeln 'deleting database...'
       fs.unlink 'db.sqlite3', (err) ->
         if not err == null
-          grunt.log.writelnln err
+          grunt.log.writeln err
         resolve()
     ).then( ->
       grunt.log.writeln 'migrating...'
