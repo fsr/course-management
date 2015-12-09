@@ -180,15 +180,18 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'clean-db', 'Clean the database', ->
     done = this.async()
+    dir = process.cwd()
     process.chdir 'src'
 
     grunt.log.writeln 'deleting database...'
     fs.unlink 'db.sqlite3', (err) ->
       if not err == null
         grunt.log.writeln err
+        process.chdir dir
         done(false)
       else
         grunt.task.run('init-db')
+        process.chdir dir
         done()
 
 

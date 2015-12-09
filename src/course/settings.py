@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'guardian',
     're_captcha',
     'user',
+    'polls',
     'course',
 )
 

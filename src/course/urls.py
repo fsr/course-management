@@ -42,6 +42,7 @@ urlpatterns = [
         url(r'^teachers/$', course.add_teacher, name='add-teacher'),
         url(r'^teachers/remove/(?P<teacher_id>[0-9]+)/$', course.remove_teacher, name='remove-teacher'),
     ])),
+    url(r'^polls/', include('polls.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^accounts/', include('user.urls')),
 ]

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if tokens %}
+    You generated the following tokens:
+    <table>
+      {% for token in tokens %}
+        <tr><td>{{ token.token }}</td></tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+  {% if generate %}
+    You can generate tokens here.
+    <form action="{% url 'poll-generate-token' poll.url %}">
+      {% csrf_token %}
+      <input type="number" name="amount" />
+      <input type="submit" value="Submit" />
+    </form>
+  {% endif %}
+{% endblock %}

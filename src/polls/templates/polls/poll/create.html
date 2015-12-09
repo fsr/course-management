@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <form method="post" action="{% url 'poll-create' %}">
+    <table>
+      {{ poll_form.as_table }}
+      {{ question_form.as_table }}
+    </table>
+  </form>
+{% endblock %}
