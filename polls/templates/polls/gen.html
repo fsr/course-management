@@ -13,8 +13,9 @@
     You can generate tokens here.
     <form action="{% url 'poll-generate-token' poll.url %}">
       {% csrf_token %}
-      <input type="number" name="amount" />
-      <input type="submit" value="Submit" />
+      <label for="amount-input">Amount of tokens to generate</label>
+      <input type="number" name="amount" id="amount-input" />
+      <input type="submit" value="Generate" />
     </form>
   {% endif %}
 {% endblock %}

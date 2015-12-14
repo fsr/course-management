@@ -60,7 +60,7 @@ module.exports = (grunt) ->
             'bower_components/foundation/scss'
           ]
         files:
-          'static/css/style.css': 'scss/style.scss'
+          'static/css/style.css': 'scss/style.sass'
 
   grunt.loadNpmTasks 'grunt-contrib-sass'
 
@@ -116,8 +116,8 @@ module.exports = (grunt) ->
       [path.normalize(path.join(base, source)), path.normalize(path.join(target, dest))]
 
     for [source, dest] in queue
-      grunt.log.writeln source, '->', dest
-      dir = path.dirname(dest)
+      grunt.log.writeln source + ' -> ' + dest
+      dir = path.dirname dest
       if not fs.existsSync dir
         grunt.log.writeln true
         mkTree dir

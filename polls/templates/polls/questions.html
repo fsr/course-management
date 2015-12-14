@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <table>
+    {% for question in questions %}
+      <tr>
+        <td>
+          {{ question.question }}
+        </td>
+        <td>
+          {% for choice in question.choices %}
+            choice.value
+          {% endfor %}
+        </td>
+      </tr>
+    {% endfor %}
+
+  </table>
+
+  <form method="post" action="{% url 'poll-edit-questions' poll.url %}">
+  {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      {{ choice_forms.as_table }}
+    </table>
+    <input type="submit" value="Add" class="button" />
+  </form>
+
+{% endblock %}

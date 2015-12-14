@@ -11,7 +11,6 @@ from course.models.course import Course
 from user.forms import AbstractContactForm
 
 
-
 location_validator = RegexValidator(
     r'^.*$', # does absolutely nothing yet
     message=_('Invalid location name.')
@@ -42,14 +41,15 @@ def username_exists_validator(value):
 
 class DateForm(ModelForm):
     location = forms.CharField(max_length=100, validators=[location_validator])
+
     class Meta:
         model = DateSlot
         fields = ('date', 'location')
 
 
-
 class WeeklySlotForm(ModelForm):
     location = forms.CharField(max_length=100, validators=[location_validator])
+
     class Meta:
         model = WeeklySlot
         fields = ('weekday', 'timeslot')
@@ -79,7 +79,7 @@ class CourseForm(ModelForm):
                             'You can use markdown for formatting.'
                             ),
             'max_participants': _('How many people can join your course. (Can be changed later)'),
-            'student_only': _('Should your course only be avaliable to students?')
+            'student_only': _('Should your course only be available to students?')
         }
         labels = {
             'max_participants': _('Max nr. of participants')

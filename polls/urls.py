@@ -11,6 +11,9 @@ urlpatterns = [
             url(r'^generate/$', tokens.generate, name='poll-generate-token'),
             url(r'^generate/user/$', tokens.generate_user_token, name='generate-user-token')
         ])),
+        url('^edit/', include([
+            url('^questions/$', polls.edit_questions, name='poll-edit-questions'),
+        ])),
         url(r'^results/$', polls.results, name='poll-view-results'),
         url(r'^vote/$', polls.vote, name='poll-vote')
     ]))

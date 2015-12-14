@@ -1,3 +1,5 @@
+import re
+
 from django.db import models
 from django.contrib.auth.models import User
 import random
@@ -6,10 +8,21 @@ import string
 
 allowed_chars = string.ascii_letters + string.digits
 
+ufn_regex = re.compile('[\w\d_-]+')
+
 
 class Poll(models.Model):
     name = models.CharField(max_length=200, unique=True)
     url = models.CharField(max_length=200, unique=True)
+
+    @staticmethod
+    def url_from_name(name):
+        return ''.join(
+            m.group(0)
+            for m in ufn_regex.finditer(
+                name.replace(' ', '-')
+            )
+        )
 
 
 class Question(models.Model):
@@ -19,7 +32,7 @@ class Question(models.Model):
 
 class Choice(models.Model):
     value = models.CharField(max_length=100)
-    poll = models.ForeignKey(Question, related_name='choices')
+    question = models.ForeignKey(Question, related_name='choices')
 
 
 class Token(models.Model):
