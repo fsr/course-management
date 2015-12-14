@@ -6,6 +6,7 @@
 
 * Python 3
 * nodejs and npm
+* Ruby and Sass 
 
 
 ### Installation
