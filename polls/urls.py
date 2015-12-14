@@ -1,8 +1,9 @@
-from polls.views import tokens, polls
 from django.conf.urls import include, url
 
+from polls.views import tokens, polls
 
 urlpatterns = [
+    url(r'^$', polls.overview, name='poll-overview'),
     url(r'^create/$', polls.create, name='poll-create'),
     url(r'^poll/(?P<poll_name>[\w_\d-]+)/', include([
         url(r'^$', polls.view, name='poll-view'),

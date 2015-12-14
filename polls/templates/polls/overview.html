@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <ul>
+    {% for poll in polls %}
+      <li><a href="{% url 'poll-view' poll.url %}">{{ poll.name }}</a> --
+        <a href="{% url 'poll-edit-questions' poll.url %}">edit</a></li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'poll-create' %}">Create new</a>
+
+{% endblock %}

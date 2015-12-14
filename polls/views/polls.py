@@ -1,20 +1,41 @@
 from django.contrib.auth.decorators import login_required
 from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
-from polls.models import Choice, Question, Poll
+
 from polls import forms
+from polls.models import Choice, Question, Poll
 
 
+# REVIEW do we need permissions here?
+@login_required
+def overview(request):
+    return render(
+            request,
+            'polls/overview.html',
+            {'polls': Poll.objects.all()}
+    )
+
+
+# TODO add permissions
+@login_required
 def vote(request, poll_name):
     pass
 
 
+# TODO add permissions
+@login_required
 def results(request, poll_name):
     pass
 
 
+# TODO add permissions
+@login_required
 def view(request, poll_name):
-    pass
+    return render(
+            request,
+            'polls/poll/view.html',
+            {'poll': Poll.objects.get(url=poll_name)}
+    )
 
 
 # TODO require permissions
@@ -29,7 +50,7 @@ def edit_questions(request, poll_name):
         if form.is_valid():
             q = form.save(commit=False)
 
-            cf = ChoiceForms(instance=q)
+            cf = ChoiceForms(request.POST, instance=q)
 
             if cf.is_valid():
                 q.poll = poll

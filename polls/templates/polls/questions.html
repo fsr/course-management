@@ -9,8 +9,8 @@
           {{ question.question }}
         </td>
         <td>
-          {% for choice in question.choices %}
-            choice.value
+          {% for choice in question.choices.all %}
+            {{ choice.value }}
           {% endfor %}
         </td>
       </tr>
