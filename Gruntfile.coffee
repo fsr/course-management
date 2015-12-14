@@ -29,7 +29,6 @@ lazyCopyFile = (source, target, callback) ->
 
 
 mkTree = (p) ->
-  grunt.log.writeln p.split(path.sep)
   p.split(path.sep).reduce (prev, curr) ->
       n = path.normalize(path.join(prev, curr))
       if not fs.existsSync n
@@ -43,7 +42,7 @@ module.exports = (grunt) ->
     bower:
       relocate:
         base: 'bower_components'
-        target: 'src/static/vendor/js'
+        target: 'static/vendor/js'
         files: [
           ['jquery/dist/jquery.min.js', 'jquery.min.js'],
           ['foundation/js/foundation.min.js', 'foundation.min.js'],
@@ -61,7 +60,7 @@ module.exports = (grunt) ->
             'bower_components/foundation/scss'
           ]
         files:
-          'src/static/css/style.css': 'scss/style.scss'
+          'static/css/style.css': 'scss/style.scss'
 
   grunt.loadNpmTasks 'grunt-contrib-sass'
 
@@ -69,7 +68,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'launch', 'Launch application', ->
     done = this.async()
-    process.chdir 'src'
 
     proc = cp.spawn 'python3', ['manage.py', 'runserver'], {cwd: process.cwd()}, (err) ->
       done err == null
@@ -180,24 +178,19 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'clean-db', 'Clean the database', ->
     done = this.async()
-    dir = process.cwd()
-    process.chdir 'src'
 
     grunt.log.writeln 'deleting database...'
     fs.unlink 'db.sqlite3', (err) ->
       if not err == null
         grunt.log.writeln err
-        process.chdir dir
         done(false)
       else
         grunt.task.run('init-db')
-        process.chdir dir
         done()
 
 
   grunt.registerTask 'init-db', 'Initialize the database', ->
     done = this.async()
-    process.chdir 'src'
 
     grunt.log.writeln 'migrating...'
     execPromise(cp.exec, 'python3 manage.py migrate', null).then( ->
