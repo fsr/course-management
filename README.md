@@ -2,12 +2,21 @@
 
 ## Gettin' started
 
+### Required software
+
+* Python 3
+* nodejs and npm
+
+
+### Installation
+
 * install dependencies
 
   ```
   $ npm install
   $ grunt install
   ```
+  
 * Launch the program with
 
   ```

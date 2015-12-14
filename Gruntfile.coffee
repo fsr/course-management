@@ -29,7 +29,6 @@ lazyCopyFile = (source, target, callback) ->
 
 
 mkTree = (p) ->
-  grunt.log.writeln p.split(path.sep)
   p.split(path.sep).reduce (prev, curr) ->
       n = path.normalize(path.join(prev, curr))
       if not fs.existsSync n
