@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+  <form method="post" action="{% url 'poll-vote' poll.url %}">
+    {% csrf_token %}
+    <ol>
+      {% for qlink in poll.questions.all %}
+        {% with question=qlink.question %}
+          <li>
+
+            <h4>{{ question.question }}</h4>
+            {% if question.has_choices %}
+              <table>
+                <tr>
+                  {% for choice in question.choices.all %}
+                    <td><label for="{{ choice.html_input_id }}">{{ choice.value }}</label></td>
+                  {% endfor %}
+                </tr>
+                <tr>
+                  {% for choice in question.choices.all %}
+                    <td><input id="{{ choice.html_input_id }}" name="{{ question.html_question_id }}" type="radio"></td>
+                  {% endfor %}
+                </tr>
+              </table>
+            {% else %}
+              <label for="{{ question.html_question_id }}">{% trans "Freitextantwort" %}</label>
+              <textarea id="{{ question.html_question_id }}" name="{{ question.html_question_id }}"></textarea>
+            {% endif %}
+          </li>
+        {% endwith %}
+      {% endfor %}
+    </ol>
+    <input class="button" type="submit" value="Vote"/>
+  </form>
+
+{% endblock %}

@@ -3,7 +3,8 @@ from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
 
 from polls import forms
-from polls.models import Choice, Question, Poll
+from polls.forms import VoteInterface
+from polls.models import Choice, Question, Poll, QLink
 
 
 # REVIEW do we need permissions here?
@@ -19,13 +20,36 @@ def overview(request):
 # TODO add permissions
 @login_required
 def vote(request, poll_name):
-    pass
+    poll = Poll.objects.get(url=poll_name)
+    if request.method == 'POST':
+        vi = VoteInterface(poll, request.POST)
+
+        if vi.is_valid():
+            vi.save()
+            return redirect(
+                    'poll-view',
+                    poll.url
+            )
+    else:
+        vi = VoteInterface(poll)
+
+    return render(
+            request,
+            'polls/poll/vote.html',
+            {'vi': vi}
+    )
 
 
 # TODO add permissions
 @login_required
 def results(request, poll_name):
-    pass
+    vi = VoteInterface(Poll.objects.get(url=poll_name))
+
+    return render(
+            request,
+            'polls/poll/results.html',
+            {'vi': vi}
+    )
 
 
 # TODO add permissions
@@ -53,14 +77,16 @@ def edit_questions(request, poll_name):
             cf = ChoiceForms(request.POST, instance=q)
 
             if cf.is_valid():
-                q.poll = poll
 
                 q.save()
                 cf.save()
-                return redirect(
-                    'poll-edit-questions',
-                    poll.url
+
+                QLink.objects.create(
+                        poll=poll,
+                        question=q
                 )
+
+                return redirect('poll-edit-questions', poll.url)
         else:
             cf = ChoiceForms()
     else:
@@ -100,5 +126,5 @@ def create(request):
     return render(
         request,
         'polls/poll/create.html',
-        { 'poll_form': poll_form }
+            {'poll_form': poll_form}
     )

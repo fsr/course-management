@@ -1,8 +1,6 @@
-from markdown import markdown
-
-from django.db import models
 from django.contrib.auth.models import User
-from django.db import IntegrityError
+from django.db import models
+from markdown import markdown
 
 from util.html_clean import clean_for_user_description
 
@@ -68,7 +66,6 @@ class UserInformation(models.Model):
             return False
 
 
-
 class StudentInformation(UserInformation):
     s_number = models.CharField(max_length=50, unique=True)
     faculty = models.ForeignKey(Faculty)
@@ -94,7 +91,7 @@ class Activation(models.Model):
 
 def get_user_information(obj):
     if isinstance(obj, (User, StudentInformation)):
-        return user.userinformation
+        return obj.userinformation
     elif isinstance(obj, UserInformation):
         return obj
     elif isinstance(obj, (int, str)):

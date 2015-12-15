@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <ol>
+    {% for qi in vi %}
+      {% with question=qlink.question %}
+        <li>
+        <p>{{ question.question }}</p>
+        {% if question.has_choices %}
+          {{ qlink.counters.count }}
+          <table>
+            {% for counter in qlink.counters.all %}
+              <tr>
+                <td>{{ counter.choice.value }}</td>
+              </tr>
+            {% endfor %}
+            {% for counter in qlink.counters.all %}
+              <tr>
+                <td>{{ counter.counter }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        {% endif %}
+      {% endwith %}
+    </li>
+    {% endfor %}
+  </ol>
+
+{% endblock %}

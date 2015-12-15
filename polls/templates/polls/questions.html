@@ -3,17 +3,19 @@
 {% block content %}
 
   <table>
-    {% for question in questions %}
-      <tr>
-        <td>
-          {{ question.question }}
-        </td>
+    {% for qlink in questions %}
+      {% with question=qlink.question %}
+        <tr>
+          <td>
+            {{ question.question }}
+          </td>
         <td>
           {% for choice in question.choices.all %}
             {{ choice.value }}
           {% endfor %}
         </td>
       </tr>
+      {% endwith %}
     {% endfor %}
 
   </table>
