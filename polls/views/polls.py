@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
 
@@ -99,8 +100,22 @@ def edit_questions(request, poll_name):
             'poll': poll,
             'questions': poll.questions.all(),
             'form': form,
-            'choice_forms': cf
+            'choice_forms': cf,
+            'old_questions': Question.objects.all()
         }
+    )
+
+
+# TODO require permissions
+@login_required
+def add_question(request, poll_name, question_id):
+    target = request.GET['target'] if 'target' in request.GET else reverse('poll-view', args=(poll_name,))
+    QLink.objects.create(
+            poll=Poll.objects.get(url=poll_name),
+            question=Question.objects.get(id=question_id)
+    )
+    return redirect(
+            target
     )
 
 

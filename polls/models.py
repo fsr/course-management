@@ -27,6 +27,9 @@ class Poll(models.Model):
 class Question(models.Model):
     question = models.CharField(max_length=500)
 
+    def choice_values(self):
+        return map(lambda a: a.value, self.choices.all())
+
     def has_choices(self):
         return self.choices.count() > 0
 
