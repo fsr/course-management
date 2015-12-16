@@ -3,15 +3,10 @@ fs = require 'fs'
 cp = require 'child_process'
 path = require 'path'
 
-execPromise = (func, args...) ->
-  new Promise (resolve, reject) ->
-    nargs = args.concat (errors...) ->
-      if errors[0] == null
-        resolve null
-      else
-        reject errors
+PYTHON_ENV_FOLDER = 'env'
 
-    func.apply null, nargs
+pythonExec = (args...) ->
+  cp.spawnSync.apply(cp, [fs.join(PYTHON_ENV_FOLDER, 'bin/python')] + args)
 
 
 lazyCopyFile = (source, target, callback) ->
@@ -96,6 +91,9 @@ module.exports = (grunt) ->
     else
       throw new TypeError('expected list of objects or strings, or object')
 
+  grunt.registerTask 'install-virtualenv', 'Install a python virtual environment', ->
+    cp.spawnSync 'python3', ['-m', 'pip', 'install', 'virtualenv']
+    cp.spawnSync 'python3', ['-m', 'virtualenv', PYTHON_ENV_FOLDER]
 
   relocateOne = (obj, callback) ->
     if Array.isArray obj
@@ -136,13 +134,13 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'build', ['sass']
 
-  grunt.registerTask 'install', ['install-dependencies', 'build', 'init-db']
+  grunt.registerTask 'install', ['install-virtualenv', 'install-dependencies', 'build', 'init-db']
 
 
   grunt.registerTask 'pip-install', 'Get remaining dependencies', ->
     grunt.log.writeln 'installing python dependencies...'
 
-    o = cp.spawnSync 'python3', ['-m', 'pip', 'install', '-r', 'requirements.txt']
+    o = pythonExec ['-m', 'pip', 'install', '-r', 'requirements.txt']
     if not o.error == null
       grunt.log.writeln o.stderr
       return false
@@ -196,14 +194,10 @@ module.exports = (grunt) ->
     process.chdir 'src'
 
     grunt.log.writeln 'migrating...'
-    execPromise(cp.exec, 'python3 manage.py migrate', null).then( ->
-      grunt.log.writeln 'loading sample data...'
-      execPromise cp.exec, 'python3 manage.py loaddata courses', null
-    ).then( ->
-      done()
-    ).catch((error) ->
-      grunt.log.writeln error
-      done false
-    )
+    pythonExec ['manage.py', 'migrate']
+    grunt.log.writeln 'loading sample data...'
+    pythonExec ['manage.py', 'loaddata', 'courses']
+
+    done()
 
   grunt.registerTask 'default', ['sass']
