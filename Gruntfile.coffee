@@ -37,7 +37,7 @@ module.exports = (grunt) ->
     bower:
       relocate:
         base: 'bower_components'
-        target: 'src/static/vendor/js'
+        target: 'static/vendor/js'
         files: [
           ['jquery/dist/jquery.min.js', 'jquery.min.js'],
           ['foundation/js/foundation.min.js', 'foundation.min.js'],
@@ -55,7 +55,7 @@ module.exports = (grunt) ->
             'bower_components/foundation/scss'
           ]
         files:
-          'src/static/css/style.css': 'scss/style.scss'
+          'static/css/style.css': 'scss/style.sass'
 
   grunt.loadNpmTasks 'grunt-contrib-sass'
 
@@ -63,7 +63,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'launch', 'Launch application', ->
     done = this.async()
-    process.chdir 'src'
 
     proc = cp.spawn 'python3', ['manage.py', 'runserver'], {cwd: process.cwd()}, (err) ->
       done err == null
@@ -115,8 +114,8 @@ module.exports = (grunt) ->
       [path.normalize(path.join(base, source)), path.normalize(path.join(target, dest))]
 
     for [source, dest] in queue
-      grunt.log.writeln source, '->', dest
-      dir = path.dirname(dest)
+      grunt.log.writeln source + ' -> ' + dest
+      dir = path.dirname dest
       if not fs.existsSync dir
         grunt.log.writeln true
         mkTree dir
@@ -177,7 +176,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'clean-db', 'Clean the database', ->
     done = this.async()
-    process.chdir 'src'
 
     grunt.log.writeln 'deleting database...'
     fs.unlink 'db.sqlite3', (err) ->
@@ -191,7 +189,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'init-db', 'Initialize the database', ->
     done = this.async()
-    process.chdir 'src'
 
     grunt.log.writeln 'migrating...'
     pythonExec ['manage.py', 'migrate']

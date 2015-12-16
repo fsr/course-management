@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Create a new poll</h2>
+  <form method="post" action="{% url 'poll-create' %}">
+  {% csrf_token %}
+    <table>
+
+      {{ poll_form.as_table }}
+    </table>
+    <input class="button" type="submit" value="next" />
+  </form>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+  <form method="post" action="{% url 'poll-vote' vi.poll.url %}">
+    {% csrf_token %}
+    <ol>
+      {% for block in vi %}
+
+        <li>
+
+          <h4>{{ block.question }}</h4>
+          {% if block.errored %}
+            {{ block.error }}
+          {% endif %}
+          {% if block.is_choice %}
+            <table>
+              <tr>
+                {% for choice in block.choices %}
+                  <td><label for="{{ choice.identifier }}">{{ choice.value }}</label></td>
+                {% endfor %}
+              </tr>
+              <tr>
+                {% for choice in block.choices %}
+                  <td><input{% if choice.selected %} checked{% endif %} id="{{ choice.identifier }}"
+                                                     name="{{ block.html_name }}" value="{{ choice.identifier }}"
+                                                     type="radio"></td>
+                {% endfor %}
+              </tr>
+            </table>
+          {% else %}
+            <label for="input-{{ block.html_name }}">{% trans "Freitextantwort" %}</label>
+            <textarea id="input-{{ block.html_name }}" name="{{ block.html_name }}"></textarea>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+    <input class="button" type="submit" value="Vote"/>
+  </form>
+
+{% endblock %}

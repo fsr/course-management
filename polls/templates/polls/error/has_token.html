@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>Error: you already have a token for this poll, it is {{ token.token }} and you
+    {% if token.used %}
+      used it already.
+    {% else %}
+      haven't used it yet.
+    {% endif %}
+    </p>
+{% endblock %}

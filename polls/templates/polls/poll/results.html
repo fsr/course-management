@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h2>{{ vi.poll.name }}</h2>
+  <ol>
+    {% for qi in vi %}
+      <li>
+        <p>{{ qi.question }}</p>
+        {% if qi.is_choice %}
+          <table>
+            <tr>
+              {% for choice in qi.choices %}
+                <td>{{ choice.value }}</td>
+              {% endfor %}
+            </tr>
+            <tr>
+              {% for choice in qi.choices %}
+                <td>{{ choice.get_count }}</td>
+              {% endfor %}
+            </tr>
+          </table>
+        {% else %}
+          <ol>
+            {% for value in qi.get_values %}
+              <li>{{ value.value }}</li>
+            {% endfor %}
+          </ol>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+  <a href="{% url 'poll-view' vi.poll.url %}">{% trans "Back to overview" %}</a>
+
+{% endblock %}

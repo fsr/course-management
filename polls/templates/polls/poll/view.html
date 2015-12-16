@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h2>{{ poll.name }}</h2>
+  <ol>
+    {% for qlink in poll.questions.all %}
+      {% with question=qlink.question %}
+        <li>
+        <p>{{ question.question }}</p>
+        {% if question.has_choices %}
+          <table>
+            <tr>
+              {% for choice in question.choices.all %}
+                <td>{{ choice.value }}</td>
+              {% endfor %}
+            </tr>
+          </table>
+        {% endif %}
+      {% endwith %}
+    </li>
+    {% endfor %}
+  </ol>
+  <h4>{% trans "Admin actions" %}</h4>
+  <table>
+    <tr>
+      <td><a href="{% url 'poll-edit-questions' poll.url %}">{% trans "Edit poll" %}</a></td>
+      <td><a href="{% url 'poll-vote' poll.url %}">{% trans "Vote" %}</a></td>
+      <td><a href="{% url 'poll-view-results' poll.url %}">{% trans "View results" %}</a></td>
+    </tr>
+  </table>
+
+{% endblock %}

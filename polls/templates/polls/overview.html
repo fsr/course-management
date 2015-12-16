@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block content %}
+
+  <table>
+    <thead>
+    <tr>
+      <td>{% trans "Poll name" %}</td>
+      <td colspan="2">{% trans "Admin actions" %}</td>
+    </tr>
+    </thead>
+    {% for poll in polls %}
+      <tr>
+        <td>{{ poll.name }}</td>
+        <td><a href="{% url 'poll-view' poll.url %}">{% trans "view" %}</a></td>
+        <td><a href="{% url 'poll-edit-questions' poll.url %}">{% trans "edit" %}</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <a href="{% url 'poll-create' %}">Create new</a>
+
+{% endblock %}

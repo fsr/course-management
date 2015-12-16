@@ -78,4 +78,4 @@ bower_components/
 
 .sass-cache
 
-src/static/css
+static/css

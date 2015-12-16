@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  Tokens for this poll:
+  <table>
+    {% for token in tokens %}
+      <tr>
+        <td>{{ token.token }}</td>
+        <td>{% if token.used %}used{% else %}unused{% endif %}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
