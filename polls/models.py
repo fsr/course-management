@@ -32,6 +32,7 @@ class Question(models.Model):
 
 
 class QLink(models.Model):
+    required = models.BooleanField(default=True)
     question = models.ForeignKey(Question, related_name='values')
     poll = models.ForeignKey(Poll, related_name='questions')
 

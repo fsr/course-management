@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block content %}
+  <h2>{{ poll.name }}</h2>
   <ol>
     {% for qlink in poll.questions.all %}
       {% with question=qlink.question %}
@@ -20,6 +21,9 @@
     </li>
     {% endfor %}
   </ol>
-
+  <ul>
+    <li><a href="{% url 'poll-vote' poll.url %}">{% trans "Vote" %}</a></li>
+    <li><a href="{% url 'poll-view-results' poll.url %}">{% trans "View results" %}</a></li>
+  </ul>
 
 {% endblock %}
