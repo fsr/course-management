@@ -19,6 +19,12 @@
                   {{ choice.value }}
                 {% endfor %}
               </td>
+              <td>
+                <form method="post" action="{% url 'poll-remove-question' poll.url question.id qlink.id %}">
+                  {% csrf_token %}
+                  <input type="submit" value="{% trans 'remove' %}" />
+                </form>
+              </td>
             </tr>
           {% endwith %}
         {% endfor %}

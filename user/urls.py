@@ -15,6 +15,6 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {
         'template_name': 'registration/login.html'
     }, name='login'),
-    url(r'contact/(?P<user_id>[0-9]+)/', contact.contact_form, name='contact-form'),
+    url(r'^contact/(?P<user_id>[0-9]+)/', contact.contact_form, name='contact-form'),
     url(r'^', include(auth_urls)),
 ]

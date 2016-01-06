@@ -52,8 +52,8 @@ class UserForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         fields = UserCreationForm.Meta.fields + ('email', 'first_name', 'last_name')
         help_texts = {
-            'email': _('An email adress where you can be reached the '
-                       'verification mail will be sent to this adress.'),
+            'email': _('An email adress where you can be reached. '
+                       'The verification mail will be sent to this adress.'),
             'first_name': _('First part of your public name, which should be your genuine first name. '
                       'If you become a teacher this will be visible to any site visitor. '
                       'Can be modified later.'),
@@ -66,19 +66,19 @@ class UserForm(UserCreationForm):
 
 class UserEditForm(UserForm):
     class Meta(UserForm.Meta):
-        exclude = ('username',)
+        exclude = ('username', 'password')
 
 
 class UserInformationForm(ModelForm):
     class Meta:
         model = UserInformation
-        fields = ['public_profile']
+        fields = ('public_profile',)
 
 
 class StudentInformationForm(ModelForm):
     class Meta:
         model = StudentInformation
-        fields = ['s_number', 'faculty']
+        fields = ('s_number', 'faculty')
         help_texts = {
             's_number': _('The s-number as assigned by the university. '
                       'The student verification email will be sent to the address associated with this s-number. '
@@ -111,7 +111,4 @@ class ContactForm(AbstractContactForm):
 class StudentVerificationForm(ModelForm):
     class Meta:
         model = StudentInformation
-        fields = [
-            's_number',
-            'faculty'
-        ]
+        fields = ('s_number', 'faculty')

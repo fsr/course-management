@@ -12,9 +12,12 @@ urlpatterns = [
             url(r'^generate/$', tokens.generate, name='poll-generate-token'),
             url(r'^generate/user/$', tokens.generate_user_token, name='generate-user-token')
         ])),
-        url('^edit/', include([
-            url(r'^add-question/(?P<question_id>[0-9]+)/$', polls.add_question, name='poll-add-question'),
-            url('^questions/$', polls.edit_questions, name='poll-edit-questions'),
+        url(r'^edit/', include([
+            url(r'^question/(?P<question_id>[0-9]+)/', include([
+                url(r'^add/$', polls.add_question, name='poll-add-question'),
+                url(r'^(?P<qlink_id>[0-9]+)/remove/$', polls.remove_question, name='poll-remove-question'),
+            ])),
+            url(r'^questions/$', polls.edit_questions, name='poll-edit-questions'),
         ])),
         url(r'^results/$', polls.results, name='poll-view-results'),
         url(r'^vote/$', polls.vote, name='poll-vote')

@@ -38,6 +38,7 @@ class QLink(models.Model):
     required = models.BooleanField(default=True)
     question = models.ForeignKey(Question, related_name='values')
     poll = models.ForeignKey(Poll, related_name='questions')
+    position = models.IntegerField(auto_increment=True)
 
     def html_question_id(self):
         return str(self.id)

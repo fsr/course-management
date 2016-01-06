@@ -3,6 +3,8 @@ from django.core.urlresolvers import reverse
 from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
 
+from util.error.reporting import db_error
+
 from polls import forms
 from polls.forms import VoteInterface
 from polls.models import Choice, Question, Poll, QLink
@@ -98,13 +100,44 @@ def edit_questions(request, poll_name):
         'polls/questions.html',
         {
             'poll': poll,
-            'questions': poll.questions.all(),
+            'questions': sorted(poll.questions.all(), lambda a: a.position),
             'form': form,
             'choice_forms': cf,
             'old_questions': Question.objects.all()
         }
     )
 
+# TODO require appropriate permissions
+@login_required
+def remove_question(request, poll_name, qlink_id, question_id):
+    poll = Poll.objects.get(url=poll_name)
+    qlink = QLink.objects.get(id=qlink_id)
+
+    if qlink.poll == poll and qlink.question.id == int(question_id):
+        qlink.delete()
+        return redirect('poll-edit-questions', poll.url)
+    else:
+        return db_error('Inconsistent query.')
+
+
+# TODO require appropriate permissions
+@login_required
+def bump_question(request, poll_name, qlink_id, question_id, up=False):
+    poll = Poll.objects.get(url=poll_name)
+    qlink = QLink.objects.get(id=qlink_id)
+    if qlink.poll == poll and qlink.question.id == int(question_id):
+        new_pos = qlink.position + (1 if up else (-1))
+        try:
+            old_obj = Qlink.objects.get(poll=poll, question=qlink.question, position=qlink.position)
+            old_obj.position = qlink.position
+            old_obj.save()
+        except Qlink.DoesNotExist:
+            pass
+        qlink.position = new_pos
+        qlink.save()
+        return redirect('poll-edit-questions', poll.url)
+    else:
+        return db_error('Inconsistent query.')
 
 # TODO require permissions
 @login_required
@@ -128,8 +161,10 @@ def create(request):
 
             np = poll_form.save(commit=False)
 
+            p = np  # höhö
+
             if not np.url:
-                np.url = np.url_from_name(np.name)
+                np.url = n.url_from_name(np.name)
 
             np.save()
 
