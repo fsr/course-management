@@ -5,8 +5,11 @@ path = require 'path'
 
 PYTHON_ENV_FOLDER = 'env'
 
+pythonExecSync = (args...) ->
+  cp.spawnSync.apply(cp, [path.join(PYTHON_ENV_FOLDER, 'bin/python')].concat(args))
+
 pythonExec = (args...) ->
-  cp.spawnSync.apply(cp, [fs.join(PYTHON_ENV_FOLDER, 'bin/python')] + args)
+  cp.spawn.apply(cp, [path.join(PYTHON_ENV_FOLDER, 'bin/python')].concat(args))
 
 
 lazyCopyFile = (source, target, callback) ->
@@ -64,7 +67,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'launch', 'Launch application', ->
     done = this.async()
 
-    proc = cp.spawn 'python3', ['manage.py', 'runserver'], {cwd: process.cwd()}, (err) ->
+    proc = pythonExec ['manage.py', 'runserver'], {cwd: process.cwd()}, (err) ->
       done err == null
     proc.stderr.on 'data', (data) ->
       grunt.log.write data
@@ -139,7 +142,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'pip-install', 'Get remaining dependencies', ->
     grunt.log.writeln 'installing python dependencies...'
 
-    o = pythonExec ['-m', 'pip', 'install', '-r', 'requirements.txt']
+    o = pythonExecSync ['-m', 'pip', 'install', '-r', 'requirements.txt']
     if not o.error == null
       grunt.log.writeln o.stderr
       return false
@@ -191,9 +194,9 @@ module.exports = (grunt) ->
     done = this.async()
 
     grunt.log.writeln 'migrating...'
-    pythonExec ['manage.py', 'migrate']
+    pythonExecSync ['manage.py', 'migrate']
     grunt.log.writeln 'loading sample data...'
-    pythonExec ['manage.py', 'loaddata', 'courses']
+    pythonExecSync ['manage.py', 'loaddata', 'courses']
 
     done()
 
