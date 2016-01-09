@@ -6,32 +6,32 @@
   <form method="post" action="{% url 'poll-vote' vi.poll.url %}">
     {% csrf_token %}
     <ol>
-      {% for block in vi %}
+      {% for question in vi %}
 
         <li>
 
-          <h4>{{ block.question }}</h4>
-          {% if block.errored %}
-            {{ block.error }}
+          <h4>{{ question.question }}</h4>
+          {% if question.errored %}
+            {{ question.error }}
           {% endif %}
-          {% if block.is_choice %}
+          {% if question.is_choice %}
             <table>
               <tr>
-                {% for choice in block.choices %}
+                {% for choice in question.choices %}
                   <td><label for="{{ choice.identifier }}">{{ choice.value }}</label></td>
                 {% endfor %}
               </tr>
               <tr>
-                {% for choice in block.choices %}
+                {% for choice in question.choices %}
                   <td><input{% if choice.selected %} checked{% endif %} id="{{ choice.identifier }}"
-                                                     name="{{ block.html_name }}" value="{{ choice.identifier }}"
+                                                     name="{{ question.html_name }}" value="{{ choice.identifier }}"
                                                      type="radio"></td>
                 {% endfor %}
               </tr>
             </table>
           {% else %}
-            <label for="input-{{ block.html_name }}">{% trans "Freitextantwort" %}</label>
-            <textarea id="input-{{ block.html_name }}" name="{{ block.html_name }}"></textarea>
+            <label for="input-{{ question.html_name }}">{% trans "Freitextantwort" %}</label>
+            <textarea id="input-{{ question.html_name }}" name="{{ question.html_name }}"></textarea>
           {% endif %}
         </li>
       {% endfor %}

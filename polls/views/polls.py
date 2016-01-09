@@ -100,7 +100,7 @@ def edit_questions(request, poll_name):
         'polls/questions.html',
         {
             'poll': poll,
-            'questions': sorted(poll.questions.all(), lambda a: a.position),
+            'questions': poll.questions_in_order().all(),
             'form': form,
             'choice_forms': cf,
             'old_questions': Question.objects.all()
@@ -126,15 +126,15 @@ def bump_question(request, poll_name, qlink_id, question_id, up=False):
     poll = Poll.objects.get(url=poll_name)
     qlink = QLink.objects.get(id=qlink_id)
     if qlink.poll == poll and qlink.question.id == int(question_id):
-        new_pos = qlink.position + (1 if up else (-1))
         try:
-            old_obj = Qlink.objects.get(poll=poll, question=qlink.question, position=qlink.position)
-            old_obj.position = qlink.position
+            old_obj = qlink.next_higher_to() if up else qlink.next_lower_to()
+            pos = qlink.position
+            qlink.position = old_obj.position
+            old_obj.position = pos
+            qlink.save()
             old_obj.save()
-        except Qlink.DoesNotExist:
+        except QLink.DoesNotExist:
             pass
-        qlink.position = new_pos
-        qlink.save()
         return redirect('poll-edit-questions', poll.url)
     else:
         return db_error('Inconsistent query.')

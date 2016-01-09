@@ -37,13 +37,13 @@ urlpatterns = [
         url(r'^register/', include([
             url(r'^$', enroll.add, name='register-course'),
             url(r'^done/$', enroll.enroll_response, dict(action='register'), name='register-course-done'),
-            url(r'^remove/', url([
+            url(r'^remove/', include([
                 url(r'^$', enroll.remove, name='unregister-course'),
                 url(r'^(?P<student_id>[0-9]+)/$', course.remove_student, name='unregister-course'),
                 url(r'^done/$', enroll.enroll_response, dict(action='unregister'), name='unregister-course-done'),
             ])),
         ])),
-        url(r'^schedule/', inlcude([
+        url(r'^schedule/', include([
             url(r'^edit/$', time.edit_slot, name='course-edit-slot'),
             url(r'^remove/(?P<slot_id>[0-9]+)/$', time.remove_slot, name='course-remove-slot'),
         ])),

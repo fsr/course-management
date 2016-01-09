@@ -15,7 +15,13 @@ urlpatterns = [
         url(r'^edit/', include([
             url(r'^question/(?P<question_id>[0-9]+)/', include([
                 url(r'^add/$', polls.add_question, name='poll-add-question'),
-                url(r'^(?P<qlink_id>[0-9]+)/remove/$', polls.remove_question, name='poll-remove-question'),
+                url(r'^(?P<qlink_id>[0-9]+)/', include([
+                    url(r'^remove/$', polls.remove_question, name='poll-remove-question'),
+                    url(r'^bump/', include([
+                        url(r'^up/$', polls.bump_question, {'up': True}, name='poll-bump-question-up'),
+                        url(r'^down/', polls.bump_question, {'up': False}, name='poll-bump-question-down'),
+                    ])),
+                ])),
             ])),
             url(r'^questions/$', polls.edit_questions, name='poll-edit-questions'),
         ])),

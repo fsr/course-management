@@ -134,7 +134,7 @@ class VoteInterface:
     def __init__(self, poll: Poll, data=None):
         self.poll = poll
         self.data = data
-        self.questions = list(map(self.make_vote_form, self.poll.questions.all()))
+        self.questions = list(map(self.make_vote_form, self.poll.questions_in_order().all()))
 
     def make_vote_form(self, qlink):
         if qlink.has_choices():

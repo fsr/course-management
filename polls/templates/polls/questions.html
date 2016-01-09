@@ -25,6 +25,18 @@
                   <input type="submit" value="{% trans 'remove' %}" />
                 </form>
               </td>
+              <td>
+                <form method="post" action="{% url 'poll-bump-question-up' poll.url question.id qlink.id %}">
+                  {% csrf_token %}
+                  <input type="submit" value="⬆" />
+                </form>
+              </td>
+              <td>
+                <form method="post" action="{% url 'poll-bump-question-down' poll.url question.id qlink.id %}">
+                  {% csrf_token %}
+                  <input type="submit" value="⬇" />
+                </form>
+              </td>
             </tr>
           {% endwith %}
         {% endfor %}

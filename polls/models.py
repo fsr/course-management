@@ -23,6 +23,9 @@ class Poll(models.Model):
             )
         )
 
+    def questions_in_order(self):
+        return self.questions.order_by('position')
+
 
 class Question(models.Model):
     question = models.CharField(max_length=500)
@@ -34,11 +37,18 @@ class Question(models.Model):
         return self.choices.count() > 0
 
 
+def qlink_next_position():
+    try:
+        return QLink.objects.order_by('-position')[:1].get().position
+    except QLink.DoesNotExist:
+        return 1
+
+
 class QLink(models.Model):
     required = models.BooleanField(default=True)
     question = models.ForeignKey(Question, related_name='values')
     poll = models.ForeignKey(Poll, related_name='questions')
-    position = models.IntegerField(auto_increment=True)
+    position = models.IntegerField(default=qlink_next_position)
 
     def html_question_id(self):
         return str(self.id)
@@ -54,14 +64,18 @@ class QLink(models.Model):
 
     def increment_choice(self, choice):
 
-        if isinstance(choice, Choice):
-            choice = choice.id
-        else:
+        if not isinstance(choice, Choice):
             choice = Choice.objects.get(id=int(choice))
 
         c = self.counters.get_or_create(choice=choice, qlink=self)
         c.counter += 1
         c.save()
+
+    def next_lower_to(self):
+        return QLink.objects.filter(position__lt=self.position).order_by('-position')[:1].get()
+
+    def next_higher_to(self):
+        return QLink.objects.filter(position__gt=self.position).order_by('position')[:1].get()
 
 
 class Choice(models.Model):
