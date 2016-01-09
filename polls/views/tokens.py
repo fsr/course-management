@@ -1,9 +1,9 @@
-from django.contrib.auth.decorators import permission_required, login_required
-from django.shortcuts import render, render_to_response
-from polls.models import Poll, Token
-import random
 import string
 
+from django.contrib.auth.decorators import permission_required, login_required
+from django.shortcuts import render, render_to_response
+
+from polls.models import Poll, Token
 
 allowed_chars = string.ascii_letters + string.digits
 
@@ -45,14 +45,13 @@ def generate_user_token(request, poll_name):
     except Token.DoesNotExist:
         token = Token.generate(
             poll=poll,
-            user=user
+                user=request.user
         )
         return render(
             request,
             'polls/tokens.html',
             {'tokens': [token]}
         )
-
 
 
 # TODO require permission

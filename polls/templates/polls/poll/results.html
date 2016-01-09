@@ -2,9 +2,9 @@
 {% load i18n %}
 
 {% block content %}
-  <h2>{{ vi.poll.name }}</h2>
+  <h2>{{ vote_interface.poll.name }}</h2>
   <ol>
-    {% for qi in vi %}
+    {% for qi in vote_interface %}
       <li>
         <p>{{ qi.question }}</p>
         {% if qi.is_choice %}
@@ -30,6 +30,6 @@
       </li>
     {% endfor %}
   </ol>
-  <a href="{% url 'poll-view' vi.poll.url %}">{% trans "Back to overview" %}</a>
+  <a href="{% url 'poll-view' vote_interface.poll.url %}">{% trans "Back to overview" %}</a>
 
 {% endblock %}

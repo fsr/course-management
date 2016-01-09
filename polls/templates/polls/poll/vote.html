@@ -3,10 +3,10 @@
 {% load i18n %}
 
 {% block content %}
-  <form method="post" action="{% url 'poll-vote' vi.poll.url %}">
+  <form method="post" action="{% url 'poll-vote' vote_interface.poll.url %}">
     {% csrf_token %}
     <ol>
-      {% for question in vi %}
+      {% for question in vote_interface %}
 
         <li>
 
