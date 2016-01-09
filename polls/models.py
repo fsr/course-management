@@ -39,7 +39,7 @@ class Question(models.Model):
 
 def qlink_next_position():
     try:
-        return QLink.objects.order_by('-position')[:1].get().position
+        return QLink.objects.order_by('-position')[:1].get().position + 1
     except QLink.DoesNotExist:
         return 1
 
@@ -72,10 +72,10 @@ class QLink(models.Model):
         c.save()
 
     def next_lower_to(self):
-        return QLink.objects.filter(position__lt=self.position).order_by('-position')[:1].get()
+        return QLink.objects.filter(position__gt=self.position).order_by('position')[:1].get()
 
     def next_higher_to(self):
-        return QLink.objects.filter(position__gt=self.position).order_by('position')[:1].get()
+        return QLink.objects.filter(position__lt=self.position).order_by('-position')[:1].get()
 
 
 class Choice(models.Model):

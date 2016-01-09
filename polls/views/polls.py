@@ -164,7 +164,7 @@ def create(request):
             p = np  # höhö
 
             if not np.url:
-                np.url = n.url_from_name(np.name)
+                np.url = p.url_from_name(np.name)
 
             np.save()
 
