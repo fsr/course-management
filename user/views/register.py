@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _
 from user import mailsettings
 from user.forms import StudentVerificationForm, UserInformationForm, StudentInformationForm, UserForm
 from user.models import UserInformation, Activation, ACTIVATION_TYPES
-from user.views.verify import VERIFICATIONS
+
 
 from re_captcha.decorators import re_captcha_verify
 

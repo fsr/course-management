@@ -6,6 +6,8 @@ from django.views.decorators.http import require_GET
 from django.contrib.auth.decorators import login_required
 
 from user.models import Activation, ACTIVATION_TYPES
+from user.forms import StudentVerificationForm
+from user.views.register import verification_mail
 
 
 VERIFICATIONS = {}
@@ -32,7 +34,6 @@ def no_verify_view(request):
     )
 
 
-@require_GET
 def verify(request, type_):
 
     if 'token' not in request.GET:
@@ -71,14 +72,17 @@ def verify_user(user):
 
 def verify_student(user):
     si = user.userinformation.studentinformation
-    si.verfied = True
+    si.verified = True
     si.save()
 
 
 
 @login_required
 def verify_student_form(request):
-
+    if request.user.userinformation.is_student():
+        return redirect(
+            'user-profile'
+        )
     if request.method == "POST":
         form = StudentVerificationForm(request.POST)
         if form.is_valid():
@@ -86,7 +90,7 @@ def verify_student_form(request):
             a.userinformation = request.user.userinformation
             a.user = request.user
             a.save()
-            activation_mail(a.user, 'student', a.make_zih_mail())
+            verification_mail(a.user, 'student', a.make_zih_mail())
             return redirect(
                 'user-profile'
             )
