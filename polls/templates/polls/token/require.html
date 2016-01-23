@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+  {% if error %}
+    {{ error }}
+  {% endif %}
+
+  <form action="{{ target }}">
+    <label for="token-input">{% trans 'Token' %}</label>
+    <input id="token-input" name="token" type="text">
+    <input type="submit" value="{% trans 'Send' %}">
+  </form>
+
+{% endblock %}

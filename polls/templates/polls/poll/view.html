@@ -27,6 +27,8 @@
       <td><a href="{% url 'poll-edit-questions' poll.url %}">{% trans "Edit poll" %}</a></td>
       <td><a href="{% url 'poll-vote' poll.url %}">{% trans "Vote" %}</a></td>
       <td><a href="{% url 'poll-view-results' poll.url %}">{% trans "View results" %}</a></td>
+      <td><a href="{% url 'poll-token-overview' poll.url %}">{% trans "View tokens" %}</a></td>
+      <td><a href="{% url 'poll-generate-tokens' poll.url %}">{% trans "Generate tokens" %}</a></td>
     </tr>
   </table>
 

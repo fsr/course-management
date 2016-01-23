@@ -5,6 +5,7 @@
 {% block content %}
   <form method="post" action="{% url 'poll-vote' vote_interface.poll.url %}">
     {% csrf_token %}
+    <input name="token" type="hidden" value="{{ token }}">
     <ol>
       {% for question in vote_interface %}
 

@@ -6,7 +6,7 @@
     {% for token in tokens %}
       <tr>
         <td>{{ token.token }}</td>
-        <td>{% if token.used %}used{% else %}unused{% endif %}</td>
+        <td>{% if token.used %}<b>used</b>{% else %}unused{% endif %}</td>
       </tr>
     {% endfor %}
   </table>

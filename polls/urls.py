@@ -9,7 +9,7 @@ urlpatterns = [
         url(r'^$', polls.view, name='poll-view'),
         url(r'^tokens/', include([
             url(r'^$', tokens.all, name='poll-token-overview'),
-            url(r'^generate/$', tokens.generate, name='poll-generate-token'),
+            url(r'^generate/$', tokens.generate, name='poll-generate-tokens'),
             #url(r'^generate/user/$', tokens.generate_user_token, name='generate-user-token')
         ])),
         url(r'^edit/', include([
@@ -26,6 +26,7 @@ urlpatterns = [
             url(r'^questions/$', polls.edit_questions, name='poll-edit-questions'),
         ])),
         url(r'^results/$', polls.results, name='poll-view-results'),
-        url(r'^vote/$', polls.vote, name='poll-vote')
+        url(r'^vote/$', polls.vote, name='poll-vote'),
+        url(r'^require-token/$', polls.require_token, name='poll-require-token')
     ]))
 ]

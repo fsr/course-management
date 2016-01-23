@@ -11,11 +11,10 @@
   {% endif %}
   {% if generate %}
     You can generate tokens here.
-    <form action="{% url 'poll-generate-token' poll.url %}">
-      {% csrf_token %}
+    <form action="{% url 'poll-generate-tokens' poll.url %}">
       <label for="amount-input">Amount of tokens to generate</label>
       <input type="number" name="amount" id="amount-input" />
-      <input type="submit" value="Generate" />
+      <input class="button" type="submit" value="Generate"/>
     </form>
   {% endif %}
 {% endblock %}

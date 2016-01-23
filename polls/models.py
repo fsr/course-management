@@ -1,10 +1,9 @@
-import random
-import re
 import string
 
+import random
+import re
 from django.contrib.auth.models import User
 from django.db import models
-
 from guardian.models import UserObjectPermission
 
 allowed_chars = string.ascii_letters + string.digits
@@ -179,7 +178,7 @@ class Token(models.Model):
         :param user: User associated with the token.
         :return: new token object
         """
-        token = random.sample(allowed_chars, cls.LENGTH)
+        token = ''.join(random.sample(allowed_chars, cls.LENGTH))
         try:
             cls.objects.get(token=token, poll=poll)
             return cls.generate(poll, user)

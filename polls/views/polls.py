@@ -2,11 +2,10 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.core.urlresolvers import reverse
 from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
-
+from django.utils.translation import ugettext as _
 from guardian.shortcuts import assign_perm
-
 from polls.forms import PollInterface, QuestionForm, PollForm
-from polls.models import Choice, Question, Poll, QLink
+from polls.models import Choice, Question, Poll, QLink, Token
 from polls.util.permissions import must_be_owner
 from util.error.reporting import db_error
 
@@ -19,8 +18,18 @@ def overview(request):
     """
     return render(
             request,
-            'polls/overview.html',
+            'polls/poll/overview.html',
             {'polls': Poll.objects.all()}
+    )
+
+
+def require_token(request, poll_name):
+    return render(
+            request,
+            'polls/token/require.html',
+            {
+                'target': reverse('poll-vote', args=(poll_name,))
+            }
     )
 
 
@@ -31,10 +40,40 @@ def vote(request, poll_name):
     Form for voting on a poll and handling the submitted results.
     """
     poll = Poll.objects.get(url=poll_name)
+
+    if 'token' in request.GET:
+        token = request.GET['token']
+
+    elif 'token' in request.POST:
+        token = request.POST['token']
+    else:
+        return redirect('poll-require-token', poll_name)
+
+    def fail_token_verify(message):
+        return render(
+                request,
+                'polls/token/require.html',
+                {
+                    'target': reverse('poll-vote', args=(poll_name,)),
+                    'error': _(message)
+                }
+        )
+
+    try:
+        token = Token.objects.get(token=token, poll=poll)
+    except Token.DoesNotExist:
+        return fail_token_verify('This token is invalid (for this poll).')
+
+    if token.used:
+        return fail_token_verify('This token has already been used, please obtain a new one.')
+
     if request.method == 'POST':
+
         vote_interface = PollInterface(poll, request.POST)
 
         if vote_interface.is_valid():
+            token.used = True
+            token.save()
             vote_interface.save()
             return redirect('poll-view', poll.url)
     else:
@@ -43,7 +82,10 @@ def vote(request, poll_name):
     return render(
             request,
             'polls/poll/vote.html',
-            {'vote_interface': vote_interface}
+            {
+                'vote_interface': vote_interface,
+                'token': token.token
+            }
     )
 
 
@@ -110,7 +152,7 @@ def edit_questions(request, poll_name):
         cf = ChoiceForms()
     return render(
         request,
-        'polls/questions.html',
+            'polls/poll/questions.html',
         {
             'poll': poll,
             'questions': poll.questions_in_order().all(),

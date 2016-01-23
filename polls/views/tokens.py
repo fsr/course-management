@@ -2,9 +2,7 @@ import string
 
 from django.contrib.auth.decorators import permission_required, login_required
 from django.shortcuts import render, render_to_response
-
 from polls.models import Poll, Token
-
 from polls.util.permissions import must_be_owner
 
 allowed_chars = string.ascii_letters + string.digits
@@ -22,12 +20,12 @@ def generate(request, poll_name):
     if amount is not None:
         tokens = [
             Token.generate(poll)
-            for _ in range(amount)
-        ]
+            for _ in range(int(amount))
+            ]
         context['tokens'] = tokens
     return render(
         request,
-        'polls/gen.html',
+            'polls/token/gen.html',
         context
     )
 
@@ -52,7 +50,7 @@ def generate_user_token(request, poll_name):
         )
         return render(
             request,
-            'polls/tokens.html',
+                'polls/token/overview.html',
             {'tokens': [token]}
         )
 
@@ -63,6 +61,6 @@ def all(request, poll_name):
     poll = Poll.objects.get(url=poll_name)
     return render(
         request,
-        'polls/tokens.html',
-        {'tokens': poll.tokens}
+            'polls/token/overview.html',
+            {'tokens': poll.tokens.all()}
     )
