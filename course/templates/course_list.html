@@ -57,6 +57,7 @@
               {% trans "This course is currently" %} {% if course.active %}{% trans "active" %}{% else %}{% trans "suspended" %}{% endif %}.
             {% else %}
               {% if course in courses %}
+              {% trans "You are enrolled. ✅" %}
                 {% include "course/forms/unregister.html" %}
               {% elif course.joinable %}
                 {% include "course/forms/register.html" %}
