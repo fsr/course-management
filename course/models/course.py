@@ -12,6 +12,8 @@ from user.models import UserInformation, get_user_information
 
 from util.html_clean import clean_for_description
 
+from datetime import date
+
 
 ARCHIVE_STATUSES = (
     ('t', 'auto'),
@@ -31,6 +33,8 @@ class Course(models.Model):
     archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)
     queue = models.ManyToManyField(UserInformation, related_name='waiting_for')
     student_only = models.BooleanField(default=False)
+    start_time = models.DateField(default=date.today())
+    end_time = models.DateField(default=date.today())
 
     class IsFull(Exception):
         pass

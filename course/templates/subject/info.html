@@ -8,17 +8,25 @@
     {{ subject.description }}
     </div>
   </div>
-  <div class="row">
-    <div class="column"><a href="{% url 'edit-subject' subject.name %}">{% trans "Edit" %}</a></div>
+  <div>
+    <p>
+      {% if perms.course.create_course %}
+      <a href="{% url 'create-course' %}?subject={{ subject.id }}" class="button float-left" role="button">{% trans "Create new course" %}</a>
+      {% endif %}
+
+      <a class="button float-left" href="{% url 'edit-subject' subject.name %}" role="button">{% trans "Edit" %}</a>
+
+      {% if subject and perms.course.delete_subject %}
+      <form class="float-right" method="post" action="{% url 'delete-subject' subject.name %}">
+        {% csrf_token %}
+        <button class="button alert" role="link" type="submit">{% trans 'Delete' %}</button>
+      </form>
+      {% endif %}
+    </p>
   </div>
 
   <hr>
+
   {% include 'course_list.html' %}
-  {% if perms.course.create_course %}
-    <div class="row">
-      <div class="collumn">
-        <a href="{% url 'create-course' %}?subject={{ subject.id }}" class="btn btn-default">{% trans "Create new course" %}</a>
-      </div>
-    </div>
-  {% endif %}
+
 {% endblock %}

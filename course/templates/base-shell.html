@@ -54,10 +54,17 @@
     </a>
   </footer>
   <script type="text/javascript" src="{% static "vendor/js/jquery.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "vendor/js/jquery-ui.min.js" %}"></script>
   <script type="text/javascript" src="{% static "vendor/js/foundation.min.js" %}"></script>
   <script type="text/javascript" src="{% static "vendor/js/fastclick.js" %}"></script>
   <script type="text/javascript">
     $(document).foundation();
+  </script>
+  <script>
+    $(".datepicker").datepicker({
+      dateFormat: 'dd.mm.yy',
+      constrainInput: false
+    });
   </script>
 </body>
 </html>

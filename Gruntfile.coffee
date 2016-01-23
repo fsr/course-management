@@ -45,6 +45,7 @@ module.exports = (grunt) ->
         target: 'static/vendor/js'
         files: [
           ['jquery/dist/jquery.min.js', 'jquery.min.js'],
+          ['jquery-ui/jquery-ui.min.js', 'jquery-ui.min.js'],
           ['foundation/js/foundation.min.js', 'foundation.min.js'],
           ['fastclick/lib/fastclick.js', 'fastclick.js'],
           ['modernizr/modernizr.js', 'modernizr.js'],

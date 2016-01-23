@@ -6,12 +6,7 @@
     <table class="table">
       {{ form.as_table }}
     </table>
-    <input class="btn btn-default" type="submit" value="{% trans "Edit" %}" />
+    <input class="button" type="submit" value="{% trans 'Edit' %}" />
+    <input class="button" type="submit" value="{% trans 'Cancel' %}" name="cancel"/>
   </form>
-  {% if subject and perms.course.delete_subject %}
-    <form method="post" action="{% url 'delete-subject' subject.name %}">
-      {% csrf_token %}
-      <input type="submit" class="btn btn-default" value="{% trans "Delete" %}" />
-    </form>
-  {% endif %}
 {% endblock %}
