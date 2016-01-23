@@ -3,6 +3,8 @@ import functools
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 
 from guardian.models import UserObjectPermission
 
@@ -14,8 +16,8 @@ def needs_teacher_permissions(func):
     """
     The decorated function must take at least 2 parameters, the request, and a Course object or an id for a course.
 
-    If the current user is registered as a teacher for the course the decorated function is executed, else a
-     PermissionError is raised
+    If the current user is registered as a teacher for the course the decorated function is executed, else
+    the user is redirected to the login page
 
     :param func:
     :return:
@@ -30,7 +32,7 @@ def needs_teacher_permissions(func):
         if has_teacher_permissions(request.user.userinformation, curr_course):
             return func(request, course_id, *args, **kwargs)
         else:
-            raise PermissionDenied()
+            return redirect(reverse('login')+'?next='+request.path)
     return wrapped
 
 def has_teacher_permissions(student, course):
