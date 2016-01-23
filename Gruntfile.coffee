@@ -3,13 +3,15 @@ fs = require 'fs'
 cp = require 'child_process'
 path = require 'path'
 
+PYTHON_EXEC = if /^win/.test(process.platform) then 'Scripts/python3.exe' else 'bin/python'
+
 PYTHON_ENV_FOLDER = 'env'
 
 pythonExecSync = (args...) ->
-  cp.spawnSync.apply(cp, [path.join(PYTHON_ENV_FOLDER, 'bin/python')].concat(args))
+  cp.spawnSync.apply(cp, [path.join(PYTHON_ENV_FOLDER, PYTHON_EXEC)].concat(args))
 
 pythonExec = (args...) ->
-  cp.spawn.apply(cp, [path.join(PYTHON_ENV_FOLDER, 'bin/python')].concat(args))
+  cp.spawn.apply(cp, [path.join(PYTHON_ENV_FOLDER, PYTHON_EXEC)].concat(args))
 
 
 lazyCopyFile = (source, target, callback) ->
@@ -94,6 +96,7 @@ module.exports = (grunt) ->
       throw new TypeError('expected list of objects or strings, or object')
 
   grunt.registerTask 'install-virtualenv', 'Install a python virtual environment', ->
+# TODO Check return code for virtualenv installation and report errors
     cp.spawnSync 'python3', ['-m', 'pip', 'install', 'virtualenv']
     cp.spawnSync 'python3', ['-m', 'virtualenv', PYTHON_ENV_FOLDER]
 
