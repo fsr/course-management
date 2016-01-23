@@ -1,15 +1,14 @@
 from django import forms
-from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
+from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 
+from course.models.course import Course
 from course.models.schedule import Schedule, DateSlot, WeeklySlot
 from course.models.subject import Subject
-from course.models.course import Course
 from user.forms import AbstractContactForm
-
 
 location_validator = RegexValidator(
     r'^.*$', # does absolutely nothing yet
@@ -27,11 +26,21 @@ subject_name_validator = RegexValidator(
 
 
 def subject_disallowed_names_validator(name):
+    """
+    Make sure the subject has no reserved name, otherwise its page won't be reachable.
+
+    :param name: name to test
+    """
     if name in SUBJECT_DISALLOWED_NAMES:
         raise ValidationError(_('Invalid subject name.'))
 
 
 def username_exists_validator(value):
+    """
+    Make sure a username exists.
+
+    :param value: name
+    """
     try:
         User.objects.get(username=value)
 
@@ -110,8 +119,8 @@ class SubjectForm(ModelForm):
             'Allowed characters are word characters, numbers, spaces, '
             '\'-\' and \'_\' and it cannot be any of '
             + ', ').join(map(lambda a: '\'' + a + '\'', SUBJECT_DISALLOWED_NAMES)) + '.'
-
     )
+
     class Meta:
         model = Subject
         fields = [

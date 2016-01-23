@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # TODO Change this before deploying
-SECRET_KEY = '=z%&5y*h9-sw!&o-2rb53wyrtze!)r^()k0(&o1sovi9bm(4%1'
+SECRET_KEY = os.environ.get('COURSE_MANAGEMENT_SECRET_KEY', '=z%&5y*h9-sw!&o-2rb53wyrtze!)r^()k0(&o1sovi9bm(4%1')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -147,4 +147,4 @@ RE_CAPTCHA_VERIFY = True
 RE_CAPTCHA_SITE_KEY = '6LdQdhETAAAAAD-uv2YJhtsYLvskvdKj_dT9YMLg'
 # the secret key key for this site (Don't commit it)
 # TODO Add this in when deploying
-RE_CAPTCHA_SECRET_KEY = ''
+RE_CAPTCHA_SECRET_KEY = os.environ.get('COURSE_MANAGEMENT_RE_CAPTCHA_SECRET_KEY', '')

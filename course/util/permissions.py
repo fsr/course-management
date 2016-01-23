@@ -4,8 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext as _
 
-from guardian.models import UserObjectPermission
-
 from course.models.course import Course
 from util.error.reporting import db_error
 
