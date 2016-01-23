@@ -3,10 +3,8 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpRequest
 from django.shortcuts import redirect, render_to_response, render
-from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext as _
-
-from guardian.models import UserObjectPermission
+from django.views.decorators.http import require_POST
 from guardian.shortcuts import assign_perm
 from guardian.shortcuts import remove_perm
 
@@ -15,13 +13,10 @@ from course.models.course import Course
 from course.models.schedule import Schedule
 from course.models.subject import Subject
 from course.util.permissions import needs_teacher_permissions
-
 from user.models import UserInformation
-
 from util import html_clean
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
-
 
 DEFAULT_COURSE_DESCRIPTION = """\
 # The Hitchhikers Guide To The Galaxy
@@ -35,7 +30,14 @@ We will explore the universe.
 """
 
 
-def course(request, course_id):
+def course(request: HttpRequest, course_id: str):
+    """
+    Controller for single course info page
+
+    :param request: request object
+    :param course_id: id for the course
+    :return:
+    """
     try:
         current_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
@@ -58,7 +60,14 @@ def course(request, course_id):
 
 
 @needs_teacher_permissions
-def edit_course(request, course_id):
+def edit_course(request: HttpRequest, course_id: str):
+    """
+    Edit form for changing a course and handler for submitted data.
+
+    :param request: request object
+    :param course_id: id for the course
+    :return:
+    """
     try:
         current_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
@@ -89,7 +98,15 @@ def edit_course(request, course_id):
 
 @needs_teacher_permissions
 @require_POST
-def toggle(request, course_id, active):
+def toggle(request: HttpRequest, course_id: str, active: bool):
+    """
+    Toggle course status (active/inactive)
+
+    :param request: request information
+    :param course_id:
+    :param active: active/inactive
+    :return: 
+    """
     try:
         curr_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
@@ -277,3 +294,30 @@ def remove_student(request: HttpRequest, course_id:str, UserInformation_id:str):
         return db_error(_('Requested student is not enrolled in this course.'))
 
     return redirect('course', course_id)
+
+
+@needs_teacher_permissions
+def attendee_list(request, course_id):
+    if 'slots' in request.GET:
+        try:
+            course = Course.objects.get(id=course_id)
+        except Course.DoesNotExist:
+            return db_error(_('Requested course does not exist.'))
+
+        slots = int(request.GET['slots'])
+
+        return render(
+                request,
+                'course/attendee-list.html',
+                {
+                    'attendees': course.participants.all(),
+                    'slots': range(slots)
+                }
+        )
+    return render(
+            request,
+            'course/attendee-list-select.html',
+            {
+                'course_id': course_id
+            }
+    )

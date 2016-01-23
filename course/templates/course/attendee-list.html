@@ -1,0 +1,35 @@
+{% load i18n %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Attendee list</title>
+  <style>
+    td {
+      border: 1px solid black;
+      min-width: 70px;
+      min-height: 50px;
+    }
+  </style>
+</head>
+<body>
+<section class="attendee-list">
+  <table>
+    <tr>
+      <td>{% trans "Dates" %}</td>
+      {% for slot in slots %}
+        <td>&nbsp;</td>
+      {% endfor %}
+    </tr>
+    {% for attendee in attendees %}
+      <tr>
+        <td>{{ attendee.last_name }}, {{ attendee.first_name }}</td>
+        {% for slot in slots %}
+          <td>&nbsp;</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+
+</section>
+</body>
+</html>

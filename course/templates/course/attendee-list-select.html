@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+  <form method="get" action="{% url 'attendee-list' course_id %}">
+    <label for="slot-select">{% trans "Number of slots to generate." %}</label>
+    <input name="slots" id="slot-select" type="number"/>
+    <input type="submit" value="{% trans "Generate" %}">
+  </form>
+
+{% endblock %}

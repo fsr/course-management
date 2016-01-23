@@ -3,7 +3,6 @@ from django.contrib import admin
 
 from course.views import index, subject, course, enroll, time
 
-
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', index.index, name='index'),
@@ -51,6 +50,7 @@ urlpatterns = [
             url(r'^add/$', course.add_teacher, name='add-teacher'),
             url(r'^remove/(?P<teacher_id>[0-9]+)/$', course.remove_teacher, name='remove-teacher'),
         ])),
+        url(r'^attendee-list/$', course.attendee_list, name='attendee-list'),
     ])),
     url(r'^polls/', include('polls.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),

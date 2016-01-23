@@ -64,6 +64,7 @@
           <a class="button" href="{% url 'course-edit-slot' course_id %}">{% trans "Edit schedule" %}</a>
           <a class="button" href="{% url 'add-teacher' course_id %}">{% trans "Add/Remove teachers" %}</a>
           <a class="button" href="{% url 'notify-course' course_id %}">{% trans "Notify course" %}</a>
+          <a class="button" href="{% url 'attendee-list' course_id %}">{% trans 'Generate attendee list' %}</a>
         </div>
         <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">
             {% csrf_token %}
