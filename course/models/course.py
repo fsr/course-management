@@ -97,11 +97,6 @@ class Course(models.Model):
     def get_description_as_html(self):
         return clean_for_description(markdown(self.description))
 
-    # deprecated
-    def is_teacher(self, student):
-        student = get_user_information(student)
-        return self.teacher.filter(id=student.id).exists()
-
     def get_distinct_locations(self):
         return self.schedule.slots.values_list('location', flat=True).distinct()
 
@@ -121,7 +116,7 @@ class Course(models.Model):
             student = get_user_information(student)
             context['is_subbed'] = student.course_set.filter(id=self.id).exists()
 
-        if student.user.has_perm('course.change_course', self):
+        if self.is_teacher(student):
             context['is_teacher'] = True
             context['students'] = self.participants.all()
 
@@ -135,6 +130,10 @@ class Course(models.Model):
 
     def has_description(self):
         return self.description != ''
+
+    def is_teacher(self, student):
+        return student.user.has_perm('change_course', self) \
+                and student.user.has_perm('delete_course', self)
 
 
 class Notification(models.Model):

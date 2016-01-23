@@ -10,7 +10,7 @@ urlpatterns = [
         url(r'^tokens/', include([
             url(r'^$', tokens.all, name='poll-token-overview'),
             url(r'^generate/$', tokens.generate, name='poll-generate-token'),
-            url(r'^generate/user/$', tokens.generate_user_token, name='generate-user-token')
+            #url(r'^generate/user/$', tokens.generate_user_token, name='generate-user-token')
         ])),
         url(r'^edit/', include([
             url(r'^question/(?P<question_id>[0-9]+)/', include([

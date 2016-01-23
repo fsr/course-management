@@ -4,8 +4,6 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext as _
 
-from guardian.models import UserObjectPermission
-
 from course.models import subject
 from course.forms import SubjectForm
 
@@ -23,7 +21,7 @@ def course_overview(request, subjectname):
     if user.is_authenticated():
         student = user.userinformation
         cl = filter(
-            lambda c: c.active or user.has_perm('course.change_course', c),
+            lambda c: c.active or c.is_teacher(user.userinformation),
             active_subject.course_set.all()
         )
     else:
