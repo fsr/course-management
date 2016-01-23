@@ -130,7 +130,7 @@ class QLink(models.Model):
 
         :return: close link
         """
-        return self.objects.filter(position__gt=self.position).order_by('position')[:1].get()
+        return self.__class__.objects.filter(position__gt=self.position, poll=self.poll).order_by('position')[:1].get()
 
     def next_higher_to(self):
         """
@@ -138,7 +138,7 @@ class QLink(models.Model):
 
         :return: close link
         """
-        return self.objects.filter(position__lt=self.position).order_by('-position')[:1].get()
+        return self.__class__.objects.filter(position__lt=self.position, poll=self.poll).order_by('-position')[:1].get()
 
 
 class Choice(models.Model):

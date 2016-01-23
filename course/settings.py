@@ -137,6 +137,8 @@ PROJECT_DIR = __file__
 
 
 DEFAULT_FROM_EMAIL = 'noreply@ifsr.de'
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Settings for the re_captcha module
