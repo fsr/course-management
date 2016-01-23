@@ -60,7 +60,7 @@ module.exports = (grunt) ->
             'bower_components/foundation/scss'
           ]
         files:
-          'static/css/style.css': 'scss/style.sass'
+          'static/css/style.css': 'sass/style.sass'
 
   grunt.loadNpmTasks 'grunt-contrib-sass'
 
