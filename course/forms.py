@@ -60,13 +60,20 @@ class CourseForm(ModelForm):
 
     class Meta:
         model = Course
+        widgets = {
+            'start_time': forms.DateInput(attrs={'class': 'datepicker'}),
+            'end_time': forms.DateInput(attrs={'class': 'datepicker'}),
+        }
+
         fields = [
             'subject',
             'active',
             'description',
             'max_participants',
             'archiving',
-            'student_only'
+            'student_only',
+            'start_time',
+            'end_time'
         ]
         help_texts = {
             'subject': _('Choose a subject for your course. '),
@@ -79,10 +86,14 @@ class CourseForm(ModelForm):
                             'You can use markdown for formatting.'
                             ),
             'max_participants': _('How many people can join your course. (Can be changed later)'),
-            'student_only': _('Should your course only be available to students?')
+            'student_only': _('Should your course only be available to students?'),
+            'start_time': _('The course starts on that day.'),
+            'end_time': _('The course will end at that day.')
         }
         labels = {
-            'max_participants': _('Max nr. of participants')
+            'max_participants': _('Max nr. of participants'),
+            'start_time': _('Begin'),
+            'end_time': _('End')
         }
 
 
