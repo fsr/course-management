@@ -119,6 +119,11 @@ def create(request):
                 request.user,
                 created
             )
+            assign_perm(
+                'delete_course',
+                request.user,
+                created
+            )
 
             return redirect('course', created.id)
     else:
@@ -144,7 +149,7 @@ def create(request):
 
 @login_required()
 @require_POST
-@permission_required('course.delete_course')
+@needs_teacher_permissions
 def delete(request, course_id):
     try:
         course = Course.objects.get(id=course_id)
@@ -182,6 +187,11 @@ def add_teacher(request, course_id):
                     user,
                     curr_course
                 )
+                assign_perm(
+                    'delete_course',
+                    user,
+                    curr_course
+                )
 
                 return redirect('add-teacher', course_id)
             except User.DoesNotExist:
@@ -209,6 +219,11 @@ def remove_teacher(request, course_id, teacher_id):
         curr_course.teacher.remove(user.userinformation)
         remove_perm(
             'change_course',
+            user,
+            curr_course
+        )
+        remove_perm(
+            'delete_course',
             user,
             curr_course
         )

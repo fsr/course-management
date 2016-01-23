@@ -27,8 +27,19 @@ def needs_teacher_permissions(func):
             curr_course = Course.objects.get(id=course_id) if not isinstance(course_id, Course) else course_id
         except Course.DoesNotExist:
             return db_error(_('This course does not seem to exist, sorry.'))
-        if request.user.has_perm('course.change_course', curr_course) or request.user.has_perm('course.change_course'):
+        if has_teacher_permissions(request.user.userinformation, curr_course):
             return func(request, course_id, *args, **kwargs)
         else:
             raise PermissionDenied()
     return wrapped
+
+def has_teacher_permissions(student, course):
+    """
+    Returns true if the student ist allowed to change and delete the course,
+    i.e. they are a teacher or have general permissions to change and edit
+    course objects
+    """
+    return course.is_teacher(student) or (
+            student.user.has_perm('course.change_course')
+            and student.user.has_perm('course.change_course')
+    )
