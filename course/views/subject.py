@@ -93,11 +93,10 @@ def edit(request, subjectname):
     if request.method == 'POST':
         form = SubjectForm(request.POST, instance=subj)
 
-        if form.is_valid():
-
+        if 'cancel' not in request.POST and form.is_valid():
             subj.save()
 
-            return redirect('subject', subj.name)
+        return redirect('subject', subj.name)
 
     else:
         form = SubjectForm(instance=subj)
