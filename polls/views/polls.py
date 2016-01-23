@@ -1,10 +1,13 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.core.urlresolvers import reverse
 from django.forms import inlineformset_factory
 from django.shortcuts import render, redirect
 
+from guardian.shortcuts import assign_perm
+
 from polls.forms import PollInterface, QuestionForm, PollForm
 from polls.models import Choice, Question, Poll, QLink
+from polls.util.permissions import must_be_owner
 from util.error.reporting import db_error
 
 
@@ -21,7 +24,7 @@ def overview(request):
     )
 
 
-# TODO add permissions
+# TODO validate token
 @login_required
 def vote(request, poll_name):
     """
@@ -44,8 +47,8 @@ def vote(request, poll_name):
     )
 
 
-# TODO add permissions
 @login_required
+@must_be_owner
 def results(request, poll_name):
     """
     View the (currents) results for a poll. (Anonymized)
@@ -59,8 +62,8 @@ def results(request, poll_name):
     )
 
 
-# TODO add permissions
 @login_required
+@must_be_owner
 def view(request, poll_name):
     """
     Look at the poll. Only look, no touch!!!
@@ -72,8 +75,8 @@ def view(request, poll_name):
     )
 
 
-# TODO require permissions
 @login_required
+@must_be_owner
 def edit_questions(request, poll_name):
     """
     Editing form and handler for adding new questions.
@@ -117,8 +120,8 @@ def edit_questions(request, poll_name):
         }
     )
 
-# TODO require appropriate permissions
 @login_required
+@must_be_owner
 def remove_question(request, poll_name, qlink_id, question_id):
     """
     Remove the link between a question and a poll (also discards its results).
@@ -133,8 +136,8 @@ def remove_question(request, poll_name, qlink_id, question_id):
         return db_error('Inconsistent query. Id\'s do not match.')
 
 
-# TODO require appropriate permissions
 @login_required
+@must_be_owner
 def bump_question(request, poll_name, qlink_id, question_id, up=False):
     """
     Move a question up or down in the poll.
@@ -155,8 +158,8 @@ def bump_question(request, poll_name, qlink_id, question_id, up=False):
     else:
         return db_error('Inconsistent query.')
 
-# TODO require permissions
 @login_required
+@must_be_owner
 def add_question(request, poll_name, question_id):
     """
     Create a link between a question and a poll.
@@ -172,8 +175,8 @@ def add_question(request, poll_name, question_id):
     )
 
 
-# TODO require permission
 @login_required
+@permission_required("polls.create")
 def create(request):
     """
     Create a new, empty poll.
@@ -190,6 +193,17 @@ def create(request):
                 np.url = p.url_from_name(np.name)
 
             np.save()
+
+            assign_perm(
+                    'change_poll',
+                    request.user,
+                    np
+            )
+            assign_perm(
+                    'delete_poll',
+                    request.user,
+                    np
+            )
 
             return redirect('poll-edit-questions', np.url)
 

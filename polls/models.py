@@ -5,6 +5,8 @@ import string
 from django.contrib.auth.models import User
 from django.db import models
 
+from guardian.models import UserObjectPermission
+
 allowed_chars = string.ascii_letters + string.digits
 
 ufn_regex = re.compile('[\w\d_-]+')
@@ -36,6 +38,14 @@ class Poll(models.Model):
         Questions in this poll sorted by position.
         """
         return self.questions.order_by('position')
+
+    def is_owner(self, student):
+        """
+        Whether student is the owner of this poll. This corresponds to change
+        and delete permissions as they are automatically assigned upon creation
+        """
+        return student.user.has_perm("polls.change_poll", self) \
+                and student.user.has_perm("polls.delete_poll", self)
 
 
 class Question(models.Model):
