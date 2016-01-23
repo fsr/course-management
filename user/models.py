@@ -69,7 +69,7 @@ class UserInformation(models.Model):
 class StudentInformation(UserInformation):
     s_number = models.CharField(max_length=50, unique=True)
     faculty = models.ForeignKey(Faculty)
-    verfied = models.BooleanField(default=False)
+    verified = models.BooleanField(default=False)
 
     def make_zih_mail(self):
         return self.s_number + '@mail.zih.tu-dresden.de'
@@ -82,7 +82,7 @@ ACTIVATION_TYPES = {
 
 
 class Activation(models.Model):
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(User)
     token = models.CharField(max_length=50)
     type = models.CharField(max_length=1,
         choices=tuple((v, k) for k, v in ACTIVATION_TYPES.items())

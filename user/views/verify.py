@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.http import require_GET
 from django.contrib.auth.decorators import login_required
 
-from user.models import Activation
+from user.models import Activation, ACTIVATION_TYPES
 
 
 VERIFICATIONS = {}
@@ -46,9 +46,13 @@ def verify(request, type_):
             )
     else:
         try:
-            db_entry = Activation.objects.get(token=reqdict['token'], type=type_)
+            db_entry = Activation.objects.get(token=request.GET['token'], type=ACTIVATION_TYPES[type_])
         except Activation.DoesNotExist:
-            return activation_error(_('The token you provided is invalid.'))
+            return render(
+                request,
+                'view-error.html',
+                { 'message': _('The token you provided is invalid.') }
+            )
 
         VERIFICATIONS[type_.lower()].action(db_entry.user)
         db_entry.delete()

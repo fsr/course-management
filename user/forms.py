@@ -55,11 +55,11 @@ class UserForm(UserCreationForm):
             'email': _('An email adress where you can be reached. '
                        'The verification mail will be sent to this adress.'),
             'first_name': _('First part of your public name, which should be your genuine first name. '
-                      'If you become a teacher this will be visible to any site visitor. '
-                      'Can be modified later.'),
+                            'If you become a teacher this will be visible to any site visitor. '
+                            'Can be modified later.'),
             'last_name': _('Second part of your public name, which should be your genuine familyname. '
-                      'If you become a teacher this will be visible to any site visitor. '
-                      'Can be modified later'),
+                           'If you become a teacher this will be visible to any site visitor. '
+                           'Can be modified later'),
             'username': _('Unique username. Used for login. (cannot be changed later).')
         }
 
@@ -81,8 +81,8 @@ class StudentInformationForm(ModelForm):
         fields = ('s_number', 'faculty')
         help_texts = {
             's_number': _('The s-number as assigned by the university. '
-                      'The student verification email will be sent to the address associated with this s-number. '
-                      'Cannot be modified later.'),
+                          'The student verification email will be sent to the address associated with this s-number. '
+                          'Cannot be modified later.'),
             'faculty': _('The faculty at which you are enrolled. (Used for crediting purposes) Can be modified later.')
         }
 
@@ -92,7 +92,7 @@ class AbstractContactForm(forms.Form):
     content = forms.CharField(
         widget=forms.Textarea,
         help_text=_('This will be the content of the email. HTML is not allowed '
-                          'and any html tags will be removed.')
+                    'and any html tags will be removed.')
     )
 
     def clean(self):
