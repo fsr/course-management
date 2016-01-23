@@ -37,14 +37,14 @@
           <form action="{% url 'set_language' %}" method="post" id="language-form" name="language-form">
             {% csrf_token %}
             <input type="hidden" name="language" id="language" value="de" />
-            <input type="submit" value="de" />
+            <button type="submit" class="btn btn-lang" value="de">de</button>
           </form>
         </li>
         <li>
           <form action="{% url 'set_language' %}" method="post" id="language-form" name="language-form">
             {% csrf_token %}
             <input type="hidden" name="language" id="language" value="en" />
-            <input type="submit" value="en" />
+            <button type="submit" class="btn btn-lang" value="en">en</button>
           </form>
         </li>
       </ul>
