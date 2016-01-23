@@ -4,10 +4,15 @@
   <meta charset="utf-8">
   <title>Attendee list</title>
   <style>
-    td {
+    td, th {
       border: 1px solid black;
-      min-width: 70px;
-      min-height: 50px;
+      min-width: 100px;
+      min-height: 30px;
+      padding: 10px;
+    }
+
+    th {
+      background-color: #cccccc;
     }
   </style>
 </head>
@@ -15,14 +20,14 @@
 <section class="attendee-list">
   <table>
     <tr>
-      <td>{% trans "Dates" %}</td>
+      <th>{% trans "Dates" %}</th>
       {% for slot in slots %}
-        <td>&nbsp;</td>
+        <th>&nbsp;</th>
       {% endfor %}
     </tr>
     {% for attendee in attendees %}
       <tr>
-        <td>{{ attendee.last_name }}, {{ attendee.first_name }}</td>
+        <td>{{ attendee.user.last_name }}, {{ attendee.user.first_name }}</td>
         {% for slot in slots %}
           <td>&nbsp;</td>
         {% endfor %}
