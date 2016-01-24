@@ -64,15 +64,25 @@ class UserForm(UserCreationForm):
         }
 
 
-class UserEditForm(UserForm):
-    class Meta(UserForm.Meta):
-        exclude = ('username', 'password')
+class UserEditForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name')
+        help_texts = {
+            'first_name': _('First part of your public name, which should be your genuine first name. '
+                            'If you become a teacher this will be visible to any site visitor. '
+                            'Can be modified later.'),
+            'last_name': _('Second part of your public name, which should be your genuine familyname. '
+                           'If you become a teacher this will be visible to any site visitor. '
+                           'Can be modified later'),
+        }
 
 
 class UserInformationForm(ModelForm):
+    description = forms.CharField(widget=forms.Textarea, required=False)
     class Meta:
         model = UserInformation
-        fields = ('public_profile',)
+        fields = ('public_profile', 'description')
 
 
 class StudentInformationForm(ModelForm):

@@ -20,7 +20,7 @@ def modify(request):
         user_form = UserEditForm(request.POST, instance=request.user)
         userinformation_form = UserInformationForm(request.POST, instance=request.user.userinformation)
 
-        if user_form.is_valid() and userinformation_form.is_valid:
+        if user_form.is_valid() and userinformation_form.is_valid():
 
             user.save()
             userinformation_form.save()
