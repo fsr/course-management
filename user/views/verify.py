@@ -60,7 +60,10 @@ def verify(request, type_):
         return render(
             request,
             'user/activate.html',
-            {'title': _('Activation Succeded')}
+            {
+                'title': _('Activation Succeded'),
+                'no_login_redirect': True,
+            }
         )
 
 
@@ -87,12 +90,19 @@ def verify_student_form(request):
         form = StudentVerificationForm(request.POST)
         if form.is_valid():
             a = form.save(commit=False)
-            a.userinformation = request.user.userinformation
+            a.userinformation_ptr = request.user.userinformation
             a.user = request.user
             a.save()
-            verification_mail(a.user, 'student', a.make_zih_mail())
-            return redirect(
-                'user-profile'
+            zih_mail = a.make_zih_mail()
+            verification_mail(a.user, 'student', zih_mail)
+            return render(
+                request,
+                'registration/send-mail.html',
+                {
+                    'title': _('Verifaction mail sent'),
+                    'acc': [zih_mail],
+                    'no_login_redirect': True,
+                }
             )
     else:
         form = StudentVerificationForm()
@@ -100,7 +110,10 @@ def verify_student_form(request):
     return render(
         request,
         'registration/student-verification.html',
-        {'form': form}
+        {
+            'form': form,
+            'no_login_redirect': True,
+        }
     )
 
 

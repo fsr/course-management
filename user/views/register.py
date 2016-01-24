@@ -29,7 +29,9 @@ def register(request):
                  or (    not studentinformation_form.cleaned_data.get('faculty')
                      and not studentinformation_form.cleaned_data.get('s_number')))):
 
-            created_user = user_form.save()
+            created_user = user_form.save(commit=False)
+            created_user.is_active = False
+            created_user.save()
 
             acc = []
 

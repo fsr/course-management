@@ -28,6 +28,8 @@ s_number_validator = RegexValidator(
     message=_('S numbers can start with an \'s\' and otherwise consist of a '
             'string of seven digits.')
 )
+
+
 def username_existence_validator(number):
     try:
         User.objects.get(username=number)
@@ -35,17 +37,13 @@ def username_existence_validator(number):
         return
     raise ValidationError(_('This username is already taken'))
 
+
 def s_number_existence_validator(number):
     try:
         StudentInformation.objects.get(s_number=number)
     except StudentInformation.DoesNotExist:
         return
     raise ValidationError('This s-number is already taken')
-
-
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.PasswordInput()
 
 
 class UserForm(UserCreationForm):

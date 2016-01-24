@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
-{% if form.errors %}
-<p>{% trans "Your username and password didn't match. Please try again." %}</p>
-{% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}

@@ -30,7 +30,7 @@
       <li><a href="{% url 'register' %}">{% trans "Sign up" %}</a></li>
       {% url 'logout' as logout_url %}
       <li><a href="
-          {% url 'login' %}{% if not request.path == logout_url %}?next={{ request.path }}{% endif %}">{% trans "Sign in" %}</a>
+          {% url 'login' %}{% if not no_login_redirect and not request.path == logout_url %}?next={{ request.path }}{% endif %}">{% trans "Sign in" %}</a>
       </li>
     {% endif %}
     <li class="has-dropdown">
