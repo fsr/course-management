@@ -120,9 +120,9 @@ class Course(models.Model):
             student = get_user_information(student)
             context['is_subbed'] = student.course_set.filter(id=self.id).exists()
 
-        if self.is_teacher(student):
-            context['is_teacher'] = True
-            context['students'] = self.participants.all()
+            if self.is_teacher(student):
+                context['is_teacher'] = True
+                context['students'] = self.participants.all()
 
         return context
 

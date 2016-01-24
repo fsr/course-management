@@ -40,13 +40,14 @@ def course(request: HttpRequest, course_id: str):
     """
     try:
         current_course = Course.objects.get(id=course_id)
-    except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
 
-    try:
-        user = request.user.userinformation
-        if isinstance(user, UserInformation):
-            context = current_course.as_context(user)
+        if hasattr(request.user, 'userinformation'):
+            user = request.user.userinformation
+
+            if isinstance(user, UserInformation):
+                context = current_course.as_context(user)
+            else:
+                context = current_course.as_context()
         else:
             context = current_course.as_context()
 
@@ -105,7 +106,7 @@ def toggle(request: HttpRequest, course_id: str, active: bool):
     :param request: request information
     :param course_id:
     :param active: active/inactive
-    :return: 
+    :return:
     """
     try:
         curr_course = Course.objects.get(id=course_id)
