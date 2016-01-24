@@ -52,6 +52,9 @@
       <h2>{% trans "Courses you attend" %}</h2>
       {% include 'course_list.html' with course_list=student.course_set.all target=request.path %}
     {% endif %}
-    {{ student.render_description|safe }}
+    <h2>Your description</h2>
+    <div>
+      {{ student.render_description|safe }}
+    </div>
   {% endwith %}
 {% endblock %}
