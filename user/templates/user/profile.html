@@ -20,7 +20,7 @@
       <td>📧 {% trans "Email" %}</td>
       <td>{{ user.email }}</td>
     </tr>
-    {% if user.userinformation.is_student %}
+    {% if user.userinformation.is_verified_student %}
       {% with user.userinformation.studentinformation as student %}
         <tr>
           <th>#️⃣ {% trans "s number" %}</th>
@@ -31,15 +31,23 @@
           <td>{{ student.faculty.name }}</td>
         </tr>
       {% endwith %}
+    {% else %}
+      <tr>
+	      <th>{% trans "Student status" %}</th>
+        <td>
+	        {% if user.userinformation.is_student %}
+		        {% trans "Pending..." %} <a href="{% url 'verify' 'student' %}">{% trans "Resend verification Mail" %}</a>
+	        {% else %}
+		        <a href="{% url 'verify' 'student' %}">{% trans "Verify Now" %}</a>
+	        {% endif %}
+        </td>
+      </tr>
     {% endif %}
   </table>
   <table>
     <tr>
       <td><a href="{% url 'modify-user' %}">🖊 {% trans "Edit" %}</a></td>
       <td><a href="{% url 'user-profile' user.id %}">📢 {% trans "Visit your public profile." %}</a></td>
-      {% if not user.userinformation.is_student %}
-        <td><a href="{% url 'verify' 'student' %}">✅ {% trans "Verify as a student" %}</td>
-      {% endif %}
     </tr>
   </table>
   <hr>

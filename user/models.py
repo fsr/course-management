@@ -65,6 +65,13 @@ class UserInformation(models.Model):
         except StudentInformation.DoesNotExist:
             return False
 
+    def is_verified_student(self):
+        return self.is_student() and self.studentinformation.verified
+
+    def is_pending_student(self):
+        return self.is_student() and not self.studentinformation.verified
+
+
 
 class StudentInformation(UserInformation):
     s_number = models.CharField(max_length=50, unique=True)

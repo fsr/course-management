@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+  <div class="description">
+    <p>{% trans "We sent a verification mail to " %}</p>
+	  <p><b>{{ acc }}</b></p>
+    <p>{% trans "This mail contains an account activation link." %}</p>
+  <a href="{% url 'user-profile' %}">{% trans "Back to your Profile." %}</a>
+  </div>
+{% endblock %}

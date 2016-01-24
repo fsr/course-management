@@ -104,6 +104,9 @@ def verification_mail(user, type_, email):
     type_val = ACTIVATION_TYPES[type_]
 
     user_token = generateToken()
+    if type_ == 'student' and user.userinformation.is_pending_student():
+        Activation.objects.get(user=user, type=type_val).delete()
+
     Activation.objects.create(user=user, token=user_token, type=type_val)
     activateurl = reverse('verify', args=[type_]) + '?token=' + user_token
     # print(activateurl)

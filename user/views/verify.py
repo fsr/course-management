@@ -72,35 +72,39 @@ def verify_user(user):
     user.save()
 
 
-
 def verify_student(user):
     si = user.userinformation.studentinformation
     si.verified = True
     si.save()
 
 
-
 @login_required
 def verify_student_form(request):
-    if request.user.userinformation.is_student():
+    if request.user.userinformation.is_verified_student():
         return redirect(
             'user-profile'
         )
     if request.method == "POST":
-        form = StudentVerificationForm(request.POST)
+        if request.user.userinformation.is_pending_student():
+            form = StudentVerificationForm(request.POST, instance=request.user.userinformation.studentinformation)
+        else:
+            form = StudentVerificationForm(request.POST)
         if form.is_valid():
-            a = form.save(commit=False)
-            a.userinformation_ptr = request.user.userinformation
-            a.user = request.user
-            a.save()
+            if request.user.userinformation.is_pending_student():
+                a = form.save()
+            else:
+                a = form.save(commit=False)
+                a.userinformation_ptr = request.user.userinformation
+                a.user = request.user
+                a.save()
             zih_mail = a.make_zih_mail()
             verification_mail(a.user, 'student', zih_mail)
             return render(
                 request,
-                'registration/send-mail.html',
+                'registration/sent-student-verification-mail.html',
                 {
-                    'title': _('Verifaction mail sent'),
-                    'acc': [zih_mail],
+                    'title': _('Verification mail sent'),
+                    'acc': zih_mail,
                     'no_login_redirect': True,
                 }
             )
