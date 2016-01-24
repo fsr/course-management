@@ -8,9 +8,17 @@
     <td>
       {% for teacher in course.teacher.all %}<a href="{% url 'user-profile' teacher.user.id %}">{{ teacher }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
     </td>
+    {% if is_teacher %}
+      <td>
+        <a class="button small" href="{% url 'add-teacher' course_id %}">{% trans "Add/Remove teachers" %}</a>
+      </td>
+    {% endif %}
+
   </tr>
 
-  <tr><td>{% trans "Participants" %}</td><td>{{ participants_count }} {% trans "of" %} {{ max_participants }}</td></tr>
+  <tr>
+    <td>{% trans "Participants" %}</td><td {% if is_teacher %}colspan="2"{% endif %}>{{ participants_count }} {% trans "of" %} {{ max_participants }}</td>
+  </tr>
 
   <tr>
     <td>{% trans "Schedule" %}</td>
@@ -27,11 +35,24 @@
         {% endif %}
       {% endwith %}
     </td>
+    {% if is_teacher %}
+      <td><a class="button small" href="{% url 'course-edit-slot' course_id %}">{% trans "Edit schedule" %}</a></td>
+    {% endif %}
   </tr>
 
   <tr>
     <td>{% trans "Status" %}</td>
-    <td>{% trans "This course is currently" %} {% if course.active %}{% trans "active" %}{% else %}{% trans "suspended" %}{% endif %}.</td>
+    <td>
+      {% trans "This course is currently" %} {% if course.active %}{% trans "active" %}{% else %}{% trans "suspended" %}{% endif %}.
+    </td>
+    {% if is_teacher %}
+      <td>
+        <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">
+            {% csrf_token %}
+            <input type="submit" class="button small" value="{% if course_is_active %}{% trans "Suspend course (unenrolls all participants)" %}{% else %}{% trans "Set course active" %}{% endif %}" />
+        </form>
+      </td>
+    {% endif %}
   </tr>
 
 {% if user.is_authenticated %}
@@ -55,21 +76,17 @@
           {% endfor %}
         </table>
       </td>
+      <td>
+        <a class="button small" href="{% url 'attendee-list' course_id %}">{% trans 'Generate attendee list' %}</a>
+      </td>
     </tr>
     <tr>
       <td>{% trans "Administrative actions" %}</td>
-      <td>
+      <td colspan="2">
         <div class="button-group">
-          <a class="button" href="{% url 'edit-course' course_id %}">{% trans "Edit course" %}</a>
-          <a class="button" href="{% url 'course-edit-slot' course_id %}">{% trans "Edit schedule" %}</a>
-          <a class="button" href="{% url 'add-teacher' course_id %}">{% trans "Add/Remove teachers" %}</a>
-          <a class="button" href="{% url 'notify-course' course_id %}">{% trans "Notify course" %}</a>
-          <a class="button" href="{% url 'attendee-list' course_id %}">{% trans 'Generate attendee list' %}</a>
+          <a class="button small" href="{% url 'edit-course' course_id %}">{% trans "Edit course" %}</a>
+          <a class="button small" href="{% url 'notify-course' course_id %}">{% trans "Notify course" %}</a>
         </div>
-        <form method="post" action="{% if course_is_active %}{% url 'deactivate-course' course_id %}{% else %}{% url 'activate-course' course_id %}{% endif %}">
-            {% csrf_token %}
-            <input type="submit" class="button" value="{% if course_is_active %}{% trans "Suspend course (unenrolls all participants)" %}{% else %}{% trans "Set course active" %}{% endif %}" />
-        </form>
       </td>
     </tr>
   {% else %}
