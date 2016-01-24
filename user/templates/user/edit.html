@@ -11,9 +11,20 @@
     {{ user_form.as_table }}
     {{ userinformation_form.as_table }}
   </table>
-    <input class="button" type="submit" value="{% trans "Change" %}" />
+  <div class="row">
+    <div class="column large-2 small-3">
+      <a class="button" href="{% url 'user-profile' %}">Cancel</a>
+    </div>
+    <div class="column large-2 small-3 medium-offset-6 large-offset-8">
+      <input class="button" type="submit" value="{% trans "Change" %}" />
+    </div>
+  </div>
 </form>
 <p>
-  {% trans "Perhaps you'd like to" %} <a href="{% url 'password_change' %}">{% trans "change your password" %}</a>?
+  {% trans "Perhaps you'd like to" %} <a href="{% url 'password_change' %}">{% trans "change your password" %}</a>
+  {% if not user.userinformation.is_student %}
+    {% trans "or" %}
+    <a href="{% url 'verify' 'student' %}">{% trans "verify as a student" %}</a>
+  {% endif %}?
 </p>
 {% endblock %}
