@@ -140,7 +140,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'build', ['sass']
 
-  grunt.registerTask 'install', ['install-virtualenv', 'install-dependencies', 'build', 'init-db']
+  grunt.registerTask 'install', ['install-virtualenv', 'install-dependencies', 'build', 'migrate-db']
 
 
   grunt.registerTask 'pip-install', 'Get remaining dependencies', ->
@@ -181,27 +181,17 @@ module.exports = (grunt) ->
 
 
 
-  grunt.registerTask 'clean-db', 'Clean the database', ->
-    done = this.async()
+  grunt.registerTask 'migrate-db', 'Migrate the database', ->
 
-    grunt.log.writeln 'deleting database...'
-    fs.unlink 'db.sqlite3', (err) ->
-      if not err == null
-        grunt.log.writeln err
-        done(false)
-      else
-        grunt.task.run('init-db')
-        done()
-
-
-  grunt.registerTask 'init-db', 'Initialize the database', ->
-    done = this.async()
+    loaddata = not fs.existsSync 'db.sqlite3'
 
     grunt.log.writeln 'migrating...'
+    pythonExecSync ['manage.py', 'makemigrations']
     pythonExecSync ['manage.py', 'migrate']
-    grunt.log.writeln 'loading sample data...'
-    pythonExecSync ['manage.py', 'loaddata', 'courses']
 
-    done()
+    if loaddata
+      grunt.log.writeln 'loading sample data...'
+      pythonExecSync ['manage.py', 'loaddata', 'courses']
+
 
   grunt.registerTask 'default', ['sass']
