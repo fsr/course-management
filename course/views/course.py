@@ -61,6 +61,21 @@ def course(request: HttpRequest, course_id: str):
 
 
 @needs_teacher_permissions
+def participants_list(request, course_id):
+    try:
+        current_course = Course.objects.get(id=course_id)
+
+        return render(
+            request,
+            'course/participants.html',
+            { 'course': current_course}
+        )
+    except Course.DoesNotExist:
+        return db_error(_('Requested course does not exist.'))
+
+
+
+@needs_teacher_permissions
 def edit_course(request: HttpRequest, course_id: str):
     """
     Edit form for changing a course and handler for submitted data.

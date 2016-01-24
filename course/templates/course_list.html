@@ -12,13 +12,11 @@
             {% if course_list_show_subject %}
               {{ course.subject }}
             {% else %}
-              {% with course.schedule.slots as slots %}
-                {% if slots %}
-                  {{ slots|join:"<br />" }}
-                {% else %}
-                  {{ tr_noslotsset }}
-                {% endif %}
-              {% endwith %}
+              {% if course.schedule.slots %}
+                {{ course.schedule.slots|join:"<br />" }}
+              {% else %}
+                {{ tr_noslotsset }}
+              {% endif %}
             {% endif %}
           </a>
         </large>
@@ -27,8 +25,8 @@
         {% if course_list_show_subject %}
           <p>
             <b>📅 {% trans "Timeslots" %}:</b>
-            {% if slots %}
-              {{ slots|join:", " }}
+            {% if course.schedule.slots %}
+              {{ course.schedule.slots|join:"<br />" }}
             {% else %}
               {{ tr_noslotsset }}
             {% endif %}
@@ -53,7 +51,7 @@
         {% if user.is_authenticated and not hide_actions %}
 
           {% if user.userinformation in course.teacher.all %}
-            {% trans "You are teacher." %} 🎓
+            {% trans "You are teacher" %}.
             {% trans "This course is currently" %} {% if course.active %}{% trans "active" %}{% else %}{% trans "suspended" %} 💤{% endif %}.
           {% else %}
             {% if course in courses %}

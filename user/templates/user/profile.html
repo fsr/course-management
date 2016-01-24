@@ -17,29 +17,31 @@
       <td>{{ user.last_name }}</td>
     </tr>
     <tr>
-      <td>{% trans "Email" %}</td>
+      <td>📧 {% trans "Email" %}</td>
       <td>{{ user.email }}</td>
     </tr>
     {% if user.userinformation.is_student %}
       {% with user.userinformation.studentinformation as student %}
         <tr>
-          <th>{% trans "s number" %}</th>
+          <th>#️⃣ {% trans "s number" %}</th>
           <td>{{ student.s_number }}</td>
         </tr>
         <tr>
-          <th>{% trans "Faculty" %}</th>
+          <th>🏢 {% trans "Faculty" %}</th>
           <td>{{ student.faculty.name }}</td>
         </tr>
       {% endwith %}
     {% endif %}
   </table>
-  <ul>
-    <li><a href="{% url 'modify-user' %}">{% trans "Edit" %}</a></li>
-    <li><a href="{% url 'user-profile' user.id %}">{% trans "Visit your public profile." %}</a></li>
-    {% if not user.userinformation.is_student %}
-      <li><a href="{% url 'verify' 'student' %}">{% trans "Verify as a student" %}</a></li>
-    {% endif %}
-  </ul>
+  <table>
+    <tr>
+      <td><a href="{% url 'modify-user' %}">🖊 {% trans "Edit" %}</a></td>
+      <td><a href="{% url 'user-profile' user.id %}">📢 {% trans "Visit your public profile." %}</a></td>
+      {% if not user.userinformation.is_student %}
+        <td><a href="{% url 'verify' 'student' %}">✅ {% trans "Verify as a student" %}</td>
+      {% endif %}
+    </tr>
+  </table>
   <hr>
   {% with student=user.userinformation %}
     {% if student.teacher.count > 0 %}
@@ -50,7 +52,6 @@
       <h2>{% trans "Courses you attend" %}</h2>
       {% include 'course_list.html' with course_list=student.course_set.all target=request.path %}
     {% endif %}
-    <hr>
     {{ student.render_description|safe }}
   {% endwith %}
 {% endblock %}

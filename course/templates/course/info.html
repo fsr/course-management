@@ -18,7 +18,15 @@
   </tr>
 
   <tr>
-    <td>🎒 {% trans "Participants" %}</td><td {% if is_teacher %}colspan="2"{% endif %}>{{ participants_count }} {% trans "of" %} {{ max_participants }}</td>
+    <td>🎒 {% trans "Participants" %}</td>
+    <td>
+      {% if participants_count %}<a href="{% url 'course-participants' course.id %}">{% endif %}
+        {{ participants_count }} {% trans "of" %} {{ max_participants }}
+      {% if participants_count %}</a>{% endif %}
+    </td>
+    {% if is_teacher %}
+      <td><a class="button small" href="{% url 'attendee-list' course_id %}">🖨 {% trans 'Generate attendee list' %}</a></td>
+    {% endif %}
   </tr>
 
   <tr>
@@ -58,29 +66,6 @@
 
 {% if user.is_authenticated %}
   {% if is_teacher %}
-    <tr>
-      <td>{% trans "Participants list" %}</td>
-      <td>
-        <table>
-          {% for student in students %}
-            <tr>
-              <td>{{ student }}</td>
-              <td>
-                <form action="{% url 'unregister-course' course.id student.id %}" method="post">
-                  {% csrf_token %}
-                  <input type="submit" value="🚪 {% trans "kick" %}">
-                </form>
-              </td>
-            </tr>
-          {% empty %}
-            <tr><td>{% trans "Oh no, there don't seem to be any students enrolled in this course yet :(, perhaps you should advertise more." %}</td></tr>
-          {% endfor %}
-        </table>
-      </td>
-      <td>
-        <a class="button small" href="{% url 'attendee-list' course_id %}">🖨 {% trans 'Generate attendee list' %}</a>
-      </td>
-    </tr>
     <tr>
       <td>{% trans "Administrative actions" %}</td>
       <td colspan="2">

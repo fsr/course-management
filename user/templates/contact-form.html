@@ -2,10 +2,11 @@
 {% load i18n %}
 
 {% block content %}
-  <form action="{% url 'contact-form' user_id %}" method="post">
+  <h1>{% trans "Contact" %} '{{ user.first_name }} {{ user.last_name }}'</h1>
+  <form action="{% url 'contact-form' user.id %}" method="post">
     <table>
       {{ form.as_table }}
     </table>
-    <input type="submit" value="{% trans "Send" %}">
+    <input class="button" type="submit" value="✉️ {% trans "Send" %}">
   </form>
 {% endblock %}

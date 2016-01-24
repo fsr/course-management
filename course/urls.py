@@ -29,6 +29,7 @@ urlpatterns = [
         url(r'^delete/$', course.delete, name='delete-course'),
         url(r'^activate/$', course.toggle, {'active': True}, name='activate-course'),
         url(r'^deactivate/$', course.toggle, {'active': False}, name='deactivate-course'),
+        url(r'^participants/$', course.participants_list, name='course-participants'),
         url(r'^notify/', include([
             url(r'^$', course.notify, name='notify-course'),
             url(r'^done/$', course.notify_done, name='notify-course-done'),

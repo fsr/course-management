@@ -32,5 +32,8 @@ def contact_form(request:HttpRequest, user_id:int):
     return render(
         request,
         'contact-form.html',
-        {'form': form, 'user_id': user_id}
+        {
+            'form': form,
+            'user': user
+        }
     )
