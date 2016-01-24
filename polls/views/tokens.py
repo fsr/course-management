@@ -46,11 +46,11 @@ def generate_user_token(request, poll_name):
     except Token.DoesNotExist:
         token = Token.generate(
             poll=poll,
-                user=request.user
+            user=request.user
         )
         return render(
             request,
-                'polls/token/overview.html',
+            'polls/token/overview.html',
             {'tokens': [token]}
         )
 
@@ -62,5 +62,8 @@ def all(request, poll_name):
     return render(
         request,
             'polls/token/overview.html',
-            {'tokens': poll.tokens.all()}
+            {
+                'tokens': poll.tokens.all(),
+                'poll': poll
+            }
     )

@@ -2,7 +2,8 @@
 {% load i18n %}
 
 {% block content %}
-  <h2>{{ poll.name }}</h2>
+  <h1>{{ poll.name }}</h1>
+  <h3>Questions</h3>
   <ol>
     {% for qlink in poll.questions.all %}
       {% with question=qlink.question %}
@@ -21,11 +22,11 @@
     </li>
     {% endfor %}
   </ol>
+  <a href="{% url 'poll-vote' poll.url %}">{% trans "Vote on this poll (requires access token)" %}</a>
   <h4>{% trans "Admin actions" %}</h4>
   <table>
     <tr>
       <td><a href="{% url 'poll-edit-questions' poll.url %}">{% trans "Edit poll" %}</a></td>
-      <td><a href="{% url 'poll-vote' poll.url %}">{% trans "Vote" %}</a></td>
       <td><a href="{% url 'poll-view-results' poll.url %}">{% trans "View results" %}</a></td>
       <td><a href="{% url 'poll-token-overview' poll.url %}">{% trans "View tokens" %}</a></td>
       <td><a href="{% url 'poll-generate-tokens' poll.url %}">{% trans "Generate tokens" %}</a></td>

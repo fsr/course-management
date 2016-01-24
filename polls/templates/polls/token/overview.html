@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
   Tokens for this poll:
@@ -10,4 +11,5 @@
       </tr>
     {% endfor %}
   </table>
+  <a href="{% url 'poll-view' poll.url %}">{% trans "Back to poll" %}</a>
 {% endblock %}
