@@ -39,7 +39,10 @@ def vote(request, poll_name):
     """
     Form for voting on a poll and handling the submitted results.
     """
-    poll = Poll.objects.get(url=poll_name)
+    try:
+        poll = Poll.objects.get(url=poll_name)
+    except Poll.DoesNotExist:
+        return db_error(_('This poll does not exist'))
 
     if 'token' in request.GET:
         token = request.GET['token']
@@ -84,7 +87,8 @@ def vote(request, poll_name):
             'polls/poll/vote.html',
             {
                 'vote_interface': vote_interface,
-                'token': token.token
+                'token': token.token,
+                'poll': poll
             }
     )
 

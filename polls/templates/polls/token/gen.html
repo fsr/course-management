@@ -1,8 +1,10 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
   {% if tokens %}
-    You generated the following tokens:
+    <a href="{% url 'poll-view' poll.url %}">👈 {% trans "Back to poll" %}</a>
+    <p>You generated the following tokens:</p>
     <table>
       {% for token in tokens %}
         <tr><td>{{ token.token }}</td></tr>

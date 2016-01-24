@@ -37,7 +37,8 @@
         </li>
       {% endfor %}
     </ol>
-    <input class="button" type="submit" value="Vote"/>
+    <a class="button" href="{% url 'poll-view' poll.url %}">❌ {% trans "Cancel" %}</a>
+    <input class="button" type="submit" value="🗳 {% trans "Vote" %}"/>
   </form>
 
 {% endblock %}

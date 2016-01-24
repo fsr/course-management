@@ -2,14 +2,18 @@
 {% load i18n %}
 
 {% block content %}
-  Tokens for this poll:
+  <a href="{% url 'poll-view' poll.url %}">👈 {% trans "Back to poll" %}</a>
+
+  <h3>Tokens for this poll:</h3>
   <table>
     {% for token in tokens %}
       <tr>
         <td>{{ token.token }}</td>
         <td>{% if token.used %}<b>used</b>{% else %}unused{% endif %}</td>
       </tr>
+    {% empty %}
+      none?
     {% endfor %}
   </table>
-  <a href="{% url 'poll-view' poll.url %}">{% trans "Back to poll" %}</a>
+  <a href="{% url 'poll-generate-tokens' poll.url %}">🔓 {% trans "Generate tokens" %}</a>
 {% endblock %}
