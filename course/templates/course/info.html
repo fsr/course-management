@@ -3,8 +3,9 @@
 {% block content %}
 {% block enroll_response %}
 {% endblock %}
+<h1>{{ course.subject.name }}</h1>
 <table class="table">
-  <tr><td>Teachers</td>
+  <tr><td>🎓 Teachers</td>
     <td>
       {% for teacher in course.teacher.all %}<a href="{% url 'user-profile' teacher.user.id %}">{{ teacher }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
     </td>
@@ -17,11 +18,11 @@
   </tr>
 
   <tr>
-    <td>{% trans "Participants" %}</td><td {% if is_teacher %}colspan="2"{% endif %}>{{ participants_count }} {% trans "of" %} {{ max_participants }}</td>
+    <td>🎒 {% trans "Participants" %}</td><td {% if is_teacher %}colspan="2"{% endif %}>{{ participants_count }} {% trans "of" %} {{ max_participants }}</td>
   </tr>
 
   <tr>
-    <td>{% trans "Schedule" %}</td>
+    <td>📅 {% trans "Schedule" %}</td>
     <td>
       {% with course.schedule.slots as slots %}
         {% if slots %}
@@ -67,7 +68,7 @@
               <td>
                 <form action="{% url 'unregister-course' course.id student.id %}" method="post">
                   {% csrf_token %}
-                  <input type="submit" value="{% trans "kick" %}">
+                  <input type="submit" value="🚪 {% trans "kick" %}">
                 </form>
               </td>
             </tr>
@@ -77,15 +78,15 @@
         </table>
       </td>
       <td>
-        <a class="button small" href="{% url 'attendee-list' course_id %}">{% trans 'Generate attendee list' %}</a>
+        <a class="button small" href="{% url 'attendee-list' course_id %}">🖨 {% trans 'Generate attendee list' %}</a>
       </td>
     </tr>
     <tr>
       <td>{% trans "Administrative actions" %}</td>
       <td colspan="2">
         <div class="button-group">
-          <a class="button small" href="{% url 'edit-course' course_id %}">{% trans "Edit course" %}</a>
-          <a class="button small" href="{% url 'notify-course' course_id %}">{% trans "Notify course" %}</a>
+          <a class="button small" href="{% url 'edit-course' course_id %}">🖊 {% trans "Edit course" %}</a>
+          <a class="button small" href="{% url 'notify-course' course_id %}">✉️ {% trans "Notify course" %}</a>
         </div>
       </td>
     </tr>

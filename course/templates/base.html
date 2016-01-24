@@ -8,21 +8,21 @@
     {% if user.is_authenticated %}
       <li class="has-dropdown">
         <a href="{% url 'user-profile' %}">
-          {{ user.userinformation }}
+          👤 {{ user.userinformation }}
         </a>
         <ul class="dropdown">
           {% if perms.course_management.add_course %}
-            <li><a href="{% url 'create-course' %}">{% trans "Create course" %}</a></li>
+            <li><a href="{% url 'create-course' %}">🆕 {% trans "Create course" %}</a></li>
           {% endif %}
           {% if perms.course_management.add_subject %}
-            <li><a href="{% url 'create-subject' %}">{% trans "Create subject" %}</a></li>
+            <li><a href="{% url 'create-subject' %}">🆕 {% trans "Create subject" %}</a></li>
           {% endif %}
           {% if perms.course_management.add_poll %}
-            <li><a href="{% url 'poll-create' %}">{% trans "Create poll" %}</a></li>
+            <li><a href="{% url 'poll-create' %}">🆕 {% trans "Create poll" %}</a></li>
           {% endif %}
-          <li><a href="{% url 'modify-user' %}">{% trans "Edit your data" %}</a>
-          <li><a href="{% url 'password_change' %}">{% trans "Change pass" %}</a></li>
-          <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
+          <li><a href="{% url 'modify-user' %}">🖊 {% trans "Edit your data" %}</a>
+          <li><a href="{% url 'password_change' %}">🔒 {% trans "Change pass" %}</a></li>
+          <li><a href="{% url 'logout' %}">🚪 {% trans "Logout" %}</a></li>
         </ul>
       </li>
 

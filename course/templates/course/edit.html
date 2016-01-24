@@ -16,7 +16,7 @@
       {% if perms.course.delete_course %}
         <form action="{% url 'delete-course' course_id %}">
           {% csrf_token %}
-          <input type="submit" value="{% trans "Delete" %}" />
+          <input type="submit" value="❌ {% trans "Delete" %}" />
         </form>
       {% endif %}
     </div>

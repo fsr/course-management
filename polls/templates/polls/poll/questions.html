@@ -3,7 +3,7 @@
 
 {% block content %}
   <h2>{{ poll.name }}</h2>
-  <a href="{% url 'poll-overview' %}">{% trans "Back to overview" %}</a>
+  <a href="{% url 'poll-overview' %}">👈 {% trans "Back to overview" %}</a>
   <h3>{% trans "Selected questions" %}</h3>
   <div class="row">
     <div class="column small-12">
@@ -20,12 +20,6 @@
                 {% endfor %}
               </td>
               <td>
-                <form method="post" action="{% url 'poll-remove-question' poll.url question.id qlink.id %}">
-                  {% csrf_token %}
-                  <input type="submit" class="button" value="{% trans 'remove' %}" />
-                </form>
-              </td>
-              <td>
                 <form method="post" action="{% url 'poll-bump-question-up' poll.url question.id qlink.id %}">
                   {% csrf_token %}
                   <input type="submit" class="button" value="⬆" />
@@ -35,6 +29,12 @@
                 <form method="post" action="{% url 'poll-bump-question-down' poll.url question.id qlink.id %}">
                   {% csrf_token %}
                   <input type="submit" class="button" value="⬇" />
+                </form>
+              </td>
+              <td>
+                <form method="post" action="{% url 'poll-remove-question' poll.url question.id qlink.id %}">
+                  {% csrf_token %}
+                  <input type="submit" class="button" value="❌" />
                 </form>
               </td>
             </tr>

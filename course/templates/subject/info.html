@@ -11,15 +11,15 @@
   <div>
     <p>
       {% if perms.course.create_course %}
-      <a href="{% url 'create-course' %}?subject={{ subject.id }}" class="button float-left" role="button">{% trans "Create new course" %}</a>
+      <a href="{% url 'create-course' %}?subject={{ subject.id }}" class="button float-left" role="button">➕ {% trans "Create new course" %}</a>
       {% endif %}
 
-      <a class="button float-left" href="{% url 'edit-subject' subject.name %}" role="button">{% trans "Edit" %}</a>
+      <a class="button float-left" href="{% url 'edit-subject' subject.name %}" role="button">🖊 {% trans "Edit" %}</a>
 
       {% if subject and perms.course.delete_subject %}
       <form class="float-right" method="post" action="{% url 'delete-subject' subject.name %}">
         {% csrf_token %}
-        <button class="button alert" role="link" type="submit">{% trans 'Delete' %}</button>
+        <button class="button alert" role="link" type="submit">❌ {% trans 'Delete' %}</button>
       </form>
       {% endif %}
     </p>
