@@ -14,7 +14,9 @@
       <a href="{% url 'create-course' %}?subject={{ subject.id }}" class="button float-left" role="button">➕ {% trans "Create new course" %}</a>
       {% endif %}
 
+      {% if perms.course.edit_subject %}
       <a class="button float-left" href="{% url 'edit-subject' subject.name %}" role="button">🖊 {% trans "Edit" %}</a>
+			{% endif %}
 
       {% if subject and perms.course.delete_subject %}
       <form class="float-right" method="post" action="{% url 'delete-subject' subject.name %}">
