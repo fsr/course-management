@@ -65,3 +65,12 @@ table.table {
     margin 0px auto;
     width: 100%;
 }
+td a {
+    color: black !important;
+}
+div.row div.column.small-6{
+    color: black !important;
+}
+ul.side-nav a {
+    color: white !important;
+}
