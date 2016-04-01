@@ -2,9 +2,10 @@
 {% load i18n %}
 <html>
 <head>
-  <link type="text/css" rel="stylesheet" href="{% static "css/style.css" %}">
-  <script type="text/javascript" src="{% static "vendor/js/modernizr.js" %}"></script>
-  <title>{% if title %}{{ title }} | {% endif %}{% trans "Course Manager" %}</title>
+	<link type="text/css" rel="stylesheet" href="{% static "css/style.css" %}">
+	<link type="text/css" rel="stylesheet" href="{% static "css/style_override.css" %}">
+	<script type="text/javascript" src="{% static "vendor/js/modernizr.js" %}"></script>
+	<title>{% if title %}{{ title }} | {% endif %}{% trans "Course Manager" %}</title>
 </head>
 <body>
   {% block header %}

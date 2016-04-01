@@ -33,6 +33,7 @@
           {% url 'login' %}{% if not no_login_redirect and not request.path == logout_url %}?next={{ request.path }}{% endif %}">{% trans "Sign in" %}</a>
       </li>
     {% endif %}
+    {% if False %}
     <li class="has-dropdown">
       <a href="#">Language</a>
       <ul class="dropdown">
@@ -52,6 +53,7 @@
         </li>
       </ul>
     </li>
+    {% endif %}
   </ul>
 
   {% if backurl %}
