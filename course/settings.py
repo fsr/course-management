@@ -21,15 +21,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # TODO Change this before deploying
-SECRET_KEY = os.environ.get('COURSE_MANAGEMENT_SECRET_KEY', '=z%&5y*h9-sw!&o-2rb53wyrtze!)r^()k0(&o1sovi9bm(4%1')
+SECRET_KEY = os.environ.get('COURSE_MANAGEMENT_SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
+
+ADMINS = (
+)
 
 INSTALLED_APPS = (
     'modeltranslation',
@@ -121,7 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/kurse/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
