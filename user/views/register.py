@@ -1,5 +1,6 @@
 import random
 import string
+import os
 
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -110,7 +111,7 @@ def verification_mail(user, type_, email):
     Activation.objects.create(user=user, token=user_token, type=type_val)
     activateurl = reverse('verify', args=[type_]) + '?token=' + user_token
     # print(activateurl)
-    with open('res/registrationmail.txt') as f:
+    with open(os.path.join(settings.BASE_DIR, 'res/registrationmail.txt')) as f:
         message = f.read()
         message = message.format(
             user=user.first_name,
