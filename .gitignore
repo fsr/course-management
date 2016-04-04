@@ -79,3 +79,6 @@ bower_components/
 .sass-cache
 
 static/css
+
+# settings file
+course/settings.py
