@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # TODO Change this before deploying
-SECRET_KEY = os.environ.get('COURSE_MANAGEMENT_SECRET_KEY', '')
+SECRET_KEY = os.environ.get('COURSE_MANAGEMENT_SECRET_KEY', 'asdf')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
