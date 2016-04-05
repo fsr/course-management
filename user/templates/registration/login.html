@@ -18,7 +18,7 @@
   <input type="submit" class="button" value="{% trans "Submit" %}"/>
   {% url 'logout' as logout_url %}
   {% if not next == logout_url %}
-    <input type="hidden" name="next" value="{{ next }}"/>
+    <input type="hidden" name="next" value="{% url 'user-profile' %}"/>
   {% endif %}
 </form>
 {% endblock %}
