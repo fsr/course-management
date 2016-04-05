@@ -61,7 +61,7 @@ def register(request):
 
                 created_user_information.save()
 
-                verification_mail(created_user, 'email', created_user.email)
+                verification_mail(created_user, 'email', created_user.email, request)
 
                 acc.append(created_user.email)
 
@@ -100,7 +100,7 @@ def generateToken(size=50, chars=None):
     return ''.join(random.sample(chars, size))
 
 
-def verification_mail(user, type_, email):
+def verification_mail(user, type_, email, request):
     type_ = type_.lower()
     type_val = ACTIVATION_TYPES[type_]
 
@@ -109,7 +109,7 @@ def verification_mail(user, type_, email):
         Activation.objects.get(user=user, type=type_val).delete()
 
     Activation.objects.create(user=user, token=user_token, type=type_val)
-    activateurl = reverse('verify', args=[type_]) + '?token=' + user_token
+    activateurl = request.build_absolute_uri(reverse('verify', args=[type_])) + '?token=' + user_token
     # print(activateurl)
     with open(os.path.join(settings.BASE_DIR, 'res/registrationmail.txt')) as f:
         message = f.read()
