@@ -36,7 +36,7 @@
         {% if slots %}
           <ul>
             {% for slot in slots %}
-              <li>{{ slot }}</li>
+              <li>{{ slot }} - {{ slot.location }}</li>
             {% endfor %}
           </ul>
         {% else %}
