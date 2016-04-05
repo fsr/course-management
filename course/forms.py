@@ -61,7 +61,7 @@ class WeeklySlotForm(ModelForm):
 
     class Meta:
         model = WeeklySlot
-        fields = ('weekday', 'timeslot')
+        fields = ('weekday', 'timeslot', 'location')
 
 
 class CourseForm(ModelForm):
