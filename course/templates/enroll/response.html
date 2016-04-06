@@ -1,4 +1,5 @@
 {% extends 'course/info.html' %}
+{% load i18n %}
 {% block enroll_response %}
 <div>
 
@@ -12,7 +13,7 @@
 			  {% blocktrans with s=subject %}
 			    Your subscription to the course {{ s }} was successful.
 			  {% endblocktrans %}
-		  {% endif %}.
+		  {% endif %}
     {% elif action == 'unregister' %}
 	    {% if error %}
 	      {% blocktrans with s=subject %}
@@ -22,8 +23,8 @@
 			  {% blocktrans with s=subject %}
 			    Your unsubscription to the course {{ s }} was successful.
 			  {% endblocktrans %}
-		  {% endif %}.
-    {% endif %}.
+		  {% endif %}
+    {% endif %}
   </p>
   {% if error %}
   <p>
