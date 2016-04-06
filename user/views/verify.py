@@ -73,6 +73,8 @@ def verify_user(user):
 
 
 def verify_student(user):
+    user.is_active = True
+    user.save()
     si = user.userinformation.studentinformation
     si.verified = True
     si.save()
