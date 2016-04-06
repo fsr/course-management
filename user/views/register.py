@@ -46,13 +46,10 @@ def register(request):
                 created_student_information.save()
 
                 zih_mail = created_student_information.make_zih_mail()
-                verification_mail(created_user, 'student', zih_mail)
+                verification_mail(created_user, 'student', zih_mail, request)
 
                 acc.append(zih_mail)
 
-                if created_user.email != zih_mail:
-                    verification_mail(created_user, 'email', created_user.email)
-                    acc.append(created_user.email)
 
             else:
                 created_user_information = userinformation_form.save(commit=False)
