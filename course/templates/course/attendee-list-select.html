@@ -5,7 +5,7 @@
 
   <form method="get" action="{% url 'attendee-list' course_id %}">
     <label for="slot-select">{% trans "Number of slots to generate." %}</label>
-    <input name="slots" id="slot-select" type="number"/>
+    <input name="slots" id="slot-select" value='1' type="number"/>
     <input type="submit" value="{% trans "Generate" %}">
   </form>
 
