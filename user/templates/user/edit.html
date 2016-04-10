@@ -21,10 +21,10 @@
   </div>
 </form>
 <p>
-  {% trans "Perhaps you'd like to" %} <a href="{% url 'password_change' %}">{% trans "change your password" %}</a>
+  {% trans "Perhaps you'd like to" %} <a style="color:#9ACC00;" href="{% url 'password_change' %}">{% trans "change your password" %}</a>
   {% if not user.userinformation.is_student %}
     {% trans "or" %}
-    <a href="{% url 'verify' 'student' %}">{% trans "verify as a student" %}</a>
+    <a style="color:#9ACC00;" href="{% url 'verify' 'student' %}">{% trans "verify as a student" %}</a>
   {% endif %}?
 </p>
 {% endblock %}
