@@ -31,7 +31,7 @@ def add(request, course_id):
         course.participants.add(stud)
 
     # redirect to course overview or specified target
-    return redirect_unless_target(request, 'unregister-course-done', course_id)
+    return redirect_unless_target(request, 'register-course-done', course_id)
 
 
 @require_POST
@@ -48,10 +48,10 @@ def remove(request, course_id):
         ps.remove(stud)
     else:
         request.session['enroll-error'] = _('You do not seem to be enrolled in this course.')
-        return redirect('register-course-done', course_id)
+        return redirect('unregister-course-done', course_id)
 
     # redirect to course overview or specified target
-    return redirect_unless_target(request, 'register-course-done', course_id)
+    return redirect_unless_target(request, 'unregister-course-done', course_id)
 
 
 @login_required()
