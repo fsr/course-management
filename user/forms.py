@@ -105,8 +105,8 @@ class AbstractContactForm(forms.Form):
 
     def clean(self):
         super().clean()
-        self.subject = html_clean.clean_all(self.subject)
-        self.content = html_clean.clean_all(self.content)
+        self.subject = html_clean.clean_all(self.data['subject'])
+        self.content = html_clean.clean_all(self.data['content'])
 
 
 class ContactForm(AbstractContactForm):
