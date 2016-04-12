@@ -17,6 +17,7 @@ from user.models import UserInformation
 from util import html_clean
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
+import itertools
 
 DEFAULT_COURSE_DESCRIPTION = """\
 # The Hitchhikers Guide To The Galaxy
@@ -287,7 +288,7 @@ def notify(request: HttpRequest, course_id):
             subject = form.subject
             content = form.content
 
-            for student in course.participants.all():
+            for student in itertools.chain(course.participants.all(), course.teacher.all()):
                 if show_sender:
                     student.user.email_user(subject, content, email)
                 else:
