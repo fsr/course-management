@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% csrf_token %}
 
 {% block content %}
   <h1>{% trans "Contact" %} '{{ user.first_name }} {{ user.last_name }}'</h1>
   <form action="{% url 'contact-form' user.id %}" method="post">
+    <div style="display:none">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    </div>
     <table>
       {{ form.as_table }}
     </table>
