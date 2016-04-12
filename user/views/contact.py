@@ -25,7 +25,7 @@ def contact_form(request:HttpRequest, user_id:int):
             user.email_user(
                 subject="[CM contact form] " + form.subject,
                 message=form.content,
-                from_email=form.sender
+                from_email=form.data['sender']
             )
             return redirect('index')
     else:
