@@ -52,13 +52,15 @@
 
           {% if user.userinformation in course.teacher.all %}
             {% trans "You are teacher" %}.
-            {% trans "This course is currently" %} {% if course.active %}{% trans "active" %}{% else %}{% trans "suspended" %} 💤{% endif %}.
+            {% trans "This course is currently" %} {% if course.active %}{% trans "active" %}.{% else %}{% trans "suspended" %}. 💤{% endif %}.
           {% else %}
             {% if course in courses %}
               {% trans "You are enrolled. ✅" %}
               {% include "course/forms/unregister.html" %}
             {% elif course.joinable %}
               {% include "course/forms/register.html" %}
+            {% elif not course.active %}
+              {% trans "This course is currently" %} {% trans "suspended" %}. 💤
             {% else %}
               <form action="#"><input disabled type="submit" class="button" value="{% trans "This course is full" %}" /></form>
             {% endif %}
