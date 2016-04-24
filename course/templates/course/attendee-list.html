@@ -21,16 +21,20 @@
   <table>
     <tr>
       <th>{% trans "Dates" %}</th>
+      {% if slots %}
       {% for slot in slots %}
         <th>&nbsp;</th>
       {% endfor %}
+      {% endif %}
     </tr>
     {% for attendee in attendees %}
       <tr>
         <td>{{ attendee.user.last_name }}, {{ attendee.user.first_name }}</td>
+        {% if slots %}
         {% for slot in slots %}
           <td>&nbsp;</td>
         {% endfor %}
+        {% endif %}
       </tr>
     {% endfor %}
   </table>

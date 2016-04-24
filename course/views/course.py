@@ -69,11 +69,10 @@ def participants_list(request, course_id):
         return render(
             request,
             'course/participants.html',
-            { 'course': current_course}
+            {'course': current_course}
         )
     except Course.DoesNotExist:
         return db_error(_('Requested course does not exist.'))
-
 
 
 @needs_teacher_permissions
@@ -336,7 +335,11 @@ def attendee_list(request, course_id):
         except Course.DoesNotExist:
             return db_error(_('Requested course does not exist.'))
 
-        slots = int(request.GET['slots'])
+        # handle empty string (== no number) as input
+        try:
+            slots = int(request.GET['slots'])
+        except ValueError:
+            slots = 0
 
         return render(
                 request,
