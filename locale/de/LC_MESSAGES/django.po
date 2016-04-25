@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-29 20:29+0100\n"
+"POT-Creation-Date: 2016-04-25 21:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,262 +17,361 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/course/forms.py:17
+#: course/forms.py:15
 msgid "Invalid location name."
-msgstr "ungültiger Ortsname."
+msgstr "Ungültiger Ortsname."
 
-#: src/course/forms.py:26 src/course/forms.py:32
+#: course/forms.py:24 course/forms.py:35
 msgid "Invalid subject name."
-msgstr "Ungültiger Themenname"
+msgstr "Ungültiger Themenname."
 
-#: src/course/forms.py:40
+#: course/forms.py:48
 msgid "Requested username does not exist."
 msgstr "Der angeforderte Nutzername existiert nicht."
 
-#: src/course/forms.py:72
+#: course/forms.py:88
 msgid "Choose a subject for your course. "
 msgstr "Wählen Sie ein Thema für Ihren Kurs."
 
-#: src/course/forms.py:74
+#: course/forms.py:90
 msgid "Choose whether people should be able to join this course right now."
-msgstr "Wählen Sie aus, ob direkt einschreibungen zugelassen werden."
+msgstr "Wählen Sie aus, ob die Einschreibung für den Kurs bereits aktiv sein soll."
 
-#: src/course/forms.py:78
+#: course/forms.py:94
 msgid ""
 "A good description is half the battle. You can use markdown for formatting."
 msgstr ""
 "Eine gute Beschreibung ist die halbe Miete. Sie können Markdown zur "
 "Formatierung verwenden."
 
-#: src/course/forms.py:81
-msgid "How many people can join your course. (Can be changed later)"
+#: course/forms.py:97
+msgid "How many people can join your cours. (Can be changed later)"
 msgstr ""
-"Wie viele Teilnehmer sollen zugelassen werden (Kann später geändert werden)."
+"Wie viele Teilnehmer sollen zugelassen werden? (Kann später geändert werden)"
 
-#: src/course/forms.py:82
-msgid "Should your course only be avaliable to students?"
+#: course/forms.py:98
+#, fuzzy
+#| msgid "Should your course only be avaliable to students?"
+msgid "Should your course only be available to students?"
 msgstr "Soll der Kurs nur für Studenten zugänglich sein?"
 
-#: src/course/forms.py:85
+#: course/forms.py:99
+msgid "The course starts on that day."
+msgstr "Der Kurs beginnt an diesem Tag."
+
+#: course/forms.py:100
+msgid "The course will end at that day."
+msgstr "Der Kurs wird an diesem Tag enden."
+
+#: course/forms.py:103
 msgid "Max nr. of participants"
 msgstr "Maximale Anzahl an Teilnehmern"
 
-#: src/course/forms.py:91
+#: course/forms.py:104
+msgid "Begin"
+msgstr "Beginn"
+
+#: course/forms.py:105
+#, fuzzy
+#| msgid "2nd"
+msgid "End"
+msgstr "Ende"
+
+#: course/forms.py:111
 msgid "Username of the person you want to be a teacher for this course"
 msgstr "Nutzername der Person, die Tutor des Kurses sein soll"
 
-#: src/course/forms.py:100
+#: course/forms.py:120
 msgid "Whether to set the email sender to your email address or not."
-msgstr "Soll Ihr Mail adresse als absender verwendet werden?"
+msgstr "Soll Ihre Mail Adresse als Absenderadresse verwendet werden?"
 
-#: src/course/forms.py:109
+#: course/forms.py:129
 msgid ""
 "Name of the subject, also decides its url. Allowed characters are word "
 "characters, numbers, spaces, '-' and '_' and it cannot be any of , "
 msgstr ""
-"Name des Themas, zuständig für die url. Erlaubte Zeichen sind Buchstaben, "
-"Ziffern,Spaces, '-' und '_'. folgende dürfen nicht gewählt werden."
+"Name des Themas, zuständig für die URL. Erlaubte Zeichen sind Buchstaben, "
+"Ziffern, Spaces, '-' und '_'. Folgende dürfen nicht gewählt werden."
 
-#: src/course/models/schedule.py:6
+#: course/models/schedule.py:6
 msgid "Mondays"
 msgstr "Montags"
 
-#: src/course/models/schedule.py:7
+#: course/models/schedule.py:7
 msgid "Tuesdays"
 msgstr "Dienstags"
 
-#: src/course/models/schedule.py:8
+#: course/models/schedule.py:8
 msgid "Wednesdays"
 msgstr "Mittwochs"
 
-#: src/course/models/schedule.py:9
+#: course/models/schedule.py:9
 msgid "Thursdays"
 msgstr "Donnerstags"
 
-#: src/course/models/schedule.py:10
+#: course/models/schedule.py:10
 msgid "Fridays"
 msgstr "Freitags"
 
-#: src/course/models/schedule.py:11
+#: course/models/schedule.py:11
 msgid "Saturdays"
 msgstr "Samstags"
 
-#: src/course/models/schedule.py:12
+#: course/models/schedule.py:12
 msgid "Sundays"
 msgstr "Sonntags"
 
-#: src/course/models/schedule.py:15
+#: course/models/schedule.py:15
 msgid "1st"
 msgstr "1."
 
-#: src/course/models/schedule.py:16
+#: course/models/schedule.py:16
 msgid "2nd"
 msgstr "2."
 
-#: src/course/models/schedule.py:17
+#: course/models/schedule.py:17
 msgid "3rd"
 msgstr "3."
 
-#: src/course/models/schedule.py:18
+#: course/models/schedule.py:18
 msgid "4th"
 msgstr "4."
 
-#: src/course/models/schedule.py:19
+#: course/models/schedule.py:19
 msgid "5th"
 msgstr "5."
 
-#: src/course/models/schedule.py:20
+#: course/models/schedule.py:20
 msgid "6th"
 msgstr "6."
 
-#: src/course/models/schedule.py:21
+#: course/models/schedule.py:21
 msgid "7th"
 msgstr "7."
 
-#: src/course/models/schedule.py:27
+#: course/models/schedule.py:27
 msgid "weekly"
 msgstr "wöchentlich"
 
-#: src/course/models/schedule.py:28
+#: course/models/schedule.py:28
 msgid "one time"
 msgstr "einmalig"
 
-#: src/course/settings.py:98
+#: course/settings.py:110
 msgid "English"
 msgstr "Englisch"
 
-#: src/course/settings.py:99
+#: course/settings.py:111
 msgid "German"
 msgstr "Deutsch"
 
-#: src/course/templates/base-shell.html:7
-#: src/course/templates/base-shell.html:15
+#: course/templates/base-shell.html:8 course/templates/base-shell.html.py:16
 msgid "Course Manager"
 msgstr "Kurs Manager"
 
-#: src/course/templates/base.html:15
+#: course/templates/base.html:15
 msgid "Create course"
 msgstr "Kurs erstellen"
 
-#: src/course/templates/base.html:18
+#: course/templates/base.html:18
 msgid "Create subject"
 msgstr "Thema erstellen"
 
-#: src/course/templates/base.html:20
+#: course/templates/base.html:21
+#, fuzzy
+#| msgid "Create"
+msgid "Create poll"
+msgstr "Umfrage Erstellen"
+
+#: course/templates/base.html:23
 msgid "Edit your data"
 msgstr "Nutzerdaten editieren"
 
-#: src/course/templates/base.html:21
+#: course/templates/base.html:24
 msgid "Change pass"
 msgstr "Passwort ändern"
 
-#: src/course/templates/base.html:22
+#: course/templates/base.html:25
 msgid "Logout"
 msgstr "Logout"
 
-#: src/course/templates/base.html:27
+#: course/templates/base.html:30
 msgid "Sign up"
 msgstr "Registrieren"
 
-#: src/course/templates/base.html:28
+#: course/templates/base.html:33
 msgid "Sign in"
 msgstr "Login"
 
-#: src/course/templates/base.html:60
+#: course/templates/base.html:70 course/templates/base.html.py:72
 msgid "Subjects"
 msgstr "Themen"
 
-#: src/course/templates/course/create.html:4
+#: course/templates/course/attendee-list-select.html:7
+msgid "Number of slots to generate."
+msgstr "Anzahl der Tabellen-Slots"
+
+#: course/templates/course/attendee-list-select.html:9
+msgid "Generate"
+msgstr "Generieren"
+
+#: course/templates/course/attendee-list.html:23
+msgid "Dates"
+msgstr "Termine"
+
+#: course/templates/course/create.html:4
 msgid "On this page you can create a new course."
 msgstr "Auf Dieser Seite erstellen Sie einen neuen Kurs."
 
-#: src/course/templates/course/create.html:5
+#: course/templates/course/create.html:5
 msgid "You'll automatically be assigned as teacher for this course"
 msgstr "Sie werden automatisch Tutor dieses Kurses"
 
-#: src/course/templates/course/create.html:6
+#: course/templates/course/create.html:6
 msgid ""
 ", so that you may be able to edit it. You can assign new teachers once the "
 "course is created"
 msgstr ""
 ", damit Sie ihn Editieren können. Sie können neue Tutoren zuordnen, nachdem "
-"der Kurs erstellt ist"
+"der Kurs erstellt wurde"
 
-#: src/course/templates/course/create.html:7
+#: course/templates/course/create.html:7
 msgid "and even unassign yourself as teacher"
 msgstr "und sich selbst als Tutor entfernen."
 
-#: src/course/templates/course/create.html:13
-#: src/course/templates/subject/create.html:9
+#: course/templates/course/create.html:13
+#: course/templates/subject/create.html:9
 msgid "Create"
 msgstr "Erstellen"
 
-#: src/course/templates/course/edit.html:7
+#: course/templates/course/edit.html:7
 msgid ""
 "You can edit the description for your course here. You may use markdown to "
 "do so."
 msgstr ""
-"Sie können Die Kursbeschreibung hier editieren. Es ist möglich, dieses in "
-"markdown zu tun."
+"Sie können Die Kursbeschreibung hier editieren. Es ist möglich, Markdown zu "
+"nutzen."
 
-#: src/course/templates/course/edit.html:19
-#: src/course/templates/subject/edit.html:14
+#: course/templates/course/edit.html:19 course/templates/subject/info.html:24
 msgid "Delete"
 msgstr "Löschen"
 
-#: src/course/templates/course/forms/register.html:4
+#: course/templates/course/forms/register.html:4
 msgid "register"
 msgstr "einschreiben"
 
-#: src/course/templates/course/forms/unregister.html:4
+#: course/templates/course/forms/unregister.html:4
 msgid "unregister"
 msgstr "austragen"
 
-#: src/course/templates/course/info.html:13
-#: src/course/templates/course_list.html:39
+#: course/templates/course/info.html:14
+msgid "Add/Remove teachers"
+msgstr "Tutoren hinzufügen/entfernen"
+
+#: course/templates/course/info.html:21 course/templates/course_list.html:37
 msgid "Participants"
 msgstr "Teilnehmer"
 
-#: src/course/templates/course/info.html:13
+#: course/templates/course/info.html:24
 msgid "of"
 msgstr "von"
 
-#: src/course/templates/course/info.html:16
+#: course/templates/course/info.html:28
+msgid "Generate attendee list"
+msgstr "Teilnehmerliste erstellen"
+
+#: course/templates/course/info.html:33
 msgid "Schedule"
 msgstr "Zeiten"
 
-#: src/course/templates/course/info.html:26
+#: course/templates/course/info.html:43
 msgid "No schedule has been set."
 msgstr "Keine Zeiten gesetzt."
 
-#: src/course/templates/course/info.html:33
+#: course/templates/course/info.html:48
+msgid "Edit schedule"
+msgstr "Zeitplan editieren"
+
+#: course/templates/course/info.html:53
 msgid "Status"
 msgstr "Status"
 
-#: src/course/templates/course/info.html:34
-#: src/course/templates/course_list.html:57
+#: course/templates/course/info.html:55 course/templates/course_list.html:55
+#: course/templates/course_list.html:63
 msgid "This course is currently"
 msgstr "Dieser Kurs ist momentan"
 
-#: src/course/templates/course/info.html:34
-#: src/course/templates/course_list.html:57
+#: course/templates/course/info.html:55 course/templates/course_list.html:55
 msgid "active"
 msgstr "aktiv"
 
-#: src/course/templates/course/info.html:34
-#: src/course/templates/course_list.html:57
+#: course/templates/course/info.html:55 course/templates/course_list.html:55
+#: course/templates/course_list.html:63
 msgid "suspended"
-msgstr "unterbrochen"
+msgstr "inaktiv"
 
-#: src/course/templates/course/info.html:40
-msgid "Participants list"
-msgstr "Teilnehmerliste"
+#: course/templates/course/info.html:61
+msgid "Suspend course (unenrolls all participants)"
+msgstr "Kurs deaktivieren (trägt alle Teilnehmer aus)"
 
-#: src/course/templates/course/info.html:49
+#: course/templates/course/info.html:61
+msgid "Set course active"
+msgstr "Kurs aktivieren"
+
+#: course/templates/course/info.html:70
+msgid "Administrative actions"
+msgstr "Administrative Aktionen"
+
+#: course/templates/course/info.html:73 course/views/course.py:106
+msgid "Edit course"
+msgstr "Kurs editieren"
+
+#: course/templates/course/info.html:74
+msgid "Notify course"
+msgstr "Kurs benachrichtigen"
+
+#: course/templates/course/info.html:80 course/templates/course/info.html:94
+#: polls/templates/polls/poll/overview.html:11
+msgid "Actions"
+msgstr "Aktionen"
+
+#: course/templates/course/info.html:87 course/templates/course_list.html:65
+msgid "This course is full"
+msgstr "Dieser Kurs ist voll."
+
+#: course/templates/course/info.html:105
+msgid "No description provided for this course."
+msgstr "Für diesen Kurs liegt keine Beschreibung vor."
+
+#: course/templates/course/notify-done.html:5
+msgid "Your students have successfully been notified."
+msgstr "Die Kursteilnehmer wurden erfolgreich benachrichtigt."
+
+#: course/templates/course/notify.html:5
+msgid ""
+"You can use this form to send an email to all people enrolled in your course."
+msgstr ""
+"Du kannst dieses Formular nutzen, um eine Mail an alle Teilnehmer deines "
+"Kurses zu schreiben."
+
+#: course/templates/course/notify.html:6
+msgid ""
+"Be aware that lots of email spam will most likely put off your students."
+msgstr ""
+"Beachte, dass viele Mails wahrscheinlich dazu führen, dass diese ignoriert "
+"werden."
+
+#: course/templates/course/notify.html:13
+#: polls/templates/polls/token/require.html:12
+#: user/templates/contact-form.html:14
+msgid "Send"
+msgstr "Senden"
+
+#: course/templates/course/participants.html:17
 msgid "kick"
 msgstr "austragen"
 
-#: src/course/templates/course/info.html:54
+#: course/templates/course/participants.html:22
 msgid ""
 "Oh no, there don't seem to be any students enrolled in this course yet :(, "
 "perhaps you should advertise more."
@@ -280,121 +379,58 @@ msgstr ""
 "Oh nein, es scheint sich noch niemand in diesen Kurs eingetragen zu haben :"
 "(, vielleicht solltest du mehr Werbung machen."
 
-#: src/course/templates/course/info.html:60
-msgid "Administrative actions"
-msgstr "Administrative Aktionen"
-
-#: src/course/templates/course/info.html:63 src/course/views/course.py:77
-msgid "Edit course"
-msgstr "Kurs editieren"
-
-#: src/course/templates/course/info.html:64
-msgid "Edit schedule"
-msgstr "Zeitplan editieren"
-
-#: src/course/templates/course/info.html:65
-msgid "Add/Remove teachers"
-msgstr "Tutoren hinzufügen/entfernen"
-
-#: src/course/templates/course/info.html:66
-msgid "Notify course"
-msgstr "Kurs benachrichtigen"
-
-#: src/course/templates/course/info.html:70
-msgid "Suspend course (unenrolls all participants)"
-msgstr "Kurs deaktivieren (trägt alle Teilnehmer aus)"
-
-#: src/course/templates/course/info.html:70
-msgid "Set course active"
-msgstr "Kurs aktivieren"
-
-#: src/course/templates/course/info.html:76
-#: src/course/templates/course/info.html:90
-msgid "Actions"
-msgstr "Aktionen"
-
-#: src/course/templates/course/info.html:83
-#: src/course/templates/course_list.html:64
-msgid "This course is full"
-msgstr "Dieser Kurs ist voll"
-
-#: src/course/templates/course/info.html:101
-msgid "No description provided for this course."
-msgstr "Für diesen Kurs liegt keine Beschreibung vor."
-
-#: src/course/templates/course/notify-done.html:5
-msgid "Your students have successfully been notified."
-msgstr "Deine Kursteilnehmer wurden erfolgreich benachrichtigt."
-
-#: src/course/templates/course/notify.html:5
-msgid ""
-"You can use this form to send an email to all people enrolled in your course."
-msgstr ""
-"Du kannst dieses Formular nutzen, um eine Mail an alle Teilnehmer deines "
-"Kurses zu schreiben."
-
-#: src/course/templates/course/notify.html:6
-msgid ""
-"Be aware that lots of email spam will most likely put off your students."
-msgstr ""
-"Beachte, dass viele Mails wahrscheinlich dazu führen, dass diese ignoriert "
-"werden."
-
-#: src/course/templates/course/notify.html:13
-#: src/user/templates/contact-form.html:9
-msgid "Send"
-msgstr "Senden"
-
-#: src/course/templates/course/teacher.html:12
-#: src/course/templates/course/time.html:21
+#: course/templates/course/teacher.html:12 course/templates/course/time.html:21
 msgid "Remove"
 msgstr "Entfernen"
 
-#: src/course/templates/course/teacher.html:24
-#: src/course/templates/course/time.html:33
+#: course/templates/course/teacher.html:24 course/templates/course/time.html:33
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: src/course/templates/course/time.html:8
+#: course/templates/course/time.html:8
 msgid "Slot"
 msgstr "Slot"
 
-#: src/course/templates/course/time.html:9
+#: course/templates/course/time.html:9
 msgid "Location"
 msgstr "Ort"
 
-#: src/course/templates/course/time.html:10
-#: src/course/templates/subject/edit.html:9
-#: src/course/templates/subject/info.html:12
-#: src/user/templates/user/profile.html:37
+#: course/templates/course/time.html:10 course/templates/subject/info.html:18
+#: user/templates/user/profile.html:49
 msgid "Edit"
 msgstr "Editieren"
 
-#: src/course/templates/course_list.html:2
+#: course/templates/course_list.html:2
 msgid "No dates set yet"
 msgstr "Noch keine Termine gesetzt"
 
-#: src/course/templates/course_list.html:29
+#: course/templates/course_list.html:27
 msgid "Timeslots"
 msgstr "Zeiten"
 
-#: src/course/templates/course_list.html:37
+#: course/templates/course_list.html:35
 msgid "Teachers"
 msgstr "Tutoren"
 
-#: src/course/templates/course_list.html:43
+#: course/templates/course_list.html:41
 msgid "Locations"
 msgstr "Orte"
 
-#: src/course/templates/course_list.html:48
+#: course/templates/course_list.html:46
 msgid "No location set."
 msgstr "Keine Orte festgelegt."
 
-#: src/course/templates/course_list.html:56
-msgid "You are teacher."
+#: course/templates/course_list.html:54
+#, fuzzy
+#| msgid "You are teacher."
+msgid "You are teacher"
 msgstr "Sie sind Tutor."
 
-#: src/course/templates/enroll/response.html:8
+#: course/templates/course_list.html:58
+msgid "You are enrolled. ✅"
+msgstr "Du bist eingeschrieben. ✅"
+
+#: course/templates/enroll/response.html:9
 #, python-format
 msgid ""
 "\n"
@@ -405,7 +441,7 @@ msgstr ""
 "\t\t\t    Ihre Einschreibung für den Kurs %(s)s war nicht erfolgreich.\n"
 "\t\t\t  "
 
-#: src/course/templates/enroll/response.html:12
+#: course/templates/enroll/response.html:13
 #, python-format
 msgid ""
 "\n"
@@ -416,7 +452,7 @@ msgstr ""
 "\t\t\t    Ihre Einschreibung für den Kurs %(s)s war erfolgreich.\n"
 "\t\t\t  "
 
-#: src/course/templates/enroll/response.html:18
+#: course/templates/enroll/response.html:19
 #, python-format
 msgid ""
 "\n"
@@ -427,7 +463,7 @@ msgstr ""
 "\t\t\t    Ihre Austragung aus dem Kurs %(s)s war nicht erfolgreich.\n"
 "\t\t\t  "
 
-#: src/course/templates/enroll/response.html:22
+#: course/templates/enroll/response.html:23
 #, python-format
 msgid ""
 "\n"
@@ -438,355 +474,557 @@ msgstr ""
 "\t\t\t    Ihre Austragung aus dem Kurs %(s)s war erfolgreich.\n"
 "\t\t\t  "
 
-#: src/course/templates/error/db.html:6
+#: course/templates/error/db.html:6
 msgid "Sorry, an error with our database occurred."
-msgstr "Entschuldigung, es ist ein Fehler mit der Datenbank aufgetreten"
+msgstr "Entschuldigung, es ist ein Fehler mit der Datenbank aufgetreten."
 
-#: src/course/templates/error/db.html:11
+#: course/templates/error/db.html:11
 msgid "Database Error"
 msgstr "Datenbank Fehler"
 
-#: src/course/templates/index.html:10
+#: course/templates/index.html:10
 msgid "Subject"
 msgstr "Thema"
 
-#: src/course/templates/index.html:11
+#: course/templates/index.html:11
 msgid "Number of courses"
 msgstr "Anzahl an Kursen"
 
-#: src/course/templates/subject/info.html:20
+#: course/templates/subject/edit.html:11
+#: polls/templates/polls/poll/vote.html:40
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: course/templates/subject/edit.html:14
+msgid "Done"
+msgstr "Fertig"
+
+#: course/templates/subject/info.html:14
 msgid "Create new course"
 msgstr "Kurs erstellen"
 
-#: src/course/templates/subject/overview.html:7
+#: course/templates/subject/overview.html:7
 msgid "Name"
 msgstr "Name"
 
-#: src/course/templates/subject/overview.html:8
+#: course/templates/subject/overview.html:8
 msgid "Courses"
 msgstr "Kurse"
 
-#: src/course/util/permissions.py:27
+#: course/util/permissions.py:29
 msgid "This course does not seem to exist, sorry."
 msgstr "Dieser Kurs scheint nicht zu existieren."
 
-#: src/course/views/course.py:38 src/course/views/course.py:53
-#: src/course/views/course.py:61 src/course/views/course.py:92
-#: src/course/views/course.py:143 src/course/views/course.py:162
-#: src/course/views/course.py:195 src/course/views/course.py:210
-#: src/course/views/course.py:254 src/course/views/enroll.py:21
-#: src/course/views/enroll.py:44 src/course/views/enroll.py:63
-#: src/course/views/time.py:24
+#: course/views/course.py:61 course/views/course.py:75
+#: course/views/course.py:90 course/views/course.py:129
+#: course/views/course.py:190 course/views/course.py:209
+#: course/views/course.py:264 course/views/course.py:279
+#: course/views/course.py:323 course/views/course.py:336
+#: course/views/enroll.py:21 course/views/enroll.py:44
+#: course/views/enroll.py:63 course/views/time.py:24
 msgid "Requested course does not exist."
 msgstr "Der angeforderte Kurs existiert nicht."
 
-#: src/course/views/course.py:130
+#: course/views/course.py:177
 msgid "New Course"
 msgstr "Neuer Kurs"
 
-#: src/course/views/course.py:154
+#: course/views/course.py:201
 msgid "Edit Teachers"
 msgstr "Tutoren editieren"
 
-#: src/course/views/course.py:174
+#: course/views/course.py:231
 msgid "The username you entered does not exist in my database, sorry :("
 msgstr "Der eingegebene Nutzername existiert nicht."
 
-#: src/course/views/course.py:197
+#: course/views/course.py:266
 msgid "Requested student does not exist."
 msgstr "Der angeforderte Student existiert nicht."
 
-#: src/course/views/course.py:236
+#: course/views/course.py:305
 msgid "Notify Course"
 msgstr "Kurs benachrichtigen"
 
-#: src/course/views/course.py:256
+#: course/views/course.py:325
 msgid "Requested student is not enrolled in this course."
 msgstr "Der angeforderte Student ist in diesem Kurs nicht eingeschrieben."
 
-#: src/course/views/enroll.py:25
+#: course/views/enroll.py:25
 msgid "You are already enrolled in this course."
 msgstr "Sie sind bereits in diesem Kurs eingeschrieben."
 
-#: src/course/views/enroll.py:27
+#: course/views/enroll.py:27
 msgid "Sorry, this course is full."
 msgstr "Dieser Kurs ist voll"
 
-#: src/course/views/enroll.py:50
+#: course/views/enroll.py:50
 msgid "You do not seem to be enrolled in this course."
 msgstr "Sie scheinen in diesem Kurs nicht eingetragen zu sein."
 
-#: src/course/views/index.py:11
+#: course/views/index.py:11
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: src/course/views/subject.py:19 src/course/views/subject.py:89
-#: src/course/views/subject.py:121
+#: course/views/subject.py:19 course/views/subject.py:89
+#: course/views/subject.py:120
 msgid "Requested subject does not exist."
 msgstr "Das angeforderte Thema existiert nicht."
 
-#: src/course/views/subject.py:49
+#: course/views/subject.py:49
 msgid "Subject Overview"
 msgstr "Themenübersicht"
 
-#: src/course/views/subject.py:77
+#: course/views/subject.py:77
 msgid "New Subject"
-msgstr "neues Thema"
+msgstr "Neues Thema"
 
-#: src/course/views/time.py:50
+#: course/views/time.py:50
 msgid "Edit Schedule"
 msgstr "Zeitplan editieren"
 
-#: src/re_captcha/templates/captcha-error.html:5
-msgid "Your captcha could not be verified. Please retry the request."
-msgstr "Ihr captcha konnte nict verifiziert werden. Bitte erneut versuchen."
+#: polls/forms.py:26
+msgid "A url to use for this poll (optional)"
+msgstr "Eine URL für diese Umfrage (optional)"
 
-#: src/user/forms.py:22
+#: polls/templates/polls/poll/overview.html:10
+msgid "Poll name"
+msgstr "Name der Umfrage"
+
+#: polls/templates/polls/poll/overview.html:17
+msgid "view"
+msgstr "Anzeigen"
+
+#: polls/templates/polls/poll/overview.html:18
+msgid "edit"
+msgstr "Editieren"
+
+#: polls/templates/polls/poll/overview.html:23
+#, fuzzy
+#| msgid "Create"
+msgid "Create new"
+msgstr "Erstellen"
+
+#: polls/templates/polls/poll/questions.html:6
+#: polls/templates/polls/poll/results.html:33
+#, fuzzy
+#| msgid "Subject Overview"
+msgid "Back to overview"
+msgstr "Themenübersicht"
+
+#: polls/templates/polls/poll/questions.html:7
+msgid "Selected questions"
+msgstr "Ausgewählte Fragen"
+
+#: polls/templates/polls/poll/questions.html:48
+#, fuzzy
+#| msgid "Create new course"
+msgid "Create a new one"
+msgstr "Kurs erstellen"
+
+#: polls/templates/polls/poll/questions.html:59
+msgid "Questions from other forms"
+msgstr "Fragen aus anderen Formularen"
+
+#: polls/templates/polls/poll/view.html:25
+msgid "Vote on this poll"
+msgstr "Für diese Umfrage abstimmen"
+
+#: polls/templates/polls/poll/view.html:25
+msgid "requires access token"
+msgstr "Erfordert ein Zugangstoken"
+
+#: polls/templates/polls/poll/view.html:26
+#, fuzzy
+#| msgid "Administrative actions"
+msgid "Admin actions"
+msgstr "Administrative Aktionen"
+
+#: polls/templates/polls/poll/view.html:29
+#, fuzzy
+#| msgid "Edit"
+msgid "Edit poll"
+msgstr "Umfrage Editieren"
+
+#: polls/templates/polls/poll/view.html:30
+msgid "View results"
+msgstr "Resultate anzeigen"
+
+#: polls/templates/polls/poll/view.html:31
+msgid "View tokens"
+msgstr "Zugangstoken anzeigen"
+
+#: polls/templates/polls/poll/view.html:32
+#: polls/templates/polls/token/overview.html:18
+msgid "Generate tokens"
+msgstr "Token generieren"
+
+#: polls/templates/polls/poll/vote.html:34
+msgid "Freitextantwort"
+msgstr "Freitextantwort"
+
+#: polls/templates/polls/poll/vote.html:41
+msgid "Vote"
+msgstr "Abstimmen"
+
+#: polls/templates/polls/token/gen.html:6
+#: polls/templates/polls/token/overview.html:5
+msgid "Back to poll"
+msgstr "Zurück zur Umfrage"
+
+#: polls/templates/polls/token/require.html:10
+msgid "Token"
+msgstr "Token"
+
+#: polls/util/permissions.py:31
+#, fuzzy
+#| msgid "This course does not seem to exist, sorry."
+msgid "This poll does not seem to exist, sorry."
+msgstr "Dieser Kurs scheint nicht zu existieren."
+
+#: polls/views/polls.py:45
+#, fuzzy
+#| msgid "This user does not exist"
+msgid "This poll does not exist"
+msgstr "Der angeforderte Nutzername existiert nicht."
+
+#: re_captcha/templates/captcha-error.html:5
+msgid "Your captcha could not be verified. Please retry the request."
+msgstr "Dein Captcha konnte nicht verifiziert werden. Bitte erneut versuchen."
+
+#: user/forms.py:23
 msgid ""
 "Names should start with capital letters, only contain regular characters and "
 "be separated with spaces or dashes."
 msgstr ""
-"Namen sollten mit einem Großbuchstaben beginnen, nur reguläre buchstaben "
-"enthaltenund mit Leerzeichen oder - abgegrenzt sein."
+"Namen sollten mit einem Großbuchstaben beginnen, nur reguläre Buchstaben "
+"enthalten und mit Leerzeichen oder - abgegrenzt sein."
 
-#: src/user/forms.py:27
+#: user/forms.py:28
 msgid ""
 "S numbers can start with an 's' and otherwise consist of a string of seven "
 "digits."
-msgstr "sNummern beginnen mit einem 's' gefolgt von sieben ziffern."
+msgstr "sNummern beginnen mit einem 's', gefolgt von sieben Ziffern."
 
-#: src/user/forms.py:35
-msgid "This s-number is already taken"
-msgstr "Diese sNummer wird bereits genutzt."
+#: user/forms.py:38
+#, fuzzy
+#| msgid "This s-number is already taken"
+msgid "This username is already taken"
+msgstr "Dieser Nutzername wird bereits genutzt."
 
-#: src/user/forms.py:47
-msgid "Your s-number."
-msgstr "Ihre s-Nummer"
+#: user/forms.py:53
+msgid ""
+"An email adress where you can be reached. The verification mail will be sent "
+"to this adress."
+msgstr "Eine Mailadresse unter der Du erreichbar bist. Die Verifikationsmail "
+"wird an diese Adresse gesendet."
 
-#: src/user/forms.py:56 src/user/forms.py:87
+#: user/forms.py:55 user/forms.py:70
 msgid ""
 "First part of your public name, which should be your genuine first name. If "
 "you become a teacher this will be visible to any site visitor. Can be "
 "modified later."
 msgstr ""
-"Erster Teil ihres öffentlichen Namens. Normalerweise Ihr Vorname.Falls Sie "
-"Tutor werden, wird dieser für jeden Seitenbesucher sichtbar.Kann später "
+"Erster Teil Deines öffentlichen Namens. Normalerweise Dein Vorname. Falls Du "
+"Tutor wirst, wird dieser für jeden Seitenbesucher sichtbar. Kann später "
 "verändert werden."
 
-#: src/user/forms.py:62 src/user/forms.py:94
+#: user/forms.py:58 user/forms.py:73
 msgid ""
 "Second part of your public name, which should be your genuine familyname. If "
 "you become a teacher this will be visible to any site visitor. Can be "
 "modified later"
 msgstr ""
-"Zweiter Teil ihres öffentlichen Namens. Normalerweise Ihr Nachname.Falls Sie "
-"Tutor werden, wird dieser für jeden Seitenbesucher sichtbar.Kann später "
+"Zweiter Teil Deines öffentlichen Namens. Normalerweise Dein Nachname. Falls "
+"Du Tutor wirst, wird dieser für jeden Seitenbesucher sichtbar. Kann später "
 "verändert werden."
 
-#: src/user/forms.py:72
-msgid ""
-"The s-number as assigned by the university. This will become your (private) "
-"username for this site. The verification email will be sent to the address "
-"associated with this s-number. Cannot be modified later."
-msgstr ""
-"Die sNummer, die die Uni Ihnen zugewiesen hat. Diese wird ihr "
-"(privater)Nutzername für diese Seite werden. Die Verifikations E-Mail wird "
-"zur zugehörigenAdresse gesendet. Kann nicht verändert werden."
+#: user/forms.py:61
+msgid "Unique username. Used for login. (cannot be changed later)."
+msgstr "(Einzigartiger) Nutzername. Kann nicht mehr geändert werden."
 
-#: src/user/forms.py:79 src/user/forms.py:101
+#: user/forms.py:91
+#, fuzzy
+#| msgid ""
+#| "The s-number as assigned by the university. This will become your "
+#| "(private) username for this site. The verification email will be sent to "
+#| "the address associated with this s-number. Cannot be modified later."
+msgid ""
+"The s-number as assigned by the university. The student verification email "
+"will be sent to the address associated with this s-number. Cannot be "
+"modified later."
+msgstr ""
+"Die sNummer, die das ZIH Dir zugewiesen hat. Die Verifikations-Mail wird "
+"zur zugehörigen Adresse gesendet. Kann nicht verändert werden."
+
+#: user/forms.py:94
 msgid ""
 "The faculty at which you are enrolled. (Used for crediting purposes) Can be "
 "modified later."
 msgstr ""
-"Die Fakultät, an der Sie eingeschrieben sind (Wird für Credits benötigt)."
+"Die Fakultät, an der Du eingeschrieben bist (Wird für Credits benötigt)."
 "Kann später verändert werden."
 
-#: src/user/forms.py:106
-msgid ""
-"Whether some of your data should be visible to others. Visible data would be "
-"first_name, last_name, the courses you teach and the description you provide "
-"below."
-msgstr ""
-
-#: src/user/forms.py:112
-msgid ""
-"Here you can provide some information about yourself. You can use markdown "
-"formatted text to do so. "
-msgstr ""
-"Sie können Die Kursbeschreibung hier editieren. Es ist möglich, dieses in "
-"markdown zu tun."
-
-#: src/user/forms.py:118
+#: user/forms.py:99
 msgid "This will become the subject field of the resulting email."
 msgstr "Dies wird der Betreff der Mail."
 
-#: src/user/forms.py:121
+#: user/forms.py:102
 msgid ""
 "This will be the content of the email. HTML is not allowed and any html tags "
 "will be removed."
 msgstr ""
-"Dies wird der Inhalt der Mail. HTML ist nicht erlaubt und HTML tags werden "
+"Das wird der Inhalt der Mail. HTML ist nicht erlaubt und HTML Tags werden "
 "entfernt."
 
-#: src/user/forms.py:133
+#: user/forms.py:114
 msgid "An email address where the recipient may reach you."
-msgstr "Eine Mail Adresse, unter der die Empfänger Sie erreichen können."
+msgstr "Eine Mail Adresse, unter der der Empfänger Dich erreichen kann."
 
-#: src/user/templates/registration/login.html:5
-msgid "Your username and password didn't match. Please try again."
-msgstr ""
-"Der Nutzername und das Passwort stimmen nicht überein. Bitte erneut "
-"versuchen."
+#: user/templates/contact-form.html:6
+msgid "Contact"
+msgstr "Kontakt"
 
-#: src/user/templates/registration/login.html:10
+#: user/templates/registration/login.html:7
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
 msgstr ""
-"Ihr Konto hat keinen Zugriff zu dieser Seite. Um fortzufahren, loggen Sie "
-"sich bitte mit einem Konto ein,welches über die nötigen Rechte verfügt."
+"Dein Konto hat keinen Zugriff auf diese Seite. Um fortzufahren, logge Dich "
+"bitte mit einem Konto ein, welches über die nötigen Rechte verfügt."
 
-#: src/user/templates/registration/login.html:12
+#: user/templates/registration/login.html:9
 msgid "Please login to see this page."
-msgstr "Bitte Loggen Sie sich ein, um diese seite zu sehen."
+msgstr "Bitte logge dich ein, um diese Seite zu sehen."
 
-#: src/user/templates/registration/login.html:21
-#: src/user/templates/registration/register.html:18
+#: user/templates/registration/login.html:18
+#: user/templates/registration/register.html:20
+#: user/templates/registration/student-verification.html:10
 msgid "Submit"
 msgstr "Abschicken"
 
-#: src/user/templates/registration/logout.html:5
+#: user/templates/registration/logout.html:5
 msgid "You have been logged out successfully."
-msgstr "Sie haben sich erfolgreich ausgeloggt."
+msgstr "Du hast sich erfolgreich ausgeloggt."
 
-#: src/user/templates/registration/success.html:6
-msgid "You successfully registered you account!"
-msgstr "Sie haben sich erfolgreich registriert."
+#: user/templates/registration/sent-student-verification-mail.html:6
+#, fuzzy
+#| msgid "We sent a mail to the Email account"
+msgid "We sent a verification mail to "
+msgstr "Es wurde eine E-Mail geschickt an "
 
-#: src/user/templates/registration/success.html:7
-msgid "We sent a mail to the Email account"
-msgstr "Es wurde eine E-Mail an Ihre Adresse gesendet."
+#: user/templates/registration/sent-student-verification-mail.html:8
+#, fuzzy
+#| msgid "This Mail contains an account activation link."
+msgid "This mail contains an account activation link."
+msgstr "Diese Mail beinhaltet einen Aktivierungslink für Dein Konto."
 
-#: src/user/templates/registration/success.html:8
-msgid "This Mail contains an account activation link."
-msgstr "Diese Mail beinhaltet einen Aktivierungslink für Ihr Konto."
+#: user/templates/registration/sent-student-verification-mail.html:9
+msgid "Back to your Profile."
+msgstr "Zurück zu Deinem Profil."
 
-#: src/user/templates/user/activate.html:11
+#: user/templates/registration/success.html:6
+#, fuzzy
+#| msgid "You successfully registered you account!"
+msgid "You successfully registered your account!"
+msgstr "Du hast dich erfolgreich registriert."
+
+#: user/templates/registration/success.html:7
+#, fuzzy
+#| msgid "We sent a mail to the Email account"
+msgid "We sent verification mails to the following email accounts:"
+msgstr "Es wurde eine Verifizierungs-Mail an folgende Adressen gesendet:"
+
+#: user/templates/registration/success.html:13
+#, fuzzy
+#| msgid "This Mail contains an account activation link."
+msgid "These mails contain an account activation link."
+msgstr "Diese Mail beinhaltet einen Aktivierungslink für Dein Konto."
+
+#: user/templates/registration/success.html:14
+#, fuzzy
+#| msgid "We sent a mail to the Email account"
+msgid "Please validate all of these email accounts."
+msgstr "Bitte validiere alle angegebenen Mail Accounts."
+
+#: user/templates/user/activate.html:11
 msgid "Your account has been successfully activated."
-msgstr "Ihr Konto wurde erfolgreich aktiviert."
+msgstr "Dein Konto wurde erfolgreich aktiviert."
 
-#: src/user/templates/user/edit.html:6
+#: user/templates/user/edit.html:6
 msgid "Here you may change your user information."
-msgstr "Hier können Sie ihre Nutzerinformationen ändern."
+msgstr "Hier kannst Du Deine Nutzerinformationen ändern."
 
-#: src/user/templates/user/edit.html:13
+#: user/templates/user/edit.html:19
 msgid "Change"
 msgstr "Ändern"
 
-#: src/user/templates/user/edit.html:16
+#: user/templates/user/edit.html:24
 msgid "Perhaps you'd like to"
-msgstr "Vielleicht möchten Sie"
+msgstr "Vielleicht möchtest Du"
 
-#: src/user/templates/user/edit.html:16
-msgid "change your password?"
-msgstr "Ihr Passwort ändern"
+#: user/templates/user/edit.html:24
+#, fuzzy
+#| msgid "change your password?"
+msgid "change your password"
+msgstr "Dein Passwort ändern"
 
-#: src/user/templates/user/profile.html:5
+#: user/templates/user/edit.html:26
+msgid "or"
+msgstr "oder"
+
+#: user/templates/user/edit.html:27
+msgid "verify as a student"
+msgstr "Dich als Student verifizieren"
+
+#: user/templates/user/profile.html:5
 msgid "Your data"
-msgstr "Ihre Daten"
+msgstr "Deine Daten"
 
-#: src/user/templates/user/profile.html:8
+#: user/templates/user/profile.html:8
 msgid "Username"
 msgstr "Nutzername"
 
-#: src/user/templates/user/profile.html:12
+#: user/templates/user/profile.html:12
 msgid "First name"
 msgstr "Vorname"
 
-#: src/user/templates/user/profile.html:16
+#: user/templates/user/profile.html:16
 msgid "Last name"
 msgstr "Nachname"
 
-#: src/user/templates/user/profile.html:20
+#: user/templates/user/profile.html:20
 msgid "Email"
 msgstr "E-Mail"
 
-#: src/user/templates/user/profile.html:26
+#: user/templates/user/profile.html:26
 msgid "s number"
 msgstr "s-Nummer"
 
-#: src/user/templates/user/profile.html:30
+#: user/templates/user/profile.html:30
 msgid "Faculty"
 msgstr "Fakultät"
 
-#: src/user/templates/user/profile.html:38
+#: user/templates/user/profile.html:36
+#, fuzzy
+#| msgid "Status"
+msgid "Student status"
+msgstr "Studentenstatus"
+
+#: user/templates/user/profile.html:39
+msgid "Pending..."
+msgstr "Ausstehend..."
+
+#: user/templates/user/profile.html:39
+msgid "Resend verification Mail"
+msgstr "Verifikationsmail erneut senden"
+
+#: user/templates/user/profile.html:41
+msgid "Verify Now"
+msgstr "Jetzt verifizieren"
+
+#: user/templates/user/profile.html:50
 msgid "Visit your public profile."
 msgstr "Öffentliches Profil anzeigen."
 
-#: src/user/templates/user/profile.html:43
+#: user/templates/user/profile.html:56
 msgid "Courses you teach"
-msgstr "Kurse, die Sie unterrichten"
+msgstr "Kurse, die Du unterrichtest"
 
-#: src/user/templates/user/profile.html:47
+#: user/templates/user/profile.html:60
 msgid "Courses you attend"
-msgstr "Kurse, die Sie besuchen"
+msgstr "Kurse, die Du besuchst"
 
-#: src/user/templates/user/public-profile.html:10
+#: user/templates/user/public-profile.html:12
 msgid "Courses this user teaches"
 msgstr "Kurse, die dieser Nutzer hält"
 
-#: src/user/templates/user/public-profile.html:16
+#: user/templates/user/public-profile.html:19
 msgid "Visit your private profile"
 msgstr "Privates Profil anzeigen"
 
-#: src/user/templates/user/public-profile.html:19
+#: user/templates/user/public-profile.html:21
 msgid "Contact this user."
 msgstr "Nutzer kontaktieren."
 
-#: src/user/views/activate.py:18
-msgid "Activation Failed"
-msgstr "Aktivierung Fehlgeschlagen"
+#: user/templates/view-error.html:6
+msgid "The content you requested could not be found."
+msgstr "Der angefordetre Inhalt konnte nicht gefunden werden."
 
-#: src/user/views/activate.py:25
-msgid "You didn't provide a token."
-msgstr "Sie haben keinen Token angegeben."
-
-#: src/user/views/activate.py:30
-msgid "The token you provided is invalid."
-msgstr "Der angegebene Token ist ungültig."
-
-#: src/user/views/activate.py:37
-msgid "Activation Succeded"
-msgstr "Activierung erfolgreich"
-
-#: src/user/views/contact.py:17
+#: user/views/contact.py:19
 msgid "Requested user does not exist."
 msgstr "Der angeforderte Nutzer existiert nicht."
 
-#: src/user/views/register.py:37
+#: user/views/register.py:69
 msgid "Registration successfull"
 msgstr "Registrierung erfolgreich"
 
-#: src/user/views/register.py:49
+#: user/views/register.py:84
 msgid "Registration"
 msgstr "Registrierung"
 
-#: src/user/views/register.py:83
-msgid "Your registration at the iFSR course enrollment system"
-msgstr "Ihre Registrierung beim iFSR Kurs Management"
+#: user/views/register.py:121
+#, fuzzy
+#| msgid "Your registration at the iFSR course enrollment system"
+msgid "Your {} verification at the iFSR course enrollment system."
+msgstr "Deine Registrierung beim iFSR Kurs Management"
 
-#: src/user/views/user.py:35
-msgid ""
-"Oops, it seems that faculty does not exist. Please try again and should the "
-"problem persist contact an administrator."
-msgstr ""
-"Diese Fakultät scheint nicht zu existieren. Bitte versuchen Sie es erneut."
-"Sollte das Problem weiterhin bestehen, kontaktieren Sie bitte einen "
-"Administrator."
-
-#: src/user/views/user.py:81
+#: user/views/user.py:58
 msgid "This user does not exist"
 msgstr "Der angeforderte Nutzername existiert nicht."
+
+#: user/views/verify.py:33
+msgid "This verification does not have an associated view."
+msgstr "Diese Verification hat keine zugehörige Ansicht."
+
+#: user/views/verify.py:46
+#, fuzzy
+#| msgid "This user does not exist"
+msgid "This verification does not exist"
+msgstr "Der angeforderte Nutzername existiert nicht."
+
+#: user/views/verify.py:55
+msgid "The token you provided is invalid."
+msgstr "Das angegebene Token ist ungültig."
+
+#: user/views/verify.py:64
+msgid "Activation Succeded"
+msgstr "Aktivierung erfolgreich"
+
+#: user/views/verify.py:108
+msgid "Verification mail sent"
+msgstr "Verifikationsmail wurde gesendet"
+
+#~ msgid "Participants list"
+#~ msgstr "Teilnehmerliste"
+
+#~ msgid "Your s-number."
+#~ msgstr "Deine s-Nummer"
+
+#~ msgid ""
+#~ "Here you can provide some information about yourself. You can use "
+#~ "markdown formatted text to do so. "
+#~ msgstr ""
+#~ "Du kannst die Kursbeschreibung hier editieren. Es ist möglich, Markdown "
+#~ "zu benutzen."
+
+#~ msgid "Your username and password didn't match. Please try again."
+#~ msgstr ""
+#~ "Der Nutzername und das Passwort stimmen nicht überein. Bitte erneut "
+#~ "versuchen."
+
+#~ msgid "Activation Failed"
+#~ msgstr "Aktivierung Fehlgeschlagen"
+
+#~ msgid "You didn't provide a token."
+#~ msgstr "Du hast kein Token angegeben."
+
+#~ msgid ""
+#~ "Oops, it seems that faculty does not exist. Please try again and should "
+#~ "the problem persist contact an administrator."
+#~ msgstr ""
+#~ "Diese Fakultät scheint nicht zu existieren. Bitte versuche es erneut."
+#~ "Sollte das Problem weiterhin bestehen, kontaktiere bitte einen "
+#~ "Administrator."
 
 #~ msgid "Complete overview"
 #~ msgstr "Komplette Übersicht"
