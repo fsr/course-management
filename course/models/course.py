@@ -3,6 +3,7 @@ from markdown import markdown
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+import django.utils.timezone
 
 from guardian.models import UserObjectPermission
 
@@ -11,8 +12,6 @@ from . import schedule, subject
 from user.models import UserInformation, get_user_information
 
 from util.html_clean import clean_for_description
-
-from datetime import date
 
 
 ARCHIVE_STATUSES = (
@@ -33,8 +32,8 @@ class Course(models.Model):
     archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)
     queue = models.ManyToManyField(UserInformation, related_name='waiting_for')
     student_only = models.BooleanField(default=False)
-    start_time = models.DateField(default=date.today())
-    end_time = models.DateField(default=date.today())
+    start_time = models.DateField(default=django.utils.timezone.now)
+    end_time = models.DateField(default=django.utils.timezone.now)
 
     class IsFull(Exception):
         pass
