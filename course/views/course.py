@@ -144,7 +144,7 @@ def create(request):
         if form.is_valid():
             created = form.save(commit=False)
 
-            created.schedule = Schedule.objects.create(_type=form['schedule_type'])
+            created.schedule = Schedule.objects.create(_type=request.POST['schedule_type'])
             created.save()
             created.teacher.add(request.user.userinformation)
             assign_perm(
