@@ -64,7 +64,7 @@
             {% if question.has_choices %}| {{ question.choice_values|join:", " }}{% endif %} |
             <form
                 action="{% url 'poll-add-question' poll.url question.id %}?target={% url 'poll-edit-questions' poll.url %}"
-                method="post">{% csrf_token %}<input type="submit" value="use"/></form>
+                method="post">{% csrf_token %}<input type="submit" value="{% trans "use" %}"/></form>
           </li>
         {% endfor %}
       </ul>

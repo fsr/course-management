@@ -3,7 +3,7 @@
 
 {% block content %}
   <h1>{{ poll.name }}</h1>
-  <h3>Questions</h3>
+  <h3>{% trans "Questions" %}</h3>
   <ol>
     {% for qlink in poll.questions.all %}
       {% with question=qlink.question %}

@@ -4,15 +4,15 @@
 {% block content %}
   <a href="{% url 'poll-view' poll.url %}">👈 {% trans "Back to poll" %}</a>
 
-  <h3>Tokens for this poll:</h3>
+  <h3>{% trans "Tokens for this poll:" %}"</h3>
   <table>
     {% for token in tokens %}
       <tr>
         <td>{{ token.token }}</td>
-        <td>{% if token.used %}<b>used</b>{% else %}unused{% endif %}</td>
+        <td>{% if token.used %}<b>{% trans "used" %}</b>{% else %}{% trans "unused" %}{% endif %}</td>
       </tr>
     {% empty %}
-      none?
+      {% trans "none?" %}
     {% endfor %}
   </table>
   <a href="{% url 'poll-generate-tokens' poll.url %}">🔓 {% trans "Generate tokens" %}</a>

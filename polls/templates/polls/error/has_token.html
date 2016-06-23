@@ -1,11 +1,16 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
-  <p>Error: you already have a token for this poll, it is {{ token.token }} and you
+    <p>
     {% if token.used %}
-      used it already.
+        {% blocktrans %}
+            Error: You already have a token for this poll. It is {{ token.token }} and you used it already.
+        {% endblocktrans %}
     {% else %}
-      haven't used it yet.
+        {% blocktrans %}
+            Error: You already have a token for this poll. It is {{ token.token }} and you haven't used it yet.
+        {% endblocktrans %}
     {% endif %}
     </p>
 {% endblock %}
