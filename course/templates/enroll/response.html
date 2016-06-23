@@ -6,24 +6,24 @@
   <p>
     {% if action == 'register' %}
 	    {% if error %}
-	      {% blocktrans with s=subject %}
+	        {% blocktrans with s=subject %}
 			    Your subscription to the course {{ s }} was unsuccessful.
-			  {% endblocktrans %}
-		  {% else %}
-			  {% blocktrans with s=subject %}
+			{% endblocktrans %}
+		{% else %}
+			{% blocktrans with s=subject %}
 			    Your subscription to the course {{ s }} was successful.
-			  {% endblocktrans %}
-		  {% endif %}
+			{% endblocktrans %}
+		{% endif %}
     {% elif action == 'unregister' %}
 	    {% if error %}
-	      {% blocktrans with s=subject %}
+	        {% blocktrans with s=subject %}
 			    Your unsubscription to the course {{ s }} was unsuccessful.
-			  {% endblocktrans %}
-		  {% else %}
-			  {% blocktrans with s=subject %}
+		    {% endblocktrans %}
+		{% else %}
+		    {% blocktrans with s=subject %}
 			    Your unsubscription to the course {{ s }} was successful.
-			  {% endblocktrans %}
-		  {% endif %}
+			{% endblocktrans %}
+		{% endif %}
     {% endif %}
   </p>
   {% if error %}

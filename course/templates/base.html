@@ -35,7 +35,7 @@
     {% endif %}
     {% if False %}
     <li class="has-dropdown">
-      <a href="#">Language</a>
+      <a href="#">{% trans "Language" %}</a>
       <ul class="dropdown">
         <li>
           <form action="{% url 'set_language' %}" method="post" id="language-form" name="language-form">
@@ -76,6 +76,6 @@
 
 	{% if true %}
 	  <li class="divider"></li>
-	  <li><a href="{% url 'subject-overview' %}">Complete overview</a></li>
+	  <li><a href="{% url 'subject-overview' %}">{% trans "Complete overview" %}</a></li>
 	{% endif %}
 {% endblock %}

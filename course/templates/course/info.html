@@ -5,7 +5,7 @@
 {% endblock %}
 <h1>{{ course.subject.name }}</h1>
 <table class="table">
-  <tr><td>🎓 Teachers</td>
+  <tr><td>🎓 {% trans "Teachers" %}</td>
     <td>
       {% for teacher in course.teacher.all %}<a href="{% url 'user-profile' teacher.user.id %}">{{ teacher }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
     </td>
@@ -93,7 +93,7 @@
     <tr>
       <td>{% trans "Actions" %}</td>
       <td>
-        If you <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> you can join this course.
+        <a href="{% url 'login' %}">{% trans "Log in" %}</a> {% trans "or" %} <a href="{% url 'register' %}">{% trans "register" %}</a> {% trans "to join this course" %}.
       </td>
     </tr>
 {% endif %}

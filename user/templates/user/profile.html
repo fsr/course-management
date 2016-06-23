@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
-  <h1>{{ user.first_name }} {{ user.last_name }}  "{{ user.username }}"</h1>
+  <h1>{{ user.first_name }} {{ user.last_name }}  <i>({{ user.username }})</i></h1>
   <h2>{% trans "Your data" %}</h2>
   <table>
     <tr>
@@ -17,7 +17,7 @@
       <td>{{ user.last_name }}</td>
     </tr>
     <tr>
-      <td>📧 {% trans "Email" %}</td>
+      <th>📧 {% trans "Email" %}</th>
       <td>{{ user.email }}</td>
     </tr>
     {% if user.userinformation.is_verified_student %}
@@ -60,7 +60,7 @@
       <h2>{% trans "Courses you attend" %}</h2>
       {% include 'course_list.html' with course_list=student.course_set.all target=request.path %}
     {% endif %}
-    <h2>Your description</h2>
+    <h2>{% trans "Your description" %}</h2>
     <div>
       {{ student.render_description|safe }}
     </div>

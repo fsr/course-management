@@ -4,7 +4,7 @@
 {% block content %}
   {% if tokens %}
     <a href="{% url 'poll-view' poll.url %}">👈 {% trans "Back to poll" %}</a>
-    <p>You generated the following tokens:</p>
+    <p>{% trans "You generated the following tokens" %}:</p>
     <table>
       {% for token in tokens %}
         <tr><td>{{ token.token }}</td></tr>
@@ -12,11 +12,11 @@
     </table>
   {% endif %}
   {% if generate %}
-    You can generate tokens here.
+    {% trans "You can generate tokens here." %}
     <form action="{% url 'poll-generate-tokens' poll.url %}">
-      <label for="amount-input">Amount of tokens to generate</label>
+      <label for="amount-input">{% trans "Amount of tokens to generate" %}</label>
       <input type="number" name="amount" id="amount-input" />
-      <input class="button" type="submit" value="Generate"/>
+      <input class="button" type="submit" value="{% trans "Generate" %}"/>
     </form>
   {% endif %}
 {% endblock %}
