@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-25 21:06+0200\n"
+"POT-Creation-Date: 2016-06-24 09:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,8 +156,26 @@ msgstr ""
 msgid "German"
 msgstr ""
 
-#: course/templates/base-shell.html:8 course/templates/base-shell.html.py:16
+#: course/templates/base-shell.html:8 course/templates/base-shell.html:16
 msgid "Course Manager"
+msgstr ""
+
+#: course/templates/base-shell.html:62
+msgid "This is a project by the iFSR development team."
+msgstr ""
+
+#: course/templates/base-shell.html:63
+msgid "Help improve this application on"
+msgstr ""
+
+#: course/templates/base-shell.html:67
+msgid ""
+"\n"
+"\t\t\t\tYou can also <a href=\"https://github.com/fsr/course-management/"
+"issues/new\">report bugs 🐞 and errors 🚨</a> there as well as <a href="
+"\"https://github.com/fsr/course-management/issues/new\">suggest improvements "
+"🔨</a>.\n"
+"\t\t\t"
 msgstr ""
 
 #: course/templates/base.html:15
@@ -192,8 +210,16 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: course/templates/base.html:70 course/templates/base.html.py:72
+#: course/templates/base.html:38
+msgid "Language"
+msgstr ""
+
+#: course/templates/base.html:70 course/templates/base.html:72
 msgid "Subjects"
+msgstr ""
+
+#: course/templates/base.html:79
+msgid "Complete overview"
 msgstr ""
 
 #: course/templates/course/attendee-list-select.html:7
@@ -201,6 +227,7 @@ msgid "Number of slots to generate."
 msgstr ""
 
 #: course/templates/course/attendee-list-select.html:9
+#: polls/templates/polls/token/gen.html:19
 msgid "Generate"
 msgstr ""
 
@@ -242,11 +269,16 @@ msgid "Delete"
 msgstr ""
 
 #: course/templates/course/forms/register.html:4
+#: course/templates/course/info.html:96
 msgid "register"
 msgstr ""
 
 #: course/templates/course/forms/unregister.html:4
 msgid "unregister"
+msgstr ""
+
+#: course/templates/course/info.html:8 course/templates/course_list.html:35
+msgid "Teachers"
 msgstr ""
 
 #: course/templates/course/info.html:14
@@ -324,6 +356,18 @@ msgstr ""
 msgid "This course is full"
 msgstr ""
 
+#: course/templates/course/info.html:96
+msgid "Log in"
+msgstr ""
+
+#: course/templates/course/info.html:96 user/templates/user/edit.html:26
+msgid "or"
+msgstr ""
+
+#: course/templates/course/info.html:96
+msgid "to join this course"
+msgstr ""
+
 #: course/templates/course/info.html:105
 msgid "No description provided for this course."
 msgstr ""
@@ -387,10 +431,6 @@ msgstr ""
 msgid "Timeslots"
 msgstr ""
 
-#: course/templates/course_list.html:35
-msgid "Teachers"
-msgstr ""
-
 #: course/templates/course_list.html:41
 msgid "Locations"
 msgstr ""
@@ -412,7 +452,7 @@ msgstr ""
 msgid ""
 "\n"
 "\t\t\t    Your subscription to the course %(s)s was unsuccessful.\n"
-"\t\t\t  "
+"\t\t\t"
 msgstr ""
 
 #: course/templates/enroll/response.html:13
@@ -420,7 +460,7 @@ msgstr ""
 msgid ""
 "\n"
 "\t\t\t    Your subscription to the course %(s)s was successful.\n"
-"\t\t\t  "
+"\t\t\t"
 msgstr ""
 
 #: course/templates/enroll/response.html:19
@@ -428,7 +468,7 @@ msgstr ""
 msgid ""
 "\n"
 "\t\t\t    Your unsubscription to the course %(s)s was unsuccessful.\n"
-"\t\t\t  "
+"\t\t    "
 msgstr ""
 
 #: course/templates/enroll/response.html:23
@@ -436,7 +476,7 @@ msgstr ""
 msgid ""
 "\n"
 "\t\t\t    Your unsubscription to the course %(s)s was successful.\n"
-"\t\t\t  "
+"\t\t\t"
 msgstr ""
 
 #: course/templates/error/db.html:6
@@ -551,6 +591,32 @@ msgstr ""
 msgid "A url to use for this poll (optional)"
 msgstr ""
 
+#: polls/templates/polls/error/has_token.html:7
+#, python-format
+msgid ""
+"\n"
+"            Error: You already have a token for this poll. It is "
+"%(token.token)s and you used it already.\n"
+"        "
+msgstr ""
+
+#: polls/templates/polls/error/has_token.html:11
+#, python-format
+msgid ""
+"\n"
+"            Error: You already have a token for this poll. It is "
+"%(token.token)s and you haven't used it yet.\n"
+"        "
+msgstr ""
+
+#: polls/templates/polls/poll/create.html:5
+msgid "Create a new poll"
+msgstr ""
+
+#: polls/templates/polls/poll/create.html:12
+msgid "next"
+msgstr ""
+
 #: polls/templates/polls/poll/overview.html:10
 msgid "Poll name"
 msgstr ""
@@ -584,6 +650,14 @@ msgstr ""
 msgid "Questions from other forms"
 msgstr ""
 
+#: polls/templates/polls/poll/questions.html:67
+msgid "use"
+msgstr ""
+
+#: polls/templates/polls/poll/view.html:6
+msgid "Questions"
+msgstr ""
+
 #: polls/templates/polls/poll/view.html:25
 msgid "Vote on this poll"
 msgstr ""
@@ -614,7 +688,7 @@ msgid "Generate tokens"
 msgstr ""
 
 #: polls/templates/polls/poll/vote.html:34
-msgid "Freitextantwort"
+msgid "Free Text Answer"
 msgstr ""
 
 #: polls/templates/polls/poll/vote.html:41
@@ -624,6 +698,34 @@ msgstr ""
 #: polls/templates/polls/token/gen.html:6
 #: polls/templates/polls/token/overview.html:5
 msgid "Back to poll"
+msgstr ""
+
+#: polls/templates/polls/token/gen.html:7
+msgid "You generated the following tokens"
+msgstr ""
+
+#: polls/templates/polls/token/gen.html:15
+msgid "You can generate tokens here."
+msgstr ""
+
+#: polls/templates/polls/token/gen.html:17
+msgid "Amount of tokens to generate"
+msgstr ""
+
+#: polls/templates/polls/token/overview.html:7
+msgid "Tokens for this poll:"
+msgstr ""
+
+#: polls/templates/polls/token/overview.html:12
+msgid "used"
+msgstr ""
+
+#: polls/templates/polls/token/overview.html:12
+msgid "unused"
+msgstr ""
+
+#: polls/templates/polls/token/overview.html:15
+msgid "none?"
 msgstr ""
 
 #: polls/templates/polls/token/require.html:10
@@ -781,10 +883,6 @@ msgstr ""
 msgid "change your password"
 msgstr ""
 
-#: user/templates/user/edit.html:26
-msgid "or"
-msgstr ""
-
 #: user/templates/user/edit.html:27
 msgid "verify as a student"
 msgstr ""
@@ -845,15 +943,29 @@ msgstr ""
 msgid "Courses you attend"
 msgstr ""
 
+#: user/templates/user/profile.html:63
+msgid "Your description"
+msgstr ""
+
 #: user/templates/user/public-profile.html:12
 msgid "Courses this user teaches"
 msgstr ""
 
-#: user/templates/user/public-profile.html:19
+#: user/templates/user/public-profile.html:18
+msgid ""
+"According to your privacy settings no additional information will be shown "
+"here."
+msgstr ""
+
+#: user/templates/user/public-profile.html:20
+msgid "This user does not wish to publicise any additional information."
+msgstr ""
+
+#: user/templates/user/public-profile.html:25
 msgid "Visit your private profile"
 msgstr ""
 
-#: user/templates/user/public-profile.html:21
+#: user/templates/user/public-profile.html:27
 msgid "Contact this user."
 msgstr ""
 
