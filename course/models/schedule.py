@@ -77,7 +77,7 @@ class DateSlot(models.Model):
     schedule = models.ForeignKey(Schedule)
 
     def __str__(self):
-        return self.date.strftime("%d.%m.%Y, %H:%M Uhr")
+        return self.date.strftime("%d.%m.%Y, %H:%M")
 
     def as_summary(self):
         return '{} at {}'.format(self.date, self.place)
