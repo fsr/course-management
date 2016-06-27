@@ -461,7 +461,7 @@ msgstr "Keine Orte festgelegt."
 
 #: course/templates/course_list.html:54
 msgid "You are teacher"
-msgstr "Du bist Tutor."
+msgstr "Du bist Tutor"
 
 #: course/templates/course_list.html:58
 msgid "You are enrolled. ✅"
