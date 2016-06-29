@@ -284,8 +284,8 @@ def notify(request: HttpRequest, course_id):
 
             show_sender = data.get('show_sender', False) and email
 
-            subject = form.subject
-            content = form.content
+            subject = data['subject']
+            content = data['content']
 
             for student in itertools.chain(course.participants.all(), course.teacher.all()):
                 if show_sender:
