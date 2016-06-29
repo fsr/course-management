@@ -3,7 +3,7 @@
   fields:
     last_name: Ustermann
     user_permissions: []
-    date_joined: "2015-11-07T19:08:00.919Z"
+    date_joined: "2015-11-07 19:08:00"
     email: test@domain.de
     is_active: true
     username: TestMaster
@@ -18,7 +18,7 @@
   fields:
     last_name: Stuart
     user_permissions: []
-    date_joined: "2015-11-08 12:18:06.919Z"
+    date_joined: "2015-11-08 12:18:06"
     email: asdf@asdf.de
     is_active: true
     username: foo
