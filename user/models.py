@@ -13,7 +13,7 @@ class Faculty(models.Model):
 
 
 class UserInformation(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     description = models.TextField(default="")
     public_profile = models.BooleanField(default=False)
 
@@ -75,7 +75,7 @@ class UserInformation(models.Model):
 
 class StudentInformation(UserInformation):
     s_number = models.CharField(max_length=50, unique=True)
-    faculty = models.ForeignKey(Faculty)
+    faculty = models.ForeignKey(Faculty, on_delete=models.PROTECT)
     verified = models.BooleanField(default=False)
 
     def make_zih_mail(self):
@@ -89,7 +89,7 @@ ACTIVATION_TYPES = {
 
 
 class Activation(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     token = models.CharField(max_length=50)
     type = models.CharField(max_length=1,
         choices=tuple((v, k) for k, v in ACTIVATION_TYPES.items())

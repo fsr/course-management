@@ -22,11 +22,11 @@ ARCHIVE_STATUSES = (
 
 
 class Course(models.Model):
-    schedule = models.OneToOneField(schedule.Schedule)
+    schedule = models.OneToOneField(schedule.Schedule, on_delete=models.CASCADE)
     teacher = models.ManyToManyField(UserInformation, related_name="teacher")
     participants = models.ManyToManyField(UserInformation)
     active = models.BooleanField(default=False)
-    subject = models.ForeignKey(subject.Subject)
+    subject = models.ForeignKey(subject.Subject, on_delete=models.CASCADE)
     max_participants = models.IntegerField()
     description = models.TextField(blank=True, default="")
     archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)

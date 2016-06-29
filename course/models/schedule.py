@@ -59,7 +59,7 @@ class WeeklySlot(models.Model):
     weekday = models.CharField(max_length=3, choices=WEEKDAYS)
     timeslot = models.CharField(max_length=3, choices=TIMESLOTS)
     location = models.CharField(max_length=100, blank=True)
-    schedule = models.ForeignKey(Schedule)
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
 
     def __str__(self):
         return "{weekday}, {timeslot}".format(
@@ -74,7 +74,7 @@ class WeeklySlot(models.Model):
 class DateSlot(models.Model):
     date = models.DateTimeField()
     location = models.CharField(max_length=100, blank=True)
-    schedule = models.ForeignKey(Schedule)
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.date.strftime("%d.%m.%Y, %H:%M")
