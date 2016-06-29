@@ -1,4 +1,4 @@
-# German Translations for the COurse Management
+# German Translations for the Course Management
 # Copyright (C) 2016 iFSR
 # This file is distributed under the same license as the course-management package.
 # Felix Wittwer <dev@felixwittwer.de>, 2016.
@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-24 09:05+0200\n"
+"POT-Creation-Date: 2016-06-29 16:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felix Wittwer <dev@felixwittwer.de>\n"
 "Language-Team: ---\n"
-"Language: German \n"
+"Language: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,8 +35,7 @@ msgstr "Wähle ein Thema für den Kurs."
 
 #: course/forms.py:90
 msgid "Choose whether people should be able to join this course right now."
-msgstr ""
-"Wähle aus, ob die Einschreibung für den Kurs sofort aktiv sein soll."
+msgstr "Wähle aus, ob die Einschreibung für den Kurs sofort aktiv sein soll."
 
 #: course/forms.py:94
 msgid ""
@@ -46,15 +45,10 @@ msgstr ""
 "Formatierung verwenden."
 
 #: course/forms.py:97
-#, fuzzy
-#| msgid "How many people can join your cours. (Can be changed later)"
 msgid "How many people can join your course. (Can be changed later)"
-msgstr ""
-"Maximale Teilnehmerzahl. (Kann später geändert werden)"
+msgstr "Maximale Teilnehmerzahl. (Kann später geändert werden)"
 
 #: course/forms.py:98
-#, fuzzy
-#| msgid "Should your course only be avaliable to students?"
 msgid "Should your course only be available to students?"
 msgstr "Soll der Kurs nur für Studenten zugänglich sein?"
 
@@ -75,8 +69,6 @@ msgid "Begin"
 msgstr "Beginn"
 
 #: course/forms.py:105
-#, fuzzy
-#| msgid "2nd"
 msgid "End"
 msgstr "Ende"
 
@@ -86,15 +78,16 @@ msgstr "Nutzername der Person, die Tutor des Kurses sein soll"
 
 #: course/forms.py:120
 msgid "Whether to set the email sender to your email address or not."
-msgstr "Soll deine Mailadresse als Absendera angegeben werden?"
+msgstr "Soll deine Mailadresse als Absender angegeben werden?"
 
 #: course/forms.py:129
 msgid ""
 "Name of the subject, also decides its url. Allowed characters are word "
 "characters, numbers, spaces, '-' and '_' and it cannot be any of , "
 msgstr ""
-"Name des Themas, die URL wird daraus abgeleitet. Erlaubte Zeichen sind Buchstaben, "
-"Ziffern, Spaces, '-' und '_'. Folgende dürfen nicht gewählt werden:"
+"Name des Themas, die URL wird daraus abgeleitet. Erlaubte Zeichen sind "
+"Buchstaben, Ziffern, Spaces, '-' und '_'. Folgende dürfen nicht gewählt "
+"werden:"
 
 #: course/models/schedule.py:6
 msgid "Mondays"
@@ -190,10 +183,10 @@ msgid ""
 "\t\t\t"
 msgstr ""
 "\n"
-"\t\t\t\tWir freuen und immer über <a href=\"https://github.com/fsr/course-management/"
-"issues/new\">Bug- und Fehlermeldungen</a> oder <a href="
-"\"https://github.com/fsr/course-management/issues/new\">Verbesserungsvorschläge "
-"🔨</a>.\n"
+"\t\t\t\tWir freuen und immer über <a href=\"https://github.com/fsr/course-"
+"management/issues/new\">Bug- und Fehlermeldungen</a> oder <a href=\"https://"
+"github.com/fsr/course-management/issues/new\">Verbesserungsvorschläge 🔨</"
+"a>.\n"
 "\t\t\t"
 
 #: course/templates/base.html:15
@@ -205,14 +198,12 @@ msgid "Create subject"
 msgstr "Thema erstellen"
 
 #: course/templates/base.html:21
-#, fuzzy
-#| msgid "Create"
 msgid "Create poll"
-msgstr "Umfrage Erstellen"
+msgstr "Umfrage erstellen"
 
 #: course/templates/base.html:23
 msgid "Edit your data"
-msgstr "Nutzerdaten editieren"
+msgstr "Nutzerdaten bearbeiten"
 
 #: course/templates/base.html:24
 msgid "Change pass"
@@ -388,8 +379,6 @@ msgid "or"
 msgstr "oder"
 
 #: course/templates/course/info.html:96
-#, fuzzy
-#| msgid "Notify course"
 msgid "to join this course"
 msgstr "um diesem Kurs beizutreten"
 
@@ -471,8 +460,6 @@ msgid "No location set."
 msgstr "Keine Orte festgelegt."
 
 #: course/templates/course_list.html:54
-#, fuzzy
-#| msgid "You are teacher."
 msgid "You are teacher"
 msgstr "Du bist Tutor"
 
@@ -481,26 +468,19 @@ msgid "You are enrolled. ✅"
 msgstr "Du bist eingeschrieben. ✅"
 
 #: course/templates/enroll/response.html:9
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\t\t    Your subscription to the course %(s)s was unsuccessful.\n"
-#| "\t\t\t  "
+#, python-format
 msgid ""
 "\n"
 "\t\t\t    Your subscription to the course %(s)s was unsuccessful.\n"
 "\t\t\t"
 msgstr ""
 "\n"
-"\t\t\t    Deine Einschreibung für den Kurs %(s)s war leider nicht erfolgreich.\n"
+"\t\t\t    Deine Einschreibung für den Kurs %(s)s war leider nicht "
+"erfolgreich.\n"
 "\t\t\t  "
 
 #: course/templates/enroll/response.html:13
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\t\t    Your subscription to the course %(s)s was successful.\n"
-#| "\t\t\t  "
+#, python-format
 msgid ""
 "\n"
 "\t\t\t    Your subscription to the course %(s)s was successful.\n"
@@ -511,11 +491,7 @@ msgstr ""
 "\t\t\t  "
 
 #: course/templates/enroll/response.html:19
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\t\t    Your unsubscription to the course %(s)s was unsuccessful.\n"
-#| "\t\t\t  "
+#, python-format
 msgid ""
 "\n"
 "\t\t\t    Your unsubscription to the course %(s)s was unsuccessful.\n"
@@ -526,11 +502,7 @@ msgstr ""
 "\t\t\t  "
 
 #: course/templates/enroll/response.html:23
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\t\t    Your unsubscription to the course %(s)s was successful.\n"
-#| "\t\t\t  "
+#, python-format
 msgid ""
 "\n"
 "\t\t\t    Your unsubscription to the course %(s)s was successful.\n"
@@ -661,8 +633,8 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Fehler: Du besitzt bereits ein Token für diese Umfrage. Es lautet  "
-"%(token.token)s und du hast es schon verwendet.\n"
+"            Fehler: Du besitzt bereits ein Token für diese Umfrage. Es "
+"lautet  %(token.token)s und du hast es schon verwendet.\n"
 "        "
 
 #: polls/templates/polls/error/has_token.html:11
@@ -674,15 +646,13 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Fehler: Du besitzt bereits ein Token für diese Umfrage. Es lautet  "
-"%(token.token)s und du hast noch nicht verwendet.\n"
+"            Fehler: Du besitzt bereits ein Token für diese Umfrage. Es "
+"lautet  %(token.token)s und du hast noch nicht verwendet.\n"
 "        "
 
 #: polls/templates/polls/poll/create.html:5
-#, fuzzy
-#| msgid "Create new course"
 msgid "Create a new poll"
-msgstr "Kurs erstellen"
+msgstr "Neue Umfrage erstellen"
 
 #: polls/templates/polls/poll/create.html:12
 msgid "next"
@@ -701,15 +671,11 @@ msgid "edit"
 msgstr "Editieren"
 
 #: polls/templates/polls/poll/overview.html:23
-#, fuzzy
-#| msgid "Create"
 msgid "Create new"
 msgstr "Erstellen"
 
 #: polls/templates/polls/poll/questions.html:6
 #: polls/templates/polls/poll/results.html:33
-#, fuzzy
-#| msgid "Subject Overview"
 msgid "Back to overview"
 msgstr "Themenübersicht"
 
@@ -718,8 +684,6 @@ msgid "Selected questions"
 msgstr "Ausgewählte Fragen"
 
 #: polls/templates/polls/poll/questions.html:48
-#, fuzzy
-#| msgid "Create new course"
 msgid "Create a new one"
 msgstr "Neue Frage erstellen"
 
@@ -728,14 +692,10 @@ msgid "Questions from other forms"
 msgstr "Fragen aus anderen Formularen"
 
 #: polls/templates/polls/poll/questions.html:67
-#, fuzzy
-#| msgid "Courses"
 msgid "use"
 msgstr "verwenden"
 
 #: polls/templates/polls/poll/view.html:6
-#, fuzzy
-#| msgid "Actions"
 msgid "Questions"
 msgstr "Fragen"
 
@@ -748,14 +708,10 @@ msgid "requires access token"
 msgstr "Erfordert ein Zugangstoken"
 
 #: polls/templates/polls/poll/view.html:26
-#, fuzzy
-#| msgid "Administrative actions"
 msgid "Admin actions"
 msgstr "Administrative Aktionen"
 
 #: polls/templates/polls/poll/view.html:29
-#, fuzzy
-#| msgid "Edit"
 msgid "Edit poll"
 msgstr "Umfrage bearbeiten"
 
@@ -790,20 +746,14 @@ msgid "You generated the following tokens"
 msgstr "Folgende Token wurden generiert"
 
 #: polls/templates/polls/token/gen.html:15
-#, fuzzy
-#| msgid "Generate tokens"
 msgid "You can generate tokens here."
 msgstr "Du kannst hier Token generieren"
 
 #: polls/templates/polls/token/gen.html:17
-#, fuzzy
-#| msgid "Number of slots to generate."
 msgid "Amount of tokens to generate"
 msgstr "Anzahl der zu generierenden Token"
 
 #: polls/templates/polls/token/overview.html:7
-#, fuzzy
-#| msgid "Vote on this poll"
 msgid "Tokens for this poll:"
 msgstr "Token für diese Umfrage:"
 
@@ -824,14 +774,10 @@ msgid "Token"
 msgstr "Token"
 
 #: polls/util/permissions.py:31
-#, fuzzy
-#| msgid "This course does not seem to exist, sorry."
 msgid "This poll does not seem to exist, sorry."
 msgstr "Diese Umfrage scheint nicht zu existieren."
 
 #: polls/views/polls.py:45
-#, fuzzy
-#| msgid "This user does not exist"
 msgid "This poll does not exist"
 msgstr "Diese Umfrage existiert nicht."
 
@@ -854,8 +800,6 @@ msgid ""
 msgstr "sNummern beginnen mit einem 's', gefolgt von sieben Ziffern."
 
 #: user/forms.py:38
-#, fuzzy
-#| msgid "This s-number is already taken"
 msgid "This username is already taken"
 msgstr "Dieser Nutzername wird bereits genutzt."
 
@@ -892,11 +836,6 @@ msgid "Unique username. Used for login. (cannot be changed later)."
 msgstr "(Einzigartiger) Nutzername. Kann nicht mehr geändert werden."
 
 #: user/forms.py:91
-#, fuzzy
-#| msgid ""
-#| "The s-number as assigned by the university. This will become your "
-#| "(private) username for this site. The verification email will be sent to "
-#| "the address associated with this s-number. Cannot be modified later."
 msgid ""
 "The s-number as assigned by the university. The student verification email "
 "will be sent to the address associated with this s-number. Cannot be "
@@ -956,14 +895,10 @@ msgid "You have been logged out successfully."
 msgstr "Du hast dich erfolgreich ausgeloggt."
 
 #: user/templates/registration/sent-student-verification-mail.html:6
-#, fuzzy
-#| msgid "We sent a mail to the Email account"
 msgid "We sent a verification mail to "
 msgstr "Es wurde eine Verifikationsmail geschickt an "
 
 #: user/templates/registration/sent-student-verification-mail.html:8
-#, fuzzy
-#| msgid "This Mail contains an account activation link."
 msgid "This mail contains an account activation link."
 msgstr "Diese Mail beinhaltet einen Aktivierungslink für dein Konto."
 
@@ -972,26 +907,18 @@ msgid "Back to your Profile."
 msgstr "Zurück zu deinem Profil."
 
 #: user/templates/registration/success.html:6
-#, fuzzy
-#| msgid "You successfully registered you account!"
 msgid "You successfully registered your account!"
 msgstr "Du hast dich erfolgreich registriert!"
 
 #: user/templates/registration/success.html:7
-#, fuzzy
-#| msgid "We sent a mail to the Email account"
 msgid "We sent verification mails to the following email accounts:"
 msgstr "Es wurde eine Verifizierungsmail an folgende Adressen gesendet:"
 
 #: user/templates/registration/success.html:13
-#, fuzzy
-#| msgid "This Mail contains an account activation link."
 msgid "These mails contain an account activation link."
 msgstr "Diese Mail beinhaltet einen Aktivierungslink für dein Konto."
 
 #: user/templates/registration/success.html:14
-#, fuzzy
-#| msgid "We sent a mail to the Email account"
 msgid "Please validate all of these email accounts."
 msgstr "Bitte validiere alle angegebenen Mail Accounts."
 
@@ -1012,8 +939,6 @@ msgid "Perhaps you'd like to"
 msgstr "Vielleicht möchtest du"
 
 #: user/templates/user/edit.html:24
-#, fuzzy
-#| msgid "change your password?"
 msgid "change your password"
 msgstr "dein Passwort ändern"
 
@@ -1050,8 +975,6 @@ msgid "Faculty"
 msgstr "Fakultät"
 
 #: user/templates/user/profile.html:36
-#, fuzzy
-#| msgid "Status"
 msgid "Student status"
 msgstr "Studentenstatus"
 
@@ -1124,8 +1047,6 @@ msgid "Registration"
 msgstr "Registrierung"
 
 #: user/views/register.py:121
-#, fuzzy
-#| msgid "Your registration at the iFSR course enrollment system"
 msgid "Your {} verification at the iFSR course enrollment system."
 msgstr "Deine {} Registrierung beim iFSR Kurs Management"
 
@@ -1138,8 +1059,6 @@ msgid "This verification does not have an associated view."
 msgstr "Diese Verifikation hat keine zugehörige Ansicht."
 
 #: user/views/verify.py:46
-#, fuzzy
-#| msgid "This user does not exist"
 msgid "This verification does not exist"
 msgstr "Der angeforderte Nutzername existiert nicht"
 
@@ -1154,38 +1073,3 @@ msgstr "Aktivierung erfolgreich"
 #: user/views/verify.py:108
 msgid "Verification mail sent"
 msgstr "Verifikationsmail wurde gesendet"
-
-#~ msgid "Freitextantwort"
-#~ msgstr "Freitextantwort"
-
-#~ msgid "Participants list"
-#~ msgstr "Teilnehmerliste"
-
-#~ msgid "Your s-number."
-#~ msgstr "Deine s-Nummer"
-
-#~ msgid ""
-#~ "Here you can provide some information about yourself. You can use "
-#~ "markdown formatted text to do so. "
-#~ msgstr ""
-#~ "Du kannst die Kursbeschreibung hier editieren. Es ist möglich, Markdown "
-#~ "zu benutzen."
-
-#~ msgid "Your username and password didn't match. Please try again."
-#~ msgstr ""
-#~ "Der Nutzername und das Passwort stimmen nicht überein. Bitte erneut "
-#~ "versuchen."
-
-#~ msgid "Activation Failed"
-#~ msgstr "Aktivierung Fehlgeschlagen"
-
-#~ msgid "You didn't provide a token."
-#~ msgstr "Du hast kein Token angegeben."
-
-#~ msgid ""
-#~ "Oops, it seems that faculty does not exist. Please try again and should "
-#~ "the problem persist contact an administrator."
-#~ msgstr ""
-#~ "Diese Fakultät scheint nicht zu existieren. Bitte versuche es erneut."
-#~ "Sollte das Problem weiterhin bestehen, kontaktiere bitte einen "
-#~ "Administrator."
