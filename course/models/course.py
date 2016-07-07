@@ -7,7 +7,7 @@ import django.utils.timezone
 
 from guardian.models import UserObjectPermission
 
-from . import schedule, subject
+from . import subject
 
 from user.models import UserInformation, get_user_information
 
@@ -22,7 +22,6 @@ ARCHIVE_STATUSES = (
 
 
 class Course(models.Model):
-    schedule = models.OneToOneField(schedule.Schedule, on_delete=models.CASCADE)
     teacher = models.ManyToManyField(UserInformation, related_name="teacher")
     participants = models.ManyToManyField(UserInformation)
     active = models.BooleanField(default=False)

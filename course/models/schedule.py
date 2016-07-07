@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from . import course
+
 
 WEEKDAYS = [
     ("MON", _("Mondays")),
@@ -29,6 +31,7 @@ class Schedule(models.Model):
     ]
 
     _type = models.CharField(max_length=1, choices=TYPES)
+    course = models.OneToOneField(course.Course, on_delete=models.CASCADE)
 
     def is_weekly(self):
         """
