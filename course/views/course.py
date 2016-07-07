@@ -143,10 +143,11 @@ def create(request):
         form = CourseForm(request.POST)
         if form.is_valid():
             created = form.save(commit=False)
-
-            created.schedule = Schedule.objects.create(_type=request.POST['schedule_type'])
             created.save()
             created.teacher.add(request.user.userinformation)
+
+            Schedule.objects.create(_type=request.POST['schedule_type'], course=created)
+
             assign_perm(
                 'change_course',
                 request.user,
