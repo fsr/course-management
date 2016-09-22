@@ -2,12 +2,15 @@ language: python
 python:
   - "3.4"
   - "3.5"
-addons:
-  apt:
-    packages:
-      - nodejs
-      - git
+
+branches:
+  except:
+    - deploy
+
 install:
-  - npm install
-  - grunt install
-script: python -m unittest test
+  - pip install -r requirements.txt
+
+script: 
+  - python3 manage.py migrate
+  - python3 manage.py test
+
