@@ -86,7 +86,11 @@
         {% if is_subbed %}
           {% include "course/forms/unregister.html" %}
         {% elif course.joinable %}
-          {% include "course/forms/register.html" %}
+          {% if course.student_only and is_verified_student %}
+            {% include "course/forms/register.html" %}
+          {% else %}
+            <b>🔒 {% trans "This course is for verified students only." %}</b>
+          {% endif %}
         {% else %}
           <form action="#"><input disabled class="button" type="submit" value="{% trans "This course is full" %}" /></form>
         {% endif %}

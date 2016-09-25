@@ -71,7 +71,7 @@ class CascadingDeletionTests(TestCase):
         self.assertEqual(UserInformation.objects.count(), 1, "The user was not removed!")
         self.assertEqual(course.participants.count(), 0, 'There was more than one person enrolled to the course!')
 
-    def test_only_students_can_enroll(self):
+    def test_only_verified_students_can_enroll(self):
         """
         Verify that only students can enroll for a 'student-only' marked course.
         """
@@ -96,7 +96,13 @@ class CascadingDeletionTests(TestCase):
         with self.assertRaises(Course.IsNoStudent):
             course.enroll(u2)
 
-        course.enroll(u3)
+        with self.assertRaises(Course.IsNoVerifiedStudent):
+            course.enroll(u3)
+
+        u3.studentinformation.verified = True
+        u3.save()
+
+        course.enroll(u3.user.userinformation)
 
         self.assertEqual(course.participants.count(), 1,
                          'More than one participant found, although only one was registered.')
