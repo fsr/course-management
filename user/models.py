@@ -25,13 +25,13 @@ class UserInformation(models.Model):
 
     @staticmethod
     def create(
-        username,
-        email,
-        password,
-        first_name,
-        last_name,
-        s_number=None,
-        faculty=None
+            username,
+            email,
+            password,
+            first_name,
+            last_name,
+            s_number=None,
+            faculty=None
     ):
         user = User.objects.create_user(
             email=email,
@@ -72,7 +72,6 @@ class UserInformation(models.Model):
         return self.is_student() and not self.studentinformation.verified
 
 
-
 class StudentInformation(UserInformation):
     s_number = models.CharField(max_length=50, unique=True)
     faculty = models.ForeignKey(Faculty, on_delete=models.PROTECT)
@@ -92,8 +91,8 @@ class Activation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     token = models.CharField(max_length=50)
     type = models.CharField(max_length=1,
-        choices=tuple((v, k) for k, v in ACTIVATION_TYPES.items())
-    )
+                            choices=tuple((v, k) for k, v in ACTIVATION_TYPES.items())
+                            )
 
 
 def get_user_information(obj):

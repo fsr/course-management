@@ -46,6 +46,9 @@ class Course(models.Model):
     class IsEnrolled(Exception):
         pass
 
+    class StudentsOnly(Exception):
+        pass
+
     def __str__(self):
         return self.subject.name
 
