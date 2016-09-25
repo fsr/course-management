@@ -12,76 +12,55 @@ def flush_tables():
     UserInformation.objects.all().delete()
 
 
-class CheckCascadingDeletionTest(TestCase):
+def insert_dummy_data():
+    u1 = UserInformation.create('hfinch', 'harold.finch@ift.web', 'test', 'Harold', 'Finch')
+    u1.user.is_active = True
+    u1.user.save()
+
+    s1 = Subject.objects.create(
+        name='Hacking for Beginners',
+        description='Nothing to see here.'
+    )
+    s1.save()
+
+    c1 = Course.objects.create(
+        subject=s1,
+        max_participants=1,
+    )
+    c1.teacher.add(u1)
+    c1.save()
+
+
+class CascadingDeletionTests(TestCase):
     """
-    Test Case to verify that cascading deletion works as expected.
-    (means: Deleting a subject deletes all associated courses and so on...)
+    Test Cases to verify that cascading deletion works as expected.
+    (e.g. Deleting a subject deletes all associated courses and so on...)
     """
-    def setUp(self):
-        # Flush db. Just in case.
+    def test_remove_subject_that_contains_a_course(self):
+        """
+        Remove a subject with one course.
+        Expected result: The course is being deleted.
+        """
         flush_tables()
+        insert_dummy_data()
 
-        # create a user that's gonna pose as teacher
-        u1 = UserInformation.create('hfinch', 'harold.finch@ift.web', 'test', 'Harold', 'Finch')
-        u1.user.is_active = True
-        u1.user.save()
-
-        s1 = Subject.objects.create(
-            name='Hacking for Beginners',
-            description='Nothing to see here.'
-        )
-        s1.save()
-
-        c1 = Course.objects.create(
-            subject=s1,
-            max_participants=1,
-        )
-        c1.teacher.add(u1)
-        c1.save()
-
-    def test_db(self):
         self.assertEqual(Subject.objects.count(), 1)
         self.assertEqual(Course.objects.count(), 1)
 
-        s = Subject.objects.get(name='Hacking for Beginners')
-        s.delete()
-        s.save()
+        Subject.objects.get(name='Hacking for Beginners').delete()
 
+        self.assertEqual(Subject.objects.count(), 0, "The subject was not deleted.")
         self.assertEqual(Course.objects.count(), 0, "Course has not been removed via cascading delete!")
         self.assertEqual(UserInformation.objects.count(), 1,
                          "User is not in the database anymore, perhaps cascading deletion broke?")
 
-    def tearDown(self):
+    def test_remove_user_who_is_teacher_test(self):
+        """
+        Test Case to verify that a teacher reference is being removed from a course when the user is deleted.
+        """
         flush_tables()
+        insert_dummy_data()
 
-
-class RemoveTeacherTest(TestCase):
-    """
-    Test Case to verify that a teacher reference is being removec from a course when the user is deleted.
-    """
-    def setUp(self):
-        # Flush db. Just in case.
-        flush_tables()
-
-        # create a user that's gonna pose as teacher
-        u1 = UserInformation.create('hfinch', 'harold.finch@ift.web', 'test', 'Harold', 'Finch')
-        u1.user.is_active = True
-        u1.user.save()
-
-        s1 = Subject.objects.create(
-            name='Hacking for Beginners',
-            description='Nothing to see here.'
-        )
-        s1.save()
-
-        c1 = Course.objects.create(
-            subject=s1,
-            max_participants=1,
-        )
-        c1.teacher.add(u1)
-        c1.save()
-
-    def test_db(self):
         self.assertEqual(UserInformation.objects.count(), 1, 'No user was created!')
         self.assertEqual(Course.objects.count(), 1, 'No course was created!')
 
@@ -90,7 +69,5 @@ class RemoveTeacherTest(TestCase):
         c = Course.objects.get(subject=Subject.objects.get(name='Hacking for Beginners'))
 
         self.assertEqual(UserInformation.objects.count(), 0, 'The user has not been removed!')
-        self.assertEqual(c.teacher.count(), 0, 'The teacher reference still exists!')
+        self.assertEqual(c.teacher.count(), 0, 'The teacher reference still exists although the user was removed.')
 
-    def tearDown(self):
-        flush_tables()
