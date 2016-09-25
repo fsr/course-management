@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
+  <h1>{% trans "Subject Overview" %}</h1>
+  <p>
+    {% trans "Right now, we offer courses on the following topics:" %}
+  </p>
   <table class="table">
     <thead>
       <tr>
@@ -12,7 +16,7 @@
       {% for subject in subjects %}
         <tr>
           <td><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></td>
-          <td>{{ subject.course_set.count }}</td>
+          <td>{{ subject.active_courses.count }}</td>
         </tr>
       {% endfor %}
     </tbody>
