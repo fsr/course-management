@@ -33,6 +33,7 @@ def course_overview(request, subjectname):
             'title': subjectname,
             'subject': active_subject,
             'course_list': cl,
+            'user_is_verified_student': user.userinformation.is_verified_student(),
             'target': reverse('subject', args=(subjectname,))
         }
     )

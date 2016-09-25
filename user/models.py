@@ -96,8 +96,10 @@ class Activation(models.Model):
 
 
 def get_user_information(obj):
-    if isinstance(obj, (User, StudentInformation)):
+    if isinstance(obj, User):
         return obj.userinformation
+    elif isinstance(obj, StudentInformation):
+        return obj.user.userinformation  # TODO: Ok this way?
     elif isinstance(obj, UserInformation):
         return obj
     elif isinstance(obj, (int, str)):

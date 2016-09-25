@@ -128,6 +128,7 @@ class Course(models.Model):
         if student:
             student = get_user_information(student)
             context['is_subbed'] = student.course_set.filter(id=self.id).exists()
+            context['is_verified_student'] = student.is_verified_student()
 
             if self.is_teacher(student):
                 context['is_teacher'] = True

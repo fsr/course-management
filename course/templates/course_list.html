@@ -48,6 +48,14 @@
           {% endwith %}
         </p>
 
+        <p>
+          {% if course.student_only %}
+            <b>🔒 {% trans "This course is for verified students only." %}</b>
+          {% else %}
+            🔓 {% trans "This course is free for everyone to join." %}
+          {% endif %}
+        </p>
+
         {% if user.is_authenticated and not hide_actions %}
 
           {% if user.userinformation in course.teacher.all %}
@@ -58,7 +66,9 @@
               {% trans "You are enrolled. ✅" %}
               {% include "course/forms/unregister.html" %}
             {% elif course.joinable %}
-              {% include "course/forms/register.html" %}
+              {% if course.student_only and user_is_verified_student %}
+                {% include "course/forms/register.html" %}
+              {% endif %}
             {% elif not course.active %}
               {% trans "This course is currently" %} {% trans "suspended" %}. 💤
             {% else %}
