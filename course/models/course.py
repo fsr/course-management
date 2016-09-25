@@ -46,8 +46,12 @@ class Course(models.Model):
     class IsEnrolled(Exception):
         pass
 
-    class StudentsOnly(Exception):
+    class IsNoStudent(Exception):
         pass
+
+    class IsNoVerifiedStudent(Exception):
+        pass
+
 
     def __str__(self):
         return self.subject.name
@@ -56,6 +60,10 @@ class Course(models.Model):
         student = get_user_information(student)
         if self._is_participant(student):
             raise self.IsEnrolled
+        elif self.student_only and not student.is_student():
+            raise self.IsNoStudent
+        elif self.student_only and student.is_pending_student():
+            raise self.IsNoVerifiedStudent
         elif not self.active:
             raise self.IsInactive
         elif self.saturated:

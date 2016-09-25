@@ -93,7 +93,7 @@ class CascadingDeletionTests(TestCase):
         u3.user.is_active = True
         u3.user.save()
 
-        with self.assertRaises(Course.StudentsOnly):
+        with self.assertRaises(Course.IsNoStudent):
             course.enroll(u2)
 
         course.enroll(u3)

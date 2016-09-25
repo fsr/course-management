@@ -23,6 +23,10 @@ def add(request, course_id):
 
     if course.is_participant(stud):
         session['enroll-error'] = _('You are already enrolled in this course.')
+    elif course.student_only and not stud.is_student():
+        session['enroll-error'] = _('Sorry, this course is for students only.')
+    elif course.student_only and stud.is_pending_student():
+        session['enroll-error'] = _('Please verify your student status to enroll for this course.')
     elif not course.joinable:
         session['enroll-error'] = _('Sorry, this course is full.')
     else:
