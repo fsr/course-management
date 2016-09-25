@@ -13,21 +13,19 @@ from user import mailsettings
 from user.forms import StudentVerificationForm, UserInformationForm, StudentInformationForm, UserForm
 from user.models import UserInformation, Activation, ACTIVATION_TYPES
 
-
 from re_captcha.decorators import re_captcha_verify
 
 
 @re_captcha_verify
 def register(request):
-
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         userinformation_form = UserInformationForm(request.POST)
         studentinformation_form = StudentInformationForm(request.POST)
         if (    user_form.is_valid()
             and userinformation_form.is_valid()
-            and ( studentinformation_form.is_valid()
-                 or (    not studentinformation_form.cleaned_data.get('faculty')
+            and (studentinformation_form.is_valid()
+                 or (not studentinformation_form.cleaned_data.get('faculty')
                      and not studentinformation_form.cleaned_data.get('s_number')))):
 
             created_user = user_form.save(commit=False)
@@ -36,7 +34,7 @@ def register(request):
 
             acc = []
 
-            if (    studentinformation_form.cleaned_data.get('faculty')
+            if (studentinformation_form.cleaned_data.get('faculty')
                 and studentinformation_form.cleaned_data.get('s_number')):
 
                 created_student_information = studentinformation_form.save(commit=False)
@@ -91,9 +89,9 @@ def register(request):
 
 def generateToken(size=50, chars=None):
     chars = (chars
-        if chars is not None
-        else string.ascii_uppercase + string.digits + string.ascii_lowercase
-    )
+             if chars is not None
+             else string.ascii_uppercase + string.digits + string.ascii_lowercase
+             )
     return ''.join(random.sample(chars, size))
 
 
