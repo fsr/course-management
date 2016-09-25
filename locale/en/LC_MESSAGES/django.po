@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-29 16:19+0200\n"
+"POT-Creation-Date: 2016-09-25 19:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,67 +84,67 @@ msgid ""
 "characters, numbers, spaces, '-' and '_' and it cannot be any of , "
 msgstr ""
 
-#: course/models/schedule.py:6
+#: course/models/schedule.py:8
 msgid "Mondays"
 msgstr ""
 
-#: course/models/schedule.py:7
+#: course/models/schedule.py:9
 msgid "Tuesdays"
 msgstr ""
 
-#: course/models/schedule.py:8
+#: course/models/schedule.py:10
 msgid "Wednesdays"
 msgstr ""
 
-#: course/models/schedule.py:9
+#: course/models/schedule.py:11
 msgid "Thursdays"
 msgstr ""
 
-#: course/models/schedule.py:10
+#: course/models/schedule.py:12
 msgid "Fridays"
 msgstr ""
 
-#: course/models/schedule.py:11
+#: course/models/schedule.py:13
 msgid "Saturdays"
 msgstr ""
 
-#: course/models/schedule.py:12
+#: course/models/schedule.py:14
 msgid "Sundays"
 msgstr ""
 
-#: course/models/schedule.py:15
+#: course/models/schedule.py:17
 msgid "1st"
 msgstr ""
 
-#: course/models/schedule.py:16
+#: course/models/schedule.py:18
 msgid "2nd"
 msgstr ""
 
-#: course/models/schedule.py:17
+#: course/models/schedule.py:19
 msgid "3rd"
 msgstr ""
 
-#: course/models/schedule.py:18
+#: course/models/schedule.py:20
 msgid "4th"
 msgstr ""
 
-#: course/models/schedule.py:19
+#: course/models/schedule.py:21
 msgid "5th"
 msgstr ""
 
-#: course/models/schedule.py:20
+#: course/models/schedule.py:22
 msgid "6th"
 msgstr ""
 
-#: course/models/schedule.py:21
+#: course/models/schedule.py:23
 msgid "7th"
 msgstr ""
 
-#: course/models/schedule.py:27
+#: course/models/schedule.py:29
 msgid "weekly"
 msgstr ""
 
-#: course/models/schedule.py:28
+#: course/models/schedule.py:30
 msgid "one time"
 msgstr ""
 
@@ -156,7 +156,7 @@ msgstr ""
 msgid "German"
 msgstr ""
 
-#: course/templates/base-shell.html:8 course/templates/base-shell.html:16
+#: course/templates/base-shell.html:8 course/templates/base-shell.html.py:16
 msgid "Course Manager"
 msgstr ""
 
@@ -214,7 +214,7 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: course/templates/base.html:70 course/templates/base.html:72
+#: course/templates/base.html:70 course/templates/base.html.py:72
 msgid "Subjects"
 msgstr ""
 
@@ -269,7 +269,7 @@ msgid "Delete"
 msgstr ""
 
 #: course/templates/course/forms/register.html:4
-#: course/templates/course/info.html:96
+#: course/templates/course/info.html:104
 msgid "register"
 msgstr ""
 
@@ -301,74 +301,78 @@ msgstr ""
 msgid "Schedule"
 msgstr ""
 
-#: course/templates/course/info.html:43
+#: course/templates/course/info.html:47
 msgid "No schedule has been set."
 msgstr ""
 
-#: course/templates/course/info.html:48
+#: course/templates/course/info.html:52
 msgid "Edit schedule"
 msgstr ""
 
-#: course/templates/course/info.html:53
+#: course/templates/course/info.html:57
 msgid "Status"
 msgstr ""
 
-#: course/templates/course/info.html:55 course/templates/course_list.html:55
-#: course/templates/course_list.html:63
+#: course/templates/course/info.html:59 course/templates/course_list.html:63
+#: course/templates/course_list.html:73
 msgid "This course is currently"
 msgstr ""
 
-#: course/templates/course/info.html:55 course/templates/course_list.html:55
+#: course/templates/course/info.html:59 course/templates/course_list.html:63
 msgid "active"
 msgstr ""
 
-#: course/templates/course/info.html:55 course/templates/course_list.html:55
-#: course/templates/course_list.html:63
+#: course/templates/course/info.html:59 course/templates/course_list.html:63
+#: course/templates/course_list.html:73
 msgid "suspended"
 msgstr ""
 
-#: course/templates/course/info.html:61
+#: course/templates/course/info.html:65
 msgid "Suspend course (unenrolls all participants)"
 msgstr ""
 
-#: course/templates/course/info.html:61
+#: course/templates/course/info.html:65
 msgid "Set course active"
 msgstr ""
 
-#: course/templates/course/info.html:70
+#: course/templates/course/info.html:74
 msgid "Administrative actions"
 msgstr ""
 
-#: course/templates/course/info.html:73 course/views/course.py:106
+#: course/templates/course/info.html:77 course/views/course.py:106
 msgid "Edit course"
 msgstr ""
 
-#: course/templates/course/info.html:74
+#: course/templates/course/info.html:78
 msgid "Notify course"
 msgstr ""
 
-#: course/templates/course/info.html:80 course/templates/course/info.html:94
+#: course/templates/course/info.html:84 course/templates/course/info.html:102
 #: polls/templates/polls/poll/overview.html:11
 msgid "Actions"
 msgstr ""
 
-#: course/templates/course/info.html:87 course/templates/course_list.html:65
+#: course/templates/course/info.html:92 course/templates/course_list.html:53
+msgid "This course is for verified students only."
+msgstr ""
+
+#: course/templates/course/info.html:95 course/templates/course_list.html:75
 msgid "This course is full"
 msgstr ""
 
-#: course/templates/course/info.html:96
+#: course/templates/course/info.html:104
 msgid "Log in"
 msgstr ""
 
-#: course/templates/course/info.html:96 user/templates/user/edit.html:26
+#: course/templates/course/info.html:104 user/templates/user/edit.html:26
 msgid "or"
 msgstr ""
 
-#: course/templates/course/info.html:96
+#: course/templates/course/info.html:104
 msgid "to join this course"
 msgstr ""
 
-#: course/templates/course/info.html:105
+#: course/templates/course/info.html:113
 msgid "No description provided for this course."
 msgstr ""
 
@@ -439,11 +443,15 @@ msgstr ""
 msgid "No location set."
 msgstr ""
 
-#: course/templates/course_list.html:54
+#: course/templates/course_list.html:55
+msgid "This course is free for everyone to join."
+msgstr ""
+
+#: course/templates/course_list.html:62
 msgid "You are teacher"
 msgstr ""
 
-#: course/templates/course_list.html:58
+#: course/templates/course_list.html:66
 msgid "You are enrolled. ✅"
 msgstr ""
 
@@ -508,11 +516,19 @@ msgstr ""
 msgid "Create new course"
 msgstr ""
 
-#: course/templates/subject/overview.html:7
+#: course/templates/subject/overview.html:4 course/views/subject.py:49
+msgid "Subject Overview"
+msgstr ""
+
+#: course/templates/subject/overview.html:6
+msgid "Right now, we offer courses on the following topics:"
+msgstr ""
+
+#: course/templates/subject/overview.html:11
 msgid "Name"
 msgstr ""
 
-#: course/templates/subject/overview.html:8
+#: course/templates/subject/overview.html:12
 msgid "Courses"
 msgstr ""
 
@@ -522,35 +538,35 @@ msgstr ""
 
 #: course/views/course.py:61 course/views/course.py:75
 #: course/views/course.py:90 course/views/course.py:129
-#: course/views/course.py:190 course/views/course.py:209
-#: course/views/course.py:264 course/views/course.py:279
-#: course/views/course.py:323 course/views/course.py:336
-#: course/views/enroll.py:21 course/views/enroll.py:44
-#: course/views/enroll.py:63 course/views/time.py:24
+#: course/views/course.py:191 course/views/course.py:210
+#: course/views/course.py:265 course/views/course.py:280
+#: course/views/course.py:324 course/views/course.py:337
+#: course/views/enroll.py:21 course/views/enroll.py:48
+#: course/views/enroll.py:67 course/views/time.py:24
 msgid "Requested course does not exist."
 msgstr ""
 
-#: course/views/course.py:177
+#: course/views/course.py:178
 msgid "New Course"
 msgstr ""
 
-#: course/views/course.py:201
+#: course/views/course.py:202
 msgid "Edit Teachers"
 msgstr ""
 
-#: course/views/course.py:231
+#: course/views/course.py:232
 msgid "The username you entered does not exist in my database, sorry :("
 msgstr ""
 
-#: course/views/course.py:266
+#: course/views/course.py:267
 msgid "Requested student does not exist."
 msgstr ""
 
-#: course/views/course.py:305
+#: course/views/course.py:306
 msgid "Notify Course"
 msgstr ""
 
-#: course/views/course.py:325
+#: course/views/course.py:326
 msgid "Requested student is not enrolled in this course."
 msgstr ""
 
@@ -559,10 +575,18 @@ msgid "You are already enrolled in this course."
 msgstr ""
 
 #: course/views/enroll.py:27
+msgid "Sorry, this course is for students only."
+msgstr ""
+
+#: course/views/enroll.py:29
+msgid "Please verify your student status to enroll for this course."
+msgstr ""
+
+#: course/views/enroll.py:31
 msgid "Sorry, this course is full."
 msgstr ""
 
-#: course/views/enroll.py:50
+#: course/views/enroll.py:54
 msgid "You do not seem to be enrolled in this course."
 msgstr ""
 
@@ -573,10 +597,6 @@ msgstr ""
 #: course/views/subject.py:19 course/views/subject.py:89
 #: course/views/subject.py:120
 msgid "Requested subject does not exist."
-msgstr ""
-
-#: course/views/subject.py:49
-msgid "Subject Overview"
 msgstr ""
 
 #: course/views/subject.py:77
@@ -977,15 +997,15 @@ msgstr ""
 msgid "Requested user does not exist."
 msgstr ""
 
-#: user/views/register.py:69
+#: user/views/register.py:67
 msgid "Registration successfull"
 msgstr ""
 
-#: user/views/register.py:84
+#: user/views/register.py:82
 msgid "Registration"
 msgstr ""
 
-#: user/views/register.py:121
+#: user/views/register.py:119
 msgid "Your {} verification at the iFSR course enrollment system."
 msgstr ""
 
