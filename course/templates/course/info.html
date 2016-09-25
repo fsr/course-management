@@ -34,11 +34,15 @@
     <td>
       {% with course.schedule.slots as slots %}
         {% if slots %}
-          <ul>
-            {% for slot in slots %}
-              <li>{{ slot }} - {{ slot.location }}</li>
-            {% endfor %}
-          </ul>
+          {% if slots|length == 1 %}
+            {{ slots.0 }}
+          {% else %}
+            <ul>
+              {% for slot in slots %}
+                <li>{{ slot }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         {% else %}
           {% trans "No schedule has been set." %}
         {% endif %}
