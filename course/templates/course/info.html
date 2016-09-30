@@ -86,7 +86,7 @@
         {% if is_subbed %}
           {% include "course/forms/unregister.html" %}
         {% elif course.joinable %}
-          {% if course.student_only and is_verified_student %}
+          {% if course.student_only and is_verified_student or not course.student_only %}
             {% include "course/forms/register.html" %}
           {% else %}
             <b>🔒 {% trans "This course is for verified students only." %}</b>
