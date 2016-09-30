@@ -66,7 +66,7 @@
               {% trans "You are enrolled. ✅" %}
               {% include "course/forms/unregister.html" %}
             {% elif course.joinable %}
-              {% if course.student_only and user_is_verified_student %}
+              {% if course.student_only and user_is_verified_student or not course.student_only %}
                 {% include "course/forms/register.html" %}
               {% endif %}
             {% elif not course.active %}
