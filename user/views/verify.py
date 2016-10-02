@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from user.models import Activation, ACTIVATION_TYPES
 from user.forms import StudentVerificationForm
 from user.views.register import verification_mail
+import logging
 
 
 VERIFICATIONS = {}
@@ -35,6 +36,7 @@ def no_verify_view(request):
 
 
 def verify(request, type_):
+    logger = logging.getLogger('course-management.info')
 
     if 'token' not in request.GET:
         try:
@@ -57,6 +59,10 @@ def verify(request, type_):
 
         VERIFICATIONS[type_.lower()].action(db_entry.user)
         db_entry.delete()
+        logger.info('{user} verified his account from IP {ip}.'.format(
+            user=db_entry.user,
+            ip=request.META.get('REMOTE_ADDR')
+        ))
         return render(
             request,
             'user/activate.html',

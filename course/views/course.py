@@ -13,11 +13,12 @@ from course.models.course import Course
 from course.models.schedule import Schedule
 from course.models.subject import Subject
 from course.util.permissions import needs_teacher_permissions
-from user.models import UserInformation
+from user.models import UserInformation, get_user_information
 from util import html_clean
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
 import itertools
+import logging
 
 DEFAULT_COURSE_DESCRIPTION = """\
 # The Hitchhikers Guide To The Galaxy
@@ -316,10 +317,18 @@ def notify_done(request, course_id):
 
 
 @needs_teacher_permissions
-def remove_student(request: HttpRequest, course_id:str, UserInformation_id:str):
+def remove_student(request: HttpRequest, course_id:str, student_id:str):
+    logger = logging.getLogger('course-management.info')
     try:
         course = Course.objects.get(id=course_id)
-        course.unenroll(UserInformation_id)
+        course.unenroll(student_id)
+        logger.info('{teacher} removed {user} from {course} (ID: {id}) from IP {ip}.'.format(
+            teacher=request.user,
+            user=get_user_information(student_id).user,
+            course=course,
+            id=course.pk,
+            ip=request.META.get('REMOTE_ADDR')
+        ))
     except Course.DoesNotExist:
         return db_error(_('Requested course does not exist.'))
     except Course.IsEnrolled:
