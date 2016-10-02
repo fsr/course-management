@@ -59,7 +59,7 @@ def verify(request, type_):
 
         VERIFICATIONS[type_.lower()].action(db_entry.user)
         db_entry.delete()
-        logger.info('{user} verified his account from {ip}.'.format(
+        logger.info('{user} verified his account from IP {ip}.'.format(
             user=db_entry.user,
             ip=request.META.get('REMOTE_ADDR')
         ))
