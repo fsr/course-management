@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-25 19:45+0200\n"
+"POT-Creation-Date: 2016-10-02 15:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -504,7 +504,7 @@ msgid "Number of courses"
 msgstr ""
 
 #: course/templates/subject/edit.html:11
-#: polls/templates/polls/poll/vote.html:40
+#: polls/templates/polls/poll/vote.html:40 user/templates/user/edit.html:16
 msgid "Cancel"
 msgstr ""
 
@@ -778,6 +778,10 @@ msgstr ""
 
 #: user/forms.py:38
 msgid "This username is already taken"
+msgstr ""
+
+#: user/forms.py:46
+msgid "This s-number is already taken"
 msgstr ""
 
 #: user/forms.py:53
