@@ -143,6 +143,34 @@ if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '[%(levelname)s] %(asctime)s - %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR + '/course-management.log',  # TODO: Change this before deploying!
+            'formatter': 'simple'
+        }
+    },
+    'loggers': {
+        'course-management.info': {
+            'handlers': ['file'],
+            'filters': [],
+            'level': 'INFO'
+        }
+    }
+}
+
 # Settings for the re_captcha module
 
 # whether to verify that the recaptcha has been checked by google
