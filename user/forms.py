@@ -43,7 +43,7 @@ def s_number_existence_validator(number):
         StudentInformation.objects.get(s_number=number)
     except StudentInformation.DoesNotExist:
         return
-    raise ValidationError('This s-number is already taken')
+    raise ValidationError(_('This s-number is already taken'))
 
 
 class UserForm(UserCreationForm):

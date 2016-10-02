@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-25 19:45+0200\n"
+"POT-Creation-Date: 2016-10-02 15:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felix Wittwer <dev@felixwittwer.de>\n"
 "Language-Team: ---\n"
@@ -537,7 +537,7 @@ msgid "Number of courses"
 msgstr "Anzahl an Kursen"
 
 #: course/templates/subject/edit.html:11
-#: polls/templates/polls/poll/vote.html:40
+#: polls/templates/polls/poll/vote.html:40 user/templates/user/edit.html:16
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -613,7 +613,9 @@ msgstr "Dieser Kurs ist nur für Studenten."
 
 #: course/views/enroll.py:29
 msgid "Please verify your student status to enroll for this course."
-msgstr "Bitte bestätige deinen Studentenstatus, um dich für diesen Kurs anmelden zu können."
+msgstr ""
+"Bitte bestätige deinen Studentenstatus, um dich für diesen Kurs anmelden zu "
+"können."
 
 #: course/views/enroll.py:31
 msgid "Sorry, this course is full."
@@ -822,6 +824,10 @@ msgstr "sNummern beginnen mit einem 's', gefolgt von sieben Ziffern."
 #: user/forms.py:38
 msgid "This username is already taken"
 msgstr "Dieser Nutzername wird bereits genutzt."
+
+#: user/forms.py:46
+msgid "This s-number is already taken"
+msgstr "Diese s-Nummer wird bereits genutzt."
 
 #: user/forms.py:53
 msgid ""
