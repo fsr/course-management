@@ -9,10 +9,13 @@ from course.models.course import Course
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
 
+import logging
+
 
 @require_POST
 @login_required()
 def add(request, course_id):
+    logger = logging.getLogger('course-management.info')
     user = request.user
     stud = user.userinformation
     try:
@@ -33,6 +36,11 @@ def add(request, course_id):
         if 'enroll-error' in session:
             del session['enroll-error']
         course.participants.add(stud)
+        logger.info('{user} enrolled for {course} from {ip}.'.format(
+            user=stud,
+            course=course,
+            ip=request.META.get('REMOTE_ADDR')
+        ))
 
     # redirect to course overview or specified target
     return redirect_unless_target(request, 'register-course-done', course_id)
@@ -41,6 +49,7 @@ def add(request, course_id):
 @require_POST
 @login_required()
 def remove(request, course_id):
+    logger = logging.getLogger('course-management.info')
     stud = request.user.userinformation
     try:
         course = Course.objects.get(id=course_id)
@@ -50,6 +59,11 @@ def remove(request, course_id):
 
     if course.is_participant(stud):
         ps.remove(stud)
+        logger.info('{user} removed himself from {course} from {ip}.'.format(
+            user=stud,
+            course=course,
+            ip=request.META.get('REMOTE_ADDR')
+        ))
     else:
         request.session['enroll-error'] = _('You do not seem to be enrolled in this course.')
         return redirect('unregister-course-done', course_id)
