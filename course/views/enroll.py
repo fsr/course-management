@@ -36,9 +36,10 @@ def add(request, course_id):
         if 'enroll-error' in session:
             del session['enroll-error']
         course.participants.add(stud)
-        logger.info('{user} enrolled for {course} from {ip}.'.format(
-            user=stud,
+        logger.info('{user} enrolled for {course} (ID: {id}) from {ip}.'.format(
+            user=stud.user,
             course=course,
+            id=course.pk,
             ip=request.META.get('REMOTE_ADDR')
         ))
 
@@ -59,9 +60,10 @@ def remove(request, course_id):
 
     if course.is_participant(stud):
         ps.remove(stud)
-        logger.info('{user} removed himself from {course} from {ip}.'.format(
-            user=stud,
+        logger.info('{user} self-removed from {course} (ID: {id}) from {ip}.'.format(
+            user=stud.user,
             course=course,
+            id=course.pk,
             ip=request.META.get('REMOTE_ADDR')
         ))
     else:

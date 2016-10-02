@@ -322,10 +322,11 @@ def remove_student(request: HttpRequest, course_id:str, student_id:str):
     try:
         course = Course.objects.get(id=course_id)
         course.unenroll(student_id)
-        logger.info('{teacher} removed {user} from {course} (IP: {ip}).'.format(
-            teacher=request.user.userinformation,
-            user=get_user_information(student_id),
+        logger.info('{teacher} removed {user} from {course} (ID: {id}) from IP {ip}.'.format(
+            teacher=request.user,
+            user=get_user_information(student_id).user,
             course=course,
+            id=course.pk,
             ip=request.META.get('REMOTE_ADDR')
         ))
     except Course.DoesNotExist:
