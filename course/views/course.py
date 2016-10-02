@@ -316,10 +316,10 @@ def notify_done(request, course_id):
 
 
 @needs_teacher_permissions
-def remove_student(request: HttpRequest, course_id:str, UserInformation_id:str):
+def remove_student(request: HttpRequest, course_id:str, student_id:str):
     try:
         course = Course.objects.get(id=course_id)
-        course.unenroll(UserInformation_id)
+        course.unenroll(student_id)
     except Course.DoesNotExist:
         return db_error(_('Requested course does not exist.'))
     except Course.IsEnrolled:
