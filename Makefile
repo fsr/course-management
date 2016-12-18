@@ -11,6 +11,8 @@ endif
 
 js_files = jquery/dist/jquery.min.js jquery-ui/jquery-ui.min.js foundation/js/foundation.min.js fastclick/lib/fastclick.js modernizr/modernizr.js jquery/dist/jquery.min.map
 
+all: pip sass
+
 sass: bower submodule
 	sass -I corporate-web-design/src -I bower_components/foundation/scss sass/style.sass $(CSS_DIR)/style.css
 
