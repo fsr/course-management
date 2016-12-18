@@ -3,9 +3,9 @@ JS_DIR = static/vendor/js
 PYTHON_ENV_FOLDER = env
 
 ifeq ($(OS), Windows_NT)
-PYTHON = Scripts/python3.exe
+PYTHON = $(PYTHON_ENV_FOLDER)/Scripts/python3.exe
 else
-PYTHON = bin/python
+PYTHON = $(PYTHON_ENV_FOLDER)/bin/python
 endif
 
 
@@ -33,7 +33,7 @@ endif
 
 virtualenv:
 	python3 -m pip install virtualenv
-	python3 -m virtualenv $PYTHON_ENV_FOLDER
+	python3 -m virtualenv $(PYTHON_ENV_FOLDER)
 
 clean:
 	rm -r bower_components $(CSS_DIR)/* $(JS_DIR)/*
