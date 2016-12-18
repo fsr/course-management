@@ -1,0 +1,76 @@
+.side-nav li.heading {
+    color: #b1e11c;
+}
+.side-nav li a:not(.button) {
+    background-color: #9ACC00;
+    color: white;
+}
+.side-nav li a:hover:not(.button), .side-nav li a:focus:not(.button){
+    background: #87B200;
+    color: white;
+}
+.button {
+    background-color: #9ACC00;
+    color: white;
+    padding: 0.9rem 1.5rem 0.9rem 0.9rem;
+}
+.button:hover {
+    background: #87B200;
+    color: white;
+}
+a {
+    color: #9ACC00;
+}
+img {
+    margin-left: 20vw;
+}
+div.main {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    padding-left: 1.7vw;
+    padding-right: 1.7vw;
+    padding-top: 1vh;
+    padding-bottom: 4vh;
+
+}
+div.main a {
+    color:white;
+    
+}
+div.main a:hover {
+    color:white;
+}
+large {
+    
+    text-align: left;
+    margin-top: 1.5vh;
+    line-height: 5;
+    }
+large:hover {
+    background-color: #87B200;
+    }
+large a {
+    background-color: #9ACC00;
+    color: white;
+    padding: 1rem 2rem 1.0625rem 2rem;
+}
+.g-recaptcha {
+    display: inline-block !important;
+    float: right !important;
+    margin-bottom: 3vh;
+}
+form {
+    padding-bottom: 3vh;
+}
+table.table {
+    margin 0px auto;
+    width: 100%;
+}
+td a {
+    color: black !important;
+}
+div.row div.column.small-6{
+    color: black !important;
+}
+ul.side-nav a {
+    color: white !important;
+}

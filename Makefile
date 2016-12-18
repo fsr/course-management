@@ -40,7 +40,7 @@ ifeq (wildcard $(PYTHON),)
 endif
 
 clean:
-	rm -r bower_components $(CSS_DIR)/* $(JS_DIR)/*
+	rm -r bower_components $(CSS_DIR)/style.css $(JS_DIR)/*
 
 migrate: pip
 ifeq ($(wildcard db.sqlite3),)
