@@ -14,6 +14,7 @@ js_files = jquery/dist/jquery.min.js jquery-ui/jquery-ui.min.js foundation/js/fo
 all: pip sass
 
 sass: bower submodule
+	if [ ! -d "./$(CSS_DIR)" ] ; then  mkdir -p $(CSS_DIR) ; fi 
 	sass -I corporate-web-design/src -I bower_components/foundation/scss sass/style.sass $(CSS_DIR)/style.css
 
 submodule:
@@ -22,6 +23,7 @@ submodule:
 
 bower: 
 	bower install
+	if [ ! -d "./$(JS_DIR)" ] ; then mkdir -p $(JS_DIR) ; fi
 	cp $(addprefix bower_components/, $(js_files)) $(JS_DIR)
 
 ifdef $(NO_VIRTUALENV)
@@ -32,8 +34,10 @@ endif
 	$(PYTHON) -m pip install -r requirements.txt
 
 virtualenv:
+ifeq (wildcard $(PYTHON),)
 	python3 -m pip install virtualenv
 	python3 -m virtualenv $(PYTHON_ENV_FOLDER)
+endif
 
 clean:
 	rm -r bower_components $(CSS_DIR)/* $(JS_DIR)/*
