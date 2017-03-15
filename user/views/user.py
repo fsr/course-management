@@ -48,6 +48,8 @@ def profile(request, user_id=None):
             user = request.user
             template = 'user/profile.html'
             is_own = True
+            teacher = user.userinformation.teacher.filter(archiving='t')
+            attend = user.userinformation.course_set.filter(archiving='t')
         else:
             return redirect('login')
     else:

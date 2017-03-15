@@ -54,11 +54,11 @@
   {% with student=user.userinformation %}
     {% if student.teacher.count > 0 %}
       <h2>{% trans "Courses you teach" %}</h2>
-      {% include 'course_list.html' with course_list=student.teacher.all target=request.path %}
+      {% include 'course_list.html' with course_list=teacher target=request.path %}
     {% endif %}
     {% if student.course_set.count > 0 %}
       <h2>{% trans "Courses you attend" %}</h2>
-      {% include 'course_list.html' with course_list=student.course_set.all target=request.path %}
+      {% include 'course_list.html' with course_list=attend target=request.path %}
     {% endif %}
     <h2>{% trans "Your description" %}</h2>
     <div>

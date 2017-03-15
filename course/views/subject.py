@@ -21,7 +21,7 @@ def course_overview(request, subjectname):
     if user.is_authenticated():
         cl = filter(
             lambda c: c.active or c.is_teacher(user.userinformation),
-            active_subject.course_set.all()
+            active_subject.course_set.filter(archiving='t')
         )
     else:
         cl = active_subject.course_set.filter(active=True)
