@@ -22,14 +22,14 @@ ARCHIVE_STATUSES = (
 
 
 class Course(models.Model):
-    teacher = models.ManyToManyField(UserInformation, related_name="teacher")
-    participants = models.ManyToManyField(UserInformation)
+    teacher = models.ManyToManyField(UserInformation, related_name="teacher", blank=True)
+    participants = models.ManyToManyField(UserInformation, blank=True)
     active = models.BooleanField(default=False)
     subject = models.ForeignKey(subject.Subject, on_delete=models.CASCADE)
     max_participants = models.IntegerField()
     description = models.TextField(blank=True, default="")
     archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)
-    queue = models.ManyToManyField(UserInformation, related_name='waiting_for')
+    queue = models.ManyToManyField(UserInformation, related_name='waiting_for', blank=True)
     student_only = models.BooleanField(default=False)
     start_time = models.DateField(default=django.utils.timezone.now)
     end_time = models.DateField(default=django.utils.timezone.now)
@@ -52,6 +52,9 @@ class Course(models.Model):
     class IsNoVerifiedStudent(Exception):
         pass
 
+    class IsArchived(Exception):
+        pass
+
 
     def __str__(self):
         return self.subject.name
@@ -68,6 +71,8 @@ class Course(models.Model):
             raise self.IsInactive
         elif self.saturated:
             raise self.IsFull
+        elif self.is_archived():
+            raise self.IsArchived
         else:
             self.participants.add(student)
 
@@ -85,7 +90,7 @@ class Course(models.Model):
         return student in self.participants.all()
 
     def is_participant(self, student):
-        return self._is_participant(get_user_information(student))
+        return self._is_participant(get_user_information(student)) and not self.is_archived()
 
     @property
     def saturated(self):
@@ -97,7 +102,7 @@ class Course(models.Model):
         """
         Returns whether this course can currently be joined.
         """
-        return not self.saturated and self.active
+        return not self.saturated and self.is_active()
 
     @property
     def saturation_level(self):
@@ -148,6 +153,9 @@ class Course(models.Model):
     def is_teacher(self, student):
         return student.user.has_perm('change_course', self) \
                 and student.user.has_perm('delete_course', self)
+
+    def is_active(self):
+        return self.active and not self.is_archived()
 
 
 class Notification(models.Model):

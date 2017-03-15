@@ -27,10 +27,10 @@ class Subject(models.Model):
         """
         Returns all associated courses which are active.
         """
-        return self.course_set.filter(active=True)
+        return self.course_set.filter(active=True, archiving='t')
 
     def is_active(self):
         """
         Return true if this subject has any associated courses which are active.
         """
-        return self.course_set.filter(active=True).exists()
+        return self.course_set.filter(active=True, archiving='t').exists()
