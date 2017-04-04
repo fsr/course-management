@@ -81,6 +81,9 @@ class UserInformationForm(ModelForm):
     class Meta:
         model = UserInformation
         fields = ('public_profile', 'description')
+        help_texts = {
+            'description': _('Tell something about yourself. (Markdown enabled) Links are allowed.')
+        }
 
 
 class StudentInformationForm(ModelForm):
