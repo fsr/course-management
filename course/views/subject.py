@@ -24,7 +24,7 @@ def course_overview(request, subjectname):
             active_subject.course_set.filter(archiving='t')
         )
     else:
-        cl = active_subject.course_set.filter(active=True)
+        cl = active_subject.course_set.filter(active=True, archiving='t')
 
     return render(
         request,
