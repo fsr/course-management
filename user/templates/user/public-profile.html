@@ -5,7 +5,7 @@
   {% with student=profiled_user.userinformation %}
     {% if student.public_profile %}
       <h1>{{ profiled_user.first_name }} {{ profiled_user.last_name }}</h1>
-      <div>
+      <div class="description">
         {{ student.render_description|safe }}
       </div>
       {% if student.teacher.count > 0 %}
