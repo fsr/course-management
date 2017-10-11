@@ -100,7 +100,7 @@ def verify_student_form(request):
                 a.user = request.user
                 a.save()
             zih_mail = a.make_zih_mail()
-            verification_mail(a.user, 'student', zih_mail)
+            verification_mail(a.user, 'student', zih_mail, request)
             return render(
                 request,
                 'registration/sent-student-verification-mail.html',
