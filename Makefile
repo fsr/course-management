@@ -34,7 +34,7 @@ endif
 	$(PYTHON) -m pip install -r requirements.txt
 
 virtualenv:
-ifeq (wildcard $(PYTHON),)
+ifeq ($(wildcard $(PYTHON)),)
 	python3 -m pip install virtualenv
 	python3 -m virtualenv $(PYTHON_ENV_FOLDER)
 endif
