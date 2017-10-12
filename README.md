@@ -16,9 +16,7 @@
   ```
   $ npm install -g bower
   $ sudo gem install sass --no-user-install
-  $ pip install virtualenv
-  $ virtualenv env
-  $ make all && make migrate
+  $ make
   ```
 
 * Launch the program with
