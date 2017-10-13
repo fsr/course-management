@@ -11,7 +11,7 @@ from course.forms import NewsForm
 from util.error.reporting import db_error
 
 @login_required()
-@permission_required('subject.add_subject')
+@permission_required('news.add_news')
 def create(request):
     if request.method == 'POST':
         form = NewsForm(request.POST)
@@ -38,7 +38,7 @@ def create(request):
 
 
 @login_required()
-@permission_required('subject.change_subject')
+@permission_required('news.change_news')
 def edit(request: HttpRequest, news_id: str):
     """
     Edit form for changing a news and handler for submitted data.
@@ -72,6 +72,7 @@ def edit(request: HttpRequest, news_id: str):
     )
 
 @login_required
+@permission_required('news.delete_news')
 def delete(request: HttpRequest, news_id: str):
     """
     Delete a news entry.

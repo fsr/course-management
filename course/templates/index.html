@@ -11,13 +11,19 @@
           <h4>{{ entry.headline }}</h4>
           <p>{{ entry.entry }}</p>
           <div class="button-group">
+            {% if perms.news.change_news %}
             <a class="button small" href="{% url 'edit-news' entry.id %}">Edit News</a>
+            {% endif %}
+            {% if perms.news.delete_news %}
             <a class="button small alert" href="{% url 'delete-news' entry.id %}">Delete News</a>
+            {% endif %}
           </div>
           <hr>
         {% endfor %}
       </table>
+      {% if perms.news.add_news %}
       <a class="button" href="news/create">Add News</a>
+      {% endif %}
     </div>
   </div>
   <hr>
