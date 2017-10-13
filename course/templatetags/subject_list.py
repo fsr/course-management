@@ -12,4 +12,14 @@ def show_active_subjects():
 
     :return: rendered HTML
     """
-    return { 'active_subjects' : Subject.get_active() }
+    return { 'active_subjects': Subject.get_active() }
+
+
+@register.inclusion_tag('tags/inactive-subjects.html')
+def show_inactive_subjects():
+    """
+    Return a HTML list-thingy of inactive subjects.
+
+    :return: rendered HTML
+    """
+    return { 'inactive_subjects': Subject.get_inactive() }
