@@ -59,5 +59,6 @@ urlpatterns = [
     url(r'^news/create', news.create, name='create-news'),
     url(r'^news/(?P<news_id>[0-9]+)/', include([
         url(r'^edit/$', news.edit, name='edit-news'),
+        url(r'^delete/$', news.delete, name='delete-news')
     ])),
 ]

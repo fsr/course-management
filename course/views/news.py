@@ -41,7 +41,7 @@ def create(request):
 @permission_required('subject.change_subject')
 def edit(request: HttpRequest, news_id: str):
     """
-    Edit form for changing a course and handler for submitted data.
+    Edit form for changing a news and handler for submitted data.
 
     :param request: request object
     :param news_id: id for the news
@@ -70,3 +70,20 @@ def edit(request: HttpRequest, news_id: str):
             'news_id': news_id
         }
     )
+
+@login_required
+def delete(request: HttpRequest, news_id: str):
+    """
+    Delete a news entry.
+
+    :param request: request object
+    :param news_id: id for the news
+    :return:
+    """
+    try:
+        cur_news = news.News.objects.get(id=news_id)
+    except news.News.DoesNotExist:
+        return  db_error(_('Requested News does not exist.'))
+
+    cur_news.delete()
+    return redirect('/')
