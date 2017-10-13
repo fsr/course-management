@@ -1,18 +1,37 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
-	<div class="description">
-
-	</div>
-	<div class="courses">
-		<div>
-			<div class="row">
-				<div class="column small-6">{% trans "Subject" %}</div>
-				<div class="column small-6">{% trans "Number of courses" %}</div>
-			</div>
-		</div>
-    <div>
-      {% for subject in subjects %}
+  <div class="description">
+    <h3>{% trans "Current news on the courses" %}</h3>
+  </div>
+  <div class="row">
+    <div class="column small-12">
+      <table>
+        {% for entry in news %}
+          <h4>{{ entry.headline }}</h4>
+          <p>{{ entry.entry }}</p>
+          <p>
+            <a class="button small" href="{% url 'edit-news' entry.id %}">Edit News</a>
+          </p>
+          <hr>
+        {% endfor %}
+      </table>
+      <a class="button" href="news/create">Add News</a>
+    </div>
+  </div>
+  <hr>
+  <div class="description">
+    <h3>{% trans "Current subjects available" %}</h3>
+  </div>
+  <div class="row">
+    <div class="column small-12">
+      <table style="width:100%">
+      <tr>
+        <th><h5>{% trans "Subject" %}</h5></th>
+        <th><h5>{% trans "Number of courses" %}</h5></th>
+      </tr>
+      <tr>
+        {% for subject in subjects %}
         <a href="{% url 'subject' subject.name %}">
           <div class="row">
             <div class="column small-6">{{ subject.name }}</div>
