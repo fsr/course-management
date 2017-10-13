@@ -1,25 +1,40 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
-	<div class="description">
-
-	</div>
-	<div class="courses">
-		<div>
-			<div class="row">
-				<div class="column small-6">{% trans "Subject" %}</div>
-				<div class="column small-6">{% trans "Number of courses" %}</div>
-			</div>
-		</div>
-    <div>
-      {% for subject in subjects %}
-        <a href="{% url 'subject' subject.name %}">
-          <div class="row">
-            <div class="column small-6">{{ subject.name }}</div>
-            <div class="column small-6">{{ subject.active_courses.count }}</div>
-          </div>
-        </a>
-      {% endfor %}
+  <div class="description">
+    <h3>{% trans "Current news on the courses" %}</h3>
+  </div>
+  <div class="row">
+    <div class="column small-12">
+      <table>
+        {% for entry in news %}
+          <h4>{{ entry.headline }}</h4>
+          <p>{{ entry.entry }}</p>
+          <hr>
+        {% endfor %}
+      </table>
+      <a class="button" href="news/create">Add News</a>
     </div>
-	</div>
+  </div>
+  <hr>
+  <div class="description">
+    <h3>{% trans "Current subjects available" %}</h3>
+  </div>
+  <div class="row">
+    <div class="column small-12">
+      <table style="width:100%">
+      <tr>
+        <th><h5>{% trans "Subject" %}</h5></th>
+        <th><h5>{% trans "Number of courses" %}</h5></th>
+      </tr>
+      <tr>
+        {% for subject in subjects %}
+        <a href="{% url 'subject' subject.name %}">
+        <td>{{ subject.name }}</td>
+        <td>{{ subject.active_courses.count }}</td>
+        {% endfor %}
+      </tr>
+      </table>
+    </div>
+  </div>
 {% endblock %}
