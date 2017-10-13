@@ -10,6 +10,9 @@
         {% for entry in news %}
           <h4>{{ entry.headline }}</h4>
           <p>{{ entry.entry }}</p>
+          <p>
+            <a class="button small" href="{% url 'edit-news' entry.id %}">Edit News</a>
+          </p>
           <hr>
         {% endfor %}
       </table>

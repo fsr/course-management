@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext as _
+from django.http import HttpRequest
 
 from course.models import news
 from course.forms import NewsForm
@@ -38,29 +39,34 @@ def create(request):
 
 @login_required()
 @permission_required('subject.change_subject')
-def edit(request, headline):
+def edit(request: HttpRequest, news_id: str):
+    """
+    Edit form for changing a course and handler for submitted data.
+
+    :param request: request object
+    :param news_id: id for the news
+    :return:
+    """
     try:
-        subj = subject.Subject.objects.get(name=headline)
-    except subject.Subject.DoesNotExist:
+        cur_news = news.News.objects.get(id=news_id)
+    except news.News.DoesNotExist:
         return db_error(_('Requested News does not exist.'))
 
     if request.method == 'POST':
-        form = SubjectForm(request.POST, instance=subj)
+        form = NewsForm(request.POST, instance=cur_news)
 
-        if 'cancel' not in request.POST and form.is_valid():
-            subj.save()
-
-        return redirect('subject', subj.name)
+        if form.is_valid():
+            cur_news.save()
+            return redirect('/')
 
     else:
-        form = SubjectForm(instance=subj)
-
+        form = NewsForm(instance=cur_news)
     return render(
         request,
         'news/edit.html',
         {
-            'title': subj.name,
+            'title': _('Edit News'),
             'form': form,
-            'subject': subj
+            'news_id': news_id
         }
     )

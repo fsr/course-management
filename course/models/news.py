@@ -10,7 +10,3 @@ class News(models.Model):
 
     def __str__(self):
         return self.headline
-
-    def edit_news(self, headl, entry):
-        self.headl.add(headl)
-        self.entry.add(entry)
