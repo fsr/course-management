@@ -72,7 +72,18 @@
       {% trans "Subjects" %}
     {% endif %}
   </li>
+
   {% show_active_subjects %}
+
+  {% if perms.course_management.add_course %}
+    {% show_inactive_subjects %}
+  {% endif %}
+
+  {% if perms.course_management.add_subject %}
+  <li class="heading">
+    <a href="{% url 'create-subject' %}" style="background-color: #898d89;">{% trans "Add subject" %}</a>
+  </li>
+  {% endif %}
 
 	{% if true %}
 	  <li class="divider"></li>
