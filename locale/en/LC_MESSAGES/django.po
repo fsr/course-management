@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-02 15:06+0200\n"
+"POT-Creation-Date: 2017-10-13 17:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -218,7 +218,11 @@ msgstr ""
 msgid "Subjects"
 msgstr ""
 
-#: course/templates/base.html:79
+#: course/templates/base.html:84
+msgid "Add subject"
+msgstr ""
+
+#: course/templates/base.html:90
 msgid "Complete overview"
 msgstr ""
 
@@ -808,30 +812,34 @@ msgstr ""
 msgid "Unique username. Used for login. (cannot be changed later)."
 msgstr ""
 
-#: user/forms.py:91
+#: user/forms.py:85
+msgid "Tell something about yourself. (Markdown enabled) Links are allowed."
+msgstr ""
+
+#: user/forms.py:94
 msgid ""
 "The s-number as assigned by the university. The student verification email "
 "will be sent to the address associated with this s-number. Cannot be "
 "modified later."
 msgstr ""
 
-#: user/forms.py:94
+#: user/forms.py:97
 msgid ""
 "The faculty at which you are enrolled. (Used for crediting purposes) Can be "
 "modified later."
 msgstr ""
 
-#: user/forms.py:99
+#: user/forms.py:102
 msgid "This will become the subject field of the resulting email."
 msgstr ""
 
-#: user/forms.py:102
+#: user/forms.py:105
 msgid ""
 "This will be the content of the email. HTML is not allowed and any html tags "
 "will be removed."
 msgstr ""
 
-#: user/forms.py:114
+#: user/forms.py:117
 msgid "An email address where the recipient may reach you."
 msgstr ""
 
@@ -853,6 +861,10 @@ msgstr ""
 #: user/templates/registration/register.html:20
 #: user/templates/registration/student-verification.html:10
 msgid "Submit"
+msgstr ""
+
+#: user/templates/registration/login.html:25
+msgid "Lost password?"
 msgstr ""
 
 #: user/templates/registration/logout.html:5
@@ -1013,7 +1025,7 @@ msgstr ""
 msgid "Your {} verification at the iFSR course enrollment system."
 msgstr ""
 
-#: user/views/user.py:58
+#: user/views/user.py:60
 msgid "This user does not exist"
 msgstr ""
 
