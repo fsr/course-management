@@ -21,9 +21,12 @@
           <hr>
         {% endfor %}
       </table>
+      <div class="button-group">
       {% if perms.news.add_news %}
-      <a class="button" href="news/create">Add News</a>
+        <a class="button" href="{% url 'create-news' %}">Add News</a>
       {% endif %}
+        <a class="button" href="{% url 'overview-news' %}">News Overview</a>
+      </div>
     </div>
   </div>
   <hr>
@@ -37,15 +40,13 @@
         <th><h5>{% trans "Subject" %}</h5></th>
         <th><h5>{% trans "Number of courses" %}</h5></th>
       </tr>
+      {% for subject in subjects %}
       <tr>
-        {% for subject in subjects %}
-        <a href="{% url 'subject' subject.name %}">
-          <div class="row">
-            <div class="column small-6">{{ subject.name }}</div>
-            <div class="column small-6">{{ subject.active_courses.count }}</div>
-          </div>
-        </a>
+        <td><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></td>
+        <td>{{ subject.active_courses.count }}</td>
+      </tr>
       {% endfor %}
+      </table>
     </div>
 	</div>
 {% endblock %}
