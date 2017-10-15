@@ -86,6 +86,7 @@ def edit_course(request: HttpRequest, course_id: str):
     """
     try:
         current_course = Course.objects.get(id=course_id)
+        current_schedule = Schedule.objects.get(course_id=course_id)
     except Course.DoesNotExist:
         return db_error(_('Requested course does not exist.'))
 
@@ -95,10 +96,12 @@ def edit_course(request: HttpRequest, course_id: str):
 
         if form.is_valid():
             current_course.save()
+            current_schedule._type = request.POST['schedule_type']
+            current_schedule.save()
             return redirect('course', course_id)
 
     else:
-        form = CourseForm(instance=current_course)
+        form = CourseForm(instance=current_course,initial={'schedule_type':current_schedule._type})
     return render(
         request,
         'course/edit.html',
