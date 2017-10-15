@@ -82,7 +82,8 @@ class CourseForm(ModelForm):
             'archiving',
             'student_only',
             'start_time',
-            'end_time'
+            'end_time',
+            'schedule_type'
         ]
         help_texts = {
             'subject': _('Choose a subject for your course. '),
@@ -139,3 +140,18 @@ class SubjectForm(ModelForm):
             'description_en',
             'description_de',
         ]
+
+
+class NewsForm(ModelForm):
+    headline = forms.CharField(
+        validators = [subject_name_validator],
+        help_text = ('Headline for the news.')
+    )
+    
+    class Meta:
+        model = News
+        fields = [
+            'headline',
+            'entry'
+        ]
+
