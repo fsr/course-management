@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-13 17:09+0200\n"
+"POT-Creation-Date: 2017-10-18 15:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,68 +17,68 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: course/forms.py:15
+#: course/forms.py:16
 msgid "Invalid location name."
 msgstr ""
 
-#: course/forms.py:24 course/forms.py:35
+#: course/forms.py:25 course/forms.py:36
 msgid "Invalid subject name."
 msgstr ""
 
-#: course/forms.py:48
+#: course/forms.py:49
 msgid "Requested username does not exist."
 msgstr ""
 
-#: course/forms.py:88
+#: course/forms.py:89
 msgid "Choose a subject for your course. "
 msgstr ""
 
-#: course/forms.py:90
+#: course/forms.py:91
 msgid "Choose whether people should be able to join this course right now."
 msgstr ""
 
-#: course/forms.py:94
+#: course/forms.py:95
 msgid ""
 "A good description is half the battle. You can use markdown for formatting."
 msgstr ""
 
-#: course/forms.py:97
+#: course/forms.py:98
 msgid "How many people can join your course. (Can be changed later)"
 msgstr ""
 
-#: course/forms.py:98
+#: course/forms.py:99
 msgid "Should your course only be available to students?"
 msgstr ""
 
-#: course/forms.py:99
+#: course/forms.py:100
 msgid "The course starts on that day."
 msgstr ""
 
-#: course/forms.py:100
+#: course/forms.py:101
 msgid "The course will end at that day."
 msgstr ""
 
-#: course/forms.py:103
+#: course/forms.py:104
 msgid "Max nr. of participants"
 msgstr ""
 
-#: course/forms.py:104
+#: course/forms.py:105
 msgid "Begin"
 msgstr ""
 
-#: course/forms.py:105
+#: course/forms.py:106
 msgid "End"
 msgstr ""
 
-#: course/forms.py:111
+#: course/forms.py:112
 msgid "Username of the person you want to be a teacher for this course"
 msgstr ""
 
-#: course/forms.py:120
+#: course/forms.py:121
 msgid "Whether to set the email sender to your email address or not."
 msgstr ""
 
-#: course/forms.py:129
+#: course/forms.py:130
 msgid ""
 "Name of the subject, also decides its url. Allowed characters are word "
 "characters, numbers, spaces, '-' and '_' and it cannot be any of , "
@@ -258,7 +258,6 @@ msgid "and even unassign yourself as teacher"
 msgstr ""
 
 #: course/templates/course/create.html:13
-#: course/templates/subject/create.html:9
 msgid "Create"
 msgstr ""
 
@@ -499,12 +498,28 @@ msgstr ""
 msgid "Database Error"
 msgstr ""
 
-#: course/templates/index.html:10
+#: course/templates/index.html:5 course/templates/news/overview.html:5
+msgid "Current news on the courses"
+msgstr ""
+
+#: course/templates/index.html:34
+msgid "Current subjects available"
+msgstr ""
+
+#: course/templates/index.html:40
 msgid "Subject"
 msgstr ""
 
-#: course/templates/index.html:11
+#: course/templates/index.html:41
 msgid "Number of courses"
+msgstr ""
+
+#: course/templates/news/create.html:7 course/templates/subject/create.html:7
+msgid " Create "
+msgstr ""
+
+#: course/templates/news/edit.html:7
+msgid " Modify "
 msgstr ""
 
 #: course/templates/subject/edit.html:11
@@ -596,6 +611,22 @@ msgstr ""
 
 #: course/views/index.py:11
 msgid "Welcome"
+msgstr ""
+
+#: course/views/news.py:34
+msgid "New News"
+msgstr ""
+
+#: course/views/news.py:53 course/views/news.py:87
+msgid "Requested News does not exist."
+msgstr ""
+
+#: course/views/news.py:68
+msgid "Edit News"
+msgstr ""
+
+#: course/views/news.py:97
+msgid "News Overview"
 msgstr ""
 
 #: course/views/subject.py:19 course/views/subject.py:89
@@ -818,28 +849,30 @@ msgstr ""
 
 #: user/forms.py:94
 msgid ""
-"The s-number as assigned by the university. The student verification email "
-"will be sent to the address associated with this s-number. Cannot be "
-"modified later."
+"<b>Only fill this out if you are a student. Otherwise leave blank.<br/></"
+"b>This is usually your s-number assigned by the university. The student "
+"verification email will be sent to the address associated with this s-"
+"number. Cannot be modified later."
 msgstr ""
 
-#: user/forms.py:97
+#: user/forms.py:98
 msgid ""
-"The faculty at which you are enrolled. (Used for crediting purposes) Can be "
-"modified later."
+"<b>Only fill this out if you are a student. Otherwise leave blank.<br/></"
+"b>The faculty at which you are enrolled. (Used for crediting purposes) Can "
+"be modified later."
 msgstr ""
 
-#: user/forms.py:102
+#: user/forms.py:104
 msgid "This will become the subject field of the resulting email."
 msgstr ""
 
-#: user/forms.py:105
+#: user/forms.py:107
 msgid ""
 "This will be the content of the email. HTML is not allowed and any html tags "
 "will be removed."
 msgstr ""
 
-#: user/forms.py:117
+#: user/forms.py:119
 msgid "An email address where the recipient may reach you."
 msgstr ""
 
