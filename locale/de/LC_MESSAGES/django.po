@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-02 15:06+0200\n"
+"POT-Creation-Date: 2017-10-13 17:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felix Wittwer <dev@felixwittwer.de>\n"
 "Language-Team: ---\n"
@@ -229,7 +229,11 @@ msgstr "Sprache"
 msgid "Subjects"
 msgstr "Themen"
 
-#: course/templates/base.html:79
+#: course/templates/base.html:84
+msgid "Add subject"
+msgstr "Neues Thema"
+
+#: course/templates/base.html:90
 msgid "Complete overview"
 msgstr "Komplette Übersicht"
 
@@ -861,7 +865,11 @@ msgstr ""
 msgid "Unique username. Used for login. (cannot be changed later)."
 msgstr "(Einzigartiger) Nutzername. Kann nicht mehr geändert werden."
 
-#: user/forms.py:91
+#: user/forms.py:85
+msgid "Tell something about yourself. (Markdown enabled) Links are allowed."
+msgstr "Erzähle etwas über dich. (Markdown aktiviert) Links sind erlaubt."
+
+#: user/forms.py:94
 msgid ""
 "The s-number as assigned by the university. The student verification email "
 "will be sent to the address associated with this s-number. Cannot be "
@@ -870,7 +878,7 @@ msgstr ""
 "Die sNummer, die das ZIH dir zugewiesen hat. Die Verifikations-Mail wird zur "
 "zugehörigen Adresse gesendet. Kann nicht verändert werden."
 
-#: user/forms.py:94
+#: user/forms.py:97
 msgid ""
 "The faculty at which you are enrolled. (Used for crediting purposes) Can be "
 "modified later."
@@ -878,11 +886,11 @@ msgstr ""
 "Die Fakultät, an der du eingeschrieben bist (wird für Credits benötigt).Kann "
 "später verändert werden."
 
-#: user/forms.py:99
+#: user/forms.py:102
 msgid "This will become the subject field of the resulting email."
 msgstr "Dies wird der Betreff der Mail."
 
-#: user/forms.py:102
+#: user/forms.py:105
 msgid ""
 "This will be the content of the email. HTML is not allowed and any html tags "
 "will be removed."
@@ -890,7 +898,7 @@ msgstr ""
 "Das wird der Inhalt der Mail. HTML-Tags ist nicht erlaubt und werden "
 "entfernt."
 
-#: user/forms.py:114
+#: user/forms.py:117
 msgid "An email address where the recipient may reach you."
 msgstr "Eine Mail Adresse, unter der der Empfänger dich erreichen kann."
 
@@ -915,6 +923,10 @@ msgstr "Bitte logge dich ein, um den Inhalt dieser Seite sehen zu können."
 #: user/templates/registration/student-verification.html:10
 msgid "Submit"
 msgstr "Abschicken"
+
+#: user/templates/registration/login.html:25
+msgid "Lost password?"
+msgstr "Passwort vergessen?"
 
 #: user/templates/registration/logout.html:5
 msgid "You have been logged out successfully."
@@ -1076,7 +1088,7 @@ msgstr "Registrierung"
 msgid "Your {} verification at the iFSR course enrollment system."
 msgstr "Deine {} Registrierung beim iFSR Kurs Management"
 
-#: user/views/user.py:58
+#: user/views/user.py:60
 msgid "This user does not exist"
 msgstr "Der angeforderte Nutzername existiert nicht."
 
