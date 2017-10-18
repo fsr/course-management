@@ -96,12 +96,12 @@ def edit_course(request: HttpRequest, course_id: str):
 
         if form.is_valid():
             current_course.save()
-            current_schedule._type = request.POST['schedule_type']
+            current_schedule.set_type(request.POST['schedule_type'])
             current_schedule.save()
             return redirect('course', course_id)
 
     else:
-        form = CourseForm(instance=current_course,initial={'schedule_type':current_schedule._type})
+        form = CourseForm(instance=current_course,initial={'schedule_type':current_schedule.get_type()})
     return render(
         request,
         'course/edit.html',
