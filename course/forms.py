@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from course.models.course import Course
 from course.models.schedule import Schedule, DateSlot, WeeklySlot
 from course.models.subject import Subject
+from course.models.news import News
 from user.forms import AbstractContactForm
 
 location_validator = RegexValidator(
@@ -138,4 +139,17 @@ class SubjectForm(ModelForm):
             'name',
             'description_en',
             'description_de',
+        ]
+
+class NewsForm(ModelForm):
+    headline = forms.CharField(
+        validators = [subject_name_validator],
+        help_text = ('Headline for the news.')
+    )
+    
+    class Meta:
+        model = News
+        fields = [
+            'headline',
+            'entry'
         ]

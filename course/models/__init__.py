@@ -1,1 +1,1 @@
-from . import course, schedule, subject
+from . import course, schedule, subject, news

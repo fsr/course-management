@@ -91,10 +91,12 @@ class StudentInformationForm(ModelForm):
         model = StudentInformation
         fields = ('s_number', 'faculty')
         help_texts = {
-            's_number': _('The s-number as assigned by the university. '
+            's_number': _('<b>Only fill this out if you are a student. Otherwise leave blank.<br/></b>'
+                          'This is usually your s-number assigned by the university. '
                           'The student verification email will be sent to the address associated with this s-number. '
                           'Cannot be modified later.'),
-            'faculty': _('The faculty at which you are enrolled. (Used for crediting purposes) Can be modified later.')
+            'faculty': _('<b>Only fill this out if you are a student. Otherwise leave blank.<br/></b>'
+                         'The faculty at which you are enrolled. (Used for crediting purposes) Can be modified later.')
         }
 
 
