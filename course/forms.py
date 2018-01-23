@@ -83,7 +83,8 @@ class CourseForm(ModelForm):
             'archiving',
             'student_only',
             'start_time',
-            'end_time'
+            'end_time',
+            'schedule_type'
         ]
         help_texts = {
             'subject': _('Choose a subject for your course. '),
