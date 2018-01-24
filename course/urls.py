@@ -56,10 +56,4 @@ urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^accounts/', include('user.urls')),
-    url(r'^news/create', news.create, name='create-news'),
-    url(r'^news/overview', news.overview, name='overview-news'),
-    url(r'^news/(?P<news_id>[0-9]+)/', include([
-        url(r'^edit/$', news.edit, name='edit-news'),
-        url(r'^delete/$', news.delete, name='delete-news')
-    ])),
 ]

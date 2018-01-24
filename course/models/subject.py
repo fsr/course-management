@@ -22,16 +22,6 @@ class Subject(models.Model):
             cls.objects.all()
         )
 
-    @classmethod
-    def get_inactive(cls):
-        """
-        Return all subjects which do not have associated active courses.
-        """
-        return filter(
-            lambda subject: not subject.is_active(),
-            cls.objects.all()
-        )
-
     @property
     def active_courses(self):
         """

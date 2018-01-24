@@ -52,12 +52,6 @@ class Schedule(models.Model):
         else:
             return DateSlot.objects.filter(schedule=self)
 
-    def get_type(self):
-        return self._type
-
-    def set_type(self, type):
-        self._type = type
-
     def __str__(self):
         #return "{type} - {slots}".format(type=self.get__type_display(), slots="; ".join(map(str,self.slots)))
         course = self.course

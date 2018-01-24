@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-18 15:26+0200\n"
+"POT-Creation-Date: 2016-10-02 15:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felix Wittwer <dev@felixwittwer.de>\n"
 "Language-Team: ---\n"
@@ -17,70 +17,70 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: course/forms.py:16
+#: course/forms.py:15
 msgid "Invalid location name."
 msgstr "Ungültiger Ortsname."
 
-#: course/forms.py:25 course/forms.py:36
+#: course/forms.py:24 course/forms.py:35
 msgid "Invalid subject name."
 msgstr "Ungültiger Themenname."
 
-#: course/forms.py:49
+#: course/forms.py:48
 msgid "Requested username does not exist."
 msgstr "Der angeforderte Nutzername existiert nicht."
 
-#: course/forms.py:89
+#: course/forms.py:88
 msgid "Choose a subject for your course. "
 msgstr "Wähle ein Thema für den Kurs."
 
-#: course/forms.py:91
+#: course/forms.py:90
 msgid "Choose whether people should be able to join this course right now."
 msgstr "Wähle aus, ob die Einschreibung für den Kurs sofort aktiv sein soll."
 
-#: course/forms.py:95
+#: course/forms.py:94
 msgid ""
 "A good description is half the battle. You can use markdown for formatting."
 msgstr ""
 "Eine gute Beschreibung ist die halbe Miete. Du kannst Markdown zur "
 "Formatierung verwenden."
 
-#: course/forms.py:98
+#: course/forms.py:97
 msgid "How many people can join your course. (Can be changed later)"
 msgstr "Maximale Teilnehmerzahl. (Kann später geändert werden)"
 
-#: course/forms.py:99
+#: course/forms.py:98
 msgid "Should your course only be available to students?"
 msgstr "Soll der Kurs nur für Studenten zugänglich sein?"
 
-#: course/forms.py:100
+#: course/forms.py:99
 msgid "The course starts on that day."
 msgstr "Der Kurs beginnt an diesem Tag."
 
-#: course/forms.py:101
+#: course/forms.py:100
 msgid "The course will end at that day."
 msgstr "Der Kurs wird an diesem Tag enden."
 
-#: course/forms.py:104
+#: course/forms.py:103
 msgid "Max nr. of participants"
 msgstr "Maximale Teilnehmerzahl"
 
-#: course/forms.py:105
+#: course/forms.py:104
 msgid "Begin"
 msgstr "Beginn"
 
-#: course/forms.py:106
+#: course/forms.py:105
 msgid "End"
 msgstr "Ende"
 
-#: course/forms.py:112
+#: course/forms.py:111
 msgid "Username of the person you want to be a teacher for this course"
 msgstr "Nutzername der Person, die Tutor des Kurses sein soll"
 
-#: course/forms.py:121
+#: course/forms.py:120
 msgid "Whether to set the email sender to your email address or not."
 msgstr "Soll deine Mailadresse als Absender angegeben werden?"
 
-#: course/forms.py:130
+#: course/forms.py:129
 msgid ""
 "Name of the subject, also decides its url. Allowed characters are word "
 "characters, numbers, spaces, '-' and '_' and it cannot be any of , "
@@ -229,11 +229,7 @@ msgstr "Sprache"
 msgid "Subjects"
 msgstr "Themen"
 
-#: course/templates/base.html:84
-msgid "Add subject"
-msgstr "Neues Thema"
-
-#: course/templates/base.html:90
+#: course/templates/base.html:79
 msgid "Complete overview"
 msgstr "Komplette Übersicht"
 
@@ -271,6 +267,7 @@ msgid "and even unassign yourself as teacher"
 msgstr "und dich auch selbst als Tutor wieder entfernen."
 
 #: course/templates/course/create.html:13
+#: course/templates/subject/create.html:9
 msgid "Create"
 msgstr "Erstellen"
 
@@ -531,29 +528,13 @@ msgstr "Entschuldigung, es ist ein Fehler mit der Datenbank aufgetreten."
 msgid "Database Error"
 msgstr "Datenbankfehler"
 
-#: course/templates/index.html:5 course/templates/news/overview.html:5
-msgid "Current news on the courses"
-msgstr "Aktuelle Kursnachrichten"
-
-#: course/templates/index.html:34
-msgid "Current subjects available"
-msgstr "Aktuell angebotene Themen"
-
-#: course/templates/index.html:40
+#: course/templates/index.html:10
 msgid "Subject"
 msgstr "Thema"
 
-#: course/templates/index.html:41
+#: course/templates/index.html:11
 msgid "Number of courses"
 msgstr "Anzahl an Kursen"
-
-#: course/templates/news/create.html:7 course/templates/subject/create.html:7
-msgid " Create "
-msgstr " Erstellen "
-
-#: course/templates/news/edit.html:7
-msgid " Modify "
-msgstr " Bearbeiten "
 
 #: course/templates/subject/edit.html:11
 #: polls/templates/polls/poll/vote.html:40 user/templates/user/edit.html:16
@@ -647,22 +628,6 @@ msgstr "Du scheinst in diesem Kurs nicht eingetragen zu sein."
 #: course/views/index.py:11
 msgid "Welcome"
 msgstr "Willkommen"
-
-#: course/views/news.py:34
-msgid "New News"
-msgstr "Neues News-Item"
-
-#: course/views/news.py:53 course/views/news.py:87
-msgid "Requested News does not exist."
-msgstr "Das angeforderte News-Item existiert nicht."
-
-#: course/views/news.py:68
-msgid "Edit News"
-msgstr "News-Item editieren"
-
-#: course/views/news.py:97
-msgid "News Overview"
-msgstr "Nachrichtenübersicht"
 
 #: course/views/subject.py:19 course/views/subject.py:89
 #: course/views/subject.py:120
@@ -896,40 +861,28 @@ msgstr ""
 msgid "Unique username. Used for login. (cannot be changed later)."
 msgstr "(Einzigartiger) Nutzername. Kann nicht mehr geändert werden."
 
-#: user/forms.py:85
-msgid "Tell something about yourself. (Markdown enabled) Links are allowed."
-msgstr "Erzähle etwas über dich. (Markdown aktiviert) Links sind erlaubt."
+#: user/forms.py:91
+msgid ""
+"The s-number as assigned by the university. The student verification email "
+"will be sent to the address associated with this s-number. Cannot be "
+"modified later."
+msgstr ""
+"Die sNummer, die das ZIH dir zugewiesen hat. Die Verifikations-Mail wird zur "
+"zugehörigen Adresse gesendet. Kann nicht verändert werden."
 
 #: user/forms.py:94
 msgid ""
-"<b>Only fill this out if you are a student. Otherwise leave blank.<br/></"
-"b>This is usually your s-number assigned by the university. The student "
-"verification email will be sent to the address associated with this s-"
-"number. Cannot be modified later."
+"The faculty at which you are enrolled. (Used for crediting purposes) Can be "
+"modified later."
 msgstr ""
-"<b>Fülle dieses Feld nur aus, wenn du Student bist. Ansonsten lasse es frei.<br/></"
-"b>Die sNummer, die dir das ZIH zugewiesen hat. Die Verifikationsmail wird an die "
-"zugehörige Adresse gesandt. Kann nicht mehr geändert werden."
-
-#: user/forms.py:98
-#, fuzzy
-#| msgid ""
-#| "The faculty at which you are enrolled. (Used for crediting purposes) Can "
-#| "be modified later."
-msgid ""
-"<b>Only fill this out if you are a student. Otherwise leave blank.<br/></"
-"b>The faculty at which you are enrolled. (Used for crediting purposes) Can "
-"be modified later."
-msgstr ""
-"<b>Fülle dieses Feld nur aus, wenn du Student bist. Ansonsten lasse es frei.<br/></"
-"b>Die Fakultät, an der du eingeschrieben bist (wird für Credits benötigt).Kann "
+"Die Fakultät, an der du eingeschrieben bist (wird für Credits benötigt).Kann "
 "später verändert werden."
 
-#: user/forms.py:104
+#: user/forms.py:99
 msgid "This will become the subject field of the resulting email."
 msgstr "Dies wird der Betreff der Mail."
 
-#: user/forms.py:107
+#: user/forms.py:102
 msgid ""
 "This will be the content of the email. HTML is not allowed and any html tags "
 "will be removed."
@@ -937,7 +890,7 @@ msgstr ""
 "Das wird der Inhalt der Mail. HTML-Tags ist nicht erlaubt und werden "
 "entfernt."
 
-#: user/forms.py:119
+#: user/forms.py:114
 msgid "An email address where the recipient may reach you."
 msgstr "Eine Mail Adresse, unter der der Empfänger dich erreichen kann."
 
@@ -962,10 +915,6 @@ msgstr "Bitte logge dich ein, um den Inhalt dieser Seite sehen zu können."
 #: user/templates/registration/student-verification.html:10
 msgid "Submit"
 msgstr "Abschicken"
-
-#: user/templates/registration/login.html:25
-msgid "Lost password?"
-msgstr "Passwort vergessen?"
 
 #: user/templates/registration/logout.html:5
 msgid "You have been logged out successfully."
@@ -1127,7 +1076,7 @@ msgstr "Registrierung"
 msgid "Your {} verification at the iFSR course enrollment system."
 msgstr "Deine {} Registrierung beim iFSR Kurs Management"
 
-#: user/views/user.py:60
+#: user/views/user.py:58
 msgid "This user does not exist"
 msgstr "Der angeforderte Nutzername existiert nicht."
 

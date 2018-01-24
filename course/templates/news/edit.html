@@ -1,9 +1,0 @@
-{% extends "base.html" %} {% load i18n %} {% block content %}
-<form action="{% url 'edit-news' news_id %}" method="post">
-    {% csrf_token %}
-    <table class="table">
-        {{ form.as_table }}
-    </table>
-    <input class="btn btn-default" type="submit" value="{% trans " Modify " %}" />
-</form>
-{% endblock %}
