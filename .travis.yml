@@ -8,6 +8,8 @@ branches:
     - deploy
 
 install:
+  - cp course/settings.py.example course/settings.py
+  - cp user/mailsettings.py.example user/mailsettings.py
   - pip install -r requirements.txt
 
 script: 
