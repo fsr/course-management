@@ -1,3 +1,7 @@
+course/settings.py
+user/mailsettings.py
+
+
 .DS_Store
 # Vagrant Environment folder
 .vagrant 
