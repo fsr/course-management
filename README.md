@@ -1,31 +1,9 @@
 # The real course-management
 
-## Gettin' started
+This branch has been **deprecated**! It no longer serves as the branch that is to be pulled onto the production server.
+Whoever came up with this idea in the first place:
 
-### Required software
+![Fuck you](https://media.giphy.com/media/EtB1yylKGGAUg/giphy.gif)
 
-* Python 3
-* nodejs and npm
-* Ruby and Sass 
+Please refer to the `master` branch and deploy from there, remember to instantiate the config files!
 
-
-### Installation
-
-* install dependencies
-
-  ```
-  $ npm install
-  $ grunt install
-  ```
-  
-* Launch the program with
-
-  ```
-  $ grunt launch
-  ```
-
-* You now can login with the super user **foo** and password **bar**
-
-## License
-
-This software is licensed with the BSD3 license.
