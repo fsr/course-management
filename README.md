@@ -19,6 +19,13 @@
   $ make
   ```
 
+* Configure the server and the mailsettings as you wish:
+
+  ```
+  $ cp course/settings.py.example course/settings.py
+  $ cp user/mailsettings.py.example user/mailsettings.py
+  ```
+
 * Launch the program with
 
   ```
