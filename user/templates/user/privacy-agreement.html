@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class='privacy_info_text'>
+        <p>{% trans "Hey there! Since the last time you've logged on, we changed our privacy policy. To continue using our services, please read the policy below carefully and then either signal us your consent by checking the box below or delete your account and all associated data by pressing the big red button. If you have any questions regarding how we use or store your data, you can always drop us a mail - either in german or in english - to the address below!" %} :)</p>
+    </div>
+
+    <hr />
+
+    INSERT POLICY HERE
+
+    <hr />
+
+    <div class='agreement_form'>
+        <form action="{% url 'privacy-policy-updated' %}" method="post">
+            {% csrf_token %}
+            {{ agreement_form.as_p }}
+            <input class="button" type="submit" value="{% trans "Submit" %}" />
+        </form>
+    </div>
+{% endblock %}
