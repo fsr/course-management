@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1>{% trans "Account Deletion" %}</h1>
+
+    <p>{% trans "You are about to delete your account. Clicking the red button below will delete your account <b>immediately and permanently</b>. All your personal information will be removed from our database, so think twice before taking this step." %}</p>
+
+    <form method="post" action="{% url 'delete-account' %}">
+        {% csrf_token %}
+        <input type="hidden" name="delete-confirm">
+        <button class="button alert" role="link" type="submit">{% trans 'Delete my account' %}</button>
+    </form>
+{% endblock %}

@@ -11,6 +11,7 @@
     {{ user_form.as_table }}
     {{ userinformation_form.as_table }}
   </table>
+
   <div class="row">
     <div class="column large-2 small-3">
       <a class="button" href="{% url 'user-profile' %}">{% trans "Cancel" %}</a>
@@ -25,6 +26,8 @@
   {% if not user.userinformation.is_student %}
     {% trans "or" %}
     <a style="color:#9ACC00;" href="{% url 'verify' 'student' %}">{% trans "verify as a student" %}</a>
-  {% endif %}?
+{% endif %}?
+<br>
+{% trans "Here, you may also" %} <a style="color:#9ACC00;" href="{% url 'delete-account' %}">{% trans "delete your account" %}</a>.
 </p>
 {% endblock %}

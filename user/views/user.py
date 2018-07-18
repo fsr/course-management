@@ -108,3 +108,26 @@ def privacy_consent(request):
             'agreement_form': agreement_form,
         }
     )
+
+
+@login_required
+def delete_account(request):
+    if request.method == "POST" and "delete-confirm" in request.POST:
+        user = request.user
+        user.delete()
+
+        return render(
+            None,
+            "user/deletion-success.html",
+            {
+                'title': "Account Deletion Successful"
+            }
+        )
+    else:
+        return render(
+            request,
+            "user/delete-account.html",
+            {
+                "title": "Delete Account"
+            }
+        )
