@@ -16,6 +16,7 @@ class UserInformation(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     description = models.TextField(default="")
     public_profile = models.BooleanField(default=False)
+    accepted_privacy_policy = models.BooleanField()
 
     def __str__(self):
         return '{first} {last}'.format(first=self.user.first_name, last=self.user.last_name)
@@ -91,7 +92,8 @@ class Activation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     token = models.CharField(max_length=50)
     type = models.CharField(max_length=1,
-                            choices=tuple((v, k) for k, v in ACTIVATION_TYPES.items())
+                            choices=tuple((v, k)
+                                          for k, v in ACTIVATION_TYPES.items())
                             )
 
 
@@ -105,4 +107,5 @@ def get_user_information(obj):
     elif isinstance(obj, (int, str)):
         return UserInformation.objects.get(id=obj)
     else:
-        raise TypeError('Cannot convert {} to {}'.format(type(obj, UserInformation)))
+        raise TypeError('Cannot convert {} to {}'.format(
+            type(obj, UserInformation)))

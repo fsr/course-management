@@ -21,12 +21,12 @@ def faculties_or_empty():
 name_validator = RegexValidator(
     r'^\w+((-| )\w+)*$',
     message=_('Names should start with capital letters, only contain regular'
-            ' characters and be separated with spaces or dashes.')
+              ' characters and be separated with spaces or dashes.')
 )
 s_number_validator = RegexValidator(
     r'^s?\d{7}$',
     message=_('S numbers can start with an \'s\' and otherwise consist of a '
-            'string of seven digits.')
+              'string of seven digits.')
 )
 
 
@@ -78,11 +78,18 @@ class UserEditForm(ModelForm):
 
 class UserInformationForm(ModelForm):
     description = forms.CharField(widget=forms.Textarea, required=False)
+
     class Meta:
         model = UserInformation
-        fields = ('public_profile', 'description')
+        fields = ('public_profile', 'description', 'accepted_privacy_policy')
+        labels = {
+            'public_profile': _('Public Profile'),
+            'description': _('Description'),
+            'accepted_privacy_policy': _('Privacy Policy')
+        }
         help_texts = {
-            'description': _('Tell something about yourself. (Markdown enabled) Links are allowed.')
+            'description': _('Tell something about yourself. (Markdown enabled) Links are allowed.'),
+            'accepted_privacy_policy': _('You have read our Privacy Policy and consent to it.')
         }
 
 
