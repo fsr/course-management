@@ -148,3 +148,15 @@ class StudentVerificationForm(ModelForm):
     class Meta:
         model = StudentInformation
         fields = ('s_number', 'faculty')
+
+
+class PrivacyAgreementForm(ModelForm):
+    class Meta:
+        model = UserInformation
+        fields = ('accepted_privacy_policy',)
+        labels = {
+            'accepted_privacy_policy': ''
+        }
+        help_texts = {
+            'accepted_privacy_policy': _('I have read the Privacy Policy and consent to it.')
+        }
