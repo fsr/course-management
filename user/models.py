@@ -56,7 +56,7 @@ class UserInformation(models.Model):
 
         if s_number is None or s_number == '':
             if faculty is None or faculty == '':
-                return UserInformation.objects.create(user=user)
+                return UserInformation.objects.create(user=user, accepted_privacy_policy=True)
             else:
                 raise TypeError('I got a faculty but no s number?')
         else:
@@ -65,6 +65,7 @@ class UserInformation(models.Model):
             else:
                 return StudentInformation.objects.create(
                     user=user,
+                    accepted_privacy_policy=True,
                     s_number=s_number,
                     faculty=Faculty.objects.get(pk=faculty)
                 )
