@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-19 18:01+0200\n"
+"POT-Creation-Date: 2018-07-19 22:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felix Wittwer <dev@felixwittwer.de>\n"
 "Language-Team: ---\n"
@@ -718,7 +718,8 @@ msgstr "Gib eine valide Mailadresse an."
 msgid ""
 "Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens."
 msgstr ""
-"Gib einen Kurznamen an, bestehend aus Buchstaben, Zahlen, Unterstrichen und Bindestrichen."
+"Gib einen Kurznamen an, bestehend aus Buchstaben, Zahlen, Unterstrichen und "
+"Bindestrichen."
 
 #: env/lib/python3.6/site-packages/django/core/validators.py:227
 #: env/lib/python3.6/site-packages/django/core/validators.py:246
@@ -743,7 +744,9 @@ msgstr "Gib ausschließlich mit Komma getrennte Zahlen ein."
 #: env/lib/python3.6/site-packages/django/core/validators.py:279
 #, python-format
 msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
-msgstr "Bitte stelle sicher, dass der Wert %(limit_value)s ist (aktuell %(show_value)s)."
+msgstr ""
+"Bitte stelle sicher, dass der Wert %(limit_value)s ist (aktuell "
+"%(show_value)s)."
 
 #: env/lib/python3.6/site-packages/django/core/validators.py:305
 #, python-format
@@ -820,7 +823,8 @@ msgstr "%(model_name)s mit diesem %(field_label)s existiert bereits."
 msgid ""
 "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
 msgstr ""
-"%(field_label)s muss einzigartig sein für %(date_field_label)s %(lookup_type)s."
+"%(field_label)s muss einzigartig sein für %(date_field_label)s "
+"%(lookup_type)s."
 
 #: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:132
 #, python-format
@@ -862,7 +866,8 @@ msgid ""
 "'%(value)s' value has an invalid date format. It must be in YYYY-MM-DD "
 "format."
 msgstr ""
-"'%(value)s' Wert hat ein ungültiges Datumsformat. Es muss von der Form JJJJ-MM-TT sein."
+"'%(value)s' Wert hat ein ungültiges Datumsformat. Es muss von der Form JJJJ-"
+"MM-TT sein."
 
 #: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1190
 #: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1340
@@ -871,7 +876,8 @@ msgid ""
 "'%(value)s' value has the correct format (YYYY-MM-DD) but it is an invalid "
 "date."
 msgstr ""
-"'%(value)s' Wert hat das richtige Format (JJJJ-MM-TT) aber ist ein ungültiges Datum."
+"'%(value)s' Wert hat das richtige Format (JJJJ-MM-TT) aber ist ein "
+"ungültiges Datum."
 
 #: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1193
 msgid "Date (without time)"
@@ -883,8 +889,8 @@ msgid ""
 "'%(value)s' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
 "uuuuuu]][TZ] format."
 msgstr ""
-"'%(value)s' Wert hat ein ungültiges Format. Es muss von der Form YYYY-MM-DD HH:MM[:ss[."
-"uuuuuu]][TZ] sein."
+"'%(value)s' Wert hat ein ungültiges Format. Es muss von der Form YYYY-MM-DD "
+"HH:MM[:ss[.uuuuuu]][TZ] sein."
 
 #: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1342
 #, python-format
@@ -914,8 +920,8 @@ msgid ""
 "'%(value)s' value has an invalid format. It must be in [DD] [HH:[MM:]]ss[."
 "uuuuuu] format."
 msgstr ""
-"'%(value)s' Wert hat ein ungültiges Format. Es muss von der Form [DD] [HH:[MM:]]ss[."
-"uuuuuu] sein."
+"'%(value)s' Wert hat ein ungültiges Format. Es muss von der Form [DD] [HH:"
+"[MM:]]ss[.uuuuuu] sein."
 
 #: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1654
 msgid "Duration"
@@ -986,8 +992,8 @@ msgid ""
 "'%(value)s' value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
 "format."
 msgstr ""
-"'%(value)s' Wert hat eine ungültiges Format. Es muss von der Form HH:MM[:ss[.uuuuuu]] "
-"sein."
+"'%(value)s' Wert hat eine ungültiges Format. Es muss von der Form HH:MM[:ss[."
+"uuuuuu]] sein."
 
 #: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2178
 #, python-format
@@ -1113,12 +1119,17 @@ msgstr "Die gesendete Datei ist leer."
 msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
 msgid_plural ""
 "Ensure this filename has at most %(max)d characters (it has %(length)d)."
-msgstr[0] "Stelle sicher, dass der Dateiname höchstens %(max)d Zeichen hat (er hat %(length)d)."
-msgstr[1] "Stelle sicher, dass der Dateiname höchstens %(max)d Zeichen hat (er hat %(length)d)."
+msgstr[0] ""
+"Stelle sicher, dass der Dateiname höchstens %(max)d Zeichen hat (er hat "
+"%(length)d)."
+msgstr[1] ""
+"Stelle sicher, dass der Dateiname höchstens %(max)d Zeichen hat (er hat "
+"%(length)d)."
 
 #: env/lib/python3.6/site-packages/django/forms/fields.py:598
 msgid "Please either submit a file or check the clear checkbox, not both."
-msgstr "Bitte lade entweder eine Datei hoch oder wähle 'clear' aus, nicht beides."
+msgstr ""
+"Bitte lade entweder eine Datei hoch oder wähle 'clear' aus, nicht beides."
 
 #: env/lib/python3.6/site-packages/django/forms/fields.py:660
 msgid ""
@@ -1662,10 +1673,10 @@ msgid ""
 "required for security reasons, to ensure that your browser is not being "
 "hijacked by third parties."
 msgstr ""
-"Du siehst diese Nachricht, weil diese HTTPS Seite einen 'Referer header' "
-"von deinem Webbrowser empfangen muss, aber keiner gesendet wurde. Dieser "
-"Header ist aus Sicherheitsgründen erforderlich, um sicher zu stellen, dass "
-"dein Browser nicht von Dritten übernommen wurde."
+"Du siehst diese Nachricht, weil diese HTTPS Seite einen 'Referer header' von "
+"deinem Webbrowser empfangen muss, aber keiner gesendet wurde. Dieser Header "
+"ist aus Sicherheitsgründen erforderlich, um sicher zu stellen, dass dein "
+"Browser nicht von Dritten übernommen wurde."
 
 #: env/lib/python3.6/site-packages/django/views/csrf.py:117
 msgid ""
@@ -1673,8 +1684,9 @@ msgid ""
 "enable them, at least for this site, or for HTTPS connections, or for 'same-"
 "origin' requests."
 msgstr ""
-"Falls du 'Referer' Header in deinem Browser abgeschaltet hast, reaktiviere sie "
-"bitte für diese Seite, für HTTPS-Verbindungen oder für 'same-origin' Anfragen."
+"Falls du 'Referer' Header in deinem Browser abgeschaltet hast, reaktiviere "
+"sie bitte für diese Seite, für HTTPS-Verbindungen oder für 'same-origin' "
+"Anfragen."
 
 #: env/lib/python3.6/site-packages/django/views/csrf.py:122
 msgid ""
@@ -1682,9 +1694,9 @@ msgid ""
 "submitting forms. This cookie is required for security reasons, to ensure "
 "that your browser is not being hijacked by third parties."
 msgstr ""
-"Du siehst diese Nachricht weil diese Seite ein CSRF Cookie erfordert, um Forms "
-"abzuschicken. Dieses Cookie ist aus Sicherheitsgründen erforderlich, um sicher "
-"zu gehen, dass dein browser nicht von Dritten übernommen wurde."
+"Du siehst diese Nachricht weil diese Seite ein CSRF Cookie erfordert, um "
+"Forms abzuschicken. Dieses Cookie ist aus Sicherheitsgründen erforderlich, "
+"um sicher zu gehen, dass dein browser nicht von Dritten übernommen wurde."
 
 #: env/lib/python3.6/site-packages/django/views/csrf.py:127
 msgid ""
@@ -1721,8 +1733,9 @@ msgid ""
 "You're seeing this message because you have <code>DEBUG = True</code> in "
 "your Django settings file and you haven't configured any URLs. Get to work!"
 msgstr ""
-"Du siehst diese Nachricht, weil du <code>DEBUG = True</code> in deinen"
-"Django Einstellungen angegeben hast und noch keine URLs konfiguriert hast. An die Arbeit!"
+"Du siehst diese Nachricht, weil du <code>DEBUG = True</code> in deinenDjango "
+"Einstellungen angegeben hast und noch keine URLs konfiguriert hast. An die "
+"Arbeit!"
 
 #: env/lib/python3.6/site-packages/django/views/generic/dates.py:48
 msgid "No year specified"
@@ -1758,7 +1771,8 @@ msgstr ""
 #: env/lib/python3.6/site-packages/django/views/generic/dates.py:694
 #, python-format
 msgid "Invalid date string '%(datestr)s' given format '%(format)s'"
-msgstr "Ungültiger Datums-String '%(datestr)s' bei gegebenem Format '%(format)s'"
+msgstr ""
+"Ungültiger Datums-String '%(datestr)s' bei gegebenem Format '%(format)s'"
 
 #: env/lib/python3.6/site-packages/django/views/generic/detail.py:55
 #, python-format
@@ -1767,7 +1781,8 @@ msgstr "Kein %(verbose_name)s passte auf die Anfrage"
 
 #: env/lib/python3.6/site-packages/django/views/generic/list.py:76
 msgid "Page is not 'last', nor can it be converted to an int."
-msgstr "Seite ist weder 'last', noch kann sie in eine Ganzzahl konvertiert werden."
+msgstr ""
+"Seite ist weder 'last', noch kann sie in eine Ganzzahl konvertiert werden."
 
 #: env/lib/python3.6/site-packages/django/views/generic/list.py:81
 #, python-format
@@ -2049,8 +2064,8 @@ msgid ""
 "You have read our <a href=\"/privacy-policy/\" style=\"color:#9ACC00 !"
 "important;\">Privacy Policy</a> and consent to it."
 msgstr ""
-"Du hast unsere <a href=\"/privacy-policy/\" style=\"color:#9ACC00 !"
-"important;\">Datenschutzerklärung</a> gelesen und stimmst ihr zu."
+"Du hast unsere <a href=\"/privacy-policy/\" style=\"color:#9ACC00 !important;"
+"\">Datenschutzerklärung</a> gelesen und stimmst ihr zu."
 
 #: user/forms.py:112
 msgid "ZIH Login"
@@ -2067,9 +2082,9 @@ msgid ""
 "verification email will be sent to the address associated with this s-"
 "number. Cannot be modified later."
 msgstr ""
-"<b>Fülle dieses Feld nur aus, wenn du Student:in bist. Ansonsten lasse es frei."
-"<br/></b>Dein ZIH-Login. Die Verifikationsmail wird an die zugehörige Adresse "
-"gesandt. Kann nicht mehr geändert werden."
+"<b>Fülle dieses Feld nur aus, wenn du Student:in bist. Ansonsten lasse es "
+"frei.<br/></b>Dein ZIH-Login. Die Verifikationsmail wird an die zugehörige "
+"Adresse gesandt. Kann nicht mehr geändert werden."
 
 #: user/forms.py:120
 msgid ""
@@ -2077,8 +2092,8 @@ msgid ""
 "b>The faculty at which you are enrolled. (Used for crediting purposes) Can "
 "be modified later."
 msgstr ""
-"<b>Fülle dieses Feld nur aus, wenn du Student:in bist. Ansonsten lasse es frei."
-"<br/></b>Die Fakultät, an der du eingeschrieben bist (wird für Credits "
+"<b>Fülle dieses Feld nur aus, wenn du Student:in bist. Ansonsten lasse es "
+"frei.<br/></b>Die Fakultät, an der du eingeschrieben bist (wird für Credits "
 "benötigt). Kann später verändert werden."
 
 #: user/forms.py:127
@@ -2103,7 +2118,9 @@ msgstr "Ich habe die Datenschutzerklärung gelesen und stimme ihr zu."
 
 #: user/models.py:14
 msgid "You must agree to the privacy policy to use our services."
-msgstr "Du musst der Datenschutzerklärung zustimmen, um unsere Dienste benutzen zu können."
+msgstr ""
+"Du musst der Datenschutzerklärung zustimmen, um unsere Dienste benutzen zu "
+"können."
 
 #: user/templates/contact-form.html:6
 msgid "Contact"
@@ -2124,7 +2141,7 @@ msgstr "Bitte logge dich ein, um den Inhalt dieser Seite sehen zu können."
 #: user/templates/registration/login.html:18
 #: user/templates/registration/register.html:20
 #: user/templates/registration/student-verification.html:10
-#: user/templates/user/privacy-agreement.html:19
+#: user/templates/user/privacy-agreement.html:20
 msgid "Submit"
 msgstr "Abschicken"
 
@@ -2182,10 +2199,11 @@ msgstr ""
 "Du bist dabei, deinen Account zu löschen. Ein Klick auf den großen, roten "
 "Button wird deinen Account <b>sofort und permanent</b> löschen. Alle "
 "persönlichen Daten, die wir über dich gespeichert haben werden aus unseren "
-"Datenbanken entfernt, also denke noch mal darüber nach ehe du den Knopf drückst."
+"Datenbanken entfernt, also denke noch mal darüber nach ehe du den Knopf "
+"drückst."
 
 #: user/templates/user/delete-account.html:12
-#: user/templates/user/privacy-agreement.html:29
+#: user/templates/user/privacy-agreement.html:30
 msgid "Delete my account"
 msgstr "Meinen Account löschen"
 
@@ -2195,7 +2213,8 @@ msgstr "Zack, geschafft!"
 
 #: user/templates/user/deletion-success.html:7
 msgid "Your account has successfully been deleted. We're sorry to see you go!"
-msgstr "Dein Account wurde erfolgreich gelöscht. Es tut weh, dich gehen zu sehen!"
+msgstr ""
+"Dein Account wurde erfolgreich gelöscht. Es tut weh, dich gehen zu sehen!"
 
 #: user/templates/user/edit.html:6
 msgid "Here you may change your user information."
@@ -2222,6 +2241,10 @@ msgid "delete your account"
 msgstr "deinen Account löschen"
 
 #: user/templates/user/privacy-agreement.html:6
+msgid "Consent to Privacy Policy"
+msgstr "Zustimmung zur Datenschutzerklärung"
+
+#: user/templates/user/privacy-agreement.html:7
 msgid ""
 "Hey there! Since the last time you've logged on, we changed our privacy "
 "policy. To continue using our services, please read the policy below "
@@ -2233,14 +2256,14 @@ msgid ""
 msgstr ""
 "Hey du da! Seit du dich das letzte Mal eingeloggt hast, haben wir unsere "
 "Datenschutzerklärung geändert. Um unseren Dienst weiter nutzen zu können, "
-"lies bitte die unten stehende Erklärung und signalisiere uns deine Einwilligung "
-"durch einen Klick auf die Checkbox oder lösche deinen Account und alle damit "
-"assoziierten Daten durch einen Klick auf den großen roten Button. Falls du "
-"Fragen dazu hast, wie wir deine Daten verarbeiten oder speichern, schreib uns "
-"einfach eine Mail - wahlweise auf Deutsch oder Englisch - an die unten stehende "
-"Adresse!"
+"lies bitte die unten stehende Erklärung und signalisiere uns deine "
+"Einwilligung durch einen Klick auf die Checkbox oder lösche deinen Account "
+"und alle damit assoziierten Daten durch einen Klick auf den großen roten "
+"Button. Falls du Fragen dazu hast, wie wir deine Daten verarbeiten oder "
+"speichern, schreib uns einfach eine Mail - wahlweise auf Deutsch oder "
+"Englisch - an die unten stehende Adresse!"
 
-#: user/templates/user/privacy-agreement.html:24
+#: user/templates/user/privacy-agreement.html:25
 msgid ""
 "If you feel that you can not consent to the terms of this policy, there is "
 "no other option left for you but to delete your account. Clicking the red "
@@ -2250,10 +2273,10 @@ msgid ""
 msgstr ""
 "Falls du der Meinung bist, dass du den Bedingungen dieser Erklärung nicht "
 "zustimmen kannst, bleibt dir keine andere Option, als deinen Account zu "
-"löschen. Mit einem Klick auf den roten Button unten wird dein Account <b>"
-"sofort und permanent</b> gelöscht. Alle persönlichen Informationen, die wir "
-"über dich gespeichert haben, werden aus unserer Datenbank gelöscht. Denke "
-"also noch mal darüber nach, bevor du diesen Schritt machst."
+"löschen. Mit einem Klick auf den roten Button unten wird dein Account "
+"<b>sofort und permanent</b> gelöscht. Alle persönlichen Informationen, die "
+"wir über dich gespeichert haben, werden aus unserer Datenbank gelöscht. "
+"Denke also noch mal darüber nach, bevor du diesen Schritt machst."
 
 #: user/templates/user/profile.html:5
 msgid "Your data"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-19 18:01+0200\n"
+"POT-Creation-Date: 2018-07-19 22:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2026,7 +2026,7 @@ msgstr ""
 #: user/templates/registration/login.html:18
 #: user/templates/registration/register.html:20
 #: user/templates/registration/student-verification.html:10
-#: user/templates/user/privacy-agreement.html:19
+#: user/templates/user/privacy-agreement.html:20
 msgid "Submit"
 msgstr ""
 
@@ -2083,7 +2083,7 @@ msgid ""
 msgstr ""
 
 #: user/templates/user/delete-account.html:12
-#: user/templates/user/privacy-agreement.html:29
+#: user/templates/user/privacy-agreement.html:30
 msgid "Delete my account"
 msgstr ""
 
@@ -2120,6 +2120,10 @@ msgid "delete your account"
 msgstr ""
 
 #: user/templates/user/privacy-agreement.html:6
+msgid "Consent to Privacy Policy"
+msgstr ""
+
+#: user/templates/user/privacy-agreement.html:7
 msgid ""
 "Hey there! Since the last time you've logged on, we changed our privacy "
 "policy. To continue using our services, please read the policy below "
@@ -2130,7 +2134,7 @@ msgid ""
 "address below!"
 msgstr ""
 
-#: user/templates/user/privacy-agreement.html:24
+#: user/templates/user/privacy-agreement.html:25
 msgid ""
 "If you feel that you can not consent to the terms of this policy, there is "
 "no other option left for you but to delete your account. Clicking the red "
