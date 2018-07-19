@@ -100,7 +100,7 @@ class UserInformationForm(ModelForm):
         }
         help_texts = {
             'description': _('Tell something about yourself. (Markdown enabled) Links are allowed.'),
-            'accepted_privacy_policy': _('You have read our Privacy Policy and consent to it.')
+            'accepted_privacy_policy': _('You have read our <a href="/privacy-policy/" style="color:#9ACC00 !important;">Privacy Policy</a> and consent to it.')
         }
 
 
