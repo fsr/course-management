@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-18 15:26+0200\n"
+"POT-Creation-Date: 2018-07-19 18:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felix Wittwer <dev@felixwittwer.de>\n"
 "Language-Team: ---\n"
@@ -29,58 +29,58 @@ msgstr "Ungültiger Themenname."
 msgid "Requested username does not exist."
 msgstr "Der angeforderte Nutzername existiert nicht."
 
-#: course/forms.py:89
+#: course/forms.py:90
 msgid "Choose a subject for your course. "
 msgstr "Wähle ein Thema für den Kurs."
 
-#: course/forms.py:91
+#: course/forms.py:92
 msgid "Choose whether people should be able to join this course right now."
 msgstr "Wähle aus, ob die Einschreibung für den Kurs sofort aktiv sein soll."
 
-#: course/forms.py:95
+#: course/forms.py:96
 msgid ""
 "A good description is half the battle. You can use markdown for formatting."
 msgstr ""
 "Eine gute Beschreibung ist die halbe Miete. Du kannst Markdown zur "
 "Formatierung verwenden."
 
-#: course/forms.py:98
+#: course/forms.py:99
 msgid "How many people can join your course. (Can be changed later)"
 msgstr "Maximale Teilnehmerzahl. (Kann später geändert werden)"
 
-#: course/forms.py:99
+#: course/forms.py:100
 msgid "Should your course only be available to students?"
 msgstr "Soll der Kurs nur für Studenten zugänglich sein?"
 
-#: course/forms.py:100
+#: course/forms.py:101
 msgid "The course starts on that day."
 msgstr "Der Kurs beginnt an diesem Tag."
 
-#: course/forms.py:101
+#: course/forms.py:102
 msgid "The course will end at that day."
 msgstr "Der Kurs wird an diesem Tag enden."
 
-#: course/forms.py:104
+#: course/forms.py:105
 msgid "Max nr. of participants"
 msgstr "Maximale Teilnehmerzahl"
 
-#: course/forms.py:105
+#: course/forms.py:106
 msgid "Begin"
 msgstr "Beginn"
 
-#: course/forms.py:106
+#: course/forms.py:107
 msgid "End"
 msgstr "Ende"
 
-#: course/forms.py:112
+#: course/forms.py:113
 msgid "Username of the person you want to be a teacher for this course"
 msgstr "Nutzername der Person, die Tutor des Kurses sein soll"
 
-#: course/forms.py:121
+#: course/forms.py:122
 msgid "Whether to set the email sender to your email address or not."
 msgstr "Soll deine Mailadresse als Absender angegeben werden?"
 
-#: course/forms.py:130
+#: course/forms.py:131
 msgid ""
 "Name of the subject, also decides its url. Allowed characters are word "
 "characters, numbers, spaces, '-' and '_' and it cannot be any of , "
@@ -165,29 +165,18 @@ msgstr "Deutsch"
 msgid "Course Manager"
 msgstr "Kursmanagement"
 
-#: course/templates/base-shell.html:62
-msgid "This is a project by the iFSR development team."
-msgstr "Der Kursmanager ist ein Projekt des iFSR."
+#: course/templates/base-shell.html:57
+msgid "Imprint"
+msgstr "Impressum"
 
-#: course/templates/base-shell.html:63
-msgid "Help improve this application on"
-msgstr "Wenn du diese Anwendung verbessern möchtest, schau auf "
+#: course/templates/base-shell.html:57 course/templates/privacy.html:5
+#: course/views/index.py:23 user/forms.py:99
+msgid "Privacy Policy"
+msgstr "Datenschutzerklärung"
 
-#: course/templates/base-shell.html:67
-msgid ""
-"\n"
-"\t\t\t\tYou can also <a href=\"https://github.com/fsr/course-management/"
-"issues/new\">report bugs 🐞 and errors 🚨</a> there as well as <a href="
-"\"https://github.com/fsr/course-management/issues/new\">suggest improvements "
-"🔨</a>.\n"
-"\t\t\t"
-msgstr ""
-"\n"
-"\t\t\t\tWir freuen und immer über <a href=\"https://github.com/fsr/course-"
-"management/issues/new\">Bug- und Fehlermeldungen</a> oder <a href=\"https://"
-"github.com/fsr/course-management/issues/new\">Verbesserungsvorschläge 🔨</"
-"a>.\n"
-"\t\t\t"
+#: course/templates/base-shell.html:57
+msgid "Report an Issue"
+msgstr "Einen Fehler melden"
 
 #: course/templates/base.html:15
 msgid "Create course"
@@ -282,6 +271,7 @@ msgstr ""
 "Du kannst die Kursbeschreibung hier editieren. (Markdown wird unterstützt)"
 
 #: course/templates/course/edit.html:19 course/templates/subject/info.html:24
+#: env/lib/python3.6/site-packages/django/forms/formsets.py:372
 msgid "Delete"
 msgstr "Löschen"
 
@@ -356,7 +346,7 @@ msgstr "Kurs aktivieren"
 msgid "Administrative actions"
 msgstr "Administrative Aktionen"
 
-#: course/templates/course/info.html:77 course/views/course.py:106
+#: course/templates/course/info.html:77 course/views/course.py:109
 msgid "Edit course"
 msgstr "Kurs editieren"
 
@@ -381,7 +371,9 @@ msgstr "Dieser Kurs ist voll"
 msgid "Log in"
 msgstr "Einloggen"
 
-#: course/templates/course/info.html:104 user/templates/user/edit.html:26
+#: course/templates/course/info.html:104
+#: env/lib/python3.6/site-packages/django/utils/text.py:248
+#: user/templates/user/edit.html:27
 msgid "or"
 msgstr "oder"
 
@@ -535,6 +527,22 @@ msgstr "Datenbankfehler"
 msgid "Current news on the courses"
 msgstr "Aktuelle Kursnachrichten"
 
+#: course/templates/index.html:15 course/views/news.py:68
+msgid "Edit News"
+msgstr "News-Item editieren"
+
+#: course/templates/index.html:18
+msgid "Delete News"
+msgstr "News-Item löschen"
+
+#: course/templates/index.html:26
+msgid "Add News"
+msgstr "Neues News-Item"
+
+#: course/templates/index.html:28 course/views/news.py:97
+msgid "News Overview"
+msgstr "Nachrichtenübersicht"
+
 #: course/templates/index.html:34
 msgid "Current subjects available"
 msgstr "Aktuell angebotene Themen"
@@ -556,7 +564,7 @@ msgid " Modify "
 msgstr " Bearbeiten "
 
 #: course/templates/subject/edit.html:11
-#: polls/templates/polls/poll/vote.html:40 user/templates/user/edit.html:16
+#: polls/templates/polls/poll/vote.html:40 user/templates/user/edit.html:17
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -589,36 +597,36 @@ msgid "This course does not seem to exist, sorry."
 msgstr "Dieser Kurs scheint nicht zu existieren."
 
 #: course/views/course.py:61 course/views/course.py:75
-#: course/views/course.py:90 course/views/course.py:129
-#: course/views/course.py:191 course/views/course.py:210
-#: course/views/course.py:265 course/views/course.py:280
-#: course/views/course.py:324 course/views/course.py:337
+#: course/views/course.py:91 course/views/course.py:132
+#: course/views/course.py:194 course/views/course.py:213
+#: course/views/course.py:268 course/views/course.py:283
+#: course/views/course.py:327 course/views/course.py:340
 #: course/views/enroll.py:21 course/views/enroll.py:48
 #: course/views/enroll.py:67 course/views/time.py:24
 msgid "Requested course does not exist."
 msgstr "Der angeforderte Kurs existiert nicht."
 
-#: course/views/course.py:178
+#: course/views/course.py:181
 msgid "New Course"
 msgstr "Neuer Kurs"
 
-#: course/views/course.py:202
+#: course/views/course.py:205
 msgid "Edit Teachers"
 msgstr "Tutoren editieren"
 
-#: course/views/course.py:232
+#: course/views/course.py:235
 msgid "The username you entered does not exist in my database, sorry :("
 msgstr "Der eingegebene Nutzername existiert nicht."
 
-#: course/views/course.py:267
+#: course/views/course.py:270
 msgid "Requested student does not exist."
 msgstr "Der angeforderte Student existiert nicht."
 
-#: course/views/course.py:306
+#: course/views/course.py:309
 msgid "Notify Course"
 msgstr "Kurs benachrichtigen"
 
-#: course/views/course.py:326
+#: course/views/course.py:329
 msgid "Requested student is not enrolled in this course."
 msgstr "Der angeforderte Student ist in diesem Kurs nicht eingeschrieben."
 
@@ -656,14 +664,6 @@ msgstr "Neues News-Item"
 msgid "Requested News does not exist."
 msgstr "Das angeforderte News-Item existiert nicht."
 
-#: course/views/news.py:68
-msgid "Edit News"
-msgstr "News-Item editieren"
-
-#: course/views/news.py:97
-msgid "News Overview"
-msgstr "Nachrichtenübersicht"
-
 #: course/views/subject.py:19 course/views/subject.py:89
 #: course/views/subject.py:120
 msgid "Requested subject does not exist."
@@ -676,6 +676,1126 @@ msgstr "Neues Thema"
 #: course/views/time.py:50
 msgid "Edit Schedule"
 msgstr "Zeitplan bearbeiten"
+
+#: env/lib/python3.6/site-packages/django/contrib/messages/apps.py:7
+msgid "Messages"
+msgstr "Nachrichten"
+
+#: env/lib/python3.6/site-packages/django/contrib/sitemaps/apps.py:7
+msgid "Site Maps"
+msgstr "Site Maps"
+
+#: env/lib/python3.6/site-packages/django/contrib/staticfiles/apps.py:7
+msgid "Static Files"
+msgstr "Statische Dateien"
+
+#: env/lib/python3.6/site-packages/django/contrib/syndication/apps.py:7
+msgid "Syndication"
+msgstr "Syndikation"
+
+#: env/lib/python3.6/site-packages/django/contrib/webdesign/apps.py:7
+msgid "Web Design"
+msgstr "Webdesign"
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:20
+msgid "Enter a valid value."
+msgstr "Gib einen gültigen Wert an."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:94
+#: env/lib/python3.6/site-packages/django/forms/fields.py:712
+msgid "Enter a valid URL."
+msgstr "Gib eine valide URL ein."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:137
+msgid "Enter a valid integer."
+msgstr "Gib eine valide Ganzzahl an."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:148
+msgid "Enter a valid email address."
+msgstr "Gib eine valide Mailadresse an."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:222
+msgid ""
+"Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+"Gib einen Kurznamen an, bestehend aus Buchstaben, Zahlen, Unterstrichen und Bindestrichen."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:227
+#: env/lib/python3.6/site-packages/django/core/validators.py:246
+msgid "Enter a valid IPv4 address."
+msgstr "Gib eine gültige IPv4-Adresse an."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:232
+#: env/lib/python3.6/site-packages/django/core/validators.py:247
+msgid "Enter a valid IPv6 address."
+msgstr "Gib eine valide IPv6-Adresse an."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:242
+#: env/lib/python3.6/site-packages/django/core/validators.py:245
+msgid "Enter a valid IPv4 or IPv6 address."
+msgstr "Gib eine gültige IPv4- oder IPv6-Adresse ein."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:270
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1144
+msgid "Enter only digits separated by commas."
+msgstr "Gib ausschließlich mit Komma getrennte Zahlen ein."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:279
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr "Bitte stelle sicher, dass der Wert %(limit_value)s ist (aktuell %(show_value)s)."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:305
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr "Stelle sicher, dass der Wert kleiner oder gleich %(limit_value)s ist."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:312
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Stelle sicher, dass der Wert größer oder gleich %(limit_value)s ist."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:321
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+"Stelle sicher, dass dieser Wert mindestens %(limit_value)d Zeichen hat (hat "
+"%(show_value)d)."
+msgstr[1] ""
+"Stelle sicher, dass dieser Wert mindestens %(limit_value)d Zeichen hat (hat "
+"%(show_value)d)."
+
+#: env/lib/python3.6/site-packages/django/core/validators.py:332
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+"Stelle sicher, dass dieser Wert höchstens %(limit_value)d Zeichen hat (hat "
+"%(show_value)d)."
+msgstr[1] ""
+"Stelle sicher, dass dieser Wert höchstens %(limit_value)d Zeichen hat (hat "
+"%(show_value)d)."
+
+#: env/lib/python3.6/site-packages/django/db/models/base.py:1130
+#: env/lib/python3.6/site-packages/django/forms/models.py:718
+msgid "and"
+msgstr "und"
+
+#: env/lib/python3.6/site-packages/django/db/models/base.py:1132
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr "%(model_name)s mit diesen %(field_labels)s existiert bereits."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:107
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr "Wert %(value)r ist keine gültige Auswahl."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:108
+msgid "This field cannot be null."
+msgstr "Dieses Feld darf nicht null sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:109
+msgid "This field cannot be blank."
+msgstr "Dieses Feld darf nicht leer sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:110
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr "%(model_name)s mit diesem %(field_label)s existiert bereits."
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or 'month'.
+#. Eg: "Title must be unique for pub_date year"
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:114
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+"%(field_label)s muss einzigartig sein für %(date_field_label)s %(lookup_type)s."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:132
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr "Feld des Typs: %(field_type)s"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:922
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1833
+msgid "Integer"
+msgstr "Ganzzahl"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:926
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1831
+#, python-format
+msgid "'%(value)s' value must be an integer."
+msgstr "'%(value)s' muss eine Ganzzahl sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1001
+#, python-format
+msgid "'%(value)s' value must be either True or False."
+msgstr "'%(value)s' Wert muss True oder False sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1003
+msgid "Boolean (Either True or False)"
+msgstr "Boolean (Entweder True oder False)"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1078
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr "String (bis zu %(max_length)s)"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1139
+msgid "Comma-separated integers"
+msgstr "Mit Komma getrennte Ganzzahlen"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1188
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+"'%(value)s' Wert hat ein ungültiges Datumsformat. Es muss von der Form JJJJ-MM-TT sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1190
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1340
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+"'%(value)s' Wert hat das richtige Format (JJJJ-MM-TT) aber ist ein ungültiges Datum."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1193
+msgid "Date (without time)"
+msgstr "Datum (ohne Uhrzeit)"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1338
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr ""
+"'%(value)s' Wert hat ein ungültiges Format. Es muss von der Form YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1342
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+"'%(value)s' Wert hat ein korrektes Format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) aber ist ein ungültiges Datum/Zeit."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1346
+msgid "Date (with time)"
+msgstr "Datum (mit Uhrzeit)"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1498
+#, python-format
+msgid "'%(value)s' value must be a decimal number."
+msgstr "'%(value)s' Wert muss eine Dezimalzahl sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1500
+msgid "Decimal number"
+msgstr "Dezimalzahl"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1651
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in [DD] [HH:[MM:]]ss[."
+"uuuuuu] format."
+msgstr ""
+"'%(value)s' Wert hat ein ungültiges Format. Es muss von der Form [DD] [HH:[MM:]]ss[."
+"uuuuuu] sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1654
+msgid "Duration"
+msgstr "Dauer"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1706
+msgid "Email address"
+msgstr "Mailadresse"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1730
+msgid "File path"
+msgstr "Dateipfad"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1797
+#, python-format
+msgid "'%(value)s' value must be a float."
+msgstr "'%(value)s' Wert muss eine Gleitkommazahl sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1799
+msgid "Floating point number"
+msgstr "Gleitkommazahl"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1900
+msgid "Big (8 byte) integer"
+msgstr "Große (8 Byte) Ganzzahl"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1915
+msgid "IPv4 address"
+msgstr "IPv4 Adresse"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1951
+msgid "IP address"
+msgstr "IP Adresse"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2030
+#, python-format
+msgid "'%(value)s' value must be either None, True or False."
+msgstr "'%(value)s' Wert muss entweder None, True oder False sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2032
+msgid "Boolean (Either True, False or None)"
+msgstr "Boolean (Entweder True, False oder None)"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2092
+msgid "Positive integer"
+msgstr "Positive Ganzzahl"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2104
+msgid "Positive small integer"
+msgstr "Positive kleine Ganzzahl"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2117
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr "Kurzname (bis zu %(max_length)s)"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2146
+msgid "Small integer"
+msgstr "Kleine Ganzzahl"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2153
+msgid "Text"
+msgstr "Text"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2176
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+"'%(value)s' Wert hat eine ungültiges Format. Es muss von der Form HH:MM[:ss[.uuuuuu]] "
+"sein."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2178
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+"'%(value)s' Wert hat das korrekte Format (HH:MM[:ss[.uuuuuu]]) aber ist eine "
+"ungültige Zeit."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2181
+msgid "Time"
+msgstr "Zeit"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2309
+msgid "URL"
+msgstr "URL"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2332
+msgid "Raw binary data"
+msgstr "Rohe Binärdaten"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/__init__.py:2376
+#, python-format
+msgid "'%(value)s' is not a valid UUID."
+msgstr "'%(value)s' ist keine gültige UUID."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/files.py:238
+msgid "File"
+msgstr "Datei"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/files.py:388
+msgid "Image"
+msgstr "Bild"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/related.py:1809
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r does not exist."
+msgstr "%(model)s Instanz mit %(field)s %(value)r existiert nicht."
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/related.py:1811
+msgid "Foreign Key (type determined by related field)"
+msgstr "Fremdschlüssel (Typ wird vom zugehörigen Feld bestimmt)"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/related.py:2041
+msgid "One-to-one relationship"
+msgstr "Eins-zu-Eins Beziehung"
+
+#: env/lib/python3.6/site-packages/django/db/models/fields/related.py:2131
+msgid "Many-to-many relationship"
+msgstr "M-zu-N Beziehung"
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:64
+msgid "This field is required."
+msgstr "Dieses Feld ist erforderlich."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:237
+msgid "Enter a whole number."
+msgstr "Gib eine komplette Zahl ein."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:280
+#: env/lib/python3.6/site-packages/django/forms/fields.py:317
+msgid "Enter a number."
+msgstr "Gib eine Zahl ein."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:319
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] "Stelle sicher, dass es nicht mehr als %(max)s Zahl gibt."
+msgstr[1] "Stelle sicher, dass es gesamt nicht mehr als %(max)s Zahlen gibt."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:323
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] "Stelle sicher, dass es nicht mehr als %(max)s Dezimalstelle gibt."
+msgstr[1] "Stelle sicher, dass es nicht mehr als %(max)s Dezimalstellen gibt."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:327
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+"Stelle sicher, dass es nicht mehr als %(max)s Zahl for dem Komma gibt."
+msgstr[1] ""
+"Stelle sicher, dass es nicht mehr als %(max)s Zahlen for dem Komma gibt."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:438
+#: env/lib/python3.6/site-packages/django/forms/fields.py:1193
+msgid "Enter a valid date."
+msgstr "Gib ein gültiges Datum an."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:462
+#: env/lib/python3.6/site-packages/django/forms/fields.py:1194
+msgid "Enter a valid time."
+msgstr "Gib eine gültige Uhrzeit an"
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:484
+msgid "Enter a valid date/time."
+msgstr "Gib ein gültiges Datum/Uhrzeit Paar ein."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:525
+msgid "Enter a valid duration."
+msgstr "Gib eine gültige Dauer ein."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:591
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr "Keine Datei ausgewählt. Prüfe die Codierung auf dem Formular."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:592
+msgid "No file was submitted."
+msgstr "Es wurde keine Datei gesendet."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:593
+msgid "The submitted file is empty."
+msgstr "Die gesendete Datei ist leer."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:595
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] "Stelle sicher, dass der Dateiname höchstens %(max)d Zeichen hat (er hat %(length)d)."
+msgstr[1] "Stelle sicher, dass der Dateiname höchstens %(max)d Zeichen hat (er hat %(length)d)."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:598
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr "Bitte lade entweder eine Datei hoch oder wähle 'clear' aus, nicht beides."
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:660
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:827
+#: env/lib/python3.6/site-packages/django/forms/fields.py:921
+#: env/lib/python3.6/site-packages/django/forms/models.py:1238
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:922
+#: env/lib/python3.6/site-packages/django/forms/fields.py:1037
+#: env/lib/python3.6/site-packages/django/forms/models.py:1237
+msgid "Enter a list of values."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:1038
+msgid "Enter a complete value."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/fields.py:1264
+msgid "Enter a valid UUID."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: env/lib/python3.6/site-packages/django/forms/forms.py:129
+msgid ":"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/forms.py:214
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: env/lib/python3.6/site-packages/django/forms/forms.py:659
+msgid ":?.!"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/formsets.py:96
+msgid "ManagementForm data is missing or has been tampered with"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/formsets.py:333
+#, python-format
+msgid "Please submit %d or fewer forms."
+msgid_plural "Please submit %d or fewer forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.6/site-packages/django/forms/formsets.py:340
+#, python-format
+msgid "Please submit %d or more forms."
+msgid_plural "Please submit %d or more forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.6/site-packages/django/forms/formsets.py:368
+#: env/lib/python3.6/site-packages/django/forms/formsets.py:370
+msgid "Order"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/models.py:712
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/models.py:716
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/models.py:722
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/models.py:730
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/models.py:1053
+msgid "The inline foreign key did not match the parent instance primary key."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/models.py:1123
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/models.py:1240
+#, python-format
+msgid "\"%(pk)s\" is not a valid value for a primary key."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/utils.py:165
+#, python-format
+msgid ""
+"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/widgets.py:345
+msgid "Currently"
+msgstr "Aktuell"
+
+#: env/lib/python3.6/site-packages/django/forms/widgets.py:346
+#: user/templates/user/edit.html:20
+msgid "Change"
+msgstr "Ändern"
+
+#: env/lib/python3.6/site-packages/django/forms/widgets.py:347
+msgid "Clear"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/forms/widgets.py:555
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: env/lib/python3.6/site-packages/django/forms/widgets.py:556
+msgid "Yes"
+msgstr "Ja"
+
+#: env/lib/python3.6/site-packages/django/forms/widgets.py:557
+msgid "No"
+msgstr "Nein"
+
+#: env/lib/python3.6/site-packages/django/template/defaultfilters.py:865
+msgid "yes,no,maybe"
+msgstr "ja,nein,vielleicht"
+
+#: env/lib/python3.6/site-packages/django/template/defaultfilters.py:894
+#: env/lib/python3.6/site-packages/django/template/defaultfilters.py:906
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: env/lib/python3.6/site-packages/django/template/defaultfilters.py:908
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/template/defaultfilters.py:910
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/template/defaultfilters.py:912
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/template/defaultfilters.py:914
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/template/defaultfilters.py:916
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dateformat.py:61
+msgid "p.m."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dateformat.py:62
+msgid "a.m."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dateformat.py:67
+msgid "PM"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dateformat.py:68
+msgid "AM"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dateformat.py:153
+msgid "midnight"
+msgstr "Mitternacht"
+
+#: env/lib/python3.6/site-packages/django/utils/dateformat.py:155
+msgid "noon"
+msgstr "Mittag"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:6
+msgid "Monday"
+msgstr "Montag"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:6
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:6
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:6
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:6
+msgid "Friday"
+msgstr "Freitag"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:7
+msgid "Saturday"
+msgstr "Samstag"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:7
+msgid "Sunday"
+msgstr "Sonntag"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:10
+msgid "Mon"
+msgstr "Mo"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:10
+msgid "Tue"
+msgstr "Di"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:10
+msgid "Wed"
+msgstr "Mi"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:10
+msgid "Thu"
+msgstr "Do"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:10
+msgid "Fri"
+msgstr "Fr"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:11
+msgid "Sat"
+msgstr "Sa"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:11
+msgid "Sun"
+msgstr "So"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:18
+msgid "January"
+msgstr "Januar"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:18
+msgid "February"
+msgstr "Februar"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:18
+msgid "March"
+msgstr "März"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:18
+msgid "April"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:18
+msgid "May"
+msgstr "Mai"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:18
+msgid "June"
+msgstr "Juni"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "July"
+msgstr "Juli"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "August"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "September"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "October"
+msgstr "Oktober"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:19
+msgid "November"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:20
+msgid "December"
+msgstr "Dezember"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:23
+msgid "jan"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:23
+msgid "feb"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:23
+msgid "mar"
+msgstr "mär"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:23
+msgid "apr"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:23
+msgid "may"
+msgstr "mai"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:23
+msgid "jun"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:24
+msgid "jul"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:24
+msgid "aug"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:24
+msgid "sep"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:24
+msgid "oct"
+msgstr "okt"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:24
+msgid "nov"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:24
+msgid "dec"
+msgstr "dez"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:31
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:32
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:33
+msgctxt "abbrev. month"
+msgid "March"
+msgstr "März"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:34
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:35
+msgctxt "abbrev. month"
+msgid "May"
+msgstr "Mai"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:36
+msgctxt "abbrev. month"
+msgid "June"
+msgstr "Juni"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:37
+msgctxt "abbrev. month"
+msgid "July"
+msgstr "Juli"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:38
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:39
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:40
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr "Okt."
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:41
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:42
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr "Dez."
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:45
+msgctxt "alt. month"
+msgid "January"
+msgstr "Januar"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:46
+msgctxt "alt. month"
+msgid "February"
+msgstr "Februar"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:47
+msgctxt "alt. month"
+msgid "March"
+msgstr "März"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:48
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:49
+msgctxt "alt. month"
+msgid "May"
+msgstr "Mai"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:50
+msgctxt "alt. month"
+msgid "June"
+msgstr "Juni"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:51
+msgctxt "alt. month"
+msgid "July"
+msgstr "Juli"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:52
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:53
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:54
+msgctxt "alt. month"
+msgid "October"
+msgstr "Oktober"
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:55
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/utils/dates.py:56
+msgctxt "alt. month"
+msgid "December"
+msgstr "Dezember"
+
+#: env/lib/python3.6/site-packages/django/utils/ipv6.py:10
+msgid "This is not a valid IPv6 address."
+msgstr "Das ist keine gültige IPv6-Adresse."
+
+#: env/lib/python3.6/site-packages/django/utils/text.py:79
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s..."
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: env/lib/python3.6/site-packages/django/utils/text.py:267
+#: env/lib/python3.6/site-packages/django/utils/timesince.py:58
+msgid ", "
+msgstr ", "
+
+#: env/lib/python3.6/site-packages/django/utils/timesince.py:10
+#, python-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] "%d Jahr"
+msgstr[1] "%d Jahre"
+
+#: env/lib/python3.6/site-packages/django/utils/timesince.py:11
+#, python-format
+msgid "%d month"
+msgid_plural "%d months"
+msgstr[0] "%d Monat"
+msgstr[1] "%d Monate"
+
+#: env/lib/python3.6/site-packages/django/utils/timesince.py:12
+#, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "%d Woche"
+msgstr[1] "%d Wochen"
+
+#: env/lib/python3.6/site-packages/django/utils/timesince.py:13
+#, python-format
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] "%d Tag"
+msgstr[1] "%d Tage"
+
+#: env/lib/python3.6/site-packages/django/utils/timesince.py:14
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d Stunde"
+msgstr[1] "%d Stunden"
+
+#: env/lib/python3.6/site-packages/django/utils/timesince.py:15
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d Minute"
+msgstr[1] "%d Minuten"
+
+#: env/lib/python3.6/site-packages/django/utils/timesince.py:47
+msgid "0 minutes"
+msgstr "0 Minuten"
+
+#: env/lib/python3.6/site-packages/django/views/csrf.py:107
+msgid "Forbidden"
+msgstr "Verboten"
+
+#: env/lib/python3.6/site-packages/django/views/csrf.py:108
+msgid "CSRF verification failed. Request aborted."
+msgstr "CSRF Verifikation fehlgeschlagen. Anfrage abgebrochen."
+
+#: env/lib/python3.6/site-packages/django/views/csrf.py:112
+msgid ""
+"You are seeing this message because this HTTPS site requires a 'Referer "
+"header' to be sent by your Web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+"Du siehst diese Nachricht, weil diese HTTPS Seite einen 'Referer header' "
+"von deinem Webbrowser empfangen muss, aber keiner gesendet wurde. Dieser "
+"Header ist aus Sicherheitsgründen erforderlich, um sicher zu stellen, dass "
+"dein Browser nicht von Dritten übernommen wurde."
+
+#: env/lib/python3.6/site-packages/django/views/csrf.py:117
+msgid ""
+"If you have configured your browser to disable 'Referer' headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for 'same-"
+"origin' requests."
+msgstr ""
+"Falls du 'Referer' Header in deinem Browser abgeschaltet hast, reaktiviere sie "
+"bitte für diese Seite, für HTTPS-Verbindungen oder für 'same-origin' Anfragen."
+
+#: env/lib/python3.6/site-packages/django/views/csrf.py:122
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+"Du siehst diese Nachricht weil diese Seite ein CSRF Cookie erfordert, um Forms "
+"abzuschicken. Dieses Cookie ist aus Sicherheitsgründen erforderlich, um sicher "
+"zu gehen, dass dein browser nicht von Dritten übernommen wurde."
+
+#: env/lib/python3.6/site-packages/django/views/csrf.py:127
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for 'same-origin' requests."
+msgstr ""
+"Falls du Cookies in deinem Browser verboten hast, aktiviere sie bitte für "
+"diese Seite oder für 'same-origin' Anfragen."
+
+#: env/lib/python3.6/site-packages/django/views/csrf.py:132
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/views/debug.py:583
+msgid "Welcome to Django"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/views/debug.py:584
+msgid "It worked!"
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/views/debug.py:585
+msgid "Congratulations on your first Django-powered page."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/views/debug.py:586
+msgid ""
+"Of course, you haven't actually done any work yet. Next, start your first "
+"app by running <code>python manage.py startapp [app_label]</code>."
+msgstr ""
+
+#: env/lib/python3.6/site-packages/django/views/debug.py:588
+msgid ""
+"You're seeing this message because you have <code>DEBUG = True</code> in "
+"your Django settings file and you haven't configured any URLs. Get to work!"
+msgstr ""
+"Du siehst diese Nachricht, weil du <code>DEBUG = True</code> in deinen"
+"Django Einstellungen angegeben hast und noch keine URLs konfiguriert hast. An die Arbeit!"
+
+#: env/lib/python3.6/site-packages/django/views/generic/dates.py:48
+msgid "No year specified"
+msgstr "Kein Jahr angegeben"
+
+#: env/lib/python3.6/site-packages/django/views/generic/dates.py:104
+msgid "No month specified"
+msgstr "Kein Monat angegeben"
+
+#: env/lib/python3.6/site-packages/django/views/generic/dates.py:163
+msgid "No day specified"
+msgstr "Kein Tag angegeben"
+
+#: env/lib/python3.6/site-packages/django/views/generic/dates.py:219
+msgid "No week specified"
+msgstr "Keine Woche angegeben"
+
+#: env/lib/python3.6/site-packages/django/views/generic/dates.py:378
+#: env/lib/python3.6/site-packages/django/views/generic/dates.py:406
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr "Keine %(verbose_name_plural)s verfügbar"
+
+#: env/lib/python3.6/site-packages/django/views/generic/dates.py:660
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
+msgstr ""
+"Future %(verbose_name_plural)s nicht verfügbar weil %(class_name)s."
+"allow_future False ist."
+
+#: env/lib/python3.6/site-packages/django/views/generic/dates.py:694
+#, python-format
+msgid "Invalid date string '%(datestr)s' given format '%(format)s'"
+msgstr "Ungültiger Datums-String '%(datestr)s' bei gegebenem Format '%(format)s'"
+
+#: env/lib/python3.6/site-packages/django/views/generic/detail.py:55
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr "Kein %(verbose_name)s passte auf die Anfrage"
+
+#: env/lib/python3.6/site-packages/django/views/generic/list.py:76
+msgid "Page is not 'last', nor can it be converted to an int."
+msgstr "Seite ist weder 'last', noch kann sie in eine Ganzzahl konvertiert werden."
+
+#: env/lib/python3.6/site-packages/django/views/generic/list.py:81
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr "Ungültige Seite (%(page_number)s): %(message)s"
+
+#: env/lib/python3.6/site-packages/django/views/generic/list.py:172
+#, python-format
+msgid "Empty list and '%(class_name)s.allow_empty' is False."
+msgstr "Leere Liste und '%(class_name)s.allow_empty' ist False."
+
+#: env/lib/python3.6/site-packages/django/views/static.py:44
+msgid "Directory indexes are not allowed here."
+msgstr "Verzeichnisindizes sind hier nicht erlaubt."
+
+#: env/lib/python3.6/site-packages/django/views/static.py:46
+#, python-format
+msgid "\"%(path)s\" does not exist"
+msgstr "\"%(path)s\" existiert nicht."
+
+#: env/lib/python3.6/site-packages/django/views/static.py:86
+#, python-format
+msgid "Index of %(directory)s"
+msgstr "Index von %(directory)s"
+
+#: env/lib/python3.6/site-packages/modeltranslation/widgets.py:25
+msgid "None"
+msgstr "None"
 
 #: polls/forms.py:26
 msgid "A url to use for this poll (optional)"
@@ -864,7 +1984,23 @@ msgstr "Dieser Nutzername wird bereits genutzt."
 msgid "This s-number is already taken"
 msgstr "Diese s-Nummer wird bereits genutzt."
 
-#: user/forms.py:53
+#: user/forms.py:54
+msgid "E-Mail address"
+msgstr "Mailadresse"
+
+#: user/forms.py:55 user/forms.py:77
+msgid "First Name"
+msgstr "Vorname"
+
+#: user/forms.py:56 user/forms.py:78
+msgid "Last Name"
+msgstr "Nachname"
+
+#: user/forms.py:57 user/templates/user/profile.html:8
+msgid "Username"
+msgstr "Nutzername"
+
+#: user/forms.py:60
 msgid ""
 "An email adress where you can be reached. The verification mail will be sent "
 "to this adress."
@@ -872,7 +2008,7 @@ msgstr ""
 "Eine Mailadresse unter der du erreichbar bist. Die Verifikationsmail wird an "
 "diese Adresse gesendet."
 
-#: user/forms.py:55 user/forms.py:70
+#: user/forms.py:62 user/forms.py:81
 msgid ""
 "First part of your public name, which should be your genuine first name. If "
 "you become a teacher this will be visible to any site visitor. Can be "
@@ -882,7 +2018,7 @@ msgstr ""
 "Tutor wirst, wird dieser für jeden Seitenbesucher sichtbar. Kann später "
 "verändert werden."
 
-#: user/forms.py:58 user/forms.py:73
+#: user/forms.py:65 user/forms.py:84
 msgid ""
 "Second part of your public name, which should be your genuine familyname. If "
 "you become a teacher this will be visible to any site visitor. Can be "
@@ -892,44 +2028,64 @@ msgstr ""
 "du Tutor wirst, wird dieser für jeden Seitenbesucher sichtbar. Kann später "
 "verändert werden."
 
-#: user/forms.py:61
+#: user/forms.py:68
 msgid "Unique username. Used for login. (cannot be changed later)."
 msgstr "(Einzigartiger) Nutzername. Kann nicht mehr geändert werden."
 
-#: user/forms.py:85
+#: user/forms.py:97
+msgid "Public Profile"
+msgstr "Öffentliches Profil"
+
+#: user/forms.py:98
+msgid "Description"
+msgstr "Beschreibung"
+
+#: user/forms.py:102
 msgid "Tell something about yourself. (Markdown enabled) Links are allowed."
 msgstr "Erzähle etwas über dich. (Markdown aktiviert) Links sind erlaubt."
 
-#: user/forms.py:94
+#: user/forms.py:103
+msgid ""
+"You have read our <a href=\"/privacy-policy/\" style=\"color:#9ACC00 !"
+"important;\">Privacy Policy</a> and consent to it."
+msgstr ""
+"Du hast unsere <a href=\"/privacy-policy/\" style=\"color:#9ACC00 !"
+"important;\">Datenschutzerklärung</a> gelesen und stimmst ihr zu."
+
+#: user/forms.py:112
+msgid "ZIH Login"
+msgstr "ZIH-Login"
+
+#: user/forms.py:113 user/templates/user/profile.html:30
+msgid "Faculty"
+msgstr "Fakultät"
+
+#: user/forms.py:116
 msgid ""
 "<b>Only fill this out if you are a student. Otherwise leave blank.<br/></"
 "b>This is usually your s-number assigned by the university. The student "
 "verification email will be sent to the address associated with this s-"
 "number. Cannot be modified later."
 msgstr ""
-"<b>Fülle dieses Feld nur aus, wenn du Student bist. Ansonsten lasse es frei.<br/></"
-"b>Die sNummer, die dir das ZIH zugewiesen hat. Die Verifikationsmail wird an die "
-"zugehörige Adresse gesandt. Kann nicht mehr geändert werden."
+"<b>Fülle dieses Feld nur aus, wenn du Student:in bist. Ansonsten lasse es frei."
+"<br/></b>Dein ZIH-Login. Die Verifikationsmail wird an die zugehörige Adresse "
+"gesandt. Kann nicht mehr geändert werden."
 
-#: user/forms.py:98
-#, fuzzy
-#| msgid ""
-#| "The faculty at which you are enrolled. (Used for crediting purposes) Can "
-#| "be modified later."
+#: user/forms.py:120
 msgid ""
 "<b>Only fill this out if you are a student. Otherwise leave blank.<br/></"
 "b>The faculty at which you are enrolled. (Used for crediting purposes) Can "
 "be modified later."
 msgstr ""
-"<b>Fülle dieses Feld nur aus, wenn du Student bist. Ansonsten lasse es frei.<br/></"
-"b>Die Fakultät, an der du eingeschrieben bist (wird für Credits benötigt).Kann "
-"später verändert werden."
+"<b>Fülle dieses Feld nur aus, wenn du Student:in bist. Ansonsten lasse es frei."
+"<br/></b>Die Fakultät, an der du eingeschrieben bist (wird für Credits "
+"benötigt). Kann später verändert werden."
 
-#: user/forms.py:104
+#: user/forms.py:127
 msgid "This will become the subject field of the resulting email."
 msgstr "Dies wird der Betreff der Mail."
 
-#: user/forms.py:107
+#: user/forms.py:130
 msgid ""
 "This will be the content of the email. HTML is not allowed and any html tags "
 "will be removed."
@@ -937,9 +2093,17 @@ msgstr ""
 "Das wird der Inhalt der Mail. HTML-Tags ist nicht erlaubt und werden "
 "entfernt."
 
-#: user/forms.py:119
+#: user/forms.py:142
 msgid "An email address where the recipient may reach you."
 msgstr "Eine Mail Adresse, unter der der Empfänger dich erreichen kann."
+
+#: user/forms.py:161
+msgid "I have read the Privacy Policy and consent to it."
+msgstr "Ich habe die Datenschutzerklärung gelesen und stimme ihr zu."
+
+#: user/models.py:14
+msgid "You must agree to the privacy policy to use our services."
+msgstr "Du musst der Datenschutzerklärung zustimmen, um unsere Dienste benutzen zu können."
 
 #: user/templates/contact-form.html:6
 msgid "Contact"
@@ -960,6 +2124,7 @@ msgstr "Bitte logge dich ein, um den Inhalt dieser Seite sehen zu können."
 #: user/templates/registration/login.html:18
 #: user/templates/registration/register.html:20
 #: user/templates/registration/student-verification.html:10
+#: user/templates/user/privacy-agreement.html:19
 msgid "Submit"
 msgstr "Abschicken"
 
@@ -1003,33 +2168,96 @@ msgstr "Bitte validiere alle angegebenen Mail Accounts."
 msgid "Your account has been successfully activated."
 msgstr "Dein Konto wurde erfolgreich aktiviert."
 
+#: user/templates/user/delete-account.html:5
+msgid "Account Deletion"
+msgstr "Accountlöschung"
+
+#: user/templates/user/delete-account.html:7
+msgid ""
+"You are about to delete your account. Clicking the red button below will "
+"delete your account <b>immediately and permanently</b>. All your personal "
+"information will be removed from our database, so think twice before taking "
+"this step."
+msgstr ""
+"Du bist dabei, deinen Account zu löschen. Ein Klick auf den großen, roten "
+"Button wird deinen Account <b>sofort und permanent</b> löschen. Alle "
+"persönlichen Daten, die wir über dich gespeichert haben werden aus unseren "
+"Datenbanken entfernt, also denke noch mal darüber nach ehe du den Knopf drückst."
+
+#: user/templates/user/delete-account.html:12
+#: user/templates/user/privacy-agreement.html:29
+msgid "Delete my account"
+msgstr "Meinen Account löschen"
+
+#: user/templates/user/deletion-success.html:5
+msgid "And off you go!"
+msgstr "Zack, geschafft!"
+
+#: user/templates/user/deletion-success.html:7
+msgid "Your account has successfully been deleted. We're sorry to see you go!"
+msgstr "Dein Account wurde erfolgreich gelöscht. Es tut weh, dich gehen zu sehen!"
+
 #: user/templates/user/edit.html:6
 msgid "Here you may change your user information."
 msgstr "Hier kannst du deine Nutzerinformationen ändern."
 
-#: user/templates/user/edit.html:19
-msgid "Change"
-msgstr "Ändern"
-
-#: user/templates/user/edit.html:24
+#: user/templates/user/edit.html:25
 msgid "Perhaps you'd like to"
 msgstr "Vielleicht möchtest du"
 
-#: user/templates/user/edit.html:24
+#: user/templates/user/edit.html:25
 msgid "change your password"
 msgstr "dein Passwort ändern"
 
-#: user/templates/user/edit.html:27
+#: user/templates/user/edit.html:28
 msgid "verify as a student"
 msgstr "dich als Student verifizieren"
+
+#: user/templates/user/edit.html:31
+msgid "Here, you may also"
+msgstr "Hier kannst du auch"
+
+#: user/templates/user/edit.html:31
+msgid "delete your account"
+msgstr "deinen Account löschen"
+
+#: user/templates/user/privacy-agreement.html:6
+msgid ""
+"Hey there! Since the last time you've logged on, we changed our privacy "
+"policy. To continue using our services, please read the policy below "
+"carefully and then either signal us your consent by checking the box below "
+"or delete your account and all associated data by pressing the big red "
+"button. If you have any questions regarding how we use or store your data, "
+"you can always drop us a mail - either in german or in english - to the "
+"address below!"
+msgstr ""
+"Hey du da! Seit du dich das letzte Mal eingeloggt hast, haben wir unsere "
+"Datenschutzerklärung geändert. Um unseren Dienst weiter nutzen zu können, "
+"lies bitte die unten stehende Erklärung und signalisiere uns deine Einwilligung "
+"durch einen Klick auf die Checkbox oder lösche deinen Account und alle damit "
+"assoziierten Daten durch einen Klick auf den großen roten Button. Falls du "
+"Fragen dazu hast, wie wir deine Daten verarbeiten oder speichern, schreib uns "
+"einfach eine Mail - wahlweise auf Deutsch oder Englisch - an die unten stehende "
+"Adresse!"
+
+#: user/templates/user/privacy-agreement.html:24
+msgid ""
+"If you feel that you can not consent to the terms of this policy, there is "
+"no other option left for you but to delete your account. Clicking the red "
+"button below will delete your account <b>immediately and permanently</b>. "
+"All your personal information will be removed from our database, so think "
+"twice before taking this step."
+msgstr ""
+"Falls du der Meinung bist, dass du den Bedingungen dieser Erklärung nicht "
+"zustimmen kannst, bleibt dir keine andere Option, als deinen Account zu "
+"löschen. Mit einem Klick auf den roten Button unten wird dein Account <b>"
+"sofort und permanent</b> gelöscht. Alle persönlichen Informationen, die wir "
+"über dich gespeichert haben, werden aus unserer Datenbank gelöscht. Denke "
+"also noch mal darüber nach, bevor du diesen Schritt machst."
 
 #: user/templates/user/profile.html:5
 msgid "Your data"
 msgstr "Deine Daten"
-
-#: user/templates/user/profile.html:8
-msgid "Username"
-msgstr "Nutzername"
 
 #: user/templates/user/profile.html:12
 msgid "First name"
@@ -1046,10 +2274,6 @@ msgstr "E-Mail"
 #: user/templates/user/profile.html:26
 msgid "s number"
 msgstr "s-Nummer"
-
-#: user/templates/user/profile.html:30
-msgid "Faculty"
-msgstr "Fakultät"
 
 #: user/templates/user/profile.html:36
 msgid "Student status"
@@ -1127,7 +2351,7 @@ msgstr "Registrierung"
 msgid "Your {} verification at the iFSR course enrollment system."
 msgstr "Deine {} Registrierung beim iFSR Kurs Management"
 
-#: user/views/user.py:60
+#: user/views/user.py:67
 msgid "This user does not exist"
 msgstr "Der angeforderte Nutzername existiert nicht."
 
