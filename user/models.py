@@ -1,8 +1,17 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ValidationError
 from markdown import markdown
 
 from util.html_clean import clean_for_user_description
+
+
+def privacy_policy_consented(consented):
+    if consented:
+        return
+    raise ValidationError(
+        _('You must agree to the privacy policy to use our services.'))
 
 
 class Faculty(models.Model):
@@ -16,6 +25,8 @@ class UserInformation(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     description = models.TextField(default="")
     public_profile = models.BooleanField(default=False)
+    accepted_privacy_policy = models.BooleanField(
+        validators=[privacy_policy_consented])
 
     def __str__(self):
         return '{first} {last}'.format(first=self.user.first_name, last=self.user.last_name)
@@ -45,7 +56,7 @@ class UserInformation(models.Model):
 
         if s_number is None or s_number == '':
             if faculty is None or faculty == '':
-                return UserInformation.objects.create(user=user)
+                return UserInformation.objects.create(user=user, accepted_privacy_policy=True)
             else:
                 raise TypeError('I got a faculty but no s number?')
         else:
@@ -54,6 +65,7 @@ class UserInformation(models.Model):
             else:
                 return StudentInformation.objects.create(
                     user=user,
+                    accepted_privacy_policy=True,
                     s_number=s_number,
                     faculty=Faculty.objects.get(pk=faculty)
                 )
@@ -91,7 +103,8 @@ class Activation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     token = models.CharField(max_length=50)
     type = models.CharField(max_length=1,
-                            choices=tuple((v, k) for k, v in ACTIVATION_TYPES.items())
+                            choices=tuple((v, k)
+                                          for k, v in ACTIVATION_TYPES.items())
                             )
 
 
@@ -105,4 +118,5 @@ def get_user_information(obj):
     elif isinstance(obj, (int, str)):
         return UserInformation.objects.get(id=obj)
     else:
-        raise TypeError('Cannot convert {} to {}'.format(type(obj, UserInformation)))
+        raise TypeError('Cannot convert {} to {}'.format(
+            type(obj, UserInformation)))

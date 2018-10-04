@@ -24,6 +24,7 @@
   ```
   $ cp course/settings.py.example course/settings.py
   $ cp user/mailsettings.py.example user/mailsettings.py
+  $ make migrate
   ```
 
 * Launch the program with

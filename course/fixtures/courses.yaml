@@ -405,7 +405,7 @@
 - fields: {content_type: 21, object_pk: '2', permission: 63, user: 2}
   model: guardian.userobjectpermission
   pk: 4
-- fields: {description: Description, public_profile: false, user: 2}
+- fields: {description: Description, public_profile: false, user: 2, accepted_privacy_policy: true}
   model: user.userinformation
   pk: 1
 - fields: {faculty: 1, s_number: s12345678, verified: true}

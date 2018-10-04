@@ -12,10 +12,10 @@
           <p>{{ entry.entry }}</p>
           <div class="button-group">
             {% if perms.news.change_news %}
-            <a class="button small" href="{% url 'edit-news' entry.id %}">Edit News</a>
+            <a class="button small" href="{% url 'edit-news' entry.id %}">{% trans "Edit News" %}</a>
             {% endif %}
             {% if perms.news.delete_news %}
-            <a class="button small alert" href="{% url 'delete-news' entry.id %}">Delete News</a>
+            <a class="button small alert" href="{% url 'delete-news' entry.id %}">{% trans "Delete News" %}</a>
             {% endif %}
           </div>
           <hr>
@@ -23,9 +23,9 @@
       </table>
       <div class="button-group">
       {% if perms.news.add_news %}
-        <a class="button" href="{% url 'create-news' %}">Add News</a>
+        <a class="button" href="{% url 'create-news' %}">{% trans "Add News" %}</a>
       {% endif %}
-        <a class="button" href="{% url 'overview-news' %}">News Overview</a>
+        <a class="button" href="{% url 'overview-news' %}">{% trans "News Overview" %}</a>
       </div>
     </div>
   </div>

@@ -27,29 +27,37 @@ urlpatterns = [
         url(r'^$', course.course, name='course'),
         url(r'^edit/$', course.edit_course, name='edit-course'),
         url(r'^delete/$', course.delete, name='delete-course'),
-        url(r'^activate/$', course.toggle, {'active': True}, name='activate-course'),
-        url(r'^deactivate/$', course.toggle, {'active': False}, name='deactivate-course'),
-        url(r'^participants/$', course.participants_list, name='course-participants'),
+        url(r'^activate/$', course.toggle,
+            {'active': True}, name='activate-course'),
+        url(r'^deactivate/$', course.toggle,
+            {'active': False}, name='deactivate-course'),
+        url(r'^participants/$', course.participants_list,
+            name='course-participants'),
         url(r'^notify/', include([
             url(r'^$', course.notify, name='notify-course'),
             url(r'^done/$', course.notify_done, name='notify-course-done'),
         ])),
         url(r'^register/', include([
             url(r'^$', enroll.add, name='register-course'),
-            url(r'^done/$', enroll.enroll_response, dict(action='register'), name='register-course-done'),
+            url(r'^done/$', enroll.enroll_response,
+                dict(action='register'), name='register-course-done'),
             url(r'^remove/', include([
                 url(r'^$', enroll.remove, name='unregister-course'),
-                url(r'^(?P<student_id>[0-9]+)/$', course.remove_student, name='unregister-course'),
-                url(r'^done/$', enroll.enroll_response, dict(action='unregister'), name='unregister-course-done'),
+                url(r'^(?P<student_id>[0-9]+)/$',
+                    course.remove_student, name='unregister-course'),
+                url(r'^done/$', enroll.enroll_response,
+                    dict(action='unregister'), name='unregister-course-done'),
             ])),
         ])),
         url(r'^schedule/', include([
             url(r'^edit/$', time.edit_slot, name='course-edit-slot'),
-            url(r'^remove/(?P<slot_id>[0-9]+)/$', time.remove_slot, name='course-remove-slot'),
+            url(r'^remove/(?P<slot_id>[0-9]+)/$',
+                time.remove_slot, name='course-remove-slot'),
         ])),
         url(r'^teachers/', include([
             url(r'^add/$', course.add_teacher, name='add-teacher'),
-            url(r'^remove/(?P<teacher_id>[0-9]+)/$', course.remove_teacher, name='remove-teacher'),
+            url(r'^remove/(?P<teacher_id>[0-9]+)/$',
+                course.remove_teacher, name='remove-teacher'),
         ])),
         url(r'^attendee-list/$', course.attendee_list, name='attendee-list'),
     ])),
@@ -62,4 +70,5 @@ urlpatterns = [
         url(r'^edit/$', news.edit, name='edit-news'),
         url(r'^delete/$', news.delete, name='delete-news')
     ])),
+    url(r'^privacy-policy/', index.privacy_policy, name='privacy-policy')
 ]
