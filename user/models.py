@@ -3,12 +3,13 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 from markdown import markdown
+from django.views.decorators.debug import sensitive_variables
 
 from util.html_clean import clean_for_user_description
 
 
 def privacy_policy_consented(consented):
-    if consented:
+    if consented and type(consented) is bool:
         return
     raise ValidationError(
         _('You must agree to the privacy policy to use our services.'))
@@ -34,6 +35,7 @@ class UserInformation(models.Model):
     def render_description(self):
         return clean_for_user_description(markdown(self.description))
 
+    @sensitive_variables('password')
     @staticmethod
     def create(
             username,

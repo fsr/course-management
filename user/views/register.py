@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.utils.translation import ugettext as _
+from django.views.decorators.debug import sensitive_post_parameters, sensitive_variables
 
 from user import mailsettings
 from user.forms import StudentVerificationForm, UserInformationForm, StudentInformationForm, UserForm
@@ -16,17 +17,19 @@ from user.models import UserInformation, Activation, ACTIVATION_TYPES
 from re_captcha.decorators import re_captcha_verify
 
 
+@sensitive_post_parameters('password1', 'password2')
+@sensitive_variables('password1', 'password2')
 @re_captcha_verify
 def register(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         userinformation_form = UserInformationForm(request.POST)
         studentinformation_form = StudentInformationForm(request.POST)
-        if (    user_form.is_valid()
-            and userinformation_form.is_valid()
-            and (studentinformation_form.is_valid()
-                 or (not studentinformation_form.cleaned_data.get('faculty')
-                     and not studentinformation_form.cleaned_data.get('s_number')))):
+        if (user_form.is_valid()
+                and userinformation_form.is_valid()
+                and (studentinformation_form.is_valid()
+                     or (not studentinformation_form.cleaned_data.get('faculty')
+                         and not studentinformation_form.cleaned_data.get('s_number')))):
 
             created_user = user_form.save(commit=False)
             created_user.is_active = False
@@ -35,9 +38,10 @@ def register(request):
             acc = []
 
             if (studentinformation_form.cleaned_data.get('faculty')
-                and studentinformation_form.cleaned_data.get('s_number')):
+                    and studentinformation_form.cleaned_data.get('s_number')):
 
-                created_student_information = studentinformation_form.save(commit=False)
+                created_student_information = studentinformation_form.save(
+                    commit=False)
 
                 created_student_information.user = created_user
 
@@ -48,15 +52,16 @@ def register(request):
 
                 acc.append(zih_mail)
 
-
             else:
-                created_user_information = userinformation_form.save(commit=False)
+                created_user_information = userinformation_form.save(
+                    commit=False)
 
                 created_user_information.user = created_user
 
                 created_user_information.save()
 
-                verification_mail(created_user, 'email', created_user.email, request)
+                verification_mail(created_user, 'email',
+                                  created_user.email, request)
 
                 acc.append(created_user.email)
 
@@ -95,6 +100,7 @@ def generateToken(size=50, chars=None):
     return ''.join(random.sample(chars, size))
 
 
+@sensitive_post_parameters('password1', 'password2')
 def verification_mail(user, type_, email, request):
     type_ = type_.lower()
     type_val = ACTIVATION_TYPES[type_]
@@ -104,7 +110,8 @@ def verification_mail(user, type_, email, request):
         Activation.objects.get(user=user, type=type_val).delete()
 
     Activation.objects.create(user=user, token=user_token, type=type_val)
-    activateurl = request.build_absolute_uri(reverse('verify', args=[type_])) + '?token=' + user_token
+    activateurl = request.build_absolute_uri(
+        reverse('verify', args=[type_])) + '?token=' + user_token
     # print(activateurl)
     with open(os.path.join(settings.BASE_DIR, 'res/registrationmail.txt')) as f:
         message = f.read()
