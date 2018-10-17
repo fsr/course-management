@@ -35,7 +35,6 @@ class UserInformation(models.Model):
     def render_description(self):
         return clean_for_user_description(markdown(self.description))
 
-    @sensitive_variables('password')
     @staticmethod
     def create(
             username,
