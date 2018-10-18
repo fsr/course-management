@@ -44,6 +44,12 @@ def register(request):
                     commit=False)
 
                 created_student_information.user = created_user
+                created_student_information.description = userinformation_form.cleaned_data[
+                    'description']
+                created_student_information.public_profile = userinformation_form.cleaned_data[
+                    'public_profile']
+                created_student_information.accepted_privacy_policy = userinformation_form.cleaned_data[
+                    'accepted_privacy_policy']
 
                 created_student_information.save()
 
@@ -100,7 +106,6 @@ def generateToken(size=50, chars=None):
     return ''.join(random.sample(chars, size))
 
 
-@sensitive_post_parameters('password1', 'password2')
 def verification_mail(user, type_, email, request):
     type_ = type_.lower()
     type_val = ACTIVATION_TYPES[type_]
