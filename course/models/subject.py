@@ -23,12 +23,32 @@ class Subject(models.Model):
         )
 
     @classmethod
+    def get_visible(cls):
+        """
+        Return al subjects which have associated visible courses.
+        """
+        return filter(
+            lambda subject:subject.is_visible(),
+            cls.objects.all()
+        )
+
+    @classmethod
     def get_inactive(cls):
         """
         Return all subjects which do not have associated active courses.
         """
         return filter(
             lambda subject: not subject.is_active(),
+            cls.objects.all()
+        )
+
+    @classmethod
+    def get_invisible(cls):
+        """
+        Return all subjects which do not have associated visible courses.
+        """
+        return filter(
+            lambda subject: not subject.is_visible(),
             cls.objects.all()
         )
 
@@ -39,8 +59,20 @@ class Subject(models.Model):
         """
         return self.course_set.filter(active=True, archiving='t')
 
+    def visible_courses(self):
+        """
+        Returns all associated courses which are visible.
+        """
+        return self.course_set.filter(visible=True, archiving='t')
+
     def is_active(self):
         """
         Return true if this subject has any associated courses which are active.
         """
         return self.course_set.filter(active=True, archiving='t').exists()
+
+    def is_visible(self):
+        """
+        Return true if this subject has any associated courses which are visible.
+        """
+        return self.course_set.filter(visible=True, archiving='t').exists()

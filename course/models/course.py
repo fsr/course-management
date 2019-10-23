@@ -25,6 +25,7 @@ class Course(models.Model):
     teacher = models.ManyToManyField(UserInformation, related_name="teacher", blank=True)
     participants = models.ManyToManyField(UserInformation, blank=True)
     active = models.BooleanField(default=False)
+    visible = models.BooleanField(default=False)
     subject = models.ForeignKey(subject.Subject, on_delete=models.CASCADE)
     max_participants = models.IntegerField()
     description = models.TextField(blank=True, default="")
@@ -38,6 +39,9 @@ class Course(models.Model):
         pass
 
     class IsInactive(Exception):
+        pass
+
+    class IsInvisible(Exception):
         pass
 
     class IsNotEnrolled(Exception):
@@ -102,7 +106,7 @@ class Course(models.Model):
         """
         Returns whether this course can currently be joined.
         """
-        return not self.saturated and self.is_active()
+        return not self.saturated and self.is_active() and self.is_visible()
 
     @property
     def saturation_level(self):
@@ -129,6 +133,7 @@ class Course(models.Model):
             'participants_count': participants_count,
             'max_participants': max_participants,
             'course_is_active': self.active,
+            'course_is_visible': self.visible,
         }
         if student:
             student = get_user_information(student)
@@ -156,6 +161,9 @@ class Course(models.Model):
 
     def is_active(self):
         return self.active and not self.is_archived()
+
+    def is_visible(self):
+        return self.visible and not self.is_archived()
 
 
 class Notification(models.Model):

@@ -78,6 +78,7 @@ class CourseForm(ModelForm):
         fields = [
             'subject',
             'active',
+            'visible',
             'description',
             'max_participants',
             'archiving',
@@ -92,6 +93,7 @@ class CourseForm(ModelForm):
                         'Choose whether people should be able to join this course '
                         'right now.'
                         ),
+            'visible': _('Choose whether people should see the course even if its not active'),
             'description':  _(
                             'A good description is half the battle. '
                             'You can use markdown for formatting.'

@@ -91,7 +91,7 @@
           {% else %}
             <b>🔒 {% trans "This course is for verified students only." %}</b>
           {% endif %}
-        {% else %}
+        {% elif course.saturated %}
           <form action="#"><input disabled class="button" type="submit" value="{% trans "This course is full" %}" /></form>
         {% endif %}
       </td>

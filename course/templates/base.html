@@ -73,10 +73,10 @@
     {% endif %}
   </li>
 
-  {% show_active_subjects %}
+  {% show_visible_subjects %}
 
   {% if perms.course_management.add_course %}
-    {% show_inactive_subjects %}
+    {% show_invisible_subjects %}
   {% endif %}
 
   {% if perms.course_management.add_subject %}
