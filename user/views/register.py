@@ -24,12 +24,12 @@ def register(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         userinformation_form = UserInformationForm(request.POST)
-        studentinformation_form = StudentInformationForm(request.POST)
+#        studentinformation_form = StudentInformationForm(request.POST)
         if (user_form.is_valid()
-                and userinformation_form.is_valid()
-                and (studentinformation_form.is_valid()
-                     or (not studentinformation_form.cleaned_data.get('faculty')
-                         and not studentinformation_form.cleaned_data.get('s_number')))):
+                and userinformation_form.is_valid()):
+#                and (studentinformation_form.is_valid()
+#                     or (not studentinformation_form.cleaned_data.get('faculty')
+#                         and not studentinformation_form.cleaned_data.get('s_number')))):
 
             created_user = user_form.save(commit=False)
             created_user.is_active = False
@@ -37,27 +37,29 @@ def register(request):
 
             acc = []
 
-            if (studentinformation_form.cleaned_data.get('faculty')
-                    and studentinformation_form.cleaned_data.get('s_number')):
-
-                created_student_information = studentinformation_form.save(
-                    commit=False)
-
-                created_student_information.user = created_user
-                created_student_information.description = userinformation_form.cleaned_data[
-                    'description']
-                created_student_information.public_profile = userinformation_form.cleaned_data[
-                    'public_profile']
-                created_student_information.accepted_privacy_policy = userinformation_form.cleaned_data[
-                    'accepted_privacy_policy']
-
-                created_student_information.save()
-
-                zih_mail = created_student_information.make_zih_mail()
-                verification_mail(created_user, 'student', zih_mail, request)
-
-                acc.append(zih_mail)
-
+#            if (studentinformation_form.cleaned_data.get('faculty')
+#                    and studentinformation_form.cleaned_data.get('s_number')):
+#
+#                created_student_information = studentinformation_form.save(
+#                    commit=False)
+#
+#                created_student_information.user = created_user
+#                created_student_information.description = userinformation_form.cleaned_data[
+#                    'description']
+#                created_student_information.public_profile = userinformation_form.cleaned_data[
+#                    'public_profile']
+#                created_student_information.accepted_privacy_policy = userinformation_form.cleaned_data[
+#                    'accepted_privacy_policy']
+#
+#                created_student_information.save()
+#
+#                zih_mail = created_student_information.make_zih_mail()
+#                verification_mail(created_user, 'student', zih_mail, request)
+#
+#                acc.append(zih_mail)
+#
+            if False:
+                pass
             else:
                 created_user_information = userinformation_form.save(
                     commit=False)
