@@ -4,4 +4,4 @@ bleach
 markdown
 requests
 django-modeltranslation
-django-guardian
+django-guardian<=1.5.1
