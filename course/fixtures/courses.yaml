@@ -34,27 +34,6 @@
 - fields: {app_label: user, model: activation}
   model: contenttypes.contenttype
   pk: 12
-- fields: {app_label: polls, model: poll}
-  model: contenttypes.contenttype
-  pk: 13
-- fields: {app_label: polls, model: question}
-  model: contenttypes.contenttype
-  pk: 14
-- fields: {app_label: polls, model: qlink}
-  model: contenttypes.contenttype
-  pk: 15
-- fields: {app_label: polls, model: choice}
-  model: contenttypes.contenttype
-  pk: 16
-- fields: {app_label: polls, model: token}
-  model: contenttypes.contenttype
-  pk: 17
-- fields: {app_label: polls, model: choicecounter}
-  model: contenttypes.contenttype
-  pk: 18
-- fields: {app_label: polls, model: qvalue}
-  model: contenttypes.contenttype
-  pk: 19
 - fields: {app_label: course, model: subject}
   model: contenttypes.contenttype
   pk: 20
@@ -242,71 +221,6 @@
 - fields: {codename: delete_activation, content_type: 12, name: Can delete activation}
   model: auth.permission
   pk: 36
-- fields: {codename: add_poll, content_type: 13, name: Can add poll}
-  model: auth.permission
-  pk: 37
-- fields: {codename: change_poll, content_type: 13, name: Can change poll}
-  model: auth.permission
-  pk: 38
-- fields: {codename: delete_poll, content_type: 13, name: Can delete poll}
-  model: auth.permission
-  pk: 39
-- fields: {codename: add_question, content_type: 14, name: Can add question}
-  model: auth.permission
-  pk: 40
-- fields: {codename: change_question, content_type: 14, name: Can change question}
-  model: auth.permission
-  pk: 41
-- fields: {codename: delete_question, content_type: 14, name: Can delete question}
-  model: auth.permission
-  pk: 42
-- fields: {codename: add_qlink, content_type: 15, name: Can add q link}
-  model: auth.permission
-  pk: 43
-- fields: {codename: change_qlink, content_type: 15, name: Can change q link}
-  model: auth.permission
-  pk: 44
-- fields: {codename: delete_qlink, content_type: 15, name: Can delete q link}
-  model: auth.permission
-  pk: 45
-- fields: {codename: add_choice, content_type: 16, name: Can add choice}
-  model: auth.permission
-  pk: 46
-- fields: {codename: change_choice, content_type: 16, name: Can change choice}
-  model: auth.permission
-  pk: 47
-- fields: {codename: delete_choice, content_type: 16, name: Can delete choice}
-  model: auth.permission
-  pk: 48
-- fields: {codename: add_token, content_type: 17, name: Can add token}
-  model: auth.permission
-  pk: 49
-- fields: {codename: change_token, content_type: 17, name: Can change token}
-  model: auth.permission
-  pk: 50
-- fields: {codename: delete_token, content_type: 17, name: Can delete token}
-  model: auth.permission
-  pk: 51
-- fields: {codename: add_choicecounter, content_type: 18, name: Can add choice counter}
-  model: auth.permission
-  pk: 52
-- fields: {codename: change_choicecounter, content_type: 18, name: Can change choice
-      counter}
-  model: auth.permission
-  pk: 53
-- fields: {codename: delete_choicecounter, content_type: 18, name: Can delete choice
-      counter}
-  model: auth.permission
-  pk: 54
-- fields: {codename: add_qvalue, content_type: 19, name: Can add q value}
-  model: auth.permission
-  pk: 55
-- fields: {codename: change_qvalue, content_type: 19, name: Can change q value}
-  model: auth.permission
-  pk: 56
-- fields: {codename: delete_qvalue, content_type: 19, name: Can delete q value}
-  model: auth.permission
-  pk: 57
 - fields: {codename: add_subject, content_type: 20, name: Can add subject}
   model: auth.permission
   pk: 58
