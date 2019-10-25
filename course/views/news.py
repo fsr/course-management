@@ -10,6 +10,7 @@ from course.forms import NewsForm
 
 from util.error.reporting import db_error
 
+
 @login_required()
 @permission_required('news.add_news')
 def create(request):
@@ -17,7 +18,7 @@ def create(request):
         form = NewsForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/news/overview')
+            return redirect('overview-news')
 
     else:
         form = NewsForm()
@@ -57,7 +58,7 @@ def edit(request: HttpRequest, news_id: str):
 
         if form.is_valid():
             cur_news.save()
-            return redirect('/news/overview')
+            return redirect('overview-news')
 
     else:
         form = NewsForm(instance=cur_news)
@@ -70,6 +71,7 @@ def edit(request: HttpRequest, news_id: str):
             'news_id': news_id
         }
     )
+
 
 @login_required
 @permission_required('news.delete_news')
@@ -84,10 +86,11 @@ def delete(request: HttpRequest, news_id: str):
     try:
         cur_news = news.News.objects.get(id=news_id)
     except news.News.DoesNotExist:
-        return  db_error(_('Requested News does not exist.'))
+        return db_error(_('Requested News does not exist.'))
 
     cur_news.delete()
-    return redirect('/news/overview')
+    return redirect('overview-news')
+
 
 def overview(request):
     return render(

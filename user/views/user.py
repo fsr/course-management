@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.utils.translation import ugettext as _
+from django.views.decorators.debug import sensitive_post_parameters
 
 from user.forms import UserForm, UserInformationForm, UserEditForm, PrivacyAgreementForm
 from user.models import Faculty
@@ -9,9 +10,9 @@ from user.models import Faculty
 from util.error.reporting import db_error
 
 
+@sensitive_post_parameters('password1', 'password2')
 @login_required()
 def modify(request):
-
     user = request.user
     student = user.userinformation
 

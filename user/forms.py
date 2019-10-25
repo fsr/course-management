@@ -1,5 +1,5 @@
 from django import forms
-from django.core.validators import RegexValidator, EmailValidator
+from django.core.validators import RegexValidator, validate_email
 from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm
@@ -140,7 +140,7 @@ class AbstractContactForm(forms.Form):
 class ContactForm(AbstractContactForm):
     sender = forms.CharField(
         help_text=_('An email address where the recipient may reach you.'),
-        validators=[EmailValidator]
+        validators=[validate_email]
     )
 
 

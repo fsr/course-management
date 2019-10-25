@@ -10,7 +10,7 @@ def index(request):
         {
             'title': _('Welcome'),
             'news': news.News.objects.order_by('-id')[:3],
-            'subjects': subject.Subject.get_active()
+            'subjects': subject.Subject.get_visible()
         }
     )
 

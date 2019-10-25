@@ -11,7 +11,7 @@ from util.error.reporting import db_error
 
 @login_required
 @csrf_protect
-def contact_form(request:HttpRequest, user_id:int):
+def contact_form(request: HttpRequest, user_id: int):
 
     try:
         user = User.objects.get(id=user_id)
@@ -25,7 +25,7 @@ def contact_form(request:HttpRequest, user_id:int):
             user.email_user(
                 subject="[CM contact form] " + form.subject,
                 message=form.content,
-                from_email=form.data['sender']
+                from_email=form.cleaned_data['sender']
             )
             return redirect('index')
     else:

@@ -20,11 +20,11 @@ def course_overview(request, subjectname):
 
     if user.is_authenticated():
         cl = filter(
-            lambda c: c.active or c.is_teacher(user.userinformation),
+            lambda c: c.visible or c.is_teacher(user.userinformation),
             active_subject.course_set.filter(archiving='t')
         )
     else:
-        cl = active_subject.course_set.filter(active=True, archiving='t')
+        cl = active_subject.course_set.filter(visible=True, archiving='t')
 
     return render(
         request,

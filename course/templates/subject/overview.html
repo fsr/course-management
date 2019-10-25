@@ -16,7 +16,7 @@
       {% for subject in subjects %}
         <tr>
           <td><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></td>
-          <td>{{ subject.active_courses.count }}</td>
+          <td>{{ subject.visible_courses.count }}</td>
         </tr>
       {% endfor %}
     </tbody>
