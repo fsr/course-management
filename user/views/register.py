@@ -13,10 +13,7 @@ from user import mailsettings
 from user.forms import StudentVerificationForm, UserInformationForm, StudentInformationForm, UserForm
 from user.models import UserInformation, Activation, ACTIVATION_TYPES
 
-from re_captcha.decorators import re_captcha_verify
 
-
-@re_captcha_verify
 def register(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)

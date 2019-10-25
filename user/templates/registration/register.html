@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% load re_captcha %}
 
 {% block content %}
   <div class='auth_form'>
@@ -18,7 +17,6 @@
           {{ studentinformation_form.as_table }}
         </table>
           <input class="button" type="submit" value="{% trans "Submit" %}" />
-        {% captcha_tag %}
       </form>
     </p>
   </div>
