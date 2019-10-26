@@ -82,7 +82,6 @@ class CourseForm(ModelForm):
             'description',
             'max_participants',
             'archiving',
-            'student_only',
             'start_time',
             'end_time',
             'schedule_type'
@@ -99,7 +98,6 @@ class CourseForm(ModelForm):
                             'You can use markdown for formatting.'
                             ),
             'max_participants': _('How many people can join your course. (Can be changed later)'),
-            'student_only': _('Should your course only be available to students?'),
             'start_time': _('The course starts on that day.'),
             'end_time': _('The course will end at that day.')
         }

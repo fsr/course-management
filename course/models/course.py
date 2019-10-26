@@ -31,7 +31,6 @@ class Course(models.Model):
     description = models.TextField(blank=True, default="")
     archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)
     queue = models.ManyToManyField(UserInformation, related_name='waiting_for', blank=True)
-    student_only = models.BooleanField(default=False)
     start_time = models.DateField(default=django.utils.timezone.now)
     end_time = models.DateField(default=django.utils.timezone.now)
 
@@ -50,12 +49,6 @@ class Course(models.Model):
     class IsEnrolled(Exception):
         pass
 
-    class IsNoStudent(Exception):
-        pass
-
-    class IsNoVerifiedStudent(Exception):
-        pass
-
     class IsArchived(Exception):
         pass
 
@@ -67,10 +60,6 @@ class Course(models.Model):
         student = get_user_information(student)
         if self._is_participant(student):
             raise self.IsEnrolled
-        elif self.student_only and not student.is_student():
-            raise self.IsNoStudent
-        elif self.student_only and student.is_pending_student():
-            raise self.IsNoVerifiedStudent
         elif not self.active:
             raise self.IsInactive
         elif self.saturated:
@@ -138,7 +127,6 @@ class Course(models.Model):
         if student:
             student = get_user_information(student)
             context['is_subbed'] = student.course_set.filter(id=self.id).exists()
-            context['is_verified_student'] = student.is_verified_student()
 
             if self.is_teacher(student):
                 context['is_teacher'] = True

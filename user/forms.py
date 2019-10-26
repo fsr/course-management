@@ -4,18 +4,9 @@ from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm
 
-from user.models import Faculty, UserInformation, StudentInformation, User
+from user.models import UserInformation, User
 from django.core.exceptions import ValidationError
 from util import html_clean
-
-
-def get_faculties():
-    return map(lambda fak: (fak.id, fak.name), Faculty.objects.all())
-
-
-def faculties_or_empty():
-    yield ('', 'none')
-    yield from get_faculties()
 
 
 name_validator = RegexValidator(
@@ -36,14 +27,6 @@ def username_existence_validator(number):
     except User.DoesNotExist:
         return
     raise ValidationError(_('This username is already taken'))
-
-
-def s_number_existence_validator(number):
-    try:
-        StudentInformation.objects.get(s_number=number)
-    except StudentInformation.DoesNotExist:
-        return
-    raise ValidationError(_('This s-number is already taken'))
 
 
 class UserForm(UserCreationForm):
@@ -104,24 +87,6 @@ class UserInformationForm(ModelForm):
         }
 
 
-class StudentInformationForm(ModelForm):
-    class Meta:
-        model = StudentInformation
-        fields = ('s_number', 'faculty')
-        labels = {
-            's_number': _('ZIH Login'),
-            'faculty': _('Faculty')
-        }
-        help_texts = {
-            's_number': _('<b>Only fill this out if you are a student. Otherwise leave blank.<br/></b>'
-                          'This is usually your s-number assigned by the university. '
-                          'The student verification email will be sent to the address associated with this s-number. '
-                          'Cannot be modified later.'),
-            'faculty': _('<b>Only fill this out if you are a student. Otherwise leave blank.<br/></b>'
-                         'The faculty at which you are enrolled. (Used for crediting purposes) Can be modified later.')
-        }
-
-
 class AbstractContactForm(forms.Form):
     subject = forms.CharField(help_text=_(
         'This will become the subject field of the resulting email.'))
@@ -142,12 +107,6 @@ class ContactForm(AbstractContactForm):
         help_text=_('An email address where the recipient may reach you.'),
         validators=[validate_email]
     )
-
-
-class StudentVerificationForm(ModelForm):
-    class Meta:
-        model = StudentInformation
-        fields = ('s_number', 'faculty')
 
 
 class PrivacyAgreementForm(ModelForm):

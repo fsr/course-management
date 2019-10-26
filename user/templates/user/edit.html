@@ -22,11 +22,7 @@
   </div>
 </form>
 <p>
-  {% trans "Perhaps you'd like to" %} <a style="color:#9ACC00;" href="{% url 'password_change' %}">{% trans "change your password" %}</a>
-  {% if not user.userinformation.is_student %}
-    {% trans "or" %}
-    <a style="color:#9ACC00;" href="{% url 'verify' 'student' %}">{% trans "verify as a student" %}</a>
-{% endif %}?
+  {% trans "Perhaps you'd like to" %} <a style="color:#9ACC00;" href="{% url 'password_change' %}">{% trans "change your password" %}</a>?
 <br>
 {% trans "Here, you may also" %} <a style="color:#9ACC00;" href="{% url 'delete-account' %}">{% trans "delete your account" %}</a>.
 </p>

@@ -15,13 +15,6 @@ def privacy_policy_consented(consented):
         _('You must agree to the privacy policy to use our services.'))
 
 
-class Faculty(models.Model):
-    name = models.CharField(max_length=200, unique=True)
-
-    def __str__(self):
-        return self.name
-
-
 class UserInformation(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     description = models.TextField(default="")
@@ -42,8 +35,6 @@ class UserInformation(models.Model):
             password,
             first_name,
             last_name,
-            s_number=None,
-            faculty=None
     ):
         user = User.objects.create_user(
             email=email,
@@ -55,47 +46,10 @@ class UserInformation(models.Model):
         user.is_active = False
         user.save()
 
-        if s_number is None or s_number == '':
-            if faculty is None or faculty == '':
-                return UserInformation.objects.create(user=user, accepted_privacy_policy=True)
-            else:
-                raise TypeError('I got a faculty but no s number?')
-        else:
-            if faculty is None or faculty == '':
-                raise TypeError('I got an s number but no faculty?')
-            else:
-                return StudentInformation.objects.create(
-                    user=user,
-                    accepted_privacy_policy=True,
-                    s_number=s_number,
-                    faculty=Faculty.objects.get(pk=faculty)
-                )
-
-    def is_student(self):
-        try:
-            self.studentinformation
-            return True
-        except StudentInformation.DoesNotExist:
-            return False
-
-    def is_verified_student(self):
-        return self.is_student() and self.studentinformation.verified
-
-    def is_pending_student(self):
-        return self.is_student() and not self.studentinformation.verified
-
-
-class StudentInformation(UserInformation):
-    s_number = models.CharField(max_length=50, unique=True)
-    faculty = models.ForeignKey(Faculty, on_delete=models.PROTECT)
-    verified = models.BooleanField(default=False)
-
-    def make_zih_mail(self):
-        return self.s_number + '@mail.zih.tu-dresden.de'
+        return UserInformation.objects.create(user=user, accepted_privacy_policy=True)
 
 
 ACTIVATION_TYPES = {
-    'student': 's',
     'email': 'e'
 }
 
@@ -112,8 +66,6 @@ class Activation(models.Model):
 def get_user_information(obj):
     if isinstance(obj, User):
         return obj.userinformation
-    elif isinstance(obj, StudentInformation):
-        return obj.user.userinformation  # TODO: Ok this way?
     elif isinstance(obj, UserInformation):
         return obj
     elif isinstance(obj, (int, str)):

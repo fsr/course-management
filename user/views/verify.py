@@ -6,11 +6,11 @@ from django.views.decorators.http import require_GET
 from django.contrib.auth.decorators import login_required
 
 from user.models import Activation, ACTIVATION_TYPES
-from user.forms import StudentVerificationForm
 from user.views.register import verification_mail
 
 
 VERIFICATIONS = {}
+# TODO: This is so over-engineered
 
 
 class RegisterVerification:
@@ -72,56 +72,4 @@ def verify_user(user):
     user.save()
 
 
-def verify_student(user):
-    user.is_active = True
-    user.save()
-    si = user.userinformation.studentinformation
-    si.verified = True
-    si.save()
-
-
-@login_required
-def verify_student_form(request):
-    if request.user.userinformation.is_verified_student():
-        return redirect(
-            'user-profile'
-        )
-    if request.method == "POST":
-        if request.user.userinformation.is_pending_student():
-            form = StudentVerificationForm(request.POST, instance=request.user.userinformation.studentinformation)
-        else:
-            form = StudentVerificationForm(request.POST)
-        if form.is_valid():
-            if request.user.userinformation.is_pending_student():
-                a = form.save()
-            else:
-                a = form.save(commit=False)
-                a.userinformation_ptr = request.user.userinformation
-                a.user = request.user
-                a.save()
-            zih_mail = a.make_zih_mail()
-            verification_mail(a.user, 'student', zih_mail, request)
-            return render(
-                request,
-                'registration/sent-student-verification-mail.html',
-                {
-                    'title': _('Verification mail sent'),
-                    'acc': zih_mail,
-                    'no_login_redirect': True,
-                }
-            )
-    else:
-        form = StudentVerificationForm()
-
-    return render(
-        request,
-        'registration/student-verification.html',
-        {
-            'form': form,
-            'no_login_redirect': True,
-        }
-    )
-
-
-RegisterVerification(action=verify_student, name='student', view=verify_student_form)
 RegisterVerification(action=verify_user, name='email')

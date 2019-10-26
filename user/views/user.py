@@ -5,7 +5,6 @@ from django.utils.translation import ugettext as _
 from django.views.decorators.debug import sensitive_post_parameters
 
 from user.forms import UserForm, UserInformationForm, UserEditForm, PrivacyAgreementForm
-from user.models import Faculty
 
 from util.error.reporting import db_error
 
