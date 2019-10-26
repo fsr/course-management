@@ -120,8 +120,8 @@
     visible: true
     subject: 1
     max_participants: 30
-    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore the\
-      \ universe.\r\n\r\n## Materials\r\n\r\n- a towel\r\n- lots of courage"
+    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore the
+      universe.\r\n\r\n## Materials\r\n\r\n- a towel\r\n- lots of courage"
     archiving: t
     start_time: 2019-10-26
     end_time: 2050-10-26
@@ -137,8 +137,8 @@
     visible: true
     subject: 2
     max_participants: 30
-    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore the\
-      \ universe.\r\n\r\n## Materials\r\n\r\n- a towel\r\n- lots of courage"
+    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore the
+      universe.\r\n\r\n## Materials\r\n\r\n- a towel\r\n- lots of courage"
     archiving: t
     start_time: 2019-10-26
     end_time: 2050-10-26
@@ -549,7 +549,7 @@
   pk: 2
   fields:
     password: pbkdf2_sha256$36000$1VZYIsbOuibN$gRhoAJ4+/wekAkn3DG2Ik2ICyaiOjYSGe16UGB3TX0U=
-    last_login: 2019-10-26 08:45:41.136557
+    last_login: 2019-10-26 09:31:28.630167
     is_superuser: true
     username: foo
     first_name: Ayn
