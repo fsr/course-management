@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% load i18n %}
-
-{% block content %}
-  <p>{% trans "Your captcha could not be verified. Please retry the request." %}</p>
-  {% if message %}<p>{{ message }}</p>{% endif %}
-{% endblock %}

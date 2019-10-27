@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from course.models.course import Course
 from course.models.subject import Subject
-from user.models import UserInformation, Faculty
+from user.models import UserInformation
 from django.contrib.auth.models import User
 
 from .misc import *
@@ -70,42 +70,3 @@ class CascadingDeletionTests(TestCase):
 
         self.assertEqual(UserInformation.objects.count(), 1, "The user was not removed!")
         self.assertEqual(course.participants.count(), 0, 'There was more than one person enrolled to the course!')
-
-    def test_only_verified_students_can_enroll(self):
-        """
-        Verify that only students can enroll for a 'student-only' marked course.
-        """
-        flush_tables()
-        insert_dummy_data()
-
-        course = Course.objects.get(subject=Subject.objects.get(name='Hacking for Beginners'))
-        course.student_only = True
-        course.active = True
-        course.save()
-
-        fac = Faculty.objects.create(name="Faculty of Computer Science")
-        fac.save()
-
-        u2 = UserInformation.create('samgroves', 'samantha.groves@mail.web', 'L33T', 'Samantha', 'Groves')
-        u2.user.is_active = True
-        u2.user.save()
-        u3 = UserInformation.create('sameen', 'sameen.shaw@mail.web', 'Sh00T', 'Sameen', 'Shaw', 's9283457', fac.pk)
-        u3.user.is_active = True
-        u3.user.save()
-
-        with self.assertRaises(Course.IsNoStudent):
-            course.enroll(u2)
-
-        with self.assertRaises(Course.IsNoVerifiedStudent):
-            course.enroll(u3)
-
-        u3.studentinformation.verified = True
-        u3.save()
-
-        course.enroll(u3.user.userinformation)
-
-        self.assertEqual(course.participants.count(), 1,
-                         'More than one participant found, although only one was registered.')
-
-
-

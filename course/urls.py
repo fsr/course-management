@@ -61,7 +61,6 @@ urlpatterns = [
         ])),
         url(r'^attendee-list/$', course.attendee_list, name='attendee-list'),
     ])),
-    url(r'^polls/', include('polls.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^accounts/', include('user.urls')),
     url(r'^news/create', news.create, name='create-news'),

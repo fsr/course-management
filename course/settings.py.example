@@ -42,9 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'guardian',
-    're_captcha',
     'user',
-    'polls',
     'course',
 )
 
@@ -142,13 +140,3 @@ DEFAULT_FROM_EMAIL = 'noreply@ifsr.de'
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
-# Settings for the re_captcha module
-
-# whether to verify that the recaptcha has been checked by google
-RE_CAPTCHA_VERIFY = True
-# the public recaptcha key for this site
-RE_CAPTCHA_SITE_KEY = '6LdQdhETAAAAAD-uv2YJhtsYLvskvdKj_dT9YMLg'
-# the secret key key for this site (Don't commit it)
-# TODO Add this in when deploying
-RE_CAPTCHA_SECRET_KEY = os.environ.get('COURSE_MANAGEMENT_RE_CAPTCHA_SECRET_KEY', '')

@@ -1,426 +1,337 @@
-- fields: {app_label: admin, model: logentry}
-  model: contenttypes.contenttype
+- model: contenttypes.contenttype
   pk: 1
-- fields: {app_label: auth, model: permission}
-  model: contenttypes.contenttype
+  fields: {app_label: admin, model: logentry}
+- model: contenttypes.contenttype
   pk: 2
-- fields: {app_label: auth, model: group}
-  model: contenttypes.contenttype
+  fields: {app_label: auth, model: permission}
+- model: contenttypes.contenttype
   pk: 3
-- fields: {app_label: auth, model: user}
-  model: contenttypes.contenttype
+  fields: {app_label: auth, model: group}
+- model: contenttypes.contenttype
   pk: 4
-- fields: {app_label: contenttypes, model: contenttype}
-  model: contenttypes.contenttype
+  fields: {app_label: auth, model: user}
+- model: contenttypes.contenttype
   pk: 5
-- fields: {app_label: sessions, model: session}
-  model: contenttypes.contenttype
+  fields: {app_label: contenttypes, model: contenttype}
+- model: contenttypes.contenttype
   pk: 6
-- fields: {app_label: guardian, model: userobjectpermission}
-  model: contenttypes.contenttype
+  fields: {app_label: sessions, model: session}
+- model: contenttypes.contenttype
   pk: 7
-- fields: {app_label: guardian, model: groupobjectpermission}
-  model: contenttypes.contenttype
+  fields: {app_label: guardian, model: groupobjectpermission}
+- model: contenttypes.contenttype
   pk: 8
-- fields: {app_label: user, model: faculty}
-  model: contenttypes.contenttype
+  fields: {app_label: guardian, model: userobjectpermission}
+- model: contenttypes.contenttype
   pk: 9
-- fields: {app_label: user, model: userinformation}
-  model: contenttypes.contenttype
-  pk: 10
-- fields: {app_label: user, model: studentinformation}
-  model: contenttypes.contenttype
+  fields: {app_label: user, model: activation}
+- model: contenttypes.contenttype
   pk: 11
-- fields: {app_label: user, model: activation}
-  model: contenttypes.contenttype
-  pk: 12
-- fields: {app_label: polls, model: poll}
-  model: contenttypes.contenttype
+  fields: {app_label: user, model: userinformation}
+- model: contenttypes.contenttype
   pk: 13
-- fields: {app_label: polls, model: question}
-  model: contenttypes.contenttype
+  fields: {app_label: course, model: course}
+- model: contenttypes.contenttype
   pk: 14
-- fields: {app_label: polls, model: qlink}
-  model: contenttypes.contenttype
+  fields: {app_label: course, model: dateslot}
+- model: contenttypes.contenttype
   pk: 15
-- fields: {app_label: polls, model: choice}
-  model: contenttypes.contenttype
+  fields: {app_label: course, model: notification}
+- model: contenttypes.contenttype
   pk: 16
-- fields: {app_label: polls, model: token}
-  model: contenttypes.contenttype
+  fields: {app_label: course, model: schedule}
+- model: contenttypes.contenttype
   pk: 17
-- fields: {app_label: polls, model: choicecounter}
-  model: contenttypes.contenttype
+  fields: {app_label: course, model: subject}
+- model: contenttypes.contenttype
   pk: 18
-- fields: {app_label: polls, model: qvalue}
-  model: contenttypes.contenttype
+  fields: {app_label: course, model: weeklyslot}
+- model: contenttypes.contenttype
   pk: 19
-- fields: {app_label: course, model: subject}
-  model: contenttypes.contenttype
+  fields: {app_label: course, model: news}
+- model: contenttypes.contenttype
   pk: 20
-- fields: {app_label: course, model: course}
-  model: contenttypes.contenttype
-  pk: 21
-- fields: {app_label: course, model: notification}
-  model: contenttypes.contenttype
-  pk: 22
-- fields: {app_label: course, model: schedule}
-  model: contenttypes.contenttype
-  pk: 23
-- fields: {app_label: course, model: weeklyslot}
-  model: contenttypes.contenttype
-  pk: 24
-- fields: {app_label: course, model: dateslot}
-  model: contenttypes.contenttype
-  pk: 25
-- fields: {expire_date: ! '2017-03-29 12:08:17.016078', session_data: ZjQyZTk2MTc2OGU5NGZlZmZkMDc5Y2M0YzI0M2VhZWFmZTM0ZTNjYTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiN2VmMzQ2YzU0MjE1MGRlNDA5MDRmMTY3N2JkZDVjNTc2ZWFjNzc3In0=}
-  model: sessions.session
-  pk: gq5pshniqcqjcryo1r4q1k7fmp8g5r0e
-- fields: {name: Informatik}
-  model: user.faculty
+  fields: {app_label: course, model: description}
+- model: course.subject
   pk: 1
-- fields: {description: '', description_de: '', description_en: '', name: C}
-  model: course.subject
-  pk: 1
-- fields: {description: '', description_de: '', description_en: '', name: Python}
-  model: course.subject
+  fields: {name: C-Kurs, description: This is a language that has been around for
+      many years., description_en: This is a language that has been around for many
+      years., description_de: 'Es vermag sich hierbei um eine Sprache zu handeln,
+      welche schon eine Weile in der Gegend befindlich ist.'}
+- model: course.subject
   pk: 2
-- fields:
-    active: false
-    archiving: t
-    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore the
-      universe.\r\n\r\n## Materials\r\n\r\n- a towel\r\n- lots of courage\r\n"
-    end_time: 2017-03-15
-    max_participants: 30
-    participants: []
-    queue: []
-    start_time: 2017-03-15
-    student_only: false
-    subject: 1
-    teacher: [1]
-  model: course.course
+  fields: {name: Rust-Kurs, description: The superior language., description_en: The
+      superior language., description_de: "Die Sprache der G\xF6tter."}
+- model: course.course
   pk: 1
-- fields:
+  fields:
     active: true
-    archiving: t
-    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore the
-      universe.\r\n\r\n## Materials\r\n\r\n- a towel\r\n- lots of courage\r\n"
-    end_time: 2017-03-15
+    visible: true
+    subject: 1
     max_participants: 30
+    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore the
+      universe.\r\n\r\n## Materials\r\n\r\n- a towel\r\n- lots of courage"
+    archiving: t
+    start_time: 2019-10-26
+    end_time: 2050-10-26
+    teacher: [1]
+    participants: [2]
+    queue: []
+- model: course.course
+  pk: 2
+  fields:
+    active: false
+    visible: true
+    subject: 2
+    max_participants: 30
+    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore the
+      universe.\r\n\r\n## Materials\r\n\r\n- a towel\r\n- lots of courage"
+    archiving: t
+    start_time: 2019-10-26
+    end_time: 2050-10-26
+    teacher: [1]
     participants: []
     queue: []
-    start_time: 2017-03-15
-    student_only: false
-    subject: 2
-    teacher: [1]
-  model: course.course
-  pk: 2
-- fields: {_type: W, course: 1}
-  model: course.schedule
+- model: course.schedule
   pk: 1
-- fields: {_type: W, course: 2}
-  model: course.schedule
+  fields: {_type: W, course: 1}
+- model: course.schedule
   pk: 2
-- fields: {codename: add_logentry, content_type: 1, name: Can add log entry}
-  model: auth.permission
+  fields: {_type: W, course: 2}
+- model: course.weeklyslot
   pk: 1
-- fields: {codename: change_logentry, content_type: 1, name: Can change log entry}
-  model: auth.permission
+  fields: {weekday: TUE, timeslot: VI, location: APB/E017, schedule: 1}
+- model: course.weeklyslot
   pk: 2
-- fields: {codename: delete_logentry, content_type: 1, name: Can delete log entry}
-  model: auth.permission
+  fields: {weekday: SAT, timeslot: I, location: APB/E023, schedule: 2}
+- model: auth.permission
+  pk: 1
+  fields: {name: Can add log entry, content_type: 1, codename: add_logentry}
+- model: auth.permission
+  pk: 2
+  fields: {name: Can change log entry, content_type: 1, codename: change_logentry}
+- model: auth.permission
   pk: 3
-- fields: {codename: add_permission, content_type: 2, name: Can add permission}
-  model: auth.permission
+  fields: {name: Can delete log entry, content_type: 1, codename: delete_logentry}
+- model: auth.permission
   pk: 4
-- fields: {codename: change_permission, content_type: 2, name: Can change permission}
-  model: auth.permission
+  fields: {name: Can add permission, content_type: 2, codename: add_permission}
+- model: auth.permission
   pk: 5
-- fields: {codename: delete_permission, content_type: 2, name: Can delete permission}
-  model: auth.permission
+  fields: {name: Can change permission, content_type: 2, codename: change_permission}
+- model: auth.permission
   pk: 6
-- fields: {codename: add_group, content_type: 3, name: Can add group}
-  model: auth.permission
+  fields: {name: Can delete permission, content_type: 2, codename: delete_permission}
+- model: auth.permission
   pk: 7
-- fields: {codename: change_group, content_type: 3, name: Can change group}
-  model: auth.permission
+  fields: {name: Can add group, content_type: 3, codename: add_group}
+- model: auth.permission
   pk: 8
-- fields: {codename: delete_group, content_type: 3, name: Can delete group}
-  model: auth.permission
+  fields: {name: Can change group, content_type: 3, codename: change_group}
+- model: auth.permission
   pk: 9
-- fields: {codename: add_user, content_type: 4, name: Can add user}
-  model: auth.permission
+  fields: {name: Can delete group, content_type: 3, codename: delete_group}
+- model: auth.permission
   pk: 10
-- fields: {codename: change_user, content_type: 4, name: Can change user}
-  model: auth.permission
+  fields: {name: Can add user, content_type: 4, codename: add_user}
+- model: auth.permission
   pk: 11
-- fields: {codename: delete_user, content_type: 4, name: Can delete user}
-  model: auth.permission
+  fields: {name: Can change user, content_type: 4, codename: change_user}
+- model: auth.permission
   pk: 12
-- fields: {codename: add_contenttype, content_type: 5, name: Can add content type}
-  model: auth.permission
+  fields: {name: Can delete user, content_type: 4, codename: delete_user}
+- model: auth.permission
   pk: 13
-- fields: {codename: change_contenttype, content_type: 5, name: Can change content
-      type}
-  model: auth.permission
+  fields: {name: Can add content type, content_type: 5, codename: add_contenttype}
+- model: auth.permission
   pk: 14
-- fields: {codename: delete_contenttype, content_type: 5, name: Can delete content
-      type}
-  model: auth.permission
+  fields: {name: Can change content type, content_type: 5, codename: change_contenttype}
+- model: auth.permission
   pk: 15
-- fields: {codename: add_session, content_type: 6, name: Can add session}
-  model: auth.permission
+  fields: {name: Can delete content type, content_type: 5, codename: delete_contenttype}
+- model: auth.permission
   pk: 16
-- fields: {codename: change_session, content_type: 6, name: Can change session}
-  model: auth.permission
+  fields: {name: Can add session, content_type: 6, codename: add_session}
+- model: auth.permission
   pk: 17
-- fields: {codename: delete_session, content_type: 6, name: Can delete session}
-  model: auth.permission
+  fields: {name: Can change session, content_type: 6, codename: change_session}
+- model: auth.permission
   pk: 18
-- fields: {codename: add_userobjectpermission, content_type: 7, name: Can add user
-      object permission}
-  model: auth.permission
+  fields: {name: Can delete session, content_type: 6, codename: delete_session}
+- model: auth.permission
   pk: 19
-- fields: {codename: change_userobjectpermission, content_type: 7, name: Can change
-      user object permission}
-  model: auth.permission
+  fields: {name: Can add group object permission, content_type: 7, codename: add_groupobjectpermission}
+- model: auth.permission
   pk: 20
-- fields: {codename: delete_userobjectpermission, content_type: 7, name: Can delete
-      user object permission}
-  model: auth.permission
+  fields: {name: Can change group object permission, content_type: 7, codename: change_groupobjectpermission}
+- model: auth.permission
   pk: 21
-- fields: {codename: add_groupobjectpermission, content_type: 8, name: Can add group
-      object permission}
-  model: auth.permission
+  fields: {name: Can delete group object permission, content_type: 7, codename: delete_groupobjectpermission}
+- model: auth.permission
   pk: 22
-- fields: {codename: change_groupobjectpermission, content_type: 8, name: Can change
-      group object permission}
-  model: auth.permission
+  fields: {name: Can add user object permission, content_type: 8, codename: add_userobjectpermission}
+- model: auth.permission
   pk: 23
-- fields: {codename: delete_groupobjectpermission, content_type: 8, name: Can delete
-      group object permission}
-  model: auth.permission
+  fields: {name: Can change user object permission, content_type: 8, codename: change_userobjectpermission}
+- model: auth.permission
   pk: 24
-- fields: {codename: add_faculty, content_type: 9, name: Can add faculty}
-  model: auth.permission
+  fields: {name: Can delete user object permission, content_type: 8, codename: delete_userobjectpermission}
+- model: auth.permission
   pk: 25
-- fields: {codename: change_faculty, content_type: 9, name: Can change faculty}
-  model: auth.permission
+  fields: {name: Can add activation, content_type: 9, codename: add_activation}
+- model: auth.permission
   pk: 26
-- fields: {codename: delete_faculty, content_type: 9, name: Can delete faculty}
-  model: auth.permission
+  fields: {name: Can change activation, content_type: 9, codename: change_activation}
+- model: auth.permission
   pk: 27
-- fields: {codename: add_userinformation, content_type: 10, name: Can add user information}
-  model: auth.permission
-  pk: 28
-- fields: {codename: change_userinformation, content_type: 10, name: Can change user
-      information}
-  model: auth.permission
-  pk: 29
-- fields: {codename: delete_userinformation, content_type: 10, name: Can delete user
-      information}
-  model: auth.permission
-  pk: 30
-- fields: {codename: add_studentinformation, content_type: 11, name: Can add student
-      information}
-  model: auth.permission
+  fields: {name: Can delete activation, content_type: 9, codename: delete_activation}
+- model: auth.permission
   pk: 31
-- fields: {codename: change_studentinformation, content_type: 11, name: Can change
-      student information}
-  model: auth.permission
+  fields: {name: Can add user information, content_type: 11, codename: add_userinformation}
+- model: auth.permission
   pk: 32
-- fields: {codename: delete_studentinformation, content_type: 11, name: Can delete
-      student information}
-  model: auth.permission
+  fields: {name: Can change user information, content_type: 11, codename: change_userinformation}
+- model: auth.permission
   pk: 33
-- fields: {codename: add_activation, content_type: 12, name: Can add activation}
-  model: auth.permission
-  pk: 34
-- fields: {codename: change_activation, content_type: 12, name: Can change activation}
-  model: auth.permission
-  pk: 35
-- fields: {codename: delete_activation, content_type: 12, name: Can delete activation}
-  model: auth.permission
-  pk: 36
-- fields: {codename: add_poll, content_type: 13, name: Can add poll}
-  model: auth.permission
+  fields: {name: Can delete user information, content_type: 11, codename: delete_userinformation}
+- model: auth.permission
   pk: 37
-- fields: {codename: change_poll, content_type: 13, name: Can change poll}
-  model: auth.permission
+  fields: {name: Can add course, content_type: 13, codename: add_course}
+- model: auth.permission
   pk: 38
-- fields: {codename: delete_poll, content_type: 13, name: Can delete poll}
-  model: auth.permission
+  fields: {name: Can change course, content_type: 13, codename: change_course}
+- model: auth.permission
   pk: 39
-- fields: {codename: add_question, content_type: 14, name: Can add question}
-  model: auth.permission
+  fields: {name: Can delete course, content_type: 13, codename: delete_course}
+- model: auth.permission
   pk: 40
-- fields: {codename: change_question, content_type: 14, name: Can change question}
-  model: auth.permission
+  fields: {name: Can add date slot, content_type: 14, codename: add_dateslot}
+- model: auth.permission
   pk: 41
-- fields: {codename: delete_question, content_type: 14, name: Can delete question}
-  model: auth.permission
+  fields: {name: Can change date slot, content_type: 14, codename: change_dateslot}
+- model: auth.permission
   pk: 42
-- fields: {codename: add_qlink, content_type: 15, name: Can add q link}
-  model: auth.permission
+  fields: {name: Can delete date slot, content_type: 14, codename: delete_dateslot}
+- model: auth.permission
   pk: 43
-- fields: {codename: change_qlink, content_type: 15, name: Can change q link}
-  model: auth.permission
+  fields: {name: Can add notification, content_type: 15, codename: add_notification}
+- model: auth.permission
   pk: 44
-- fields: {codename: delete_qlink, content_type: 15, name: Can delete q link}
-  model: auth.permission
+  fields: {name: Can change notification, content_type: 15, codename: change_notification}
+- model: auth.permission
   pk: 45
-- fields: {codename: add_choice, content_type: 16, name: Can add choice}
-  model: auth.permission
+  fields: {name: Can delete notification, content_type: 15, codename: delete_notification}
+- model: auth.permission
   pk: 46
-- fields: {codename: change_choice, content_type: 16, name: Can change choice}
-  model: auth.permission
+  fields: {name: Can add schedule, content_type: 16, codename: add_schedule}
+- model: auth.permission
   pk: 47
-- fields: {codename: delete_choice, content_type: 16, name: Can delete choice}
-  model: auth.permission
+  fields: {name: Can change schedule, content_type: 16, codename: change_schedule}
+- model: auth.permission
   pk: 48
-- fields: {codename: add_token, content_type: 17, name: Can add token}
-  model: auth.permission
+  fields: {name: Can delete schedule, content_type: 16, codename: delete_schedule}
+- model: auth.permission
   pk: 49
-- fields: {codename: change_token, content_type: 17, name: Can change token}
-  model: auth.permission
+  fields: {name: Can add subject, content_type: 17, codename: add_subject}
+- model: auth.permission
   pk: 50
-- fields: {codename: delete_token, content_type: 17, name: Can delete token}
-  model: auth.permission
+  fields: {name: Can change subject, content_type: 17, codename: change_subject}
+- model: auth.permission
   pk: 51
-- fields: {codename: add_choicecounter, content_type: 18, name: Can add choice counter}
-  model: auth.permission
+  fields: {name: Can delete subject, content_type: 17, codename: delete_subject}
+- model: auth.permission
   pk: 52
-- fields: {codename: change_choicecounter, content_type: 18, name: Can change choice
-      counter}
-  model: auth.permission
+  fields: {name: Can add weekly slot, content_type: 18, codename: add_weeklyslot}
+- model: auth.permission
   pk: 53
-- fields: {codename: delete_choicecounter, content_type: 18, name: Can delete choice
-      counter}
-  model: auth.permission
+  fields: {name: Can change weekly slot, content_type: 18, codename: change_weeklyslot}
+- model: auth.permission
   pk: 54
-- fields: {codename: add_qvalue, content_type: 19, name: Can add q value}
-  model: auth.permission
+  fields: {name: Can delete weekly slot, content_type: 18, codename: delete_weeklyslot}
+- model: auth.permission
   pk: 55
-- fields: {codename: change_qvalue, content_type: 19, name: Can change q value}
-  model: auth.permission
+  fields: {name: Can add news, content_type: 19, codename: add_news}
+- model: auth.permission
   pk: 56
-- fields: {codename: delete_qvalue, content_type: 19, name: Can delete q value}
-  model: auth.permission
+  fields: {name: Can change news, content_type: 19, codename: change_news}
+- model: auth.permission
   pk: 57
-- fields: {codename: add_subject, content_type: 20, name: Can add subject}
-  model: auth.permission
+  fields: {name: Can delete news, content_type: 19, codename: delete_news}
+- model: auth.permission
   pk: 58
-- fields: {codename: change_subject, content_type: 20, name: Can change subject}
-  model: auth.permission
+  fields: {name: Can add description, content_type: 20, codename: add_description}
+- model: auth.permission
   pk: 59
-- fields: {codename: delete_subject, content_type: 20, name: Can delete subject}
-  model: auth.permission
+  fields: {name: Can change description, content_type: 20, codename: change_description}
+- model: auth.permission
   pk: 60
-- fields: {codename: add_course, content_type: 21, name: Can add course}
-  model: auth.permission
-  pk: 61
-- fields: {codename: change_course, content_type: 21, name: Can change course}
-  model: auth.permission
-  pk: 62
-- fields: {codename: delete_course, content_type: 21, name: Can delete course}
-  model: auth.permission
-  pk: 63
-- fields: {codename: add_notification, content_type: 22, name: Can add notification}
-  model: auth.permission
-  pk: 64
-- fields: {codename: change_notification, content_type: 22, name: Can change notification}
-  model: auth.permission
-  pk: 65
-- fields: {codename: delete_notification, content_type: 22, name: Can delete notification}
-  model: auth.permission
-  pk: 66
-- fields: {codename: add_schedule, content_type: 23, name: Can add schedule}
-  model: auth.permission
-  pk: 67
-- fields: {codename: change_schedule, content_type: 23, name: Can change schedule}
-  model: auth.permission
-  pk: 68
-- fields: {codename: delete_schedule, content_type: 23, name: Can delete schedule}
-  model: auth.permission
-  pk: 69
-- fields: {codename: add_weeklyslot, content_type: 24, name: Can add weekly slot}
-  model: auth.permission
-  pk: 70
-- fields: {codename: change_weeklyslot, content_type: 24, name: Can change weekly
-      slot}
-  model: auth.permission
-  pk: 71
-- fields: {codename: delete_weeklyslot, content_type: 24, name: Can delete weekly
-      slot}
-  model: auth.permission
-  pk: 72
-- fields: {codename: add_dateslot, content_type: 25, name: Can add date slot}
-  model: auth.permission
-  pk: 73
-- fields: {codename: change_dateslot, content_type: 25, name: Can change date slot}
-  model: auth.permission
-  pk: 74
-- fields: {codename: delete_dateslot, content_type: 25, name: Can delete date slot}
-  model: auth.permission
-  pk: 75
-- fields:
-    date_joined: 2017-03-15 11:48:17.573139
-    email: ''
-    first_name: ''
-    groups: []
-    is_active: true
-    is_staff: false
-    is_superuser: false
+  fields: {name: Can delete description, content_type: 20, codename: delete_description}
+- model: auth.user
+  pk: 1
+  fields:
+    password: '!bQqKBk5rqqbsRyveXhh4RCFuxQVCFdPk6qdnQPWY'
     last_login: null
-    last_name: ''
-    password: '!mDwUwniAGtDaDecIV8M7uDg7sj3ndkSUnBrKAwfk'
-    user_permissions: []
+    is_superuser: false
     username: AnonymousUser
-  model: auth.user
-  pk: 1
-- fields:
-    date_joined: 2017-03-15 12:00:21
+    first_name: ''
+    last_name: ''
     email: ''
-    first_name: Martha
-    groups: []
+    is_staff: false
     is_active: true
-    is_staff: true
-    is_superuser: true
-    last_login: 2017-03-15 12:08:16
-    last_name: Stuart
-    password: pbkdf2_sha256$20000$McOmzb19pgmt$gJZNYglCY1jceg58DiVzWVEiTlnJQ3VrjBstKA6/uEM=
+    date_joined: 2019-10-26 08:44:43.159846
+    groups: []
     user_permissions: []
+- model: auth.user
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$36000$1VZYIsbOuibN$gRhoAJ4+/wekAkn3DG2Ik2ICyaiOjYSGe16UGB3TX0U=
+    last_login: 2019-10-26 09:31:28.630167
+    is_superuser: true
     username: foo
-  model: auth.user
-  pk: 2
-- fields: {content_type: 21, object_pk: '1', permission: 62, user: 2}
-  model: guardian.userobjectpermission
-  pk: 1
-- fields: {content_type: 21, object_pk: '1', permission: 63, user: 2}
-  model: guardian.userobjectpermission
-  pk: 2
-- fields: {content_type: 21, object_pk: '2', permission: 62, user: 2}
-  model: guardian.userobjectpermission
+    first_name: Ayn
+    last_name: Rand
+    email: test@test.de
+    is_staff: true
+    is_active: true
+    date_joined: 2019-10-26 08:45:06.187615
+    groups: []
+    user_permissions: []
+- model: auth.user
   pk: 3
-- fields: {content_type: 21, object_pk: '2', permission: 63, user: 2}
-  model: guardian.userobjectpermission
+  fields:
+    password: pbkdf2_sha256$36000$uARSMknspDSt$5i0Cq4QSWBOYq9loyVdbOUd/btegFrwAKGIFlijG4SU=
+    last_login: 2019-10-26 08:51:35.429919
+    is_superuser: false
+    username: test
+    first_name: Andrew
+    last_name: Ryan
+    email: test1@test.de
+    is_staff: false
+    is_active: true
+    date_joined: 2019-10-26 08:51:18.802754
+    groups: []
+    user_permissions: []
+- model: guardian.userobjectpermission
+  pk: 1
+  fields: {permission: 38, content_type: 13, object_pk: '1', user: 2}
+- model: guardian.userobjectpermission
+  pk: 2
+  fields: {permission: 39, content_type: 13, object_pk: '1', user: 2}
+- model: guardian.userobjectpermission
+  pk: 3
+  fields: {permission: 38, content_type: 13, object_pk: '2', user: 2}
+- model: guardian.userobjectpermission
   pk: 4
-- fields: {description: Description, public_profile: false, user: 2, accepted_privacy_policy: true}
-  model: user.userinformation
+  fields: {permission: 39, content_type: 13, object_pk: '2', user: 2}
+- model: user.userinformation
   pk: 1
-- fields: {faculty: 1, s_number: s12345678, verified: true}
-  model: user.studentinformation
-  pk: 1
-- fields: {action_flag: 1, action_time: ! '2017-03-15 12:29:18.786070', change_message: '',
-    content_type: 9, object_id: '1', object_repr: Informatik, user: 2}
-  model: admin.logentry
-  pk: 1
-- fields: {action_flag: 1, action_time: ! '2017-03-15 12:29:28.243446', change_message: '',
-    content_type: 11, object_id: '1', object_repr: ' ', user: 2}
-  model: admin.logentry
+  fields: {user: 2, description: oh hi, public_profile: false, accepted_privacy_policy: true}
+- model: user.userinformation
   pk: 2
-- fields: {action_flag: 2, action_time: ! '2017-03-15 12:29:59.117179', change_message: "first_name
-      und last_name ge\xE4ndert.", content_type: 4, object_id: '2', object_repr: foo,
-    user: 2}
-  model: admin.logentry
-  pk: 3
+  fields: {user: 3, description: 'A man chooses, a slave obeys.', public_profile: false,
+    accepted_privacy_policy: true}
+- model: admin.logentry
+  pk: 1
+  fields: {action_time: ! '2019-10-26 08:47:00.822976', user: 2, content_type: 11,
+    object_id: '1', object_repr: ' ', action_flag: 1, change_message: '[{"added":
+      {}}]'}

@@ -17,9 +17,6 @@
           {% if perms.course_management.add_subject %}
             <li><a href="{% url 'create-subject' %}">🆕 {% trans "Create subject" %}</a></li>
           {% endif %}
-          {% if perms.course_management.add_poll %}
-            <li><a href="{% url 'poll-create' %}">🆕 {% trans "Create poll" %}</a></li>
-          {% endif %}
           <li><a href="{% url 'modify-user' %}">🖊 {% trans "Edit your data" %}</a>
           <li><a href="{% url 'password_change' %}">🔒 {% trans "Change pass" %}</a></li>
           <li><a href="{% url 'logout' %}">🚪 {% trans "Logout" %}</a></li>
