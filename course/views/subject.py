@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
@@ -18,7 +18,7 @@ def course_overview(request, subjectname):
     except subject.Subject.DoesNotExist:
         return db_error(_('Requested subject does not exist.'))
 
-    if user.is_authenticated():
+    if user.is_authenticated:
         cl = filter(
             lambda c: c.visible or c.is_teacher(user.userinformation),
             active_subject.course_set.filter(archiving='t')

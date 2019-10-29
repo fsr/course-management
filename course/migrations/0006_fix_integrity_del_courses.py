@@ -23,6 +23,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="Schedule",
             name="course",
-            field=models.OneToOneField("Course")
+            field=models.OneToOneField("Course", on_delete=models.deletion.CASCADE)
         )
     ]

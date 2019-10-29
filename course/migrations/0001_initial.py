@@ -68,23 +68,23 @@ class Migration(migrations.Migration):
                 ('weekday', models.CharField(max_length=3, choices=[('MON', 'Mondays'), ('TUE', 'Tuesdays'), ('WED', 'Wednesdays'), ('THU', 'Thursdays'), ('FRI', 'Fridays'), ('SAT', 'Saturdays'), ('SUN', 'Sundays')])),
                 ('timeslot', models.CharField(max_length=3, choices=[('I', '1st'), ('II', '2nd'), ('III', '3rd'), ('IV', '4th'), ('V', '5th'), ('VI', '6th'), ('VII', '7th')])),
                 ('location', models.CharField(max_length=100, blank=True)),
-                ('schedule', models.ForeignKey(to='course.Schedule')),
+                ('schedule', models.ForeignKey(to='course.Schedule', on_delete=models.deletion.CASCADE)),
             ],
         ),
         migrations.AddField(
             model_name='dateslot',
             name='schedule',
-            field=models.ForeignKey(to='course.Schedule'),
+            field=models.ForeignKey(to='course.Schedule', on_delete=models.deletion.CASCADE),
         ),
         migrations.AddField(
             model_name='course',
             name='schedule',
-            field=models.OneToOneField(to='course.Schedule'),
+            field=models.OneToOneField(to='course.Schedule', on_delete=models.deletion.CASCADE),
         ),
         migrations.AddField(
             model_name='course',
             name='subject',
-            field=models.ForeignKey(to='course.Subject'),
+            field=models.ForeignKey(to='course.Subject', on_delete=models.deletion.CASCADE),
         ),
         migrations.AddField(
             model_name='course',

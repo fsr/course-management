@@ -46,7 +46,7 @@ def modify(request):
 def profile(request, user_id=None):
 
     if user_id is None:
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             user = request.user
 
             # require consenting to privacy policy

@@ -66,7 +66,7 @@ class WeeklySlotForm(ModelForm):
 
 
 class CourseForm(ModelForm):
-    schedule_type = forms.ChoiceField(Schedule.TYPES)
+    schedule_type = forms.ChoiceField(choices=Schedule.TYPES)
 
     class Meta:
         model = Course

@@ -4,7 +4,7 @@ import os
 
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.utils.translation import ugettext as _
