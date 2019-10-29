@@ -33,7 +33,7 @@ ifeq ($(wildcard $(PYTHON)),)
 endif
 
 clean:
-	rm -r bower_components $(CSS_DIR)/style.css $(JS_DIR)/*
+	rm -r static/css
 
 migrate: pip
 ifeq ($(wildcard db.sqlite3),)
