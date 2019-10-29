@@ -11,11 +11,11 @@ css_files = static/css/style.css
 
 all: pip $(css_files)
 
-static/css/%.css: sass/%.sass
+static/css/%.css: sass/%.sass corporate-web-design/src
 	if [ ! -d "./static/css" ] ; then  mkdir -p static/css; fi
 	$(SASS) -m -I corporate-web-design/src -I sass/vendor "$<" "$@"
 
-submodule:
+corporate-web-design/src:
 	git submodule init
 	git submodule update
 
