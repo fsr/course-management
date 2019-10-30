@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
                 ('token', models.CharField(max_length=50)),
                 ('type', models.CharField(max_length=1, choices=[('s', 'student'), ('e', 'email')])),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=django.db.models.deletion.CASCADE)),
             ],
         ),
         migrations.CreateModel(
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='StudentInformation',
             fields=[
-                ('userinformation_ptr', models.OneToOneField(primary_key=True, serialize=False, auto_created=True, parent_link=True, to='user.UserInformation')),
+                ('userinformation_ptr', models.OneToOneField(primary_key=True, serialize=False, auto_created=True, parent_link=True, to='user.UserInformation', on_delete=models.deletion.CASCADE)),
                 ('s_number', models.CharField(max_length=50, unique=True)),
                 ('verified', models.BooleanField(default=False)),
                 ('faculty', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='user.Faculty')),
@@ -50,6 +50,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='userinformation',
             name='user',
-            field=models.OneToOneField(to=settings.AUTH_USER_MODEL),
+            field=models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.deletion.CASCADE),
         ),
     ]
