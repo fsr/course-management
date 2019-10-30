@@ -75,9 +75,6 @@ target/
 # Vim Swap File
 *.swp
 
-# vendor css and js
-vendor/
-
 # node
 node_modules/
 

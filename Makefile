@@ -1,6 +1,5 @@
-CSS_DIR = static/css
-JS_DIR = static/vendor/js
 PYTHON_ENV_FOLDER = env
+SASS = sassc
 
 ifeq ($(OS), Windows_NT)
 PYTHON = $(PYTHON_ENV_FOLDER)/Scripts/python3.exe
@@ -8,23 +7,17 @@ else
 PYTHON = $(PYTHON_ENV_FOLDER)/bin/python
 endif
 
+css_files = static/css/style.css
 
-js_files = jquery/dist/jquery.min.js jquery-ui/jquery-ui.min.js foundation/js/foundation.min.js fastclick/lib/fastclick.js modernizr/modernizr.js jquery/dist/jquery.min.map
+all: pip $(css_files)
 
-all: pip sass
+static/css/%.css: sass/%.sass corporate-web-design/src
+	if [ ! -d "./static/css" ] ; then  mkdir -p static/css; fi
+	$(SASS) -m -I corporate-web-design/src -I sass/vendor "$<" "$@"
 
-sass: bower submodule
-	if [ ! -d "./$(CSS_DIR)" ] ; then  mkdir -p $(CSS_DIR) ; fi 
-	sass -I corporate-web-design/src -I bower_components/foundation/scss sass/style.sass $(CSS_DIR)/style.css
-
-submodule:
+corporate-web-design/src:
 	git submodule init
 	git submodule update
-
-bower: 
-	bower install
-	if [ ! -d "./$(JS_DIR)" ] ; then mkdir -p $(JS_DIR) ; fi
-	cp $(addprefix bower_components/, $(js_files)) $(JS_DIR)
 
 ifdef $(NO_VIRTUALENV)
 pip: 
@@ -40,7 +33,7 @@ ifeq ($(wildcard $(PYTHON)),)
 endif
 
 clean:
-	rm -r bower_components $(CSS_DIR)/style.css $(JS_DIR)/*
+	rm -r static/css
 
 migrate: pip
 ifeq ($(wildcard db.sqlite3),)

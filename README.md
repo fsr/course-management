@@ -5,19 +5,12 @@
 ### Required software
 
 * Python 3
-* nodejs and npm
-* Ruby and Sass 
+* sassc
 
 
 ### Installation
 
-* install dependencies
-
-  ```
-  $ npm install -g bower
-  $ sudo gem install sass --no-user-install
-  $ make
-  ```
+* install dependencies: `sassc` via your distribution package manager
 
 * Configure the server and the mailsettings as you wish:
 
