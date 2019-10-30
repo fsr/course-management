@@ -36,7 +36,7 @@ def no_verify_view(request):
 
 def verify(request, type_):
 
-    if 'token' not in request.GET:
+    if 'token' not in request.GET or type_.lower() not in VERIFICATIONS:
         try:
             return VERIFICATIONS[type_.lower()].view(request)
         except KeyError:
