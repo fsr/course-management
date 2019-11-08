@@ -15,6 +15,17 @@ cp user/mailsettings.py.example user/mailsettings.py
 4. Launch the program with `env/bin/python manage.py runserver`.
 5. You now can login with the super user **foo** and password **bar**
 
+Another test user is available by logging in as `test: test`.
+
+## Changing the database model
+
+When chaning the database model make sure that the fixture located in `course/fixtures/courses.yaml` still works.
+If not, export a new version of the fixture using the command
+```
+python manage.py dumpdata --format yaml --exclude contenttypes --output course/fixtures/courses.yaml
+```
+It should always include the two aforementioned test users and a set of example courses.
+
 ## License
 
 This software is licensed with the BSD3 license. See the `LICENSE` file for more information.
