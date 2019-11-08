@@ -547,9 +547,7 @@
     end_time: 2029-10-29
     teacher:
     - 1
-    participants:
-    - 2
-    queue: []
+    participants: []
 - model: course.course
   pk: 2
   fields:
@@ -565,7 +563,6 @@
     teacher:
     - 1
     participants: []
-    queue: []
 - model: course.schedule
   pk: 1
   fields:

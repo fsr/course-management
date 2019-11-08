@@ -26,13 +26,19 @@ def course_overview(request, subjectname):
     else:
         cl = active_subject.course_set.filter(visible=True, archiving='t')
 
+    course_list = []
+    for course in cl:
+        course.position_in_queue = course.position_in_queue(user)
+        course_list.append(course)
+
+
     return render(
         request,
         'subject/info.html',
         {
             'title': subjectname,
             'subject': active_subject,
-            'course_list': cl,
+            'course_list': course_list,
             'target': reverse('subject', args=(subjectname,))
         }
     )

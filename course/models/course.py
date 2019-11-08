@@ -20,17 +20,15 @@ ARCHIVE_STATUSES = (
     ('a', 'archived'),
 )
 
-
 class Course(models.Model):
     teacher = models.ManyToManyField(UserInformation, related_name="teacher", blank=True)
-    participants = models.ManyToManyField(UserInformation, blank=True)
+    participants = models.ManyToManyField(UserInformation, blank=True, through='Participation')
     active = models.BooleanField(default=False)
     visible = models.BooleanField(default=False)
     subject = models.ForeignKey(subject.Subject, on_delete=models.CASCADE)
     max_participants = models.IntegerField()
     description = models.TextField(blank=True, default="")
     archiving = models.CharField(max_length=1, choices=ARCHIVE_STATUSES)
-    queue = models.ManyToManyField(UserInformation, related_name='waiting_for', blank=True)
     start_time = models.DateField(default=django.utils.timezone.now)
     end_time = models.DateField(default=django.utils.timezone.now)
 
@@ -62,12 +60,14 @@ class Course(models.Model):
             raise self.IsEnrolled
         elif not self.active:
             raise self.IsInactive
-        elif self.saturated:
-            raise self.IsFull
         elif self.is_archived():
             raise self.IsArchived
         else:
-            self.participants.add(student)
+            if (self.participants.count()):
+                ticket_number = Participation.objects.filter(course=self).reverse()[0].ticket_number + 1
+            else:
+                ticket_number = 1
+            Participation.objects.create(participant=student, course=self, ticket_number=ticket_number)
 
     def unenroll(self, student):
 
@@ -77,6 +77,7 @@ class Course(models.Model):
             self.participants.remove(student)
         else:
             raise self.IsNotEnrolled
+        # TODO: send notification to first in waiting list
 
     def _is_participant(self, student):
         student = get_user_information(student)
@@ -111,6 +112,19 @@ class Course(models.Model):
     def get_distinct_locations(self):
         return self.schedule.slots.values_list('location', flat=True).distinct()
 
+    def get_queue(self):
+        return Participation.objects.filter(course=self)[self.max_participants:]
+
+    def position_in_queue(self, student):
+        queue = list(self.get_queue())
+        if len(queue) == 0:
+            return 0
+        users = [p.participant for p in queue]
+        user = get_user_information(student)
+        if not user in users:
+            return 0
+        return users.index(user) + 1
+
     def as_context(self, student=None):
         participants_count, max_participants = self.saturation_level
         sub_name = self.subject.name
@@ -126,6 +140,7 @@ class Course(models.Model):
         }
         if student:
             student = get_user_information(student)
+            context['position_in_queue'] = self.position_in_queue(student)
             context['is_subbed'] = student.course_set.filter(id=self.id).exists()
 
             if self.is_teacher(student):
@@ -158,3 +173,12 @@ class Notification(models.Model):
     subject = models.CharField(max_length=100)
     content = models.TextField()
     user = models.ManyToManyField(UserInformation)
+
+class Participation(models.Model):
+    participant = models.ForeignKey(UserInformation, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    ticket_number = models.IntegerField()
+
+    class Meta:
+        ordering = ['ticket_number']
+

@@ -23,12 +23,10 @@ def add(request, course_id):
 
     if course.is_participant(stud):
         session['enroll-error'] = _('You are already enrolled in this course.')
-    elif not course.joinable:
-        session['enroll-error'] = _('Sorry, this course is full.')
     else:
         if 'enroll-error' in session:
             del session['enroll-error']
-        course.participants.add(stud)
+        course.enroll(stud)
 
     # redirect to course overview or specified target
     return redirect_unless_target(request, 'register-course-done', course_id)
