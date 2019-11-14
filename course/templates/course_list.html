@@ -34,7 +34,11 @@
         {% endif %}
         <p><b>🎓 {% trans "Teachers" %}: </b>{{ course.teacher.all|join:", " }}</p>
         {% if not course_list_show_subject %}
-          <p><b>🎒 {% trans "Participants" %}: </b>{{ course.participants.count }}/{{ course.max_participants }}</p>
+          <p><b>🎒 {% trans "Participants" %}: </b>{{ course.enrolled_students }}/{{ course.max_participants }}
+          {% if course.students_on_queue %}
+          ({{ course.students_on_queue }} {% trans "in queue" %})
+          {% endif %}
+          </p>
         {% endif %}
 
         <p>

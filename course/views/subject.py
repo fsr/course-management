@@ -19,17 +19,15 @@ def course_overview(request, subjectname):
         return db_error(_('Requested subject does not exist.'))
 
     if user.is_authenticated:
-        cl = filter(
+        cl = list(filter(
             lambda c: c.visible or c.is_teacher(user.userinformation),
             active_subject.course_set.filter(archiving='t')
-        )
+        ))
+        for course in cl:
+            course.position_in_queue = course.position_in_queue(user)
     else:
-        cl = active_subject.course_set.filter(visible=True, archiving='t')
+        cl = list(active_subject.course_set.filter(visible=True, archiving='t'))
 
-    course_list = []
-    for course in cl:
-        course.position_in_queue = course.position_in_queue(user)
-        course_list.append(course)
 
 
     return render(
@@ -38,7 +36,7 @@ def course_overview(request, subjectname):
         {
             'title': subjectname,
             'subject': active_subject,
-            'course_list': course_list,
+            'course_list': cl,
             'target': reverse('subject', args=(subjectname,))
         }
     )

@@ -1,4 +1,5 @@
 from markdown import markdown
+import logging
 
 from django.db import models
 from django.urls import reverse
@@ -105,6 +106,14 @@ class Course(models.Model):
         participants.
         """
         return self.participants.count(), self.max_participants
+
+    @property
+    def enrolled_students(self):
+        return min(self.participants.count(), self.max_participants)
+
+    @property
+    def students_on_queue(self):
+        return max(self.participants.count() - self.max_participants, 0)
 
     def get_description_as_html(self):
         return clean_for_description(markdown(self.description))
