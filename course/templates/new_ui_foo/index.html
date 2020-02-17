@@ -1,0 +1,37 @@
+{% extends 'new_ui_foo/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<h1 class="mb-3">{% trans "Current News" %}</h1>
+
+{% for entry in news %}
+<div class="shadow p-3 mb-5 bg-light rounded">
+  <h3>{{ entry.headline }}</h3>
+  <small><i>Ayn Rand</i> - 20.02.2020</small>
+  <hr>
+  <p>{{ entry.entry }}</p>
+  {% if perms.news.change_news or perms.news.delete_news %}
+  <div class="row m-3">
+    <div class="ml-auto">
+      {% if perms.news.change_news %}
+      <a href="{% url 'edit-news' entry.id %}" type="button" class="btn btn-outline-success">Edit</a>
+      {% endif %}
+      {% if perms.news.delete_news %}
+      <a href="{% url 'delete-news' entry.id %}" type="button" class="btn btn-outline-warning">Delete</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% empty %}
+<div class="p-4">
+  <i>There are currently no news.</i>
+</div>
+{% endfor %}
+
+<div class="p-3 mb-5">
+  <h2>Welcome to the Course Management!</h2>
+<p>Welcome! It's nice to see you here. This is the course management system operated by the student representatives of the Computer Science faculty at TU Dresden. Here, you can enroll for various programming courses that are offered in the current semester.</p>
+<p>Usually, all courses we offer are held by fellow students who have taken a particular interest in sharing their knowledge about programming languages and techniques with others. While these courses are therefore not acknowledged by the examination office, you can use them to learn new skills or programming languages.</p>
+</div>
+{% endblock %}

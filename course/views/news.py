@@ -18,7 +18,7 @@ def create(request):
         form = NewsForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('overview-news')
+            return redirect('index')
 
     else:
         form = NewsForm()
@@ -30,9 +30,10 @@ def create(request):
 
     return render(
         request,
-        'news/create.html',
+        'new_ui_foo/news/edit.html',
         {
             'title': _('New News'),
+            'create': True,
             'form': form
         }
     )
@@ -58,15 +59,16 @@ def edit(request: HttpRequest, news_id: str):
 
         if form.is_valid():
             cur_news.save()
-            return redirect('overview-news')
+            return redirect('index')
 
     else:
         form = NewsForm(instance=cur_news)
     return render(
         request,
-        'news/edit.html',
+        'new_ui_foo/news/edit.html',
         {
             'title': _('Edit News'),
+            'create': False,
             'form': form,
             'news_id': news_id
         }
@@ -89,15 +91,4 @@ def delete(request: HttpRequest, news_id: str):
         return db_error(_('Requested News does not exist.'))
 
     cur_news.delete()
-    return redirect('overview-news')
-
-
-def overview(request):
-    return render(
-        request,
-        'news/overview.html',
-        {
-            'title': _('News Overview'),
-            'news': news.News.objects.order_by('-id')
-        }
-    )
+    return redirect('index')

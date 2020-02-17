@@ -1,4 +1,4 @@
-from course.models import subject, news
+from course.models import news
 from django.shortcuts import render
 from django.utils.translation import ugettext as _
 
@@ -6,11 +6,10 @@ from django.utils.translation import ugettext as _
 def index(request):
     return render(
         request,
-        'index.html',
+        'new_ui_foo/index.html',
         {
             'title': _('Welcome'),
-            'news': news.News.objects.order_by('-id')[:3],
-            'subjects': subject.Subject.get_visible()
+            'news': news.News.objects.order_by('-id')
         }
     )
 

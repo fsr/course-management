@@ -21,7 +21,7 @@
       {% endif %}
       {% if perms.news.add_news %}
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">News Item</a>
+      <a class="dropdown-item" href="{% url 'create-news' %}">News Item</a>
       {% endif %}
     </div>
   </li>

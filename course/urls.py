@@ -64,7 +64,6 @@ urlpatterns = [
     re_path(r'^i18n/', include('django.conf.urls.i18n')),
     re_path(r'^accounts/', include('user.urls')),
     re_path(r'^news/create', news.create, name='create-news'),
-    re_path(r'^news/overview', news.overview, name='overview-news'),
     re_path(r'^news/(?P<news_id>[0-9]+)/', include([
         re_path(r'^edit/$', news.edit, name='edit-news'),
         re_path(r'^delete/$', news.delete, name='delete-news')
