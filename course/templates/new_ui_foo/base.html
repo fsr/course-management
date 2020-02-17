@@ -1,0 +1,54 @@
+{% extends 'new_ui_foo/base-shell.html' %}
+{% load i18n %}
+
+{% block header_nav %}
+<ul class="navbar-nav ml-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="#">News</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Subjects</a>
+  </li>
+  {% if perms.course_management.add_course or perms.course_management.add_subject or perms.news.add_news %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" id="dropdownCreate">Create...</a>
+    <div class="dropdown-menu" aria-labelledby="dropdownCreate">
+      {% if perms.course_management.add_subject %}
+      <a class="dropdown-item" href="{% url 'create-subject' %}">New Subject</a>
+      {% endif %}
+      {% if perms.course_management.add_course %}
+      <a class="dropdown-item" href="{% url 'create-course' %}">New Course</a>
+      {% endif %}
+      {% if perms.news.add_news %}
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">News Item</a>
+      {% endif %}
+    </div>
+  </li>
+  {% endif %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" id="dropdownAbout">About</a>
+    <div class="dropdown-menu" aria-labelledby="dropdownAbout">
+      <a class="dropdown-item" href="#">Imprint</a>
+      <a class="dropdown-item" href="{% url 'privacy-policy' %}">Privacy Policy</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="https://github.com/fsr/course-management/issues/new">Report an Issue</a>
+    </div>
+  </li>
+  {% if user.is_authenticated %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'user-profile' %}">Your Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'modify-user' %}">Settings</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+  </li>
+  {% else %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'login' %}{% if not no_login_redirect and not request.path == logout_url %}?next={{ request.path }}{% endif %}">Login</a>
+  </li>
+  {% endif %}
+</ul>
+{% endblock %}
