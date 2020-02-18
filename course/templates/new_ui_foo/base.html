@@ -4,10 +4,10 @@
 {% block header_nav %}
 <ul class="navbar-nav ml-auto">
   <li class="nav-item">
-    <a class="nav-link" href="#">News</a>
+    <a class="nav-link" href="{% url 'index' %}">News</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Subjects</a>
+    <a class="nav-link" href="{% url 'subject-overview'">Subjects</a>
   </li>
   {% if perms.course_management.add_course or perms.course_management.add_subject or perms.news.add_news %}
   <li class="nav-item dropdown">
