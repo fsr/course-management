@@ -32,7 +32,7 @@ def course_overview(request, subjectname):
 
     return render(
         request,
-        'subject/info.html',
+        'new_ui_foo/subject/info.html',
         {
             'title': subjectname,
             'subject': active_subject,
@@ -42,15 +42,14 @@ def course_overview(request, subjectname):
     )
 
 
-@login_required()
-# TODO add permission for viewing this overview, maybe?
 def subject_overview(request):
     return render(
         request,
-        'subject/overview.html',
+        'new_ui_foo/subject/overview.html',
         {
             'title': _('Subject Overview'),
-            'subjects': subject.Subject.objects.all()
+            'visible_subjects': subject.Subject.get_visible(),
+            'invisible_subjects': subject.Subject.get_invisible()
         }
     )
 
@@ -75,9 +74,10 @@ def create(request):
 
     return render(
         request,
-        'subject/create.html',
+        'new_ui_foo/subject/edit.html',
         {
             'title': _('New Subject'),
+            'create': True,
             'form': form
         }
     )
@@ -104,9 +104,10 @@ def edit(request, subjectname):
 
     return render(
         request,
-        'subject/edit.html',
+        'new_ui_foo/subject/edit.html',
         {
             'title': subj.name,
+            'create': False,
             'form': form,
             'subject': subj
         }

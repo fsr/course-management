@@ -7,7 +7,7 @@
     <a class="nav-link" href="{% url 'index' %}">{% trans 'News' %}</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'subject-overview'">{% trans 'Subjects' %}</a>
+    <a class="nav-link" href="{% url 'subject-overview' %}">{% trans 'Subjects' %}</a>
   </li>
   {% if perms.course_management.add_course or perms.course_management.add_subject or perms.news.add_news %}
   <li class="nav-item dropdown">

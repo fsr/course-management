@@ -4,6 +4,7 @@ from course.models.subject import Subject
 
 register = template.Library()
 
+# TODO: Delete?
 
 @register.inclusion_tag('tags/active-subjects.html')
 def show_active_subjects():
