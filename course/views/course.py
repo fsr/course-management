@@ -20,11 +20,11 @@ from util.routing import redirect_unless_target
 import itertools
 
 DEFAULT_COURSE_DESCRIPTION = """\
-# The Hitchhikers Guide To The Galaxy
+#### The Hitchhikers Guide To The Galaxy
 
 We will explore the universe.
 
-## Materials
+##### Materials
 
 - a towel
 - lots of courage
@@ -54,7 +54,7 @@ def course(request: HttpRequest, course_id: str):
 
         return render(
             request,
-            'course/info.html',
+            'new_ui_foo/course/info.html',
             context
         )
     except Course.DoesNotExist:

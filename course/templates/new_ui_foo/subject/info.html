@@ -4,7 +4,21 @@
 
 <h1 class="mb-3">{% trans 'Course List' %} - {{ subject.name }}</h1>
 
-{{ subject.description }}
+<p>{{ subject.description }}</p>
+
+{% if perms.subject.change_subject or perms.subject.delete_subject %}
+<div class="row ml-1 mr-1 mb-3">
+  {% if perms.subject.change_subject %}
+    <a href="{% url 'edit-subject' subject.name %}" type="button" class="btn btn-outline-success mr-1">{% trans 'Edit' %}</a>
+  {% endif %}
+  {% if perms.subject.delete_subject %}
+    <form method="post" action="{% url 'delete-subject' subject.name %}">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-outline-warning" value="{% trans 'Delete' %}">
+    </form>
+  {% endif %}
+</div>
+{% endif %}
 
 <table class="table table-hover">
   <thead>
@@ -22,7 +36,7 @@
       <tr>
         <td>
           {% if course.schedule.slots %}
-            {{ course.schedule.slots|join:"<br />" }}
+            {{ course.schedule.slots|join:"<br>" }}
           {% else %}
             <p class="text-muted">{% trans 'No dates set yet.' %}</p>
           {% endif %}
@@ -36,15 +50,17 @@
             {% endif %}
           {% endwith %}
         </td>
-        {% if course.active %}
-          {% if course.saturated %}
-            <td><span class="badge badge-danger">{% trans 'full' %}</span></td>
+        <td>
+          {% if course.active %}
+            {% if course.saturated %}
+              <span class="badge badge-danger">{% trans 'full' %}</span>
+            {% else %}
+              <span class="badge badge-success">{% trans 'available' %}</span>
+            {% endif %}
           {% else %}
-            <td><span class="badge badge-success">{% trans 'available' %}</span></td>
+            <span class="badge badge-secondary">{% trans 'unavailable' %}</span>
           {% endif %}
-        {% else %}
-          <td><span class="badge badge-secondary">{% trans 'unavailable' %}</span></td>
-        {% endif %}
+        </td>
         <td>{{ course.teacher.all|join:", " }}</td>
         <td><a href="{% url 'course' course.id %}">{% trans 'Info' %}</a></td>
       </tr>
