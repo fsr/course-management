@@ -52,6 +52,11 @@ def course(request: HttpRequest, course_id: str):
         else:
             context = current_course.as_context()
 
+        session = request.session
+        if 'enroll-error' in session:
+            context['error'] = session['enroll-error']
+            del session['enroll-error']
+
         return render(
             request,
             'new_ui_foo/course/info.html',

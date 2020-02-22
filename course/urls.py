@@ -39,14 +39,10 @@ urlpatterns = [
         ])),
         re_path(r'^register/', include([
             re_path(r'^$', enroll.add, name='register-course'),
-            re_path(r'^done/$', enroll.enroll_response,
-                dict(action='register'), name='register-course-done'),
             re_path(r'^remove/', include([
                 re_path(r'^$', enroll.remove, name='unregister-course'),
                 re_path(r'^(?P<student_id>[0-9]+)/$',
                     course.remove_student, name='unregister-course'),
-                re_path(r'^done/$', enroll.enroll_response,
-                    dict(action='unregister'), name='unregister-course-done'),
             ])),
         ])),
         re_path(r'^schedule/', include([

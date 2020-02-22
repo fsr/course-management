@@ -29,7 +29,7 @@ def add(request, course_id):
         course.enroll(stud)
 
     # redirect to course overview or specified target
-    return redirect_unless_target(request, 'register-course-done', course_id)
+    return redirect_unless_target(request, 'course', course_id)
 
 
 @require_POST
@@ -46,25 +46,7 @@ def remove(request, course_id):
         ps.remove(stud)
     else:
         request.session['enroll-error'] = _('You do not seem to be enrolled in this course.')
-        return redirect('unregister-course-done', course_id)
+        return redirect('course', course_id)
 
     # redirect to course overview or specified target
-    return redirect_unless_target(request, 'unregister-course-done', course_id)
-
-
-@login_required()
-def enroll_response(request, course_id, action=None):
-    session = request.session
-    try:
-        course = Course.objects.get(id=course_id)
-    except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
-    context = course.as_context(request.user)
-    context['action'] = action
-    context['subject'] = course.subject.name
-    context['course_id'] = course_id
-
-    if 'enroll-error' in session:
-        context['error'] = session['enroll-error']
-        del session['enroll-error']
-    return render(request, 'enroll/response.html', context)
+    return redirect_unless_target(request, 'course', course_id)
