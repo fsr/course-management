@@ -21,7 +21,7 @@
   <div class="form-group">
     <label class="col-form-label" for="{{ form.entry.id_for_label }}">{% trans 'Entry' %}</label>
     <textarea class="form-control" name="{{ form.entry.html_name }}" id="{{ form.entry.id_for_label }}" rows="6" aria-describedby="descEntry">{{ form.entry.value }}</textarea>
-    <small id="descHelp" class="form-text text-muted">{% trans '<a href="https://commonmark.org/help/">Markdown</a> is supported.' %}</small>
+    <small id="descHelp" class="form-text text-muted">{% trans '<a href="https://commonmark.org/help/">Markdown</a> is supported. Try to avoid using additional headings.' %}</small>
     {{ form.entry.errors }}
   </div>
 

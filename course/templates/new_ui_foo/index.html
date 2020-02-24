@@ -9,7 +9,7 @@
   <h3>{{ entry.headline }}</h3>
   <small><i>Ayn Rand</i> - 20.02.2020</small>
   <hr>
-  <p>{{ entry.entry }}</p>
+  <p>{{ entry.render_entry|safe }}</p>
   {% if perms.news.change_news or perms.news.delete_news %}
   <div class="row m-3">
     <div class="ml-auto">

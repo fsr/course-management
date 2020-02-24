@@ -4,7 +4,7 @@
 
 <h1 class="mb-3">{% trans 'Course List' %} - {{ subject.name }}</h1>
 
-<p>{{ subject.description }}</p>
+<p>{{ subject.render_description|safe }}</p>
 
 {% if perms.subject.change_subject or perms.subject.delete_subject %}
 <div class="row ml-1 mr-1 mb-3">
