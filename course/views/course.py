@@ -73,7 +73,7 @@ def participants_list(request, course_id):
 
         return render(
             request,
-            'course/participants.html',
+            'new_ui_foo/course/attendees.html',
             {'course': current_course}
         )
     except Course.DoesNotExist:
@@ -237,8 +237,7 @@ def add_teacher(request, course_id):
 
                 return redirect('add-teacher', course_id)
             except User.DoesNotExist:
-                context['error'] = _('The username you entered does not exist in '
-                                     'my database, sorry :(')
+                context['error'] = _('The username you entered does not exist.')
     else:
         form = AddTeacherForm()
 
@@ -247,7 +246,7 @@ def add_teacher(request, course_id):
 
     return render(
         request,
-        'course/teacher.html',
+        'new_ui_foo/course/teachers.html',
         context
     )
 

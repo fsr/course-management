@@ -1,0 +1,36 @@
+{% extends 'new_ui_foo/base.html' %}
+{% load i18n %}
+{% block content %}
+
+<h1 class="mb-3">{% trans 'Attendees' %}</h1>
+
+{% if course.participants.all %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">{% trans 'Participant' %}</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in course.participants.all %}
+      <tr>
+        <td class="align-middle">
+          {{ student }}
+        </td>
+        <td>
+          <form action="{% url 'unregister-course' course.id student.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-link" value="{% trans 'Remove' %}">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>{% trans 'There are no participants yet. Make sure your course is active and visible.' %}</p>
+{% endif %}
+
+<a class="btn btn-outline-primary" href="{% url 'course' course.id %}"> &laquo; {% trans 'back' %}</a>
+{% endblock %}
