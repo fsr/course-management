@@ -308,7 +308,7 @@ def notify(request: HttpRequest, course_id):
 
     return render(
         request,
-        'course/notify.html',
+        'new_ui_foo/course/notify.html',
         {
             'title': _('Notify Course'),
             'form': form,
@@ -319,7 +319,13 @@ def notify(request: HttpRequest, course_id):
 
 @needs_teacher_permissions
 def notify_done(request, course_id):
-    return render_to_response('course/notify-done.html')
+    return render(
+        request,
+        'new_ui_foo/course/notify-done.html',
+        {
+            'course_id': course_id
+        }
+    )
 
 
 @needs_teacher_permissions

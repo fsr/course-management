@@ -38,7 +38,7 @@
     <form action="{% url 'add-teacher' course_id %}" method="POST">
       {% csrf_token %}
       <div class="form-group {% if error or form.errors %}is-invalid{% endif %}">
-        <p>Teachers gain full administrative rights for the courses they teach. They may alter course description, time table, rooms and name other users as teacher. Additionally, they can see and edit the list of participants.</p>
+        <p>{% trans 'Teachers gain full administrative rights for the courses they teach. They may alter course description, time table, rooms and name other users as teacher. Additionally, they can see and edit the list of participants.' %}</p>
 
         <input type="text" class="form-control {% if error or form.errors %}is-invalid{% endif %}" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" placeholder="{% trans 'Username' %}">
         {% if error or form.errors %}
