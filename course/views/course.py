@@ -96,8 +96,9 @@ def edit_course(request: HttpRequest, course_id: str):
         return db_error(_('Requested course does not exist.'))
 
     if request.method == "POST":
-
         form = CourseForm(request.POST, instance=current_course)
+
+        print(form)
 
         if form.is_valid():
             current_course.save()
@@ -109,10 +110,11 @@ def edit_course(request: HttpRequest, course_id: str):
         form = CourseForm(instance=current_course,initial={'schedule_type':current_schedule.get_type()})
     return render(
         request,
-        'course/edit.html',
+        'new_ui_foo/course/edit.html',
         {
             'title': _('Edit course'),
             'form': form,
+            'create': False,
             'course_id': course_id,
             'allowed_tags': html_clean.DESCR_ALLOWED_TAGS,
             'course_is_active': current_course.active,
@@ -131,6 +133,7 @@ def toggle(request: HttpRequest, course_id: str, active: bool):
     :param active: active/inactive
     :return:
     """
+    # TODO: Delete me
     try:
         curr_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
@@ -181,10 +184,11 @@ def create(request):
 
     return render(
         request,
-        'course/create.html',
+        'new_ui_foo/course/edit.html',
         {
             'title': _('New Course'),
-            'form': form
+            'form': form,
+            'create': True
         }
     )
 
