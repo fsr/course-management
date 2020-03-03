@@ -60,7 +60,7 @@
 
   <div class="form-group {% if form.max_participants.errors %}has-danger{% endif %}">
     <label class="col-form-label" for="{{ form.max_participants.id_for_label }}">{% trans 'Maximal number of participants' %}</label>
-    <input type="{{ form.max_participants.input_type }}" class="form-control {% if form.max_participants.errors %}is-invalid{% endif %}" placeholder="{% trans 'Please enter a number' %}" id="{{ form.max_participants.id_for_label }}" name="{{ form.max_participants.html_name }}" aria-describedby="max_participantsHelp" required="" {% if form.max_participants.value %}value="{{ form.max_participants.value }}"{% endif %}>
+    <input type="number" class="form-control {% if form.max_participants.errors %}is-invalid{% endif %}" placeholder="{% trans 'Please enter a number' %}" id="{{ form.max_participants.id_for_label }}" name="{{ form.max_participants.html_name }}" aria-describedby="max_participantsHelp" required="" {% if form.max_participants.value %}value="{{ form.max_participants.value }}"{% endif %}>
     {% if form.max_participants.errors %}
       <div class="invalid-feedback">
         {% for err in form.max_participants.errors %}

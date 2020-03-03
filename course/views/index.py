@@ -17,7 +17,7 @@ def index(request):
 def privacy_policy(request):
     return render(
         request,
-        'privacy.html',
+        'new_ui_foo/privacy.html',
         {
             'title': _('Privacy Policy')
         }
