@@ -361,16 +361,10 @@ def attendee_list(request, course_id):
 
         return render(
                 request,
-                'course/attendee-list.html',
+                'new_ui_foo/course/attendee-list.html',
                 {
                     'attendees': course.participants.all(),
                     'slots': range(slots)
                 }
         )
-    return render(
-            request,
-            'course/attendee-list-select.html',
-            {
-                'course_id': course_id
-            }
-    )
+    return redirect('course-participants', course_id)
