@@ -29,7 +29,7 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" id="dropdownAbout">{% trans 'About' %}</a>
     <div class="dropdown-menu" aria-labelledby="dropdownAbout">
-      <a class="dropdown-item" href="#">{% trans 'Imprint' %}</a>
+      <a class="dropdown-item" href="https://www.ifsr.de/fsr:kontakt">{% trans 'Imprint' %}</a>
       <a class="dropdown-item" href="{% url 'privacy-policy' %}">{% trans 'Privacy Policy' %}</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="https://github.com/fsr/course-management/issues/new">{% trans 'Report an Issue' %}</a>
@@ -46,6 +46,9 @@
     <a class="nav-link" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
   </li>
   {% else %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'register' %}">{% trans "Sign up" %}</a>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="{% url 'login' %}{% if not no_login_redirect and not request.path == logout_url %}?next={{ request.path }}{% endif %}">{% trans 'Login' %}</a>
   </li>

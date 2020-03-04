@@ -59,7 +59,7 @@ def verify(request, type_):
         db_entry.delete()
         return render(
             request,
-            'user/activate.html',
+            'new_ui_foo/user/activate.html',
             {
                 'title': _('Activation Succeded'),
                 'no_login_redirect': True,

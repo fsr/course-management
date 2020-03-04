@@ -28,8 +28,6 @@ def register(request):
             created_user.is_active = False
             created_user.save()
 
-            acc = []
-
             created_user_information = userinformation_form.save(
                 commit=False)
 
@@ -40,14 +38,14 @@ def register(request):
             verification_mail(created_user, 'email',
                                 created_user.email, request)
 
-            acc.append(created_user.email)
+            acc = created_user.email
 
             return render(
                 request,
-                'registration/success.html',
+                'new_ui_foo/registration/success.html',
                 {
                     'title': _('Registration successfull'),
-                    'acc': acc
+                    'mail': acc
                 }
             )
         else:
@@ -58,7 +56,7 @@ def register(request):
 
     return render(
         request,
-        'registration/register.html',
+        'new_ui_foo/registration/register.html',
         {
             'title': _('Registration'),
             'user_form': user_form,
