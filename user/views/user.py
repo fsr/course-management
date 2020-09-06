@@ -21,7 +21,6 @@ def modify(request):
             request.POST, instance=request.user.userinformation)
 
         if user_form.is_valid() and userinformation_form.is_valid():
-
             user.save()
             userinformation_form.save()
             return redirect('user-profile')

@@ -75,7 +75,7 @@
     
       <div class="form-group {% if userinformation_form.accepted_privacy_policy.errors %}has-danger{% endif %}">
         <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="{{ userinformation_form.accepted_privacy_policy.id_for_label }}" name="{{ userinformation_form.accepted_privacy_policy.html_name }}" {% if userinformation_form.accepted_privacy_policy.value %}checked=""{% endif %} required disabled>
+          <input type="checkbox" class="custom-control-input" id="{{ userinformation_form.accepted_privacy_policy.id_for_label }}" name="{{ userinformation_form.accepted_privacy_policy.html_name }}" {% if userinformation_form.accepted_privacy_policy.value %}checked=""{% endif %} required>
           <label class="custom-control-label" for="{{ userinformation_form.accepted_privacy_policy.id_for_label }}">
             {% url 'privacy-policy' as privvylink %}
             {% blocktrans %}
@@ -91,7 +91,6 @@
       </div>
     
       <input type="submit" class="btn btn-primary" value="{% trans 'Submit' %}">
-      <!-- <a href="{% url 'index' %}" type="button" class="btn btn-secondary">{% trans 'Cancel' %}</a> -->
     </form>
   </div>
 </div>

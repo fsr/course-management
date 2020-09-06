@@ -1,5 +1,7 @@
 # A homegrown course management system
 
+**The project is currently undergoing a major overhaul which is mainly UI-focussed but touches almost every aspect of the core code in some way. You can find the current progress [here](https://www.notion.so/feliix42/Course-Manager-Overhaul-d0e2446ad6504b28bb734eab74900263).**
+
 This repository is the home of the [course management system](https://www.ifsr.de/kurse) source code, used by us to manage programming courses we provide to the students of our faculty.
 
 ## Setting up a development environment
