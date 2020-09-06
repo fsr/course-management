@@ -17,7 +17,9 @@ def create(request):
     if request.method == 'POST':
         form = NewsForm(request.POST)
         if form.is_valid():
-            form.save()
+            news_item = form.save(commit=False)
+            news_item.author = "{} {}".format(request.user.first_name, request.user.last_name)
+            news_item.save()
             return redirect('index')
 
     else:

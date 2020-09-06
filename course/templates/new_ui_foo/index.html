@@ -7,7 +7,7 @@
 {% for entry in news %}
 <div class="shadow p-3 mb-5 bg-light rounded">
   <h3>{{ entry.headline }}</h3>
-  <small><i>Ayn Rand</i> - 20.02.2020</small>
+  <small><i>{{ entry.author }}</i> - {{ entry.render_date }}</small>
   <hr>
   <p>{{ entry.render_entry|safe }}</p>
   {% if perms.news.change_news or perms.news.delete_news %}
