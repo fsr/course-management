@@ -55,10 +55,11 @@ class UserForm(UserCreationForm):
 class UserEditForm(ModelForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name')
+        fields = ('first_name', 'last_name', 'email')
         labels = {
             'first_name': _('First Name'),
-            'last_name': _('Last Name')
+            'last_name': _('Last Name'),
+            'email': _("Mail address")
         }
         help_texts = {
             'first_name': _('First part of your public name, which should be your genuine first name. '
@@ -67,6 +68,7 @@ class UserEditForm(ModelForm):
             'last_name': _('Second part of your public name, which should be your genuine familyname. '
                            'If you become a teacher this will be visible to any site visitor. '
                            'Can be modified later'),
+            'email': _('Your mail address'),
         }
 
 

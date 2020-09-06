@@ -1,0 +1,120 @@
+{% extends 'new_ui_foo/base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="mb-4">{% trans 'Change your Profile Information' %}</h1>
+
+<div class="card border-secondary mb-3">
+  <h3 class="card-header">General Information</h3>
+  <div class="card-body">
+    <form action="{% url 'modify-user' %}" method="POST">
+      {% csrf_token %}
+    
+      <div class="form-group {% if user_form.first_name.errors %}has-danger{% endif %}">
+        <label class="col-form-label" for="{{ user_form.first_name.id_for_label }}">{% trans 'First Name' %}</label>
+        <input type="text" class="form-control {% if user_form.first_name.errors %}is-invalid{% endif %}" placeholder="{% trans 'John' %}" id="{{ user_form.first_name.id_for_label }}" name="{{ user_form.first_name.html_name }}" aria-describedby="firstNameHelp" required="" {% if user_form.first_name.value %}value="{{ user_form.first_name.value }}"{% endif %}>
+        {% if user_form.first_name.errors %}
+          <div class="invalid-feedback">
+            {% for err in user_form.first_name.errors %}
+              {{ err }}
+            {% endfor %}
+          </div>
+        {% else %}
+        <small id="firstNameHelp" class="form-text text-muted">{% trans 'Your first name. This, combined with your last name will be used by teachers to verify your attendance in especially congested courses.' %}</small>
+        {% endif %}
+      </div>
+    
+      <div class="form-group {% if user_form.last_name.errors %}has-danger{% endif %}">
+        <label class="col-form-label" for="{{ user_form.last_name.id_for_label }}">{% trans 'Last Name' %}</label>
+        <input type="text" class="form-control {% if user_form.last_name.errors %}is-invalid{% endif %}" placeholder="{% trans 'Galt' %}" id="{{ user_form.last_name.id_for_label }}" name="{{ user_form.last_name.html_name }}" aria-describedby="lastNameHelp" required="" {% if user_form.last_name.value %}value="{{ user_form.last_name.value }}"{% endif %}>
+        {% if user_form.last_name.errors %}
+          <div class="invalid-feedback">
+            {% for err in user_form.last_name.errors %}
+              {{ err }}
+            {% endfor %}
+          </div>
+        {% endif %}
+        <small id="lastNameHelp" class="form-text text-muted">{% trans 'Your last name. This, combined with your first name will be used by teachers to verify your attendance in especially congested courses.' %}</small>
+      </div>
+    
+      <div class="form-group {% if user_form.email.errors %}has-danger{% endif %}">
+        <label class="col-form-label" for="{{ user_form.email.id_for_label }}">{% trans 'Mail address' %}</label>
+        <input type="email" class="form-control {% if user_form.email.errors %}is-invalid{% endif %}" placeholder="{% trans 'john.galt@tu-dresden.de' %}" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.html_name }}" aria-describedby="mailHelp" required="" {% if user_form.email.value %}value="{{ user_form.email.value }}"{% endif %}>
+        {% if user_form.email.errors %}
+          <div class="invalid-feedback">
+            {% for err in user_form.email.errors %}
+              {{ err }}
+            {% endfor %}
+          </div>
+        {% else %}
+        <small id="mailHelp" class="form-text text-muted">{% trans 'We will use this to get in touch with you occasionally.' %}</small>
+        {% endif %}
+      </div>
+    
+      <div class="form-group {% if userinformation_form.description.errors %}has-danger{% endif %}">
+        <label class="col-form-label" for="{{ userinformation_form.description.id_for_label }}">{% trans 'Profile Description' %}</label>
+        <textarea class="form-control {% if userinformation_form.description.errors %}is-invalid{% endif %}" name="{{ userinformation_form.description.html_name }}" id="{{ userinformation_form.description.id_for_label }}" rows="6" aria-describedby="descHelp">{% if userinformation_form.description.value %}{{ userinformation_form.description.value }}{% endif %}</textarea>
+        {% if userinformation_form.description.errors %}
+          <div class="invalid-feedback">
+            {% for err in userinformation_form.description.errors %}
+              {{ err }}
+            {% endfor %}
+          </div>
+        {% else %}
+          <small id="descHelp" class="form-text text-muted">{% trans 'A few words describing yourself. Will be shown on your profile page if you make it visible to other users.' %} {% trans '<a href="https://commonmark.org/help/">Markdown</a> is supported, but refrain from using h1 headings.'%}</small>
+        {% endif %}
+      </div>
+    
+      <div class="form-group">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="{{ userinformation_form.public_profile.id_for_label }}" name="{{ userinformation_form.public_profile.html_name }}" {% if userinformation_form.public_profile.value %}checked=""{% endif %}>
+          <label class="custom-control-label" for="{{ userinformation_form.public_profile.id_for_label }}">{% trans 'Make your profile publicly visible to other registered users.' %}</label>
+        </div>
+      </div>
+    
+      <div class="form-group {% if userinformation_form.accepted_privacy_policy.errors %}has-danger{% endif %}">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="{{ userinformation_form.accepted_privacy_policy.id_for_label }}" name="{{ userinformation_form.accepted_privacy_policy.html_name }}" {% if userinformation_form.accepted_privacy_policy.value %}checked=""{% endif %} required disabled>
+          <label class="custom-control-label" for="{{ userinformation_form.accepted_privacy_policy.id_for_label }}">
+            {% url 'privacy-policy' as privvylink %}
+            {% blocktrans %}
+              You have read our <a href="{{ privvylink }}">Privacy Policy</a> and consent to it.
+            {% endblocktrans %}
+          </label>
+          {% if userinformation_form.accepted_privacy_policy.errors %}
+            <div class="invalid-feedback">
+              {% trans 'You have to consent to the privacy policy to proceed.' %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    
+      <input type="submit" class="btn btn-primary" value="{% trans 'Submit' %}">
+      <!-- <a href="{% url 'index' %}" type="button" class="btn btn-secondary">{% trans 'Cancel' %}</a> -->
+    </form>
+  </div>
+</div>
+
+<div class="card border-danger">
+  <h5 class="card-header">{% trans 'Danger Zone' %}</h5>
+  <div class="card-body">
+    <form action="{% url 'delete-account' %}" method="POST">
+      {% csrf_token %}
+      <p class="card-text">
+        {% blocktrans %}
+          You are about to delete your account. Clicking the red button below will delete your account <strong>immediately and permanently</strong>. All your personal information will be removed from our database, so think twice before taking this step.
+        {% endblocktrans %}
+      </p>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="deleteaccount" name="delete-confirm">
+          <label class="custom-control-label" for="deleteaccount">{% trans 'I understand, please delete my account.' %}</label>
+        </div>
+      </div>
+      <input type="submit" class="btn btn-danger ml-auto" value="{% trans 'Delete my account' %}">
+    </form>
+  </div>
+</div>
+
+{% endblock %}

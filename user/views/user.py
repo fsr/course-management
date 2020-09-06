@@ -16,7 +16,6 @@ def modify(request):
     student = user.userinformation
 
     if request.method == "POST":
-
         user_form = UserEditForm(request.POST, instance=request.user)
         userinformation_form = UserInformationForm(
             request.POST, instance=request.user.userinformation)
@@ -26,15 +25,14 @@ def modify(request):
             user.save()
             userinformation_form.save()
             return redirect('user-profile')
-
     else:
-
         user_form = UserEditForm(instance=request.user)
         userinformation_form = UserInformationForm(
             instance=request.user.userinformation)
+
     return render(
         request,
-        'user/edit.html',
+        'new_ui_foo/user/edit.html',
         {
             'title': '{} {}'.format(user.first_name, user.last_name),
             'user_form': user_form,
@@ -117,16 +115,10 @@ def delete_account(request):
 
         return render(
             None,
-            "user/deletion-success.html",
+            "new_ui_foo/user/deletion-success.html",
             {
                 'title': "Account Deletion Successful"
             }
         )
     else:
-        return render(
-            request,
-            "user/delete-account.html",
-            {
-                "title": "Delete Account"
-            }
-        )
+        return redirect('modify-user')

@@ -29,7 +29,7 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" id="dropdownAbout">{% trans 'About' %}</a>
     <div class="dropdown-menu" aria-labelledby="dropdownAbout">
-      <a class="dropdown-item" href="https://www.ifsr.de/fsr:kontakt">{% trans 'Imprint' %}</a>
+      <a class="dropdown-item" href="https://www.ifsr.de/impressum">{% trans 'Imprint' %}</a>
       <a class="dropdown-item" href="{% url 'privacy-policy' %}">{% trans 'Privacy Policy' %}</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="https://github.com/fsr/course-management/issues/new">{% trans 'Report an Issue' %}</a>
@@ -39,8 +39,13 @@
   <li class="nav-item">
     <a class="nav-link" href="{% url 'user-profile' %}">{% trans 'Your Profile' %}</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'modify-user' %}">{% trans 'Settings' %}</a>
+  <li class="nav-item dropdown">
+    <!-- <a class="nav-link" href="{% url 'modify-user' %}">{% trans 'Settings' %}</a> -->
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" id="dropdownSettings">{% trans 'Settings' %}</a>
+    <div class="dropdown-menu" aria-labelledby="dropdownSettings">
+      <a class="dropdown-item" href="{% url 'modify-user' %}">{% trans 'Profile' %}</a>
+      <a class="dropdown-item" href="{% url 'password_change' %}">{% trans 'Change Password' %}</a>
+    </div>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{% url 'logout' %}">{% trans 'Logout' %}</a>

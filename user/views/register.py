@@ -18,6 +18,9 @@ from user.models import UserInformation, Activation, ACTIVATION_TYPES
 @sensitive_post_parameters('password1', 'password2')
 @sensitive_variables('password1', 'password2')
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         userinformation_form = UserInformationForm(request.POST)
