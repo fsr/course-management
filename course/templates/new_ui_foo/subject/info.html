@@ -44,7 +44,7 @@
         <td>
           {% with course.get_distinct_locations as locs %}
             {% if locs %}
-              {{ locs|join:", " }}
+              {{ locs|join:"<br>" }}
             {% else %}
               <p class="text-muted">{% trans 'No location set.' %}</p>
             {% endif %}

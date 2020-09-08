@@ -121,6 +121,9 @@ class Course(models.Model):
     def get_distinct_locations(self):
         return self.schedule.slots.values_list('location', flat=True).distinct()
 
+    def get_locations(self):
+        return self.schedule.slots.values_list('location', flat=True)
+
     def get_queue(self):
         return Participation.objects.filter(course=self)[self.max_participants:]
 

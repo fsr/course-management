@@ -37,13 +37,13 @@
   </li>
   {% if user.is_authenticated %}
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'user-profile' %}">{% trans 'Your Profile' %}</a>
+    <a class="nav-link" href="{% url 'user-profile' %}">{% trans 'Your Courses' %}</a>
   </li>
   <li class="nav-item dropdown">
     <!-- <a class="nav-link" href="{% url 'modify-user' %}">{% trans 'Settings' %}</a> -->
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" id="dropdownSettings">{% trans 'Settings' %}</a>
     <div class="dropdown-menu" aria-labelledby="dropdownSettings">
-      <a class="dropdown-item" href="{% url 'modify-user' %}">{% trans 'Profile' %}</a>
+      <a class="dropdown-item" href="{% url 'modify-user' %}">{% trans 'Your Profile' %}</a>
       <a class="dropdown-item" href="{% url 'password_change' %}">{% trans 'Change Password' %}</a>
     </div>
   </li>

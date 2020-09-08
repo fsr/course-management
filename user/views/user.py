@@ -49,10 +49,11 @@ def profile(request, user_id=None):
             if not user.userinformation.accepted_privacy_policy:
                 return redirect('privacy-policy-updated')
 
-            template = 'user/profile.html'
+            template = 'new_ui_foo/user/profile.html'
+
             is_own = True
-            teacher = user.userinformation.teacher.filter(archiving='t')
-            attend = user.userinformation.course_set.filter(archiving='t')
+            # construct a list of attended courses that are not yet archived
+            attend = [(p.course, p.course.position_in_queue(user.userinformation)) for p in user.userinformation.participation_set.all() if p.course.archiving == 't']
         else:
             return redirect('login')
     else:
@@ -71,6 +72,7 @@ def profile(request, user_id=None):
             'course_list_show_subject': True,
             'profiled_user': user,
             'is_own': is_own,
+            'attend': attend,
             'title': '{} {}'.format(user.first_name, user.last_name)
         }
     )
