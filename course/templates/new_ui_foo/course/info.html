@@ -21,7 +21,11 @@
           <small><a href="{% url 'add-teacher' course_id %}">{% trans 'edit' %}</a></small>
         {% endif %}
       </div>
-      <p class="card-text">{{ course.teacher.all|join:", " }}</p>
+      <p class="card-text">
+        {% for teacher in course.teacher.all %}
+          <a href="{% url 'user-profile' teacher.user_id %}">{{ teacher }}</a>{% if not forloop.last %},{% endif %}
+        {% endfor %}
+      </p>
     </div>
     <hr class="m-0">
     <div class="card-body">
