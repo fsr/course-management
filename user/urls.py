@@ -16,6 +16,8 @@ urlpatterns = [
     re_path(r'^login/$', auth_views.LoginView.as_view(template_name='new_ui_foo/registration/login.html')),
     path('password_change/', auth_views.PasswordChangeView.as_view(template_name='new_ui_foo/user/change_pass.html')),
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='new_ui_foo/user/change_pass_success.html')),
+    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='new_ui_foo/registration/password-reset.html')),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='new_ui_foo/registration/password-reset-done.html')),
     re_path(r'^contact/(?P<user_id>[0-9]+)/',
         contact.contact_form, name='contact-form'),
     re_path(r'^', include(auth_urls)),

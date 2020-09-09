@@ -13,7 +13,7 @@
   {% csrf_token %}
   {{ form.non_field_errors }}
   <div class="form-group">
-    <label class="col-form-label" for="{{ form.name.id_for_label }}">{% trans 'Headline' %}</label>
+    <label class="col-form-label" for="{{ form.name.id_for_label }}">{% trans 'Name' %}</label>
     <input type="text" class="form-control" name="{{ form.name.html_name }}" id="{{ form.name.id_for_label }}" value="{% if form.name.value %}{{ form.name.value }}{% endif %}">
     {{ form.name.errors }}
   </div>
