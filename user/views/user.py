@@ -41,6 +41,7 @@ def modify(request):
 
 
 def profile(request, user_id=None):
+    attend = []
     if user_id is None:
         if request.user.is_authenticated:
             user = request.user
@@ -63,7 +64,7 @@ def profile(request, user_id=None):
         except User.DoesNotExist:
             return db_error(_('This user does not exist'))
 
-        template = 'user/public-profile.html'
+        template = 'new_ui_foo/user/public_profile.html'
 
     return render(
         request,
