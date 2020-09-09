@@ -9,7 +9,7 @@ from course.models.course import Course
 from course.models.schedule import Schedule, DateSlot, WeeklySlot
 from course.models.subject import Subject
 from course.models.news import News
-from user.forms import AbstractContactForm
+from user.forms import ContactForm
 
 location_validator = RegexValidator(
     r'^.*$', # does absolutely nothing yet
@@ -115,7 +115,7 @@ class AddTeacherForm(forms.Form):
     )
 
 
-class NotifyCourseForm(AbstractContactForm):
+class NotifyCourseForm(ContactForm):
     show_sender = forms.BooleanField(
         initial=False,
         required=False,

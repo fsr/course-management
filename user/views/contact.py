@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 from django.utils.translation import ugettext as _
 
-from user.forms import AbstractContactForm
+from user.forms import ContactForm
 from util.error.reporting import db_error
 
 CONTACT_FOOTER = """
@@ -23,7 +23,7 @@ def contact_form(request: HttpRequest, user_id: int):
     assert isinstance(user, User)
 
     if request.method == 'POST':
-        form = AbstractContactForm(request.POST)
+        form = ContactForm(request.POST)
         if form.is_valid():
             content = form.content + CONTACT_FOOTER + request.user.email
             user.email_user(
@@ -32,7 +32,7 @@ def contact_form(request: HttpRequest, user_id: int):
             )
             return redirect('index')
     else:
-        form = AbstractContactForm()
+        form = ContactForm()
 
     return render(
         request,

@@ -89,7 +89,7 @@ class UserInformationForm(ModelForm):
         }
 
 
-class AbstractContactForm(forms.Form):
+class ContactForm(forms.Form):
     subject = forms.CharField(help_text=_(
         'This will become the subject field of the resulting email.'))
     content = forms.CharField(
@@ -102,13 +102,6 @@ class AbstractContactForm(forms.Form):
         super().clean()
         self.subject = html_clean.clean_all(self.data['subject'])
         self.content = html_clean.clean_all(self.data['content'])
-
-
-class ContactForm(AbstractContactForm):
-    sender = forms.CharField(
-        help_text=_('An email address where the recipient may reach you.'),
-        validators=[validate_email]
-    )
 
 
 class PrivacyAgreementForm(ModelForm):
