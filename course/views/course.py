@@ -14,6 +14,7 @@ from course.models.schedule import Schedule
 from course.models.subject import Subject
 from course.util.permissions import needs_teacher_permissions
 from user.models import UserInformation
+from user.forms import ContactForm
 from util import html_clean
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
@@ -29,6 +30,12 @@ We will explore the universe.
 - a towel
 - lots of courage
 """
+
+CONTACT_FOOTER = """
+-------------------
+This message has been sent via the Course Mangement System.
+Sent by: """
+
 
 
 def course(request: HttpRequest, course_id: str):
@@ -321,7 +328,6 @@ def notify(request: HttpRequest, course_id):
     )
 
 
-@needs_teacher_permissions
 def notify_done(request, course_id):
     return render(
         request,
@@ -368,3 +374,33 @@ def attendee_list(request, course_id):
                 }
         )
     return redirect('course-participants', course_id)
+
+def contact_teachers(request, course_id):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            try:
+                course = Course.objects.get(id=course_id)
+            except Course.DoesNotExist:
+                return db_error(_('Requested course does not exist.'))
+
+            subject = "[CM contact form] " + form.subject
+            content = form.content + CONTACT_FOOTER + request.user.email
+
+            for teacher in course.teacher.all():
+                teacher.user.email_user(subject, content)
+
+            return redirect('contact-teachers-done', course_id)
+
+    else:
+        form = ContactForm()
+
+    return render(
+        request,
+        'new_ui_foo/course/contact-teachers.html',
+        {
+            'title': _('Notify Course'),
+            'form': form,
+            'course_id': course_id
+        }
+    )

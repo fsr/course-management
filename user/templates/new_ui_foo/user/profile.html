@@ -20,7 +20,7 @@
         {% if student.participation_set.count > 0 %}
             <div class="list-group">
                 {% for course, pos_in_queue in attend %}
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start {% if pos_in_queue %}text-muted{% endif %}">
+                    <a href="{% url 'course' course.id %}" class="list-group-item list-group-item-action flex-column align-items-start {% if pos_in_queue %}text-muted{% endif %}">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{ course.subject }} {% trans "course" %}</h5>
                         <small>

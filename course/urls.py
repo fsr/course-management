@@ -37,6 +37,10 @@ urlpatterns = [
             re_path(r'^$', course.notify, name='notify-course'),
             re_path(r'^done/$', course.notify_done, name='notify-course-done'),
         ])),
+        re_path(r'^contact/', include([
+            re_path(r'^$', course.contact_teachers, name='contact-teachers'),
+            re_path(r'^done/$', course.notify_done, name='contact-teachers-done'),
+        ])),
         re_path(r'^register/', include([
             re_path(r'^$', enroll.add, name='register-course'),
             re_path(r'^remove/', include([

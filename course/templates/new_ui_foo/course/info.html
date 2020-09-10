@@ -111,6 +111,7 @@
       {% endif %}
     </div>
     {% if user.is_authenticated %}
+      <div class="d-flex">
       {% if is_teacher %}
         <a href="{% url 'edit-course' course_id %}" type="button" class="btn btn-warning">{% trans 'Edit' %}</a>
         <a href="{% url 'notify-course' course_id %}" type="button" class="btn btn-warning">{% trans 'Notify participants' %}</a>
@@ -130,7 +131,9 @@
             {% endif %}
           </form>
         {% endif %}
+        <a href="{% url 'contact-teachers' course_id %}" class="btn btn-primary">{% trans 'Contact Teachers' %}</a>
       {% endif %}
+      </div>
     {% endif %}
 
     <!-- TODO: show attendee list (generate list), notify course as tabs environment? -->
