@@ -109,6 +109,7 @@ LANGUAGES = (
 )
 
 TIME_ZONE = 'Europe/Berlin'
+DATE_FORMAT = 'j.m.Y'
 
 USE_I18N = True
 
