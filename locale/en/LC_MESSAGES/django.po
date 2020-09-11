@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-26 12:55+0200\n"
+"POT-Creation-Date: 2020-09-11 21:36+0200\n"
 "PO-Revision-Date: 2019-10-26 12:55+0200\n"
 "Last-Translator: Felix Wittwer <dev@felixwittwer.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,28 +148,31 @@ msgstr ""
 msgid "one time"
 msgstr ""
 
-#: course/settings.py:108
+#: course/settings.py:109
 msgid "English"
 msgstr ""
 
-#: course/settings.py:109
+#: course/settings.py:110
 msgid "German"
 msgstr ""
 
-#: course/templates/base-shell.html:8 course/templates/base-shell.html:16
+#: course/templates/base-shell.html:9 course/templates/base-shell.html:17
+#: course/templates/new_ui_foo/base-shell.html:10
+#: course/templates/new_ui_foo/base-shell.html:16
 msgid "Course Manager"
 msgstr ""
 
-#: course/templates/base-shell.html:57
+#: course/templates/base-shell.html:58 course/templates/new_ui_foo/base.html:32
 msgid "Imprint"
 msgstr ""
 
-#: course/templates/base-shell.html:57 course/templates/privacy.html:5
-#: course/views/index.py:23 user/forms.py:82
+#: course/templates/base-shell.html:58 course/templates/new_ui_foo/base.html:33
+#: course/templates/new_ui_foo/privacy.html:5 course/views/index.py:22
+#: user/forms.py:84
 msgid "Privacy Policy"
 msgstr ""
 
-#: course/templates/base-shell.html:57
+#: course/templates/base-shell.html:58 course/templates/new_ui_foo/base.html:35
 msgid "Report an Issue"
 msgstr ""
 
@@ -189,11 +192,11 @@ msgstr ""
 msgid "Change pass"
 msgstr ""
 
-#: course/templates/base.html:22
+#: course/templates/base.html:22 course/templates/new_ui_foo/base.html:51
 msgid "Logout"
 msgstr ""
 
-#: course/templates/base.html:27
+#: course/templates/base.html:27 course/templates/new_ui_foo/base.html:55
 msgid "Sign up"
 msgstr ""
 
@@ -206,6 +209,7 @@ msgid "Language"
 msgstr ""
 
 #: course/templates/base.html:67 course/templates/base.html:69
+#: course/templates/new_ui_foo/base.html:10
 msgid "Subjects"
 msgstr ""
 
@@ -217,262 +221,6 @@ msgstr ""
 msgid "Complete overview"
 msgstr ""
 
-#: course/templates/course/attendee-list-select.html:7
-msgid "Number of slots to generate."
-msgstr ""
-
-#: course/templates/course/attendee-list-select.html:9
-msgid "Generate"
-msgstr ""
-
-#: course/templates/course/attendee-list.html:23
-msgid "Dates"
-msgstr ""
-
-#: course/templates/course/create.html:4
-msgid "On this page you can create a new course."
-msgstr ""
-
-#: course/templates/course/create.html:5
-msgid "You'll automatically be assigned as teacher for this course"
-msgstr ""
-
-#: course/templates/course/create.html:6
-msgid ""
-", so that you may be able to edit it. You can assign new teachers once the "
-"course is created"
-msgstr ""
-
-#: course/templates/course/create.html:7
-msgid "and even unassign yourself as teacher"
-msgstr ""
-
-#: course/templates/course/create.html:13
-msgid "Create"
-msgstr ""
-
-#: course/templates/course/edit.html:7
-msgid ""
-"You can edit the description for your course here. You may use markdown to "
-"do so."
-msgstr ""
-
-#: course/templates/course/edit.html:19 course/templates/subject/info.html:24
-msgid "Delete"
-msgstr ""
-
-#: course/templates/course/forms/register.html:4
-#: course/templates/course/info.html:100
-msgid "register"
-msgstr ""
-
-#: course/templates/course/forms/unregister.html:4
-msgid "unregister"
-msgstr ""
-
-#: course/templates/course/info.html:8 course/templates/course_list.html:35
-msgid "Teachers"
-msgstr ""
-
-#: course/templates/course/info.html:14
-msgid "Add/Remove teachers"
-msgstr ""
-
-#: course/templates/course/info.html:21 course/templates/course_list.html:37
-msgid "Participants"
-msgstr ""
-
-#: course/templates/course/info.html:24
-msgid "of"
-msgstr ""
-
-#: course/templates/course/info.html:28
-msgid "Generate attendee list"
-msgstr ""
-
-#: course/templates/course/info.html:33
-msgid "Schedule"
-msgstr ""
-
-#: course/templates/course/info.html:47
-msgid "No schedule has been set."
-msgstr ""
-
-#: course/templates/course/info.html:52
-msgid "Edit schedule"
-msgstr ""
-
-#: course/templates/course/info.html:57
-msgid "Status"
-msgstr ""
-
-#: course/templates/course/info.html:59 course/templates/course_list.html:59
-#: course/templates/course_list.html:67
-msgid "This course is currently"
-msgstr ""
-
-#: course/templates/course/info.html:59 course/templates/course_list.html:59
-msgid "active"
-msgstr ""
-
-#: course/templates/course/info.html:59 course/templates/course_list.html:59
-#: course/templates/course_list.html:67
-msgid "suspended"
-msgstr ""
-
-#: course/templates/course/info.html:65
-msgid "Suspend course (unenrolls all participants)"
-msgstr ""
-
-#: course/templates/course/info.html:65
-msgid "Set course active"
-msgstr ""
-
-#: course/templates/course/info.html:74
-msgid "Administrative actions"
-msgstr ""
-
-#: course/templates/course/info.html:77 course/views/course.py:109
-msgid "Edit course"
-msgstr ""
-
-#: course/templates/course/info.html:78
-msgid "Notify course"
-msgstr ""
-
-#: course/templates/course/info.html:84 course/templates/course/info.html:98
-msgid "Actions"
-msgstr ""
-
-#: course/templates/course/info.html:91 course/templates/course_list.html:69
-msgid "This course is full"
-msgstr ""
-
-#: course/templates/course/info.html:100
-msgid "Log in"
-msgstr ""
-
-#: course/templates/course/info.html:100
-msgid "or"
-msgstr ""
-
-#: course/templates/course/info.html:100
-msgid "to join this course"
-msgstr ""
-
-#: course/templates/course/info.html:109
-msgid "No description provided for this course."
-msgstr ""
-
-#: course/templates/course/notify-done.html:5
-msgid "Your students have successfully been notified."
-msgstr ""
-
-#: course/templates/course/notify.html:5
-msgid ""
-"You can use this form to send an email to all people enrolled in your course."
-msgstr ""
-
-#: course/templates/course/notify.html:6
-msgid ""
-"Be aware that lots of email spam will most likely put off your students."
-msgstr ""
-
-#: course/templates/course/notify.html:13 user/templates/contact-form.html:14
-msgid "Send"
-msgstr ""
-
-#: course/templates/course/participants.html:17
-msgid "kick"
-msgstr ""
-
-#: course/templates/course/participants.html:22
-msgid ""
-"Oh no, there don't seem to be any students enrolled in this course yet :(, "
-"perhaps you should advertise more."
-msgstr ""
-
-#: course/templates/course/teacher.html:12 course/templates/course/time.html:21
-msgid "Remove"
-msgstr ""
-
-#: course/templates/course/teacher.html:24 course/templates/course/time.html:33
-msgid "Add"
-msgstr ""
-
-#: course/templates/course/time.html:8
-msgid "Slot"
-msgstr ""
-
-#: course/templates/course/time.html:9
-msgid "Location"
-msgstr ""
-
-#: course/templates/course/time.html:10 course/templates/subject/info.html:18
-#: user/templates/user/profile.html:27
-msgid "Edit"
-msgstr ""
-
-#: course/templates/course_list.html:2
-msgid "No dates set yet"
-msgstr ""
-
-#: course/templates/course_list.html:27
-msgid "Timeslots"
-msgstr ""
-
-#: course/templates/course_list.html:41
-msgid "Locations"
-msgstr ""
-
-#: course/templates/course_list.html:46
-msgid "No location set."
-msgstr ""
-
-#: course/templates/course_list.html:52
-msgid "This course is free for everyone to join."
-msgstr ""
-
-#: course/templates/course_list.html:58
-msgid "You are teacher"
-msgstr ""
-
-#: course/templates/course_list.html:62
-msgid "You are enrolled. ✅"
-msgstr ""
-
-#: course/templates/enroll/response.html:9
-#, python-format
-msgid ""
-"\n"
-"\t\t\t    Your subscription to the course %(s)s was unsuccessful.\n"
-"\t\t\t"
-msgstr ""
-
-#: course/templates/enroll/response.html:13
-#, python-format
-msgid ""
-"\n"
-"\t\t\t    Your subscription to the course %(s)s was successful.\n"
-"\t\t\t"
-msgstr ""
-
-#: course/templates/enroll/response.html:19
-#, python-format
-msgid ""
-"\n"
-"\t\t\t    Your unsubscription to the course %(s)s was unsuccessful.\n"
-"\t\t    "
-msgstr ""
-
-#: course/templates/enroll/response.html:23
-#, python-format
-msgid ""
-"\n"
-"\t\t\t    Your unsubscription to the course %(s)s was successful.\n"
-"\t\t\t"
-msgstr ""
-
 #: course/templates/error/db.html:6
 msgid "Sorry, an error with our database occurred."
 msgstr ""
@@ -481,109 +229,605 @@ msgstr ""
 msgid "Database Error"
 msgstr ""
 
-#: course/templates/index.html:5 course/templates/news/overview.html:5
-msgid "Current news on the courses"
+#: course/templates/new_ui_foo/base.html:7
+msgid "News"
 msgstr ""
 
-#: course/templates/index.html:15 course/views/news.py:69
-msgid "Edit News"
+#: course/templates/new_ui_foo/base.html:14
+msgid "Create..."
 msgstr ""
 
-#: course/templates/index.html:18
-msgid "Delete News"
+#: course/templates/new_ui_foo/base.html:17 course/views/subject.py:79
+msgid "New Subject"
 msgstr ""
 
-#: course/templates/index.html:26
-msgid "Add News"
+#: course/templates/new_ui_foo/base.html:20 course/views/course.py:196
+msgid "New Course"
 msgstr ""
 
-#: course/templates/index.html:28 course/views/news.py:100
-msgid "News Overview"
+#: course/templates/new_ui_foo/base.html:24
+msgid "News Item"
 msgstr ""
 
-#: course/templates/index.html:34
-msgid "Current subjects available"
+#: course/templates/new_ui_foo/base.html:30
+msgid "About"
 msgstr ""
 
-#: course/templates/index.html:40
+#: course/templates/new_ui_foo/base.html:40
+#: user/templates/new_ui_foo/user/profile.html:6
+msgid "Your Courses"
+msgstr ""
+
+#: course/templates/new_ui_foo/base.html:43
+#: course/templates/new_ui_foo/base.html:44
+msgid "Settings"
+msgstr ""
+
+#: course/templates/new_ui_foo/base.html:46
+msgid "Your Profile"
+msgstr ""
+
+#: course/templates/new_ui_foo/base.html:47
+#: user/templates/new_ui_foo/user/change_pass.html:7
+msgid "Change Password"
+msgstr ""
+
+#: course/templates/new_ui_foo/base.html:58
+#: user/templates/new_ui_foo/registration/login.html:36
+msgid "Login"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/attendee-list.html:23
+msgid "Dates"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/attendees.html:5
+msgid "Attendees"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/attendees.html:11
+msgid "Participant"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/attendees.html:28
+#: course/templates/new_ui_foo/course/teachers.html:27
+#: course/templates/new_ui_foo/course/timetable.html:27
+msgid "Remove"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/attendees.html:37
+msgid "Generate Attendee List"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/attendees.html:40
+msgid ""
+"\n"
+"      Using this form you may generate an attendee list you can use to "
+"verify whether all enrolled students show up for your courses. While "
+"attendance is by all means neither necessary nor enforcable, you can use "
+"this to kick any repeated no-shows to free up space for new particiants.\n"
+"      "
+msgstr ""
+
+#: course/templates/new_ui_foo/course/attendees.html:47
+msgid "Number of slots"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/attendees.html:50
+msgid "Generate"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/attendees.html:55
+msgid ""
+"There are no participants yet. Make sure your course is active and visible."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/attendees.html:58
+#: course/templates/new_ui_foo/course/contact-teachers.html:54
+#: course/templates/new_ui_foo/course/notify.html:62
+#: course/templates/new_ui_foo/course/teachers.html:57
+#: course/templates/new_ui_foo/course/timetable.html:101
+msgid "back"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/contact-teachers.html:6
+#: course/templates/new_ui_foo/course/info.html:134
+msgid "Contact Teachers"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/contact-teachers.html:9
+msgid ""
+"\n"
+"  You can use this form to send an email to the teachers of your selected "
+"course.\n"
+"  <i>Please note:</i> By contacting the teachers you agree to share the mail "
+"address you provided with the contacted users. These users may use this "
+"address at their discretion to respond or reach out to you in the future.\n"
+"  "
+msgstr ""
+
+#: course/templates/new_ui_foo/course/contact-teachers.html:26
+#: course/templates/new_ui_foo/course/edit.html:32
+#: course/templates/new_ui_foo/course/notify.html:27
+#: course/templates/new_ui_foo/subject/overview.html:12
+#: user/templates/new_ui_foo/contact-form.html:23
 msgid "Subject"
 msgstr ""
 
-#: course/templates/index.html:41
-msgid "Number of courses"
+#: course/templates/new_ui_foo/course/contact-teachers.html:35
+#: course/templates/new_ui_foo/course/notify.html:36
+msgid "The subject of the mail you are about to write."
 msgstr ""
 
-#: course/templates/news/create.html:7 course/templates/subject/create.html:7
-msgid " Create "
+#: course/templates/new_ui_foo/course/contact-teachers.html:40
+#: course/templates/new_ui_foo/course/notify.html:48
+msgid "Mail Body"
 msgstr ""
 
-#: course/templates/news/edit.html:7
-msgid " Modify "
+#: course/templates/new_ui_foo/course/contact-teachers.html:49
+#: course/templates/new_ui_foo/course/notify.html:57
+msgid "The mail body. Please note that this will be sent as plain text mail."
 msgstr ""
 
-#: course/templates/subject/edit.html:11 user/templates/user/edit.html:17
+#: course/templates/new_ui_foo/course/contact-teachers.html:53
+#: course/templates/new_ui_foo/course/notify.html:61
+#: user/templates/new_ui_foo/contact-form.html:35
+msgid "Send"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:6
+msgid "Add Course"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:9
+msgid ""
+"\n"
+"    Using this form, you can create a new course.\n"
+"    You will automatically be assigned as teacher so that you are able to "
+"edit it.\n"
+"    After you are done you can assign new teachers and remove yourself from "
+"the teachers list.\n"
+"    "
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:18
+msgid "Edit Course"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:48 user/forms.py:83
+msgid "Description"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:57
+msgid "A description for your course."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:57
+msgid ""
+"<a href=\"https://commonmark.org/help/\">Markdown</a> is supported, but "
+"please refrain from using Headlines larger than h4 (####)."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:62
+msgid "Maximal number of participants"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:63
+msgid "Please enter a number"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:71
+msgid ""
+"How many students are allowed to enroll for a course. The rest will be "
+"placed on the waiting list. The ideal teacher-student ratio is usually 1:15."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:77
+msgid "Start Time"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:89
+msgid "End Time"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:102
+msgid "Schedule Type"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:120
+msgid ""
+"Set the course <strong>active</strong> and allow enrollments right away."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:127
+msgid "Make the course <strong>visible</strong> in the course list."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:132
+msgid "Archiving Behavior"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:147
+#: course/templates/new_ui_foo/news/edit.html:28
+#: course/templates/new_ui_foo/subject/edit.html:35
+msgid "Save"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/edit.html:148
+#: course/templates/new_ui_foo/news/edit.html:29
+#: course/templates/new_ui_foo/subject/edit.html:36
+#: user/templates/new_ui_foo/contact-form.html:36
 msgid "Cancel"
 msgstr ""
 
-#: course/templates/subject/edit.html:14
-msgid "Done"
+#: course/templates/new_ui_foo/course/edit.html:157
+#: course/templates/new_ui_foo/index.html:20
+#: course/templates/new_ui_foo/subject/info.html:17
+msgid "Delete"
 msgstr ""
 
-#: course/templates/subject/info.html:14
-msgid "Create new course"
+#: course/templates/new_ui_foo/course/info.html:12
+msgid "Course Info"
 msgstr ""
 
-#: course/templates/subject/overview.html:4 course/views/subject.py:48
-msgid "Subject Overview"
+#: course/templates/new_ui_foo/course/info.html:16
+msgid "General Information"
 msgstr ""
 
-#: course/templates/subject/overview.html:6
-msgid "Right now, we offer courses on the following topics:"
+#: course/templates/new_ui_foo/course/info.html:19
+#: course/templates/new_ui_foo/subject/info.html:29
+msgid "Teachers"
 msgstr ""
 
-#: course/templates/subject/overview.html:11
+#: course/templates/new_ui_foo/course/info.html:21
+#: course/templates/new_ui_foo/course/info.html:35
+#: course/templates/new_ui_foo/course/info.html:53
+msgid "edit"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:33
+#: course/templates/new_ui_foo/course/timetable.html:59
+#: course/templates/new_ui_foo/subject/info.html:26
+msgid "Timeslot"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:44
+#: course/templates/new_ui_foo/subject/info.html:41
+msgid "No dates set yet."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:51
+#: course/templates/new_ui_foo/course/timetable.html:11
+#: course/templates/new_ui_foo/course/timetable.html:89
+#: course/templates/new_ui_foo/subject/info.html:27
+msgid "Location"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:60
+#: course/templates/new_ui_foo/subject/info.html:49
+msgid "No location set."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:67
+msgid "Participants"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:69
+msgid "list"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:73
+msgid "waiting"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:78
+#: course/templates/new_ui_foo/subject/info.html:28
+msgid "Status"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:81
+#: course/templates/new_ui_foo/subject/info.html:56
+msgid "full"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:83
+msgid "available"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:86
+#: course/templates/new_ui_foo/subject/info.html:61
+msgid "unavailable"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:95
+msgid "You are on the waiting list"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:95
+msgid "Position"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:99
+msgid "You are enrolled."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:105
+msgid "Course Description"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:110
+msgid "This course has no description."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:116
+#: course/templates/new_ui_foo/index.html:17
+#: course/templates/new_ui_foo/subject/info.html:12
+msgid "Edit"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:117
+msgid "Notify participants"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:122
+msgid "Unenroll"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:128
+msgid "Enroll"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/info.html:130
+msgid "Waiting List"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/notify-done.html:6
+msgid "Your message has been sent successfully."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/notify-done.html:9
+msgid "Course Overview"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/notify.html:6
+msgid "Notify Participants"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/notify.html:9
+msgid ""
+"\n"
+"  You can use this form to send an email to all people enrolled in your "
+"course.\n"
+"  This also includes any person on the waiting list.\n"
+"  <i>Please note:</i> Writing your students too often might lead to mails "
+"losing their effect so use this feature wisely.\n"
+"  "
+msgstr ""
+
+#: course/templates/new_ui_foo/course/notify.html:43
+msgid "Reveal your mail address as sender."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/teachers.html:5
+msgid "Course Teachers"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/teachers.html:10
+msgid "Teacher"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/teachers.html:11
+#: course/templates/new_ui_foo/course/teachers.html:43 user/forms.py:40
+#: user/templates/new_ui_foo/registration/register.html:58
+msgid "Username"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/teachers.html:36
+msgid "Add Teacher"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/teachers.html:41
+msgid ""
+"Teachers gain full administrative rights for the courses they teach. They "
+"may alter course description, time table, rooms and name other users as "
+"teacher. Additionally, they can see and edit the list of participants."
+msgstr ""
+
+#: course/templates/new_ui_foo/course/teachers.html:56
+#: course/templates/new_ui_foo/course/timetable.html:100
+msgid "Add"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/timetable.html:5
+msgid "Timetable"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/timetable.html:10
+msgid "Slot"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/timetable.html:36
+msgid "Add Slot"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/timetable.html:43
+msgid "Weekday"
+msgstr ""
+
+#: course/templates/new_ui_foo/course/timetable.html:76
+msgid "Date and Time"
+msgstr ""
+
+#: course/templates/new_ui_foo/error/404.html:5
+msgid "Page not found"
+msgstr ""
+
+#: course/templates/new_ui_foo/error/404.html:8
+msgid ""
+"\n"
+"        The page you requested has never existed or was deleted. Either way, "
+"it's not here. It may exist in the future, but right now you've hit a dead "
+"end. Move on, young surfer.\n"
+"    "
+msgstr ""
+
+#: course/templates/new_ui_foo/error/500.html:5
+msgid "Internal Server Error"
+msgstr ""
+
+#: course/templates/new_ui_foo/error/500.html:8
+msgid ""
+"\n"
+"        Your server experienced an internal error while processing your "
+"request. Sorry! The maintainers of the project have already been notified "
+"via mail, but if you run into this more often, consider filing a bug over on "
+"GitHub.\n"
+"    "
+msgstr ""
+
+#: course/templates/new_ui_foo/index.html:5
+msgid "Current News"
+msgstr ""
+
+#: course/templates/new_ui_foo/index.html:28
+msgid "There are currently no news."
+msgstr ""
+
+#: course/templates/new_ui_foo/index.html:33
+msgid "Welcome to the Course Management System!"
+msgstr ""
+
+#: course/templates/new_ui_foo/index.html:34
+msgid ""
+"\n"
+"    <p>Welcome! It's nice to see you here. This is the course management "
+"system operated by the student representatives of the Computer Science "
+"faculty at TU Dresden. Here, you can enroll for various programming courses "
+"that are offered in the current semester.</p>\n"
+"    <p>Usually, all courses we offer are held by fellow students who have "
+"taken a particular interest in sharing their knowledge about programming "
+"languages and techniques with others. While these courses are therefore not "
+"acknowledged by the examination office, you can use them to learn new skills "
+"or programming languages.</p>\n"
+"  "
+msgstr ""
+
+#: course/templates/new_ui_foo/news/edit.html:6
+msgid "Add News"
+msgstr ""
+
+#: course/templates/new_ui_foo/news/edit.html:9 course/views/news.py:72
+msgid "Edit News"
+msgstr ""
+
+#: course/templates/new_ui_foo/news/edit.html:16
+msgid "Headline"
+msgstr ""
+
+#: course/templates/new_ui_foo/news/edit.html:22
+#: user/templates/new_ui_foo/contact-form.html:29
+msgid "Entry"
+msgstr ""
+
+#: course/templates/new_ui_foo/news/edit.html:24
+msgid ""
+"<a href=\"https://commonmark.org/help/\">Markdown</a> is supported. Try to "
+"avoid using additional headings."
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/edit.html:6
+msgid "Add Subject"
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/edit.html:9
+msgid "Edit Subject"
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/edit.html:16
 msgid "Name"
 msgstr ""
 
-#: course/templates/subject/overview.html:12
-msgid "Courses"
+#: course/templates/new_ui_foo/subject/edit.html:22
+msgid "German Description"
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/edit.html:24
+msgid "A german description for the subject."
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/edit.html:24
+#: course/templates/new_ui_foo/subject/edit.html:31
+msgid "<a href=\"https://commonmark.org/help/\">Markdown</a> is supported."
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/edit.html:29
+msgid "English Description"
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/edit.html:31
+msgid "An english description for the subject."
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/info.html:5
+msgid "Course List"
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/info.html:65
+#: course/templates/new_ui_foo/subject/overview.html:22
+#: course/templates/new_ui_foo/subject/overview.html:30
+msgid "Info"
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/overview.html:5
+msgid "Subjects List"
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/overview.html:7
+msgid ""
+"These are the subjects we offer courses for. If you feel this list is too "
+"short or it contains a subject you consider yourself proficient in, please "
+"do not hesitate to reach out to us and come aboard!"
+msgstr ""
+
+#: course/templates/new_ui_foo/subject/overview.html:13
+msgid "Offered Courses"
 msgstr ""
 
 #: course/util/permissions.py:29
 msgid "This course does not seem to exist, sorry."
 msgstr ""
 
-#: course/views/course.py:61 course/views/course.py:75
-#: course/views/course.py:91 course/views/course.py:132
-#: course/views/course.py:194 course/views/course.py:213
-#: course/views/course.py:268 course/views/course.py:283
-#: course/views/course.py:327 course/views/course.py:340
-#: course/views/enroll.py:21 course/views/enroll.py:44
-#: course/views/enroll.py:63 course/views/time.py:24
+#: course/views/course.py:73 course/views/course.py:87
+#: course/views/course.py:103 course/views/course.py:147
+#: course/views/course.py:210 course/views/course.py:229
+#: course/views/course.py:283 course/views/course.py:298
+#: course/views/course.py:347 course/views/course.py:360
+#: course/views/course.py:385 course/views/enroll.py:21
+#: course/views/enroll.py:42 course/views/time.py:24
 msgid "Requested course does not exist."
 msgstr ""
 
-#: course/views/course.py:181
-msgid "New Course"
+#: course/views/course.py:122
+msgid "Edit course"
 msgstr ""
 
-#: course/views/course.py:205
+#: course/views/course.py:221
 msgid "Edit Teachers"
 msgstr ""
 
-#: course/views/course.py:235
-msgid "The username you entered does not exist in my database, sorry :("
+#: course/views/course.py:251
+msgid "The username you entered does not exist."
 msgstr ""
 
-#: course/views/course.py:270
+#: course/views/course.py:285
 msgid "Requested student does not exist."
 msgstr ""
 
-#: course/views/course.py:309
+#: course/views/course.py:324 course/views/course.py:402
 msgid "Notify Course"
 msgstr ""
 
-#: course/views/course.py:329
+#: course/views/course.py:349
 msgid "Requested student is not enrolled in this course."
 msgstr ""
 
@@ -591,11 +835,7 @@ msgstr ""
 msgid "You are already enrolled in this course."
 msgstr ""
 
-#: course/views/enroll.py:27
-msgid "Sorry, this course is full."
-msgstr ""
-
-#: course/views/enroll.py:50
+#: course/views/enroll.py:48
 msgid "You do not seem to be enrolled in this course."
 msgstr ""
 
@@ -603,21 +843,21 @@ msgstr ""
 msgid "Welcome"
 msgstr ""
 
-#: course/views/news.py:35
+#: course/views/news.py:37
 msgid "New News"
 msgstr ""
 
-#: course/views/news.py:54 course/views/news.py:89
+#: course/views/news.py:57 course/views/news.py:93
 msgid "Requested News does not exist."
 msgstr ""
 
-#: course/views/subject.py:19 course/views/subject.py:88
-#: course/views/subject.py:119
+#: course/views/subject.py:19 course/views/subject.py:92
+#: course/views/subject.py:124
 msgid "Requested subject does not exist."
 msgstr ""
 
-#: course/views/subject.py:76
-msgid "New Subject"
+#: course/views/subject.py:50
+msgid "Subject Overview"
 msgstr ""
 
 #: course/views/time.py:50
@@ -645,15 +885,15 @@ msgid "E-Mail address"
 msgstr ""
 
 #: user/forms.py:38 user/forms.py:60
+#: user/templates/new_ui_foo/registration/register.html:18
+#: user/templates/new_ui_foo/user/edit.html:15
 msgid "First Name"
 msgstr ""
 
 #: user/forms.py:39 user/forms.py:61
+#: user/templates/new_ui_foo/registration/register.html:32
+#: user/templates/new_ui_foo/user/edit.html:29
 msgid "Last Name"
-msgstr ""
-
-#: user/forms.py:40 user/templates/user/profile.html:8
-msgid "Username"
 msgstr ""
 
 #: user/forms.py:43
@@ -662,14 +902,14 @@ msgid ""
 "to this adress."
 msgstr ""
 
-#: user/forms.py:45 user/forms.py:64
+#: user/forms.py:45 user/forms.py:65
 msgid ""
 "First part of your public name, which should be your genuine first name. If "
 "you become a teacher this will be visible to any site visitor. Can be "
 "modified later."
 msgstr ""
 
-#: user/forms.py:48 user/forms.py:67
+#: user/forms.py:48 user/forms.py:68
 msgid ""
 "Second part of your public name, which should be your genuine familyname. If "
 "you become a teacher this will be visible to any site visitor. Can be "
@@ -680,39 +920,42 @@ msgstr ""
 msgid "Unique username. Used for login. (cannot be changed later)."
 msgstr ""
 
-#: user/forms.py:80
+#: user/forms.py:62
+#: user/templates/new_ui_foo/registration/password-reset.html:14
+#: user/templates/new_ui_foo/registration/register.html:44
+#: user/templates/new_ui_foo/user/edit.html:42
+msgid "Mail address"
+msgstr ""
+
+#: user/forms.py:71
+msgid "Your mail address"
+msgstr ""
+
+#: user/forms.py:82
 msgid "Public Profile"
 msgstr ""
 
-#: user/forms.py:81
-msgid "Description"
-msgstr ""
-
-#: user/forms.py:85
+#: user/forms.py:87
 msgid "Tell something about yourself. (Markdown enabled) Links are allowed."
 msgstr ""
 
-#: user/forms.py:86
+#: user/forms.py:88
 msgid ""
 "You have read our <a href=\"/privacy-policy/\" style=\"color:#9ACC00 !"
 "important;\">Privacy Policy</a> and consent to it."
 msgstr ""
 
-#: user/forms.py:92
+#: user/forms.py:94
 msgid "This will become the subject field of the resulting email."
 msgstr ""
 
-#: user/forms.py:95
+#: user/forms.py:97
 msgid ""
 "This will be the content of the email. HTML is not allowed and any html tags "
 "will be removed."
 msgstr ""
 
-#: user/forms.py:107
-msgid "An email address where the recipient may reach you."
-msgstr ""
-
-#: user/forms.py:120
+#: user/forms.py:115
 msgid "I have read the Privacy Policy and consent to it."
 msgstr ""
 
@@ -720,101 +963,349 @@ msgstr ""
 msgid "You must agree to the privacy policy to use our services."
 msgstr ""
 
-#: user/templates/contact-form.html:6
+#: user/templates/new_ui_foo/contact-form.html:7
 msgid "Contact"
 msgstr ""
 
-#: user/templates/registration/login.html:7
+#: user/templates/new_ui_foo/contact-form.html:11
 msgid ""
-"Your account doesn't have access to this page. To proceed, please login with "
-"an account that has access."
+"\n"
+"                By contacting a user you agree to share the mail address you "
+"provided with the contacted user. This user may use this address to respond "
+"or reach out to you in the future.\n"
+"            "
 msgstr ""
 
-#: user/templates/registration/login.html:9
+#: user/templates/new_ui_foo/registration/login.html:9
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has the appropriate rights."
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/login.html:11
 msgid "Please login to see this page."
 msgstr ""
 
-#: user/templates/registration/login.html:18
-#: user/templates/registration/register.html:18
+#: user/templates/new_ui_foo/registration/login.html:39
+msgid "Lost password?"
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/logout.html:9
+msgid "You have been successfully logged out."
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/password-reset-done.html:7
+msgid ""
+"\n"
+"    We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly.\n"
+"\n"
+"    If you don't receive an email, please make sure you've entered the "
+"address you registered with, and check your spam folder.\n"
+"    "
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/password-reset.html:7
+msgid "Password Reset"
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/password-reset.html:9
+msgid ""
+"Forgot your password? Don't sweat! Just enter your email address below and "
+"we will send you instructions for setting a new password."
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/password-reset.html:15
+#: user/templates/new_ui_foo/registration/register.html:45
+#: user/templates/new_ui_foo/user/edit.html:43
+msgid "john.galt@tu-dresden.de"
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/password-reset.html:25
+#: user/templates/new_ui_foo/registration/register.html:135
+#: user/templates/new_ui_foo/user/change_pass.html:48
+#: user/templates/new_ui_foo/user/edit.html:93
 #: user/templates/user/privacy-agreement.html:20
 msgid "Submit"
 msgstr ""
 
-#: user/templates/registration/login.html:25
-msgid "Lost password?"
+#: user/templates/new_ui_foo/registration/register.html:6
+msgid "Create a new account"
 msgstr ""
 
-#: user/templates/registration/logout.html:5
-msgid "You have been logged out successfully."
-msgstr ""
-
-#: user/templates/registration/success.html:6
-msgid "You successfully registered your account!"
-msgstr ""
-
-#: user/templates/registration/success.html:7
-msgid "We sent verification mails to the following email accounts:"
-msgstr ""
-
-#: user/templates/registration/success.html:13
-msgid "These mails contain an account activation link."
-msgstr ""
-
-#: user/templates/registration/success.html:14
-msgid "Please validate all of these email accounts."
-msgstr ""
-
-#: user/templates/user/activate.html:11
-msgid "Your account has been successfully activated."
-msgstr ""
-
-#: user/templates/user/delete-account.html:5
-msgid "Account Deletion"
-msgstr ""
-
-#: user/templates/user/delete-account.html:7
+#: user/templates/new_ui_foo/registration/register.html:9
 msgid ""
-"You are about to delete your account. Clicking the red button below will "
-"delete your account <b>immediately and permanently</b>. All your personal "
-"information will be removed from our database, so think twice before taking "
-"this step."
+"\n"
+"  You are about to create an account for the course management system "
+"operated by the student representatives of TU Dresden's Computer Science "
+"faculty. We just need to know some things about you to get going.\n"
+"  "
 msgstr ""
 
-#: user/templates/user/delete-account.html:12
+#: user/templates/new_ui_foo/registration/register.html:19
+#: user/templates/new_ui_foo/user/edit.html:16
+msgid "John"
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:27
+msgid ""
+"Your first name. This, combined with your last name will be used by teachers "
+"to verify your attendance in expecially congested courses."
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:33
+#: user/templates/new_ui_foo/user/edit.html:30
+msgid "Galt"
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:53
+#: user/templates/new_ui_foo/user/edit.html:51
+msgid "We will use this to get in touch with you occasionally."
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:67
+msgid "A non-changeable unique username to your account."
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:72
+msgid "Password"
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:81
+#: user/templates/new_ui_foo/user/change_pass.html:33
+msgid "You know the drill. Make it a good one, don\\"
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:86
+#: user/templates/new_ui_foo/user/change_pass.html:38
+msgid "Confirmation"
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:98
+#: user/templates/new_ui_foo/user/edit.html:56
+msgid "Profile Description"
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:107
+#: user/templates/new_ui_foo/user/edit.html:65
+msgid ""
+"A few words describing yourself. Will be shown on your profile page if you "
+"make it visible to other users."
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:107
+#: user/templates/new_ui_foo/user/edit.html:65
+msgid ""
+"<a href=\"https://commonmark.org/help/\">Markdown</a> is supported, but "
+"refrain from using h1 headings."
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:114
+#: user/templates/new_ui_foo/user/edit.html:72
+msgid "Make your profile publicly visible to other registered users."
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:123
+#, python-format
+msgid ""
+"\n"
+"          You have read our <a href=\"%(privvylink)s\">Privacy Policy</a> "
+"and consent to it.\n"
+"        "
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/register.html:129
+#: user/templates/new_ui_foo/user/edit.html:87
+msgid "You have to consent to the privacy policy to proceed."
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/success.html:7
+msgid "Almost done!"
+msgstr ""
+
+#: user/templates/new_ui_foo/registration/success.html:10
+#, python-format
+msgid ""
+"\n"
+"        Your data has been submitted successfully. To finish the "
+"registration process, please click the registration link we have sent to "
+"<strong>%(mail)s</strong>.\n"
+"        "
+msgstr ""
+
+#: user/templates/new_ui_foo/user/activate.html:9
+msgid "There was a problem..."
+msgstr ""
+
+#: user/templates/new_ui_foo/user/activate.html:18
+msgid "Done!"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/activate.html:21
+msgid ""
+"\n"
+"      Your account has been successfully activated. You now may log in using "
+"your credentials.\n"
+"      "
+msgstr ""
+
+#: user/templates/new_ui_foo/user/change_pass.html:12
+msgid "Old Password"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/change_pass.html:24
+msgid "New Password"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/change_pass_success.html:9
+msgid "You have successfully changed your password."
+msgstr ""
+
+#: user/templates/new_ui_foo/user/deletion-success.html:7
+msgid "All done!"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/deletion-success.html:9
+msgid ""
+"Your account deletion has been completed successfully and your data has been "
+"removed from our servers. We are sorry to see you go!"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/edit.html:6
+msgid "Change your Profile Information"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/edit.html:24
+msgid ""
+"Your first name. This, combined with your last name will be used by teachers "
+"to verify your attendance in especially congested courses."
+msgstr ""
+
+#: user/templates/new_ui_foo/user/edit.html:38
+msgid ""
+"Your last name. This, combined with your first name will be used by teachers "
+"to verify your attendance in especially congested courses."
+msgstr ""
+
+#: user/templates/new_ui_foo/user/edit.html:81
+#, python-format
+msgid ""
+"\n"
+"              You have read our <a href=\"%(privvylink)s\">Privacy Policy</"
+"a> and consent to it.\n"
+"            "
+msgstr ""
+
+#: user/templates/new_ui_foo/user/edit.html:99
+msgid "Danger Zone"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/edit.html:104
+msgid ""
+"\n"
+"          You are about to delete your account. Clicking the red button "
+"below will delete your account <strong>immediately and permanently</strong>. "
+"All your personal information will be removed from our database, so think "
+"twice before taking this step.\n"
+"        "
+msgstr ""
+
+#: user/templates/new_ui_foo/user/edit.html:111
+msgid "I understand, please delete my account."
+msgstr ""
+
+#: user/templates/new_ui_foo/user/edit.html:114
 #: user/templates/user/privacy-agreement.html:30
 msgid "Delete my account"
 msgstr ""
 
-#: user/templates/user/deletion-success.html:5
-msgid "And off you go!"
+#: user/templates/new_ui_foo/user/profile.html:10
+#, python-format
+msgid ""
+"\n"
+"    This page lists all the courses you are currently enrolled for. You can "
+"enroll for more courses by taking a look at the <a href=\"%(subjectlist)s"
+"\">catalogue</a>. If you become a teacher for one or more courses, these "
+"will appear below as well.\n"
+"    "
 msgstr ""
 
-#: user/templates/user/deletion-success.html:7
-msgid "Your account has successfully been deleted. We're sorry to see you go!"
+#: user/templates/new_ui_foo/user/profile.html:18
+msgid "Courses you attend"
 msgstr ""
 
-#: user/templates/user/edit.html:6
-msgid "Here you may change your user information."
+#: user/templates/new_ui_foo/user/profile.html:25
+#: user/templates/new_ui_foo/user/profile.html:66
+#: user/templates/new_ui_foo/user/public_profile.html:20
+msgid "course"
 msgstr ""
 
-#: user/templates/user/edit.html:20
-msgid "Change"
+#: user/templates/new_ui_foo/user/profile.html:30
+#: user/templates/new_ui_foo/user/profile.html:71
+#: user/templates/new_ui_foo/user/public_profile.html:25
+msgid "No dates set yet"
 msgstr ""
 
-#: user/templates/user/edit.html:25
-msgid "Perhaps you'd like to"
+#: user/templates/new_ui_foo/user/profile.html:39
+#: user/templates/new_ui_foo/user/profile.html:80
+#: user/templates/new_ui_foo/user/public_profile.html:34
+msgid "No locations set."
 msgstr ""
 
-#: user/templates/user/edit.html:25
-msgid "change your password"
+#: user/templates/new_ui_foo/user/profile.html:45
+msgid "Waiting list position"
 msgstr ""
 
-#: user/templates/user/edit.html:27
-msgid "Here, you may also"
+#: user/templates/new_ui_foo/user/profile.html:47
+msgid "Teachers:"
 msgstr ""
 
-#: user/templates/user/edit.html:27
-msgid "delete your account"
+#: user/templates/new_ui_foo/user/profile.html:54
+msgid "You are currently not enrolled for any courses."
+msgstr ""
+
+#: user/templates/new_ui_foo/user/profile.html:59
+msgid "Courses you teach"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/profile.html:86
+#: user/templates/new_ui_foo/user/public_profile.html:40
+msgid "participants"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/profile.html:86
+#: user/templates/new_ui_foo/user/public_profile.html:40
+msgid "in queue"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/profile.html:88
+#: user/templates/new_ui_foo/user/public_profile.html:42
+msgid "The course is currently suspended."
+msgstr ""
+
+#: user/templates/new_ui_foo/user/profile.html:95
+msgid ""
+"You are currently not teaching any courses. If you are interested in sharing "
+"your knowledge, make sure to reach out to"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/public_profile.html:14
+msgid "Courses this user teaches"
+msgstr ""
+
+#: user/templates/new_ui_foo/user/public_profile.html:53
+#, python-format
+msgid ""
+"\n"
+"                        In accordance with your privacy settings information "
+"about the courses youu teach as well as your description will be withheld "
+"from the public. You can change these settings <a href=\"%(settingslink)s"
+"\">here</a>.\n"
+"                    "
+msgstr ""
+
+#: user/templates/new_ui_foo/user/public_profile.html:57
+msgid "This user does not wish to publicise any information about themselves."
 msgstr ""
 
 #: user/templates/user/privacy-agreement.html:6
@@ -841,81 +1332,27 @@ msgid ""
 "twice before taking this step."
 msgstr ""
 
-#: user/templates/user/profile.html:5
-msgid "Your data"
-msgstr ""
-
-#: user/templates/user/profile.html:12
-msgid "First name"
-msgstr ""
-
-#: user/templates/user/profile.html:16
-msgid "Last name"
-msgstr ""
-
-#: user/templates/user/profile.html:20
-msgid "Email"
-msgstr ""
-
-#: user/templates/user/profile.html:28
-msgid "Visit your public profile."
-msgstr ""
-
-#: user/templates/user/profile.html:34
-msgid "Courses you teach"
-msgstr ""
-
-#: user/templates/user/profile.html:38
-msgid "Courses you attend"
-msgstr ""
-
-#: user/templates/user/profile.html:41
-msgid "Your description"
-msgstr ""
-
-#: user/templates/user/public-profile.html:12
-msgid "Courses this user teaches"
-msgstr ""
-
-#: user/templates/user/public-profile.html:18
-msgid ""
-"According to your privacy settings no additional information will be shown "
-"here."
-msgstr ""
-
-#: user/templates/user/public-profile.html:20
-msgid "This user does not wish to publicise any additional information."
-msgstr ""
-
-#: user/templates/user/public-profile.html:25
-msgid "Visit your private profile"
-msgstr ""
-
-#: user/templates/user/public-profile.html:27
-msgid "Contact this user."
-msgstr ""
-
 #: user/templates/view-error.html:6
 msgid "The content you requested could not be found."
 msgstr ""
 
-#: user/views/contact.py:19
+#: user/views/contact.py:22
 msgid "Requested user does not exist."
 msgstr ""
 
-#: user/views/register.py:49
+#: user/views/register.py:50
 msgid "Registration successfull"
 msgstr ""
 
-#: user/views/register.py:63
+#: user/views/register.py:64
 msgid "Registration"
 msgstr ""
 
-#: user/views/register.py:98
+#: user/views/register.py:99
 msgid "Your {} verification at the iFSR course enrollment system."
 msgstr ""
 
-#: user/views/user.py:67
+#: user/views/user.py:65
 msgid "This user does not exist"
 msgstr ""
 
