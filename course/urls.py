@@ -3,6 +3,9 @@ from django.contrib import admin
 
 from course.views import index, subject, course, enroll, time, news
 
+handler404 = 'course.views.index.handler404'
+handler500 = 'course.views.index.handler500'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$', index.index, name='index'),

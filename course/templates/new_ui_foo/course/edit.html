@@ -145,7 +145,7 @@
   </div>
 
   <input type="submit" class="btn btn-primary" value="{% trans 'Save' %}">
-  <a href="{% url 'index' %}" type="button" class="btn btn-secondary">{% trans 'Cancel' %}</a>
+  <a href="{% url 'course' course_id %}" type="button" class="btn btn-secondary">{% trans 'Cancel' %}</a>
 </form>
 {% if not create and perms.course.delete_course %}
 <div class="card border-danger mt-5">
