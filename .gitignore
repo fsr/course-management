@@ -75,12 +75,4 @@ target/
 # Vim Swap File
 *.swp
 
-# node
-node_modules/
-
-# bower
-bower_components/
-
-.sass-cache
-
 static/css
