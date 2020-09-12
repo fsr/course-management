@@ -29,7 +29,7 @@ class RegisterVerification:
 def no_verify_view(request):
     return render(
         request,
-        'view-error.html',
+        'new_ui_foo/view-error.html',
         { 'message': _('This verification does not have an associated view.') }
     )
 
@@ -42,7 +42,7 @@ def verify(request, type_):
         except KeyError:
             return render(
                 request,
-                'view-error.html',
+                'new_ui_foo/view-error.html',
                 { 'message': _('This verification does not exist') }
             )
     else:
@@ -51,7 +51,7 @@ def verify(request, type_):
         except Activation.DoesNotExist:
             return render(
                 request,
-                'view-error.html',
+                'new_ui_foo/view-error.html',
                 { 'message': _('The token you provided is invalid.') }
             )
 
