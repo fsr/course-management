@@ -45,7 +45,7 @@ def edit_slot(request: HttpRequest, course_id):
 
     return render(
         request,
-        'new_ui_foo/course/timetable.html',
+        'course/timetable.html',
         {
             'title': _('Edit Schedule'),
             'form': form,

@@ -1,0 +1,62 @@
+{% extends 'base-shell.html' %}
+{% load i18n %}
+
+{% block header_nav %}
+<ul class="navbar-nav ml-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'index' %}">{% trans 'News' %}</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'subject-overview' %}">{% trans 'Subjects' %}</a>
+  </li>
+  {% if perms.course_management.add_course or perms.course_management.add_subject or perms.news.add_news %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" id="dropdownCreate">{% trans 'Create...' %}</a>
+    <div class="dropdown-menu" aria-labelledby="dropdownCreate">
+      {% if perms.course_management.add_subject %}
+      <a class="dropdown-item" href="{% url 'create-subject' %}">{% trans 'New Subject' %}</a>
+      {% endif %}
+      {% if perms.course_management.add_course %}
+      <a class="dropdown-item" href="{% url 'create-course' %}">{% trans 'New Course' %}</a>
+      {% endif %}
+      {% if perms.news.add_news %}
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{% url 'create-news' %}">{% trans 'News Item' %}</a>
+      {% endif %}
+    </div>
+  </li>
+  {% endif %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" id="dropdownAbout">{% trans 'About' %}</a>
+    <div class="dropdown-menu" aria-labelledby="dropdownAbout">
+      <a class="dropdown-item" href="https://www.ifsr.de/impressum">{% trans 'Imprint' %}</a>
+      <a class="dropdown-item" href="{% url 'privacy-policy' %}">{% trans 'Privacy Policy' %}</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="https://github.com/fsr/course-management/issues/new">{% trans 'Report an Issue' %}</a>
+    </div>
+  </li>
+  {% if user.is_authenticated %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'user-profile' %}">{% trans 'Your Courses' %}</a>
+  </li>
+  <li class="nav-item dropdown">
+    <!-- <a class="nav-link" href="{% url 'modify-user' %}">{% trans 'Settings' %}</a> -->
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false" id="dropdownSettings">{% trans 'Settings' %}</a>
+    <div class="dropdown-menu" aria-labelledby="dropdownSettings">
+      <a class="dropdown-item" href="{% url 'modify-user' %}">{% trans 'Your Profile' %}</a>
+      <a class="dropdown-item" href="{% url 'password_change' %}">{% trans 'Change Password' %}</a>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+  </li>
+  {% else %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'register' %}">{% trans "Sign up" %}</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'login' %}{% if not no_login_redirect and not request.path == logout_url %}?next={{ request.path }}{% endif %}">{% trans 'Login' %}</a>
+  </li>
+  {% endif %}
+</ul>
+{% endblock %}

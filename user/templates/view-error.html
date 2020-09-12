@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<h1 class="mb-3">{% trans 'The content you requested could not be found.' %}</h1>
+
+<p>{{ message }}</p>
+
+{% endblock %}

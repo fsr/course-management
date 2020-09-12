@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<h1 class="mb-3">{% trans 'Timetable' %}</h1>
+
+<table class="table table-hover mb-4">
+  <thead>
+    <tr>
+      <th scope="col">{% trans 'Slot' %}</th>
+      <th scope="col">{% trans 'Location' %}</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for slot in schedule.slots %}
+      <tr>
+        <td class="align-middle">
+          {{ slot }}
+        </td>
+        <td class="align-middle">
+          {{ slot.location }}
+        </td>
+        <td>
+          <form action="{% url 'course-remove-slot' course_id slot.id %}{% if target %}?target={% url target course_id %}{% endif %}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-link" value="{% trans 'Remove' %}">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="card">
+  <h3 class="card-header">{% trans 'Add Slot' %}</h3>
+  <div class="card-body">
+    <form action="{% url 'course-edit-slot' course_id %}" method="POST">
+      {% csrf_token %}
+      {% if weekly_slot %}
+        <div class="row">
+          <div class="form-group col-6 {% if form.weekday.errors %}is-invalid{% endif %}">
+            <label class="col-form-label" for="{{ form.weekday.id_for_label }}">{% trans 'Weekday' %}</label>
+            <select class="custom-select form-control {% if form.weekday.errors %}is-invalid{% endif %}" name="{{ form.weekday.html_name }}" id="{{ form.weekday.id_for_label }}">
+              {% for choice in form.weekday.field.choices %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+              {% endfor %}
+            </select>
+            {% if form.weekday.errors %}
+              <div class="invalid-feedback">
+                {% for err in form.weekday.errors %}
+                  {{ err }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+    
+          <div class="form-group col-6 {% if form.timeslot.errors %}is-invalid{% endif %}">
+            <label class="col-form-label" for="{{ form.timeslot.id_for_label }}">{% trans 'Timeslot' %}</label>
+            <select class="custom-select form-control {% if form.timeslot.errors %}is-invalid{% endif %}" name="{{ form.timeslot.html_name }}" id="{{ form.timeslot.id_for_label }}">
+              {% for choice in form.timeslot.field.choices %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+              {% endfor %}
+            </select>
+            {% if form.timeslot.errors %}
+              <div class="invalid-feedback">
+                {% for err in form.timeslot.errors %}
+                  {{ err }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% else %}
+        <div class="form-group {% if form.date.errors %}is-invalid{% endif %}">
+            <label class="col-form-label" for="{{ form.date.id_for_label }}">{% trans 'Date and Time' %}</label>
+            <input type="datetime-local" class="form-control {% if form.date.errors %}is-invalid{% endif %}" name="{{ form.date.html_name }}" id="{{ form.date.id_for_label }}">
+            {% if form.date.errors %}
+            <div class="invalid-feedback">
+                {% for err in form.date.errors %}
+                {{ err }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="form-group {% if form.location.errors %}is-invalid{% endif %}">
+        <label class="col-form-label" for="{{ form.location.id_for_label }}">{% trans 'Location' %}</label>
+        <input type="text" class="form-control {% if form.location.errors %}is-invalid{% endif %}" name="{{ form.location.html_name }}" id="{{ form.location.id_for_label }}">
+        {% if form.location.errors %}
+          <div class="invalid-feedback">
+            {% for err in form.location.errors %}
+              {{ err }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <input type="submit" class="btn btn-primary" value="{% trans 'Add' %}">
+      <a class="btn btn-outline-primary" href="{% url 'course' course_id %}"> &laquo; {% trans 'back' %}</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -32,7 +32,7 @@ def create(request):
 
     return render(
         request,
-        'new_ui_foo/news/edit.html',
+        'news/edit.html',
         {
             'title': _('New News'),
             'create': True,
@@ -67,7 +67,7 @@ def edit(request: HttpRequest, news_id: str):
         form = NewsForm(instance=cur_news)
     return render(
         request,
-        'new_ui_foo/news/edit.html',
+        'news/edit.html',
         {
             'title': _('Edit News'),
             'create': False,

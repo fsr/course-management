@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="col-sm-8 mr-auto ml-auto">
+  <div class="card border-success mb-3">
+    <h3 class="card-header">{% trans 'Almost done!' %}</h3>
+    <div class="card-body">
+      <p class="card-text">
+        {% blocktrans %}
+        Your data has been submitted successfully. To finish the registration process, please click the registration link we have sent to <strong>{{ mail }}</strong>.
+        {% endblocktrans %}
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

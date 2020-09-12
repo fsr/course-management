@@ -66,7 +66,7 @@ def course(request: HttpRequest, course_id: str):
 
         return render(
             request,
-            'new_ui_foo/course/info.html',
+            'course/info.html',
             context
         )
     except Course.DoesNotExist:
@@ -80,7 +80,7 @@ def participants_list(request, course_id):
 
         return render(
             request,
-            'new_ui_foo/course/attendees.html',
+            'course/attendees.html',
             {'course': current_course}
         )
     except Course.DoesNotExist:
@@ -117,7 +117,7 @@ def edit_course(request: HttpRequest, course_id: str):
         form = CourseForm(instance=current_course,initial={'schedule_type':current_schedule.get_type()})
     return render(
         request,
-        'new_ui_foo/course/edit.html',
+        'course/edit.html',
         {
             'title': _('Edit course'),
             'form': form,
@@ -191,7 +191,7 @@ def create(request):
 
     return render(
         request,
-        'new_ui_foo/course/edit.html',
+        'course/edit.html',
         {
             'title': _('New Course'),
             'form': form,
@@ -257,7 +257,7 @@ def add_teacher(request, course_id):
 
     return render(
         request,
-        'new_ui_foo/course/teachers.html',
+        'course/teachers.html',
         context
     )
 
@@ -319,7 +319,7 @@ def notify(request: HttpRequest, course_id):
 
     return render(
         request,
-        'new_ui_foo/course/notify.html',
+        'course/notify.html',
         {
             'title': _('Notify Course'),
             'form': form,
@@ -331,7 +331,7 @@ def notify(request: HttpRequest, course_id):
 def notify_done(request, course_id):
     return render(
         request,
-        'new_ui_foo/course/notify-done.html',
+        'course/notify-done.html',
         {
             'course_id': course_id
         }
@@ -367,7 +367,7 @@ def attendee_list(request, course_id):
 
         return render(
                 request,
-                'new_ui_foo/course/attendee-list.html',
+                'course/attendee-list.html',
                 {
                     'attendees': course.participants.all(),
                     'slots': range(slots)
@@ -397,7 +397,7 @@ def contact_teachers(request, course_id):
 
     return render(
         request,
-        'new_ui_foo/course/contact-teachers.html',
+        'course/contact-teachers.html',
         {
             'title': _('Notify Course'),
             'form': form,

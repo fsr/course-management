@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<meta http-equiv="refresh" content="2;url={% url 'index' %}">
+
+<div class="col-sm-8 mr-auto ml-auto align-middle">
+  <div class="alert alert-success">
+    {% trans 'You have been successfully logged out.' %}
+  </div>
+</div>
+
+{% endblock %}

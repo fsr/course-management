@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="card border-warning mb-3">
+    <h3 class="card-header">{% trans 'New privacy policy' %}</h3>
+    <div class="card-body">
+        <p>
+            {% blocktrans %}
+                Hey there! Since the last time you've logged on, we changed our privacy policy. To continue using our services, please read the policy below carefully and then either signal us your consent by checking the box below or delete your account and all associated data by pressing the big red button. If you have any questions regarding how we use or store your data, you can always drop us a mail - either in german or in english - to the address below!
+            {% endblocktrans %} :)
+        </p>
+    </div>
+</div>
+
+<hr class="mb-3">
+
+{% include 'privacy-policy.html' %}
+
+<hr class="mt-3 mb-3">
+
+<div class='card border-secondary mb-3 agreement_form'>
+    <h5 class="card-header">{% trans 'Consent to the privacy policy' %}</h5>
+    <div class="card-body">
+        <form action="{% url 'privacy-policy-updated' %}" method="post">
+            {% csrf_token %}
+
+            <div class="form-group {% if agreement_form.accepted_privacy_policy.errors %}has-danger{% endif %}">
+                <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="{{ agreement_form.accepted_privacy_policy.id_for_label }}" name="{{ agreement_form.accepted_privacy_policy.html_name }}" {% if agreement_form.accepted_privacy_policy.value %}checked=""{% endif %} required>
+                <label class="custom-control-label" for="{{ agreement_form.accepted_privacy_policy.id_for_label }}">
+                    {% url 'privacy-policy' as privvylink %}
+                    {% blocktrans %}
+                    You have read our <a href="{{ privvylink }}">Privacy Policy</a> and consent to it.
+                    {% endblocktrans %}
+                </label>
+                {% if agreement_form.accepted_privacy_policy.errors %}
+                    <div class="invalid-feedback">
+                    {% trans 'You have to consent to the privacy policy to proceed.' %}
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="{% trans 'Submit' %}">
+        </form>
+    </div>
+</div>
+
+<div class="card border-danger">
+    <h5 class="card-header">{% trans 'Danger Zone' %}</h5>
+    <div class="card-body">
+        <form action="{% url 'delete-account' %}" method="POST">
+            {% csrf_token %}
+
+            <p class="card-text">
+                {% blocktrans %}
+                    If you feel that you can not consent to the terms of this policy, there is no other option left for you but to delete your account. Clicking the red button below will delete your account <b>immediately and permanently</b>. All your personal information will be removed from our database, so think twice before taking this step.
+                {% endblocktrans %}
+            </p>
+            <input type="hidden" name="delete-confirm">
+            <input type="submit" class="btn btn-danger ml-auto" value="{% trans 'Delete my account' %}">
+        </form>
+    </div>
+  </div>
+
+{% endblock %}

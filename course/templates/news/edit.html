@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+{% if create %}
+<h1 class="mb-3">{% trans 'Add News' %}</h1>
+<form action="{% url 'create-news' %}" method="post">
+{% else %}
+<h1 class="mb-3">{% trans 'Edit News' %}</h1>
+<form action="{% url 'edit-news' news_id %}" method="post">
+{% endif %}
+
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="form-group">
+    <label class="col-form-label" for="{{ form.headline.id_for_label }}">{% trans 'Headline' %}</label>
+    <input type="text" class="form-control" name="{{ form.headline.html_name }}" id="{{ form.headline.id_for_label }}" value="{% if form.headline.value %}{{ form.headline.value }}{% endif %}">
+    {{ form.headline.errors }}
+  </div>
+
+  <div class="form-group">
+    <label class="col-form-label" for="{{ form.entry.id_for_label }}">{% trans 'Entry' %}</label>
+    <textarea class="form-control" name="{{ form.entry.html_name }}" id="{{ form.entry.id_for_label }}" rows="6" aria-describedby="descEntry">{{ form.entry.value }}</textarea>
+    <small id="descHelp" class="form-text text-muted">{% trans '<a href="https://commonmark.org/help/">Markdown</a> is supported. Try to avoid using additional headings.' %}</small>
+    {{ form.entry.errors }}
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="{% trans 'Save' %}">
+  <a href="{% url 'index' %}" type="button" class="btn btn-secondary">{% trans 'Cancel' %}</a>
+</form>
+{% endblock %}

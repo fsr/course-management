@@ -6,7 +6,7 @@ from django.utils.translation import ugettext as _
 def index(request):
     return render(
         request,
-        'new_ui_foo/index.html',
+        'index.html',
         {
             'title': _('Welcome'),
             'news': news.News.objects.order_by('-id')
@@ -17,21 +17,21 @@ def index(request):
 def privacy_policy(request):
     return render(
         request,
-        'new_ui_foo/privacy.html',
+        'privacy.html',
         {
             'title': _('Privacy Policy')
         }
     )
 
 
-def handler404(request, exception, template_name="new_ui_foo/error/404.html"):
+def handler404(request, exception, template_name="error/404.html"):
     response = render_to_response(template_name)
     response.status_code = 404
     return response
 
 
-def handler500(request): #t, exception, template_name="new_ui_foo/error/500.html"):
-    template_name = "new_ui_foo/error/500.html"
+def handler500(request): #t, exception, template_name="error/500.html"):
+    template_name = "error/500.html"
     response = render_to_response(template_name)
     response.status_code = 500
     return response

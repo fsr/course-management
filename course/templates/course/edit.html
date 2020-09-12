@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+{% if create %}
+  <h1 class="mb-3">{% trans 'Add Course' %}</h1>
+
+  <p>
+    {% blocktrans %}
+    Using this form, you can create a new course.
+    You will automatically be assigned as teacher so that you are able to edit it.
+    After you are done you can assign new teachers and remove yourself from the teachers list.
+    {% endblocktrans %}
+  </p>
+
+  <form action="{% url 'create-course' %}" method="post">
+{% else %}
+  <h1 class="mb-3">{% trans 'Edit Course' %}</h1>
+  <form method="post" action="{% url 'edit-course' course_id %}">
+{% endif %}
+
+  {% csrf_token %}
+
+  {% if form.non_field_errors %}
+  <div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ form.non_field_errors }}
+  </div>
+  {% endif %}
+
+  <div class="form-group {% if form.subject.errors %}has-danger{% endif %}">
+    <label class="col-form-label" for="{{ form.subject.id_for_label }}">{% trans 'Subject' %}</label>
+    <select class="custom-select form-control {% if form.subject.errors %}is-invalid{% endif %}" name="{{ form.subject.html_name }}" id="{{ form.subject.id_for_label }}">
+      {% for choice in form.subject.field.choices %}
+        <option value="{{ choice.0 }}" {% if form.subject.value == choice.0 %}selected=""{% endif %}>{{ choice.1 }}</option>
+      {% endfor %}
+    </select>
+    {% if form.subject.errors %}
+      <div class="invalid-feedback">
+        {% for err in form.subject.errors %}
+          {{ err }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="form-group {% if form.description.errors %}has-danger{% endif %}">
+    <label class="col-form-label" for="{{ form.description.id_for_label }}">{% trans 'Description' %}</label>
+    <textarea class="form-control {% if form.description.errors %}is-invalid{% endif %}" name="{{ form.description.html_name }}" id="{{ form.description.id_for_label }}" rows="6" aria-describedby="descHelp">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+    {% if form.description.errors %}
+      <div class="invalid-feedback">
+        {% for err in form.description.errors %}
+          {{ err }}
+        {% endfor %}
+      </div>
+    {% else %}
+      <small id="descHelp" class="form-text text-muted">{% trans 'A description for your course.' %} {% trans '<a href="https://commonmark.org/help/">Markdown</a> is supported, but please refrain from using Headlines larger than h4 (####).' %}</small>
+    {% endif %}
+  </div>
+
+  <div class="form-group {% if form.max_participants.errors %}has-danger{% endif %}">
+    <label class="col-form-label" for="{{ form.max_participants.id_for_label }}">{% trans 'Maximal number of participants' %}</label>
+    <input type="number" class="form-control {% if form.max_participants.errors %}is-invalid{% endif %}" placeholder="{% trans 'Please enter a number' %}" id="{{ form.max_participants.id_for_label }}" name="{{ form.max_participants.html_name }}" aria-describedby="max_participantsHelp" required="" {% if form.max_participants.value %}value="{{ form.max_participants.value }}"{% endif %}>
+    {% if form.max_participants.errors %}
+      <div class="invalid-feedback">
+        {% for err in form.max_participants.errors %}
+          {{ err }}
+        {% endfor %}
+      </div>
+    {% else %}
+    <small id="max_participantsHelp" class="form-text text-muted">{% trans 'How many students are allowed to enroll for a course. The rest will be placed on the waiting list. The ideal teacher-student ratio is usually 1:15.' %}</small>
+    {% endif %}
+  </div>
+
+  <div class="row">
+    <div class="form-group col-6 {% if form.start_time.errors %}is-invalid{% endif %}">
+      <label class="col-form-label" for="{{ form.start_time.id_for_label }}">{% trans 'Start Time' %}</label>
+      <input type="datetime-local" class="form-control {% if form.start_time.errors %}is-invalid{% endif %}" name="{{ form.start_time.html_name }}" id="{{ form.start_time.id_for_label }}" {% if form.start_time.value %}value="{{ form.start_time.value }}"{% endif %}>
+      {% if form.start_time.errors %}
+        <div class="invalid-feedback">
+          {% for err in form.start_time.errors %}
+            {{ err }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="form-group col-6 {% if form.end_time.errors %}is-invalid{% endif %}">
+      <label class="col-form-label" for="{{ form.end_time.id_for_label }}">{% trans 'End Time' %}</label>
+      <input type="datetime-local" class="form-control {% if form.end_time.errors %}is-invalid{% endif %}" name="{{ form.end_time.html_name }}" id="{{ form.end_time.id_for_label }}" {% if form.end_time.value %}value="{{ form.end_time.value }}"{% endif %}>
+      {% if form.end_time.errors %}
+        <div class="invalid-feedback">
+          {% for err in form.end_time.errors %}
+            {{ err }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="form-group {% if form.schedule_type.errors %}has-danger{% endif %}">
+    <label class="col-form-label" for="{{ form.schedule_type.id_for_label }}">{% trans 'Schedule Type' %}</label>
+    <select class="custom-select form-control {% if form.schedule_type.errors %}is-invalid{% endif %}" name="{{ form.schedule_type.html_name }}" id="{{ form.schedule_type.id_for_label }}">
+      {% for choice in form.schedule_type.field.choices %}
+        <option value="{{ choice.0 }}" {% if form.schedule_type.value == choice.0 %}selected=""{% endif %}>{{ choice.1 }}</option>
+      {% endfor %}
+    </select>
+    {% if form.schedule_type.errors %}
+      <div class="invalid-feedback">
+        {% for err in form.schedule_type.errors %}
+          {{ err }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="form-group">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="{{ form.active.id_for_label }}" name="{{ form.active.html_name }}" {% if form.active.value %}checked=""{% endif %}>
+      <label class="custom-control-label" for="{{ form.active.id_for_label }}">{% trans 'Set the course <strong>active</strong> and allow enrollments right away.' %}</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="{{ form.visible.id_for_label }}" name="{{ form.visible.html_name }}" {% if form.visible.value %}checked=""{% endif %}>
+      <label class="custom-control-label" for="{{ form.visible.id_for_label }}">{% trans 'Make the course <strong>visible</strong> in the course list.' %}</label>
+    </div>
+  </div>
+
+  <div class="form-group {% if form.archiving.errors %}has-danger{% endif %}">
+    <label class="col-form-label" for="{{ form.archiving.id_for_label }}">{% trans 'Archiving Behavior' %}</label>
+    <select class="custom-select form-control {% if form.archiving.errors %}is-invalid{% endif %}" name="{{ form.archiving.html_name }}" id="{{ form.archiving.id_for_label }}">
+      {% for choice in form.archiving.field.choices %}
+        <option value="{{ choice.0 }}" {% if form.archiving.value == choice.0 %}selected=""{% endif %}>{{ choice.1 }}</option>
+      {% endfor %}
+    </select>
+    {% if form.archiving.errors %}
+      <div class="invalid-feedback">
+        {% for err in form.archiving.errors %}
+          {{ err }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="{% trans 'Save' %}">
+  {% if create %}
+    <a href="{% url 'index' %}" type="button" class="btn btn-secondary">{% trans 'Cancel' %}</a>
+  {% else %}
+    <a href="{% url 'course' course_id %}" type="button" class="btn btn-secondary">{% trans 'Cancel' %}</a>
+  {% endif %}
+</form>
+{% if not create and perms.course.delete_course %}
+<div class="card border-danger mt-5">
+  <h3 class="card-header">Danger Zone</h3>
+  <div class="card-body">
+    <p class="card-text">By clicking the following button, you will irrevocably delete this course. Your participants will <i>not</i> be notified, so make sure you sent a mail to them beforehand, if necessary.</p>
+    <form action="{% url 'delete-course' course_id %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-danger" value="{% trans 'Delete' %}">
+    </form>
+  </div>
+</div>
+
+{% endif %}
+{% endblock %}

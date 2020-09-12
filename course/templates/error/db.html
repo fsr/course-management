@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<h1 class="mb-3">{% trans 'Database Error' %}</h1>
+
+<p>
+    {% trans "Sorry, an error with our database occurred." %} {{ error }}
+</p>
+
+{% endblock %}

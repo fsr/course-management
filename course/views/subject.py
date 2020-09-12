@@ -32,7 +32,7 @@ def course_overview(request, subjectname):
 
     return render(
         request,
-        'new_ui_foo/subject/info.html',
+        'subject/info.html',
         {
             'title': subjectname,
             'subject': active_subject,
@@ -45,7 +45,7 @@ def course_overview(request, subjectname):
 def subject_overview(request):
     return render(
         request,
-        'new_ui_foo/subject/overview.html',
+        'subject/overview.html',
         {
             'title': _('Subject Overview'),
             'visible_subjects': subject.Subject.get_visible(),
@@ -74,7 +74,7 @@ def create(request):
 
     return render(
         request,
-        'new_ui_foo/subject/edit.html',
+        'subject/edit.html',
         {
             'title': _('New Subject'),
             'create': True,
@@ -104,7 +104,7 @@ def edit(request, subjectname):
 
     return render(
         request,
-        'new_ui_foo/subject/edit.html',
+        'subject/edit.html',
         {
             'title': subj.name,
             'create': False,

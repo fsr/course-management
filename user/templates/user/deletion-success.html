@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="card border-dark mb-3">
+    <h3 class="card-header">{% trans 'All done!' %}</h3>
+    <div class="card-body">
+        <p class="card-text">{% trans 'Your account deletion has been completed successfully and your data has been removed from our servers. We are sorry to see you go!' %}</p>
+    </div>
+</div>
+
+{% endblock %}

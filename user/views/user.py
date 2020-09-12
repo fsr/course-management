@@ -31,7 +31,7 @@ def modify(request):
 
     return render(
         request,
-        'new_ui_foo/user/edit.html',
+        'user/edit.html',
         {
             'title': '{} {}'.format(user.first_name, user.last_name),
             'user_form': user_form,
@@ -50,7 +50,7 @@ def profile(request, user_id=None):
             if not user.userinformation.accepted_privacy_policy:
                 return redirect('privacy-policy-updated')
 
-            template = 'new_ui_foo/user/profile.html'
+            template = 'user/profile.html'
 
             is_own = True
             # construct a list of attended courses that are not yet archived
@@ -64,7 +64,7 @@ def profile(request, user_id=None):
         except User.DoesNotExist:
             return db_error(_('This user does not exist'))
 
-        template = 'new_ui_foo/user/public_profile.html'
+        template = 'user/public_profile.html'
 
     return render(
         request,
@@ -101,7 +101,7 @@ def privacy_consent(request):
 
     return render(
         request,
-        "new_ui_foo/user/privacy-agreement.html",
+        "user/privacy-agreement.html",
         {
             'title': "Privacy Policy",
             'agreement_form': agreement_form,
@@ -117,7 +117,7 @@ def delete_account(request):
 
         return render(
             None,
-            "new_ui_foo/user/deletion-success.html",
+            "user/deletion-success.html",
             {
                 'title': "Account Deletion Successful"
             }

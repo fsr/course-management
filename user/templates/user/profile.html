@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="mb-3">{% trans "Your Courses" %}</h1>
+
+<p>
+    {% url 'subject-overview' as subjectlist %}
+    {% blocktrans %}
+    This page lists all the courses you are currently enrolled for. You can enroll for more courses by taking a look at the <a href="{{ subjectlist }}">catalogue</a>. If you become a teacher for one or more courses, these will appear below as well.
+    {% endblocktrans %}
+</p>
+
+<div class="row">
+    {% with student=user.userinformation %}
+    <div class="col-md-6 p-md-3 mb-3">
+        <h3 class="mb-3">{% trans "Courses you attend" %}</h2>
+
+        {% if student.participation_set.count > 0 %}
+            <div class="list-group">
+                {% for course, pos_in_queue in attend %}
+                    <a href="{% url 'course' course.id %}" class="list-group-item list-group-item-action flex-column align-items-start {% if pos_in_queue %}text-muted{% endif %}">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ course.subject }} {% trans "course" %}</h5>
+                        <small>
+                            {% if course.schedule.slots %}
+                                {{ course.schedule.slots|join:"<br />" }}
+                            {% else %}
+                                <span class="text-muted">{% trans "No dates set yet" %}</span>
+                            {% endif %}
+                        </small>
+                    </div>
+                    <div class="mb-1">
+                        {% with course.get_locations as locs %}
+                            {% if locs %}
+                                {{ locs|join:"<br />" }}
+                            {% else %}
+                                <span class="text-muted">{% trans "No locations set." %}</span>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <small>
+                        {% if pos_in_queue %}
+                            {% trans 'Waiting list position' %}: {{ pos_in_queue }}
+                        {% else %}
+                            {% trans "Teachers:" %} {{ course.teacher.all|join:", " }}
+                        {% endif %}
+                    </small>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p><small>{% trans "You are currently not enrolled for any courses." %}</small></p>
+        {% endif %}
+    </div>
+
+    <div class="col-md-6 p-md-3 mb-3">
+        <h3 class="mb-3">{% trans "Courses you teach" %}</h2>
+
+        {% if student.teacher.count > 0 %}
+            <div class="list-group">
+                {% for course in student.teacher.all %}
+                    <a href="{% url 'course' course.id %}" class="list-group-item list-group-item-action flex-column align-items-start {% if not course.active %}text-muted{% endif %}">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ course.subject }} {% trans "course" %}</h5>
+                        <small>
+                            {% if course.schedule.slots %}
+                                {{ course.schedule.slots|join:"<br />" }}
+                            {% else %}
+                                <span class="text-muted">{% trans "No dates set yet" %}</span>
+                            {% endif %}
+                        </small>
+                    </div>
+                    <div class="mb-1">
+                        {% with course.get_locations as locs %}
+                            {% if locs %}
+                                {{ locs|join:"<br />" }}
+                            {% else %}
+                                <span class="text-muted">{% trans "No locations set." %}</span>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <small>
+                        {% if course.active %}
+                            {{ course.enrolled_students }} {% trans "participants" %} {% if course.students_on_queue %} ({{ course.students_on_queue }} {% trans "in queue" %}) {% endif %}
+                        {% else %}
+                            {% trans 'The course is currently suspended.' %}
+                        {% endif %}
+                    </small>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p><small>{% trans "You are currently not teaching any courses. If you are interested in sharing your knowledge, make sure to reach out to" %} <a href="mailto:kurse@ifsr.de">kurse@ifsr.de</a>!</small></p>
+        {% endif %}
+    </div>
+    {% endwith %}
+</div>
+
+{% endblock %}

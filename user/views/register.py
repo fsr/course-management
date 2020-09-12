@@ -45,7 +45,7 @@ def register(request):
 
             return render(
                 request,
-                'new_ui_foo/registration/success.html',
+                'registration/success.html',
                 {
                     'title': _('Registration successfull'),
                     'mail': acc
@@ -59,7 +59,7 @@ def register(request):
 
     return render(
         request,
-        'new_ui_foo/registration/register.html',
+        'registration/register.html',
         {
             'title': _('Registration'),
             'user_form': user_form,
