@@ -101,7 +101,7 @@ def privacy_consent(request):
 
     return render(
         request,
-        "user/privacy-agreement.html",
+        "new_ui_foo/user/privacy-agreement.html",
         {
             'title': "Privacy Policy",
             'agreement_form': agreement_form,
