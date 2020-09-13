@@ -12,79 +12,81 @@
 <h1 class="mb-4">{% trans 'Course Info' %} - {{ course.subject.name }}</h1>
 
 <div class="row m-3">
-  <div class="card mb-3 col-md-4 p-0">
-    <h5 class="card-header">{% trans 'General Information' %}</h5>
-    <div class="card-body">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="card-title">{% trans 'Teachers' %}</h5>
-        {% if can_modify %}
-          <small><a href="{% url 'add-teacher' course_id %}">{% trans 'edit' %}</a></small>
-        {% endif %}
-      </div>
-      <p class="card-text">
-        {% for teacher in course.teacher.all %}
-          <a href="{% url 'user-profile' teacher.user_id %}">{{ teacher }}</a>{% if not forloop.last %},{% endif %}
-        {% endfor %}
-      </p>
-    </div>
-    <hr class="m-0">
-    <div class="card-body">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="card-title">{% trans 'Timeslot' %}</h5>
-        {% if can_modify %}
-          <small><a href="{% url 'course-edit-slot' course_id %}">{% trans 'edit' %}</a></small>
-        {% endif %}
-      </div>
-      {% with course.schedule.slots as slots %}
-        {% if slots %}
-          <p class="card-text">
-            {{ slots|join:"<br>" }}
-          </p>
-        {% else %}
-          <p class="card-text text-muted">{% trans 'No dates set yet.' %}</p>
-        {% endif %}
-      {% endwith %}
-    </div>
-    <hr class="m-0">
-    <div class="card-body">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="card-title">{% trans 'Location' %}</h5>
-        {% if can_modify %}
-          <small><a href="{% url 'course-edit-slot' course_id %}">{% trans 'edit' %}</a></small>
-        {% endif %}
-      </div>
-      {% with course.get_distinct_locations as locs %}
-        {% if locs %}
-          <p class="card-text">{{ locs|join:"<br>" }}</p>
-        {% else %}
-          <p class="card-text text-muted">{% trans 'No location set.' %}</p>
-        {% endif %}
-      {% endwith %}
-    </div>
-    <hr class="m-0">
-    <div class="card-body">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="card-title">{% trans 'Participants' %}</h5>
-        {% if can_modify %}
-          <small><a href="{% url 'course-participants' course.id %}">{% trans 'list' %}</a></small>
-        {% endif %}
-      </div>
-      <p class="card-text">
-        {{ course.enrolled_students }}/{{ course.max_participants }} {% if course.students_on_queue %}({{ course.students_on_queue }} {% trans 'waiting' %}){% endif %}
-      </p>
-    </div>
-    <hr class="m-0">
-    <div class="card-body">
-      <h5 class="card-title">{% trans 'Status' %}</h5>
-      {% if course.active %}
-          {% if course.saturated %}
-            <span class="badge badge-danger">{% trans 'full' %}</span>
-          {% else %}
-            <span class="badge badge-success">{% trans 'available' %}</span>
+  <div class="mb-3 col-md-4 p-0">
+    <div class="card">
+      <h5 class="card-header">{% trans 'General Information' %}</h5>
+      <div class="card-body">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="card-title">{% trans 'Teachers' %}</h5>
+          {% if can_modify %}
+            <small><a href="{% url 'add-teacher' course_id %}">{% trans 'edit' %}</a></small>
           {% endif %}
-        {% else %}
-          <span class="badge badge-secondary">{% trans 'unavailable' %}</span>
-        {% endif %}
+        </div>
+        <p class="card-text">
+          {% for teacher in course.teacher.all %}
+            <a href="{% url 'user-profile' teacher.user_id %}">{{ teacher }}</a>{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        </p>
+      </div>
+      <hr class="m-0">
+      <div class="card-body">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="card-title">{% trans 'Timeslot' %}</h5>
+          {% if can_modify %}
+            <small><a href="{% url 'course-edit-slot' course_id %}">{% trans 'edit' %}</a></small>
+          {% endif %}
+        </div>
+        {% with course.schedule.slots as slots %}
+          {% if slots %}
+            <p class="card-text">
+              {{ slots|join:"<br>" }}
+            </p>
+          {% else %}
+            <p class="card-text text-muted">{% trans 'No dates set yet.' %}</p>
+          {% endif %}
+        {% endwith %}
+      </div>
+      <hr class="m-0">
+      <div class="card-body">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="card-title">{% trans 'Location' %}</h5>
+          {% if can_modify %}
+            <small><a href="{% url 'course-edit-slot' course_id %}">{% trans 'edit' %}</a></small>
+          {% endif %}
+        </div>
+        {% with course.get_distinct_locations as locs %}
+          {% if locs %}
+            <p class="card-text">{{ locs|join:"<br>" }}</p>
+          {% else %}
+            <p class="card-text text-muted">{% trans 'No location set.' %}</p>
+          {% endif %}
+        {% endwith %}
+      </div>
+      <hr class="m-0">
+      <div class="card-body">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="card-title">{% trans 'Participants' %}</h5>
+          {% if can_modify %}
+            <small><a href="{% url 'course-participants' course.id %}">{% trans 'list' %}</a></small>
+          {% endif %}
+        </div>
+        <p class="card-text">
+          {{ course.enrolled_students }}/{{ course.max_participants }} {% if course.students_on_queue %}({{ course.students_on_queue }} {% trans 'waiting' %}){% endif %}
+        </p>
+      </div>
+      <hr class="m-0">
+      <div class="card-body">
+        <h5 class="card-title">{% trans 'Status' %}</h5>
+        {% if course.active %}
+            {% if course.saturated %}
+              <span class="badge badge-danger">{% trans 'full' %}</span>
+            {% else %}
+              <span class="badge badge-success">{% trans 'available' %}</span>
+            {% endif %}
+          {% else %}
+            <span class="badge badge-secondary">{% trans 'unavailable' %}</span>
+          {% endif %}
+      </div>
     </div>
   </div>
 
@@ -130,7 +132,7 @@
             {% endif %}
           </form>
         {% endif %}
-      <a href="{% url 'contact-teachers' course_id %}" class="btn btn-primary">{% trans 'Contact Teachers' %}</a>
+      <a href="{% url 'contact-teachers' course_id %}" class="btn btn-primary">{% trans 'Contact teachers' %}</a>
       </div>
       {% endif %}
       {% if can_modify %}
