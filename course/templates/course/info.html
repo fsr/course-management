@@ -121,20 +121,22 @@
         {% else %}
           <form action="{% url 'register-course' course.id %}{% if target %}?target={{ target }}{% endif %}" method="post">
             {% csrf_token %}
-            {% if course.joinable %}
-              <input class="btn btn-primary" type="submit" value="{% trans 'Enroll' %}">
-            {% else %}
-              <input class="btn btn-secondary" type="submit" value="{% trans 'Waiting List' %}">
+            {% if course.active %}
+              {% if course.joinable %}
+                <input class="btn btn-primary mr-2" type="submit" value="{% trans 'Enroll' %}">
+              {% else %}
+                <input class="btn btn-secondary mr-2" type="submit" value="{% trans 'Waiting List' %}">
+              {% endif %}
             {% endif %}
           </form>
         {% endif %}
-      <a href="{% url 'contact-teachers' course_id %}" class="btn btn-primary ml-2">{% trans 'Contact Teachers' %}</a>
+      <a href="{% url 'contact-teachers' course_id %}" class="btn btn-primary">{% trans 'Contact Teachers' %}</a>
       </div>
       {% endif %}
       {% if can_modify %}
         <div class="d-flex">
-          <a href="{% url 'edit-course' course_id %}" type="button" class="btn btn-warning">{% trans 'Edit' %}</a>
-          <a href="{% url 'notify-course' course_id %}" type="button" class="btn btn-warning ml-2">{% trans 'Notify participants' %}</a>
+          <a href="{% url 'edit-course' course_id %}" type="button" class="btn btn-warning mr-2">{% trans 'Edit' %}</a>
+          <a href="{% url 'notify-course' course_id %}" type="button" class="btn btn-warning">{% trans 'Notify participants' %}</a>
         </div>
       {% endif %}
     {% endif %}
