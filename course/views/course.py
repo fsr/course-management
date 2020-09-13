@@ -267,16 +267,16 @@ def add_teacher(request, course_id):
 def remove_teacher(request, course_id, teacher_id):
     try:
         curr_course = Course.objects.get(id=course_id)
-        user = User.objects.get(id=teacher_id)
-        curr_course.teacher.remove(user.userinformation)
+        userinfo = UserInformation.objects.get(id=teacher_id)
+        curr_course.teacher.remove(userinfo)
         remove_perm(
             'change_course',
-            user,
+            userinfo.user,
             curr_course
         )
         remove_perm(
             'delete_course',
-            user,
+            userinfo.user,
             curr_course
         )
     except Course.DoesNotExist:
