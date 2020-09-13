@@ -155,8 +155,9 @@ class Course(models.Model):
             context['position_in_queue'] = self.position_in_queue(student)
             context['is_subbed'] = student.course_set.filter(id=self.id).exists()
 
-            if self.is_teacher(student):
-                context['is_teacher'] = True
+            if self.can_modify(student):
+                context['can_modify'] = True
+                context['is_teacher'] = self.is_teacher(student)
                 context['students'] = self.participants.all()
 
         return context
@@ -171,6 +172,12 @@ class Course(models.Model):
         return self.description != ''
 
     def is_teacher(self, student):
+        return self.teacher.filter(id=student.id).exists()
+
+    def can_modify(self, student):
+        """
+        Formerly "is_teacher"; whether or not a user can change details of the course.
+        """
         return student.user.has_perm('change_course', self) \
                 and student.user.has_perm('delete_course', self)
 
@@ -193,4 +200,3 @@ class Participation(models.Model):
 
     class Meta:
         ordering = ['ticket_number']
-

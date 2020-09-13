@@ -105,8 +105,6 @@ def edit_course(request: HttpRequest, course_id: str):
     if request.method == "POST":
         form = CourseForm(request.POST, instance=current_course)
 
-        print(form)
-
         if form.is_valid():
             current_course.save()
             current_schedule.set_type(request.POST['schedule_type'])

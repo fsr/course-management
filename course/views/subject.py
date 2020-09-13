@@ -20,7 +20,7 @@ def course_overview(request, subjectname):
 
     if user.is_authenticated:
         cl = list(filter(
-            lambda c: c.visible or c.is_teacher(user.userinformation),
+            lambda c: c.visible or c.can_modify(user.userinformation),
             active_subject.course_set.filter(archiving='t')
         ))
         for course in cl:
