@@ -112,7 +112,12 @@ def edit_course(request: HttpRequest, course_id: str):
             return redirect('course', course_id)
 
     else:
-        form = CourseForm(instance=current_course,initial={'schedule_type':current_schedule.get_type()})
+        # FIXME(feliix42): Manually setting the start & end date here is required beacuse I just can't get django to format the date correctly in the Form setup
+        form = CourseForm(instance=current_course,initial={
+            'schedule_type':current_schedule.get_type(),
+            'start_time': current_course.start_time.strftime('%d.%m.%Y'),
+            'end_time': current_course.end_time.strftime('%d.%m.%Y')
+        })
     return render(
         request,
         'course/edit.html',

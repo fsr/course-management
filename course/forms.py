@@ -70,11 +70,6 @@ class CourseForm(ModelForm):
 
     class Meta:
         model = Course
-        widgets = {
-            'start_time': forms.DateInput(attrs={'class': 'datepicker'}),
-            'end_time': forms.DateInput(attrs={'class': 'datepicker'}),
-        }
-
         fields = [
             'subject',
             'active',
@@ -106,6 +101,13 @@ class CourseForm(ModelForm):
             'start_time': _('Begin'),
             'end_time': _('End')
         }
+
+    start_time = forms.DateField(
+        widget=forms.DateInput(format='%d.%m.%Y'),
+        input_formats=['%d.%m.%Y'])
+    end_time = forms.DateField(
+        widget=forms.DateInput(format=('%d.%m.%Y')),
+        input_formats=['%d.%m.%Y'])
 
 
 class AddTeacherForm(forms.Form):
