@@ -33,8 +33,13 @@ We will explore the universe.
 
 CONTACT_FOOTER = """
 -------------------
-This message has been sent via the Course Mangement System.
+This message has been sent via the Course Mangement System at https://kurse.ifsr.de.
 Sent by: """
+
+BLANK_FOOTER = """
+-------------------
+This message has been sent via the Course Mangement System at https://kurse.ifsr.de.
+"""
 
 
 
@@ -294,26 +299,21 @@ def notify(request: HttpRequest, course_id):
     if request.method == 'POST':
         form = NotifyCourseForm(request.POST)
         if form.is_valid():
-
             try:
                 course = Course.objects.get(id=course_id)
             except Course.DoesNotExist:
                 return db_error(_('Requested course does not exist.'))
 
             email = request.user.email
+            show_sender = form.cleaned_data['show_sender'] and email
 
-            data = form.cleaned_data
-
-            show_sender = data.get('show_sender', False) and email
-
-            subject = data['subject']
-            content = data['content']
+            if show_sender:
+                content = form.content + CONTACT_FOOTER + email
+            else:
+                content = form.content + BLANK_FOOTER
 
             for student in itertools.chain(course.participants.all(), course.teacher.all()):
-                if show_sender:
-                    student.user.email_user(subject, content, email)
-                else:
-                    student.user.email_user(subject, content)
+                student.user.email_user("[iFSR Course Manager] " + form.subject, content)
 
             return redirect('notify-course-done', course_id)
 
