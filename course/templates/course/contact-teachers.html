@@ -3,17 +3,16 @@
 
 {% block content %}
 
-<h1 class="mb-3">{% trans 'Notify Participants' %}</h1>
+<h1 class="mb-3">{% trans 'Contact Teachers' %}</h1>
 
 <p>
   {% blocktrans %}
-  You can use this form to send an email to all people enrolled in your course.
-  This also includes any person on the waiting list.
-  <i>Please note:</i> Writing your students too often might lead to mails losing their effect so use this feature wisely.
+  You can use this form to send an email to the teachers of your selected course.
+  <i>Please note:</i> By contacting the teachers you agree to share the mail address you provided with the contacted users. These users may use this address at their discretion to respond or reach out to you in the future.
   {% endblocktrans %}
 </p>
 
-<form method="post" action="{% url 'notify-course' course_id %}">
+<form method="post" action="{% url 'contact-teachers' course_id %}">
   {% csrf_token %}
 
   {% if form.non_field_errors %}
@@ -35,13 +34,6 @@
     {% else %}
     <small id="subjectHelp" class="form-text text-muted">{% trans 'The subject of the mail you are about to write.' %}</small>
     {% endif %}
-  </div>
-
-  <div class="form-group">
-    <div class="custom-control custom-switch">
-      <input type="checkbox" class="custom-control-input" id="{{ form.show_sender.id_for_label }}" name="{{ form.show_sender.html_name }}">
-      <label class="custom-control-label" for="{{ form.show_sender.id_for_label }}">{% trans 'Reveal your mail address to your students in the footer.' %}</label>
-    </div>
   </div>
 
   <div class="form-group {% if form.content.errors %}has-danger{% endif %}">

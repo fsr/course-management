@@ -193,51 +193,51 @@
 - model: auth.permission
   pk: 33
   fields:
-    name: Can add activation
+    name: Can add user information
     content_type: 9
-    codename: add_activation
+    codename: add_userinformation
 - model: auth.permission
   pk: 34
   fields:
-    name: Can change activation
+    name: Can change user information
     content_type: 9
-    codename: change_activation
+    codename: change_userinformation
 - model: auth.permission
   pk: 35
   fields:
-    name: Can delete activation
+    name: Can delete user information
     content_type: 9
-    codename: delete_activation
+    codename: delete_userinformation
 - model: auth.permission
   pk: 36
   fields:
-    name: Can view activation
+    name: Can view user information
     content_type: 9
-    codename: view_activation
+    codename: view_userinformation
 - model: auth.permission
   pk: 37
   fields:
-    name: Can add user information
+    name: Can add activation
     content_type: 10
-    codename: add_userinformation
+    codename: add_activation
 - model: auth.permission
   pk: 38
   fields:
-    name: Can change user information
+    name: Can change activation
     content_type: 10
-    codename: change_userinformation
+    codename: change_activation
 - model: auth.permission
   pk: 39
   fields:
-    name: Can delete user information
+    name: Can delete activation
     content_type: 10
-    codename: delete_userinformation
+    codename: delete_activation
 - model: auth.permission
   pk: 40
   fields:
-    name: Can view user information
+    name: Can view activation
     content_type: 10
-    codename: view_userinformation
+    codename: view_activation
 - model: auth.permission
   pk: 41
   fields:
@@ -265,175 +265,175 @@
 - model: auth.permission
   pk: 45
   fields:
-    name: Can add date slot
+    name: Can add news
     content_type: 12
-    codename: add_dateslot
+    codename: add_news
 - model: auth.permission
   pk: 46
   fields:
-    name: Can change date slot
+    name: Can change news
     content_type: 12
-    codename: change_dateslot
+    codename: change_news
 - model: auth.permission
   pk: 47
   fields:
-    name: Can delete date slot
+    name: Can delete news
     content_type: 12
-    codename: delete_dateslot
+    codename: delete_news
 - model: auth.permission
   pk: 48
   fields:
-    name: Can view date slot
+    name: Can view news
     content_type: 12
-    codename: view_dateslot
+    codename: view_news
 - model: auth.permission
   pk: 49
   fields:
-    name: Can add notification
+    name: Can add schedule
     content_type: 13
-    codename: add_notification
+    codename: add_schedule
 - model: auth.permission
   pk: 50
   fields:
-    name: Can change notification
+    name: Can change schedule
     content_type: 13
-    codename: change_notification
+    codename: change_schedule
 - model: auth.permission
   pk: 51
   fields:
-    name: Can delete notification
+    name: Can delete schedule
     content_type: 13
-    codename: delete_notification
+    codename: delete_schedule
 - model: auth.permission
   pk: 52
   fields:
-    name: Can view notification
+    name: Can view schedule
     content_type: 13
-    codename: view_notification
+    codename: view_schedule
 - model: auth.permission
   pk: 53
   fields:
-    name: Can add schedule
+    name: Can add subject
     content_type: 14
-    codename: add_schedule
+    codename: add_subject
 - model: auth.permission
   pk: 54
   fields:
-    name: Can change schedule
+    name: Can change subject
     content_type: 14
-    codename: change_schedule
+    codename: change_subject
 - model: auth.permission
   pk: 55
   fields:
-    name: Can delete schedule
+    name: Can delete subject
     content_type: 14
-    codename: delete_schedule
+    codename: delete_subject
 - model: auth.permission
   pk: 56
   fields:
-    name: Can view schedule
+    name: Can view subject
     content_type: 14
-    codename: view_schedule
+    codename: view_subject
 - model: auth.permission
   pk: 57
   fields:
-    name: Can add subject
+    name: Can add weekly slot
     content_type: 15
-    codename: add_subject
+    codename: add_weeklyslot
 - model: auth.permission
   pk: 58
   fields:
-    name: Can change subject
+    name: Can change weekly slot
     content_type: 15
-    codename: change_subject
+    codename: change_weeklyslot
 - model: auth.permission
   pk: 59
   fields:
-    name: Can delete subject
+    name: Can delete weekly slot
     content_type: 15
-    codename: delete_subject
+    codename: delete_weeklyslot
 - model: auth.permission
   pk: 60
   fields:
-    name: Can view subject
+    name: Can view weekly slot
     content_type: 15
-    codename: view_subject
+    codename: view_weeklyslot
 - model: auth.permission
   pk: 61
   fields:
-    name: Can add weekly slot
+    name: Can add participation
     content_type: 16
-    codename: add_weeklyslot
+    codename: add_participation
 - model: auth.permission
   pk: 62
   fields:
-    name: Can change weekly slot
+    name: Can change participation
     content_type: 16
-    codename: change_weeklyslot
+    codename: change_participation
 - model: auth.permission
   pk: 63
   fields:
-    name: Can delete weekly slot
+    name: Can delete participation
     content_type: 16
-    codename: delete_weeklyslot
+    codename: delete_participation
 - model: auth.permission
   pk: 64
   fields:
-    name: Can view weekly slot
+    name: Can view participation
     content_type: 16
-    codename: view_weeklyslot
+    codename: view_participation
 - model: auth.permission
   pk: 65
   fields:
-    name: Can add news
+    name: Can add notification
     content_type: 17
-    codename: add_news
+    codename: add_notification
 - model: auth.permission
   pk: 66
   fields:
-    name: Can change news
+    name: Can change notification
     content_type: 17
-    codename: change_news
+    codename: change_notification
 - model: auth.permission
   pk: 67
   fields:
-    name: Can delete news
+    name: Can delete notification
     content_type: 17
-    codename: delete_news
+    codename: delete_notification
 - model: auth.permission
   pk: 68
   fields:
-    name: Can view news
+    name: Can view notification
     content_type: 17
-    codename: view_news
+    codename: view_notification
 - model: auth.permission
   pk: 69
   fields:
-    name: Can add description
+    name: Can add date slot
     content_type: 18
-    codename: add_description
+    codename: add_dateslot
 - model: auth.permission
   pk: 70
   fields:
-    name: Can change description
+    name: Can change date slot
     content_type: 18
-    codename: change_description
+    codename: change_dateslot
 - model: auth.permission
   pk: 71
   fields:
-    name: Can delete description
+    name: Can delete date slot
     content_type: 18
-    codename: delete_description
+    codename: delete_dateslot
 - model: auth.permission
   pk: 72
   fields:
-    name: Can view description
+    name: Can view date slot
     content_type: 18
-    codename: view_description
+    codename: view_dateslot
 - model: auth.user
   pk: 1
   fields:
-    password: '!CM6olLTxguXqWE0AdOXAPhHsdd10hg5nsB9mHR19'
+    password: '!gx6a0ZMK7MT3V4FVHO4JTi5YmAeDW95WIMBeSitL'
     last_login: null
     is_superuser: false
     username: AnonymousUser
@@ -442,37 +442,37 @@
     email: ''
     is_staff: false
     is_active: true
-    date_joined: 2019-10-29 15:40:31.089086
+    date_joined: 2020-09-11 21:53:01.736695
     groups: []
     user_permissions: []
 - model: auth.user
   pk: 2
   fields:
-    password: pbkdf2_sha256$150000$xqeOSZDHcxDh$L8o3xKGB8s1GkAoBgubryONv9MpBJ+qoBkHtCb8Baz8=
-    last_login: 2019-10-29 16:03:36.934335
+    password: pbkdf2_sha256$150000$xpNjVa8rSjwb$nPdxdpIekadKwHROid0wfBPLp/YQQlQSIR6GLolXodc=
+    last_login: 2020-09-11 22:16:52.778766
     is_superuser: true
     username: foo
     first_name: Ayn
     last_name: Rand
-    email: foo@example.com
+    email: test@example.org
     is_staff: true
     is_active: true
-    date_joined: 2019-10-29 15:41:28
+    date_joined: 2020-09-11 21:54:55
     groups: []
     user_permissions: []
 - model: auth.user
   pk: 3
   fields:
-    password: pbkdf2_sha256$150000$JBJE7kFjGZBF$usetzBtZnXwC5NrrYlRmRKCRhoPrmmqUaT0bOvDJPlo=
-    last_login: 2019-10-29 16:02:55.736757
+    password: pbkdf2_sha256$150000$4SnZOSU833L0$uf4i7Hmcldc6hOlmH0o+WZ+rFcI+zEWdLkSn1Xq/Hd4=
+    last_login: 2020-09-11 22:16:32.441133
     is_superuser: false
     username: test
-    first_name: Isaac
-    last_name: Asimov
-    email: test@example.com
+    first_name: John
+    last_name: Galt
+    email: example@example.org
     is_staff: false
     is_active: true
-    date_joined: 2019-10-29 15:56:10.466081
+    date_joined: 2020-09-11 22:16:11.462011
     groups: []
     user_permissions: []
 - model: guardian.userobjectpermission
@@ -503,36 +503,86 @@
     content_type: 11
     object_pk: '2'
     user: 2
+- model: guardian.userobjectpermission
+  pk: 5
+  fields:
+    permission: 42
+    content_type: 11
+    object_pk: '3'
+    user: 2
+- model: guardian.userobjectpermission
+  pk: 6
+  fields:
+    permission: 43
+    content_type: 11
+    object_pk: '3'
+    user: 2
+- model: guardian.userobjectpermission
+  pk: 7
+  fields:
+    permission: 42
+    content_type: 11
+    object_pk: '1'
+    user: 3
+- model: guardian.userobjectpermission
+  pk: 8
+  fields:
+    permission: 43
+    content_type: 11
+    object_pk: '1'
+    user: 3
 - model: user.userinformation
   pk: 1
   fields:
     user: 2
-    description: A creative man is motivated by the desire to achieve, not by the
-      desire to beat others.
+    description: Every man builds his world in his own image. He has the power to
+      choose, but no power to escape the necessity of choice.
     public_profile: true
     accepted_privacy_policy: true
 - model: user.userinformation
   pk: 2
   fields:
     user: 3
-    description: People who think they know everything are a great annoyance to those
-      of us who do.
-    public_profile: true
+    description: ''
+    public_profile: false
     accepted_privacy_policy: true
 - model: course.subject
   pk: 1
   fields:
-    name: C
-    description: ''
-    description_en: ''
-    description_de: ''
+    name: Rust
+    description: Rust is a _multi-paradigm programming language_ focused on **performance**
+      and **safety**, especially **safe concurrency**. Rust is syntactically similar
+      to C++, and provides memory safety without using garbage collection.
+    description_en: Rust is a _multi-paradigm programming language_ focused on **performance**
+      and **safety**, especially **safe concurrency**. Rust is syntactically similar
+      to C++, and provides memory safety without using garbage collection.
+    description_de: "Rust ist eine _Multiparadigmen-Systemprogrammiersprache_, die
+      von Mozilla Research entwickelt wurde. Sie wurde mit dem Ziel entwickelt, **sicher**,
+      **nebenl\xE4ufig** und **praxisnah** zu sein. Sicherheit bezieht sich dabei
+      insbesondere auf die Vermeidung von Programmfehlern, die zu Speicherzugriffsfehlern
+      oder Puffer\xFCberl\xE4ufen und damit unter Umst\xE4nden auch zu Sicherheitsl\xFCcken
+      f\xFChren, vor allem auch in nebenl\xE4ufigen Prozessen.\r\n\r\nIm Gegensatz
+      zu anderen Programmiersprachen mit automatischer Speicherverwaltung verwendet
+      Rust hierf\xFCr keine Garbage Collection, sondern setzt auf ein besonderes Typsystem."
 - model: course.subject
   pk: 2
   fields:
-    name: Rust
-    description: ''
-    description_en: ''
-    description_de: ''
+    name: Python
+    description: The Pythonidae, commonly known as pythons, are a family of nonvenomous
+      snakes found in Africa, Asia, and Australia. Among its members are some of the
+      largest snakes in the world. Nine genera and 40 species are currently recognized.
+    description_en: The Pythonidae, commonly known as pythons, are a family of nonvenomous
+      snakes found in Africa, Asia, and Australia. Among its members are some of the
+      largest snakes in the world. Nine genera and 40 species are currently recognized.
+    description_de: "Die Pythons (Pythonidae; altgr. \u03A0\u03CD\u03B8\u03C9\u03BD
+      Pyth\u014Dn; Einzahl der, allgemeinsprachlich auch die Python) sind eine Familie
+      von Schlangen aus der \xDCberfamilie der Pythonoidea. Aufgrund von k\xF6rperlichen
+      Merkmalen wurden sie lange mit den Boaschlangen als \u201ERiesenschlangen\u201C
+      zusammengefasst. Aktuelle genetische Untersuchungen lassen hingegen an einer
+      unmittelbaren Verwandtschaft der beiden Familien zweifeln. Bezogen auf Familie
+      oder Unterfamilie spricht man auch von Pythonschlangen. Im engeren Sinne sind
+      mit \u201EPythons\u201C die Vertreter der Gattung Eigentliche Pythons (Python)
+      gemeint."
 - model: course.course
   pk: 1
   fields:
@@ -540,29 +590,49 @@
     visible: true
     subject: 1
     max_participants: 30
-    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore the
-      universe.\r\n\r\n## Materials\r\n\r\n- a towel\r\n- lots of courage"
+    description: "This course will give you a basic overview over the Rust programming
+      language.\r\n\r\n#### Covered topics\r\n\r\n- Rust Syntax\r\n- understanding
+      the borrow checker\r\n- ..."
     archiving: t
-    start_time: 2019-10-29
-    end_time: 2029-10-29
+    start_time: 2020-10-19
+    end_time: 2021-02-01
     teacher:
     - 1
-    participants: []
+    - 2
 - model: course.course
   pk: 2
   fields:
     active: false
     visible: true
     subject: 2
-    max_participants: 30
-    description: "# The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore the
-      universe.\r\n\r\n## Materials\r\n\r\n- a towel\r\n- lots of courage"
+    max_participants: 15
+    description: "#### The Hitchhikers Guide To The Galaxy\r\n\r\nWe will explore
+      the universe.\r\n\r\n##### Materials\r\n\r\n- a towel\r\n- lots of courage"
     archiving: t
-    start_time: 2019-10-29
-    end_time: 2029-10-29
+    start_time: 2020-10-19
+    end_time: 2021-02-01
     teacher:
     - 1
-    participants: []
+- model: course.course
+  pk: 3
+  fields:
+    active: true
+    visible: true
+    subject: 2
+    max_participants: 1
+    description: "#### Python 1:1 Experience\r\n\r\nThis course will teach the in-depth
+      details about Python in a cozy 1:1."
+    archiving: t
+    start_time: 2020-10-19
+    end_time: 2021-02-01
+    teacher:
+    - 1
+- model: course.participation
+  pk: 1
+  fields:
+    participant: 2
+    course: 3
+    ticket_number: 1
 - model: course.schedule
   pk: 1
   fields:
@@ -573,26 +643,53 @@
   fields:
     _type: W
     course: 2
+- model: course.schedule
+  pk: 3
+  fields:
+    _type: O
+    course: 3
 - model: course.weeklyslot
   pk: 1
   fields:
     weekday: WED
-    timeslot: III
-    location: APB/1004
+    timeslot: VI
+    location: APB/E067
     schedule: 1
 - model: course.weeklyslot
   pk: 2
   fields:
-    weekday: SAT
+    weekday: FRI
+    timeslot: II
+    location: APB/E069
+    schedule: 1
+- model: course.weeklyslot
+  pk: 3
+  fields:
+    weekday: TUE
     timeslot: IV
-    location: FOO
+    location: HSZ/0002/H
     schedule: 2
+- model: course.dateslot
+  pk: 1
+  fields:
+    date: 2020-11-15 14:00:00
+    location: APB/E016
+    schedule: 3
+- model: course.news
+  pk: 1
+  fields:
+    headline: Important updates coming up
+    entry: As you've probably noticed while taking a glimpse at the course management
+      [Github repository](https://github.com/fsr/course-management), this system is
+      still under development. So expect updates every now and then!
+    author: Ayn Rand
+    modified: 2020-09-11
 - model: admin.logentry
   pk: 1
   fields:
-    action_time: 2019-10-29 15:45:45.137958
+    action_time: 2020-09-11 21:58:41.530210
     user: 2
-    content_type: 10
+    content_type: 9
     object_id: '1'
     object_repr: ' '
     action_flag: 1
@@ -600,7 +697,7 @@
 - model: admin.logentry
   pk: 2
   fields:
-    action_time: 2019-10-29 15:46:04.415639
+    action_time: 2020-09-11 21:59:06.133597
     user: 2
     content_type: 4
     object_id: '2'

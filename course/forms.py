@@ -9,7 +9,7 @@ from course.models.course import Course
 from course.models.schedule import Schedule, DateSlot, WeeklySlot
 from course.models.subject import Subject
 from course.models.news import News
-from user.forms import AbstractContactForm
+from user.forms import ContactForm
 
 location_validator = RegexValidator(
     r'^.*$', # does absolutely nothing yet
@@ -70,11 +70,6 @@ class CourseForm(ModelForm):
 
     class Meta:
         model = Course
-        widgets = {
-            'start_time': forms.DateInput(attrs={'class': 'datepicker'}),
-            'end_time': forms.DateInput(attrs={'class': 'datepicker'}),
-        }
-
         fields = [
             'subject',
             'active',
@@ -107,6 +102,13 @@ class CourseForm(ModelForm):
             'end_time': _('End')
         }
 
+    start_time = forms.DateField(
+        widget=forms.DateInput(format='%d.%m.%Y'),
+        input_formats=['%d.%m.%Y'])
+    end_time = forms.DateField(
+        widget=forms.DateInput(format=('%d.%m.%Y')),
+        input_formats=['%d.%m.%Y'])
+
 
 class AddTeacherForm(forms.Form):
     username = forms.CharField(
@@ -115,7 +117,7 @@ class AddTeacherForm(forms.Form):
     )
 
 
-class NotifyCourseForm(AbstractContactForm):
+class NotifyCourseForm(ContactForm):
     show_sender = forms.BooleanField(
         initial=False,
         required=False,
@@ -143,11 +145,6 @@ class SubjectForm(ModelForm):
         ]
 
 class NewsForm(ModelForm):
-    headline = forms.CharField(
-        validators = [subject_name_validator],
-        help_text = ('Headline for the news.')
-    )
-    
     class Meta:
         model = News
         fields = [

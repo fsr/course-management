@@ -18,6 +18,9 @@ from user.models import UserInformation, Activation, ACTIVATION_TYPES
 @sensitive_post_parameters('password1', 'password2')
 @sensitive_variables('password1', 'password2')
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         userinformation_form = UserInformationForm(request.POST)
@@ -27,8 +30,6 @@ def register(request):
             created_user = user_form.save(commit=False)
             created_user.is_active = False
             created_user.save()
-
-            acc = []
 
             created_user_information = userinformation_form.save(
                 commit=False)
@@ -40,14 +41,14 @@ def register(request):
             verification_mail(created_user, 'email',
                                 created_user.email, request)
 
-            acc.append(created_user.email)
+            acc = created_user.email
 
             return render(
                 request,
                 'registration/success.html',
                 {
                     'title': _('Registration successfull'),
-                    'acc': acc
+                    'mail': acc
                 }
             )
         else:

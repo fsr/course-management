@@ -2,13 +2,29 @@
 {% load i18n %}
 
 {% block content %}
+
+<div class="col-sm-8 mr-auto ml-auto">
 {% if error %}
-  <p class='errors'>
-    {{error}}
-  </p>
+  <div class="card border-danger mb-3">
+    <h3 class="card-header">{% trans 'There was a problem...' %}</h3>
+    <div class="card-body">
+    <p class="card-text">
+      {{ error }}
+    </p>
+  </div>
+</div>
 {% else %}
-  <p>
-    {% trans "Your account has been successfully activated." %}
-  </p>
+  <div class="card border-success mb-3">
+    <h3 class="card-header">{% trans 'Done!' %}</h3>
+    <div class="card-body">
+    <p class="card-text">
+      {% blocktrans %}
+      Your account has been successfully activated. You now may log in using your credentials.
+      {% endblocktrans %}
+    </p>
+    </div>
+  </div>
 {% endif %}
+</div>
+
 {% endblock %}

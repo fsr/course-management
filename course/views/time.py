@@ -45,10 +45,11 @@ def edit_slot(request: HttpRequest, course_id):
 
     return render(
         request,
-        'course/time.html',
+        'course/timetable.html',
         {
             'title': _('Edit Schedule'),
             'form': form,
+            'weekly_slot': schedule.is_weekly(),
             'schedule': schedule,
             'course_id': course_id,
             'target': 'course-edit-slot',
@@ -78,4 +79,4 @@ def remove_slot(request, course_id, slot_id):
             ''.format(request.path)
         )
 
-    return redirect_unless_target(request, 'course', course_id)
+    return redirect_unless_target(request, 'course-edit-slot', course_id)

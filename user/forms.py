@@ -55,10 +55,11 @@ class UserForm(UserCreationForm):
 class UserEditForm(ModelForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name')
+        fields = ('first_name', 'last_name', 'email')
         labels = {
             'first_name': _('First Name'),
-            'last_name': _('Last Name')
+            'last_name': _('Last Name'),
+            'email': _("Mail address")
         }
         help_texts = {
             'first_name': _('First part of your public name, which should be your genuine first name. '
@@ -67,6 +68,7 @@ class UserEditForm(ModelForm):
             'last_name': _('Second part of your public name, which should be your genuine familyname. '
                            'If you become a teacher this will be visible to any site visitor. '
                            'Can be modified later'),
+            'email': _('Your mail address'),
         }
 
 
@@ -87,7 +89,7 @@ class UserInformationForm(ModelForm):
         }
 
 
-class AbstractContactForm(forms.Form):
+class ContactForm(forms.Form):
     subject = forms.CharField(help_text=_(
         'This will become the subject field of the resulting email.'))
     content = forms.CharField(
@@ -100,13 +102,6 @@ class AbstractContactForm(forms.Form):
         super().clean()
         self.subject = html_clean.clean_all(self.data['subject'])
         self.content = html_clean.clean_all(self.data['content'])
-
-
-class ContactForm(AbstractContactForm):
-    sender = forms.CharField(
-        help_text=_('An email address where the recipient may reach you.'),
-        validators=[validate_email]
-    )
 
 
 class PrivacyAgreementForm(ModelForm):

@@ -1,24 +1,36 @@
 {% extends "base.html" %}
 {% load i18n %}
+
 {% block content %}
-  <h2>{% trans "Subject Overview" %}</h2>
-  <p>
-    {% trans "Right now, we offer courses on the following topics:" %}
-  </p>
-  <table class="table">
-    <thead>
-      <tr>
-        <td>{% trans "Name" %}</td>
-        <td>{% trans "Courses" %}</td>
+<h1 class="mb-3">{% trans 'Subjects List' %}</h1>
+
+<p>{% trans 'These are the subjects we offer courses for. If you feel this list is too short or it contains a subject you consider yourself proficient in, please do not hesitate to reach out to us and come aboard!' %}</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">{% trans 'Subject' %}</th>
+      <th scope="col">{% trans 'Offered Courses' %}</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for subject in visible_subjects %}
+    <tr>
+      <td>{{ subject.name }}</td>
+      <td>{{ subject.visible_courses.count }}</td>
+      <td><a href="{% url 'subject' subject.name %}">{% trans 'Info' %}</a></td>
+    </tr>
+    {% endfor %}
+    {% if perms.course_management.add_course %}
+      {% for subject in invisible_subjects %}
+      <tr class="table-active">
+        <td>{{ subject.name }}</td>
+        <td>{{ subject.visible_courses.count }}</td>
+        <td><a href="{% url 'subject' subject.name %}">{% trans 'Info' %}</a></td>
       </tr>
-    </thead>
-    <tbody>
-      {% for subject in subjects %}
-        <tr>
-          <td><a href="{% url 'subject' subject.name %}">{{ subject.name }}</a></td>
-          <td>{{ subject.visible_courses.count }}</td>
-        </tr>
       {% endfor %}
-    </tbody>
-  </table>
+    {% endif %}
+  </tbody>
+</table>
 {% endblock %}

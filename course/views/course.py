@@ -14,21 +14,33 @@ from course.models.schedule import Schedule
 from course.models.subject import Subject
 from course.util.permissions import needs_teacher_permissions
 from user.models import UserInformation
+from user.forms import ContactForm
 from util import html_clean
 from util.error.reporting import db_error
 from util.routing import redirect_unless_target
 import itertools
 
 DEFAULT_COURSE_DESCRIPTION = """\
-# The Hitchhikers Guide To The Galaxy
+#### The Hitchhikers Guide To The Galaxy
 
 We will explore the universe.
 
-## Materials
+##### Materials
 
 - a towel
 - lots of courage
 """
+
+CONTACT_FOOTER = """
+-------------------
+This message has been sent via the Course Mangement System at https://kurse.ifsr.de.
+Sent by: """
+
+BLANK_FOOTER = """
+-------------------
+This message has been sent via the Course Mangement System at https://kurse.ifsr.de.
+"""
+
 
 
 def course(request: HttpRequest, course_id: str):
@@ -52,6 +64,11 @@ def course(request: HttpRequest, course_id: str):
         else:
             context = current_course.as_context()
 
+        session = request.session
+        if 'enroll-error' in session:
+            context['error'] = session['enroll-error']
+            del session['enroll-error']
+
         return render(
             request,
             'course/info.html',
@@ -68,7 +85,7 @@ def participants_list(request, course_id):
 
         return render(
             request,
-            'course/participants.html',
+            'course/attendees.html',
             {'course': current_course}
         )
     except Course.DoesNotExist:
@@ -91,7 +108,6 @@ def edit_course(request: HttpRequest, course_id: str):
         return db_error(_('Requested course does not exist.'))
 
     if request.method == "POST":
-
         form = CourseForm(request.POST, instance=current_course)
 
         if form.is_valid():
@@ -101,13 +117,19 @@ def edit_course(request: HttpRequest, course_id: str):
             return redirect('course', course_id)
 
     else:
-        form = CourseForm(instance=current_course,initial={'schedule_type':current_schedule.get_type()})
+        # FIXME(feliix42): Manually setting the start & end date here is required beacuse I just can't get django to format the date correctly in the Form setup
+        form = CourseForm(instance=current_course,initial={
+            'schedule_type':current_schedule.get_type(),
+            'start_time': current_course.start_time.strftime('%d.%m.%Y'),
+            'end_time': current_course.end_time.strftime('%d.%m.%Y')
+        })
     return render(
         request,
         'course/edit.html',
         {
             'title': _('Edit course'),
             'form': form,
+            'create': False,
             'course_id': course_id,
             'allowed_tags': html_clean.DESCR_ALLOWED_TAGS,
             'course_is_active': current_course.active,
@@ -126,6 +148,7 @@ def toggle(request: HttpRequest, course_id: str, active: bool):
     :param active: active/inactive
     :return:
     """
+    # TODO: Delete me
     try:
         curr_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
@@ -176,10 +199,11 @@ def create(request):
 
     return render(
         request,
-        'course/create.html',
+        'course/edit.html',
         {
             'title': _('New Course'),
-            'form': form
+            'form': form,
+            'create': True
         }
     )
 
@@ -232,8 +256,7 @@ def add_teacher(request, course_id):
 
                 return redirect('add-teacher', course_id)
             except User.DoesNotExist:
-                context['error'] = _('The username you entered does not exist in '
-                                     'my database, sorry :(')
+                context['error'] = _('The username you entered does not exist.')
     else:
         form = AddTeacherForm()
 
@@ -242,7 +265,7 @@ def add_teacher(request, course_id):
 
     return render(
         request,
-        'course/teacher.html',
+        'course/teachers.html',
         context
     )
 
@@ -252,16 +275,16 @@ def add_teacher(request, course_id):
 def remove_teacher(request, course_id, teacher_id):
     try:
         curr_course = Course.objects.get(id=course_id)
-        user = User.objects.get(id=teacher_id)
-        curr_course.teacher.remove(user.userinformation)
+        userinfo = UserInformation.objects.get(id=teacher_id)
+        curr_course.teacher.remove(userinfo)
         remove_perm(
             'change_course',
-            user,
+            userinfo.user,
             curr_course
         )
         remove_perm(
             'delete_course',
-            user,
+            userinfo.user,
             curr_course
         )
     except Course.DoesNotExist:
@@ -276,26 +299,21 @@ def notify(request: HttpRequest, course_id):
     if request.method == 'POST':
         form = NotifyCourseForm(request.POST)
         if form.is_valid():
-
             try:
                 course = Course.objects.get(id=course_id)
             except Course.DoesNotExist:
                 return db_error(_('Requested course does not exist.'))
 
             email = request.user.email
+            show_sender = form.cleaned_data['show_sender'] and email
 
-            data = form.cleaned_data
-
-            show_sender = data.get('show_sender', False) and email
-
-            subject = data['subject']
-            content = data['content']
+            if show_sender:
+                content = form.content + CONTACT_FOOTER + email
+            else:
+                content = form.content + BLANK_FOOTER
 
             for student in itertools.chain(course.participants.all(), course.teacher.all()):
-                if show_sender:
-                    student.user.email_user(subject, content, email)
-                else:
-                    student.user.email_user(subject, content)
+                student.user.email_user("[iFSR Course Manager] " + form.subject, content)
 
             return redirect('notify-course-done', course_id)
 
@@ -313,9 +331,14 @@ def notify(request: HttpRequest, course_id):
     )
 
 
-@needs_teacher_permissions
 def notify_done(request, course_id):
-    return render_to_response('course/notify-done.html')
+    return render(
+        request,
+        'course/notify-done.html',
+        {
+            'course_id': course_id
+        }
+    )
 
 
 @needs_teacher_permissions
@@ -353,10 +376,34 @@ def attendee_list(request, course_id):
                     'slots': range(slots)
                 }
         )
+    return redirect('course-participants', course_id)
+
+def contact_teachers(request, course_id):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            try:
+                course = Course.objects.get(id=course_id)
+            except Course.DoesNotExist:
+                return db_error(_('Requested course does not exist.'))
+
+            subject = "[CM contact form] " + form.subject
+            content = form.content + CONTACT_FOOTER + request.user.email
+
+            for teacher in course.teacher.all():
+                teacher.user.email_user(subject, content)
+
+            return redirect('contact-teachers-done', course_id)
+
+    else:
+        form = ContactForm()
+
     return render(
-            request,
-            'course/attendee-list-select.html',
-            {
-                'course_id': course_id
-            }
+        request,
+        'course/contact-teachers.html',
+        {
+            'title': _('Notify Course'),
+            'form': form,
+            'course_id': course_id
+        }
     )

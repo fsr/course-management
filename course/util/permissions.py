@@ -39,7 +39,7 @@ def has_teacher_permissions(student, course):
     i.e. they are a teacher or have general permissions to change and edit
     course objects
     """
-    return course.is_teacher(student) or (
+    return course.can_modify(student) or (
             student.user.has_perm('course.change_course')
             and student.user.has_perm('course.change_course')
     )

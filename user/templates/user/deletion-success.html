@@ -2,7 +2,12 @@
 {% load i18n %}
 
 {% block content %}
-    <h1>{% trans "And off you go!" %}</h1>
-    
-    <p>{% trans "Your account has successfully been deleted. We're sorry to see you go!" %}</p>
+
+<div class="card border-dark mb-3">
+    <h3 class="card-header">{% trans 'All done!' %}</h3>
+    <div class="card-body">
+        <p class="card-text">{% trans 'Your account deletion has been completed successfully and your data has been removed from our servers. We are sorry to see you go!' %}</p>
+    </div>
+</div>
+
 {% endblock %}

@@ -1,9 +1,0 @@
-{% load i18n %}
-<form action="{% url 'register-course' course.id %}{% if target %}?target={{ target }}{% endif %}" method="post">
-  {% csrf_token %}
-  {% if course.joinable %}
-  <input class="button" type="submit" value="{% trans "register" %}" />
-  {% else %}
-  <input class="button" type="submit" value="{% trans "register waiting list" %}" />
-  {% endif %}
-</form>

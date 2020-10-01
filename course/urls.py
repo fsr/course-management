@@ -3,6 +3,9 @@ from django.contrib import admin
 
 from course.views import index, subject, course, enroll, time, news
 
+handler404 = 'course.views.index.handler404'
+handler500 = 'course.views.index.handler500'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$', index.index, name='index'),
@@ -37,16 +40,16 @@ urlpatterns = [
             re_path(r'^$', course.notify, name='notify-course'),
             re_path(r'^done/$', course.notify_done, name='notify-course-done'),
         ])),
+        re_path(r'^contact/', include([
+            re_path(r'^$', course.contact_teachers, name='contact-teachers'),
+            re_path(r'^done/$', course.notify_done, name='contact-teachers-done'),
+        ])),
         re_path(r'^register/', include([
             re_path(r'^$', enroll.add, name='register-course'),
-            re_path(r'^done/$', enroll.enroll_response,
-                dict(action='register'), name='register-course-done'),
             re_path(r'^remove/', include([
                 re_path(r'^$', enroll.remove, name='unregister-course'),
                 re_path(r'^(?P<student_id>[0-9]+)/$',
                     course.remove_student, name='unregister-course'),
-                re_path(r'^done/$', enroll.enroll_response,
-                    dict(action='unregister'), name='unregister-course-done'),
             ])),
         ])),
         re_path(r'^schedule/', include([
@@ -64,7 +67,6 @@ urlpatterns = [
     re_path(r'^i18n/', include('django.conf.urls.i18n')),
     re_path(r'^accounts/', include('user.urls')),
     re_path(r'^news/create', news.create, name='create-news'),
-    re_path(r'^news/overview', news.overview, name='overview-news'),
     re_path(r'^news/(?P<news_id>[0-9]+)/', include([
         re_path(r'^edit/$', news.edit, name='edit-news'),
         re_path(r'^delete/$', news.delete, name='delete-news')

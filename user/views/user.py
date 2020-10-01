@@ -16,22 +16,19 @@ def modify(request):
     student = user.userinformation
 
     if request.method == "POST":
-
         user_form = UserEditForm(request.POST, instance=request.user)
         userinformation_form = UserInformationForm(
             request.POST, instance=request.user.userinformation)
 
         if user_form.is_valid() and userinformation_form.is_valid():
-
             user.save()
             userinformation_form.save()
             return redirect('user-profile')
-
     else:
-
         user_form = UserEditForm(instance=request.user)
         userinformation_form = UserInformationForm(
             instance=request.user.userinformation)
+
     return render(
         request,
         'user/edit.html',
@@ -44,7 +41,7 @@ def modify(request):
 
 
 def profile(request, user_id=None):
-
+    attend = []
     if user_id is None:
         if request.user.is_authenticated:
             user = request.user
@@ -54,9 +51,10 @@ def profile(request, user_id=None):
                 return redirect('privacy-policy-updated')
 
             template = 'user/profile.html'
+
             is_own = True
-            teacher = user.userinformation.teacher.filter(archiving='t')
-            attend = user.userinformation.course_set.filter(archiving='t')
+            # construct a list of attended courses that are not yet archived
+            attend = [(p.course, p.course.position_in_queue(user.userinformation)) for p in user.userinformation.participation_set.all() if p.course.archiving == 't']
         else:
             return redirect('login')
     else:
@@ -66,7 +64,7 @@ def profile(request, user_id=None):
         except User.DoesNotExist:
             return db_error(_('This user does not exist'))
 
-        template = 'user/public-profile.html'
+        template = 'user/public_profile.html'
 
     return render(
         request,
@@ -75,6 +73,7 @@ def profile(request, user_id=None):
             'course_list_show_subject': True,
             'profiled_user': user,
             'is_own': is_own,
+            'attend': attend,
             'title': '{} {}'.format(user.first_name, user.last_name)
         }
     )
@@ -124,10 +123,4 @@ def delete_account(request):
             }
         )
     else:
-        return render(
-            request,
-            "user/delete-account.html",
-            {
-                "title": "Delete Account"
-            }
-        )
+        return redirect('modify-user')

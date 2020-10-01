@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<h1 class="mb-3">{% trans 'Attendees' %}</h1>
+
+{% if course.participants.all %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">{% trans 'Participant' %}</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in course.participants.all %}
+      <tr>
+        <td class="align-middle">
+          {{ student }}
+        </td>
+        <td class="align-middle">
+          <a class="btn btn-link" href="{% url 'user-profile' student.user_id %}">Profile Page</a>
+        </td>
+        <td>
+          <form action="{% url 'unregister-course' course.id student.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-link" value="{% trans 'Remove' %}">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="card border-secondary mt-3 mb-3">
+  <h3 class="card-header">{% trans 'Generate Attendee List' %}</h3>
+  <div class="card-body">
+    <p class="card-text">
+      {% blocktrans %}
+      Using this form you may generate an attendee list you can use to verify whether all enrolled students show up for your courses. While attendance is by all means neither necessary nor enforcable, you can use this to kick any repeated no-shows to free up space for new particiants.
+      {% endblocktrans %}
+    </p>
+
+    <form method="get" action="{% url 'attendee-list' course.id %}">
+      <div class="form-group">
+        <label class="col-form-label" for="slot-select">{% trans 'Number of slots' %}</label>
+        <input type="number" class="form-control" placeholder="Enter a number" id="slot-select" name="slots" value="1">
+      </div>
+      <input type="submit" class="btn btn-primary" value="{% trans 'Generate' %}">
+    </form>
+  </div>
+</div>
+{% else %}
+<p>{% trans 'There are no participants yet. Make sure your course is active and visible.' %}</p>
+{% endif %}
+
+<a class="btn btn-outline-primary" href="{% url 'course' course.id %}"> &laquo; {% trans 'back' %}</a>
+{% endblock %}

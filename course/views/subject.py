@@ -20,7 +20,7 @@ def course_overview(request, subjectname):
 
     if user.is_authenticated:
         cl = list(filter(
-            lambda c: c.visible or c.is_teacher(user.userinformation),
+            lambda c: c.visible or c.can_modify(user.userinformation),
             active_subject.course_set.filter(archiving='t')
         ))
         for course in cl:
@@ -42,15 +42,14 @@ def course_overview(request, subjectname):
     )
 
 
-@login_required()
-# TODO add permission for viewing this overview, maybe?
 def subject_overview(request):
     return render(
         request,
         'subject/overview.html',
         {
             'title': _('Subject Overview'),
-            'subjects': subject.Subject.objects.all()
+            'visible_subjects': subject.Subject.get_visible(),
+            'invisible_subjects': subject.Subject.get_invisible()
         }
     )
 
@@ -75,9 +74,10 @@ def create(request):
 
     return render(
         request,
-        'subject/create.html',
+        'subject/edit.html',
         {
             'title': _('New Subject'),
+            'create': True,
             'form': form
         }
     )
@@ -107,6 +107,7 @@ def edit(request, subjectname):
         'subject/edit.html',
         {
             'title': subj.name,
+            'create': False,
             'form': form,
             'subject': subj
         }

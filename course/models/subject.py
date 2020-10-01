@@ -1,4 +1,6 @@
 from django.db import models
+from markdown import markdown
+from util.html_clean import clean_for_description
 
 class Subject(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -6,6 +8,9 @@ class Subject(models.Model):
 
     def __str__(self):
         return self.name
+
+    def render_description(self):
+        return clean_for_description(markdown(self.description))
 
     @classmethod
     def get_active(cls):
