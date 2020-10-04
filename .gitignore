@@ -74,5 +74,3 @@ target/
 
 # Vim Swap File
 *.swp
-
-static/css

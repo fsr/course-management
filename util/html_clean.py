@@ -16,7 +16,9 @@ def clean_for_description(html):
     """
     Removes dangerous tags.
     """
-    return bleach.clean(html, tags=DESCR_ALLOWED_TAGS, strip=True)
+    allowed_attrs = bleach.ALLOWED_ATTRIBUTES
+    allowed_attrs['img'] = ['src']
+    return bleach.clean(html, tags=DESCR_ALLOWED_TAGS, attributes=allowed_attrs, strip=True)
 
 
 def clean_all(html):
