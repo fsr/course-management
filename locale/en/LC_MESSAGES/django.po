@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-04 23:08+0200\n"
+"POT-Creation-Date: 2020-10-07 14:24+0200\n"
 "PO-Revision-Date: 2019-10-26 12:55+0200\n"
 "Last-Translator: Felix Wittwer <dev@felixwittwer.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -969,8 +969,8 @@ msgid "john.galt@tu-dresden.de"
 msgstr ""
 
 #: user/templates/registration/password-reset.html:25
-#: user/templates/registration/register.html:135
-#: user/templates/user/change_pass.html:48 user/templates/user/edit.html:93
+#: user/templates/registration/register.html:139
+#: user/templates/user/change_pass.html:52 user/templates/user/edit.html:93
 #: user/templates/user/privacy-agreement.html:46
 msgid "Submit"
 msgstr ""
@@ -1017,41 +1017,45 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: user/templates/registration/register.html:81
-#: user/templates/user/change_pass.html:33
-msgid "You know the drill. Make it a good one, don\\"
+#: user/templates/registration/register.html:82
+msgid ""
+"\n"
+"        You know the drill. Make it a good one, don't reuse another password "
+"here. `<a href=\"https://www.xkcd.com/936/\">correct-horse-battery-staple</"
+"a>` is also not up for debate.\n"
+"      "
 msgstr ""
 
-#: user/templates/registration/register.html:86
-#: user/templates/user/change_pass.html:38
+#: user/templates/registration/register.html:90
+#: user/templates/user/change_pass.html:42
 msgid "Confirmation"
 msgstr ""
 
-#: user/templates/registration/register.html:98
+#: user/templates/registration/register.html:102
 #: user/templates/user/edit.html:56
 msgid "Profile Description"
 msgstr ""
 
-#: user/templates/registration/register.html:107
+#: user/templates/registration/register.html:111
 #: user/templates/user/edit.html:65
 msgid ""
 "A few words describing yourself. Will be shown on your profile page if you "
 "make it visible to other users."
 msgstr ""
 
-#: user/templates/registration/register.html:107
+#: user/templates/registration/register.html:111
 #: user/templates/user/edit.html:65
 msgid ""
 "<a href=\"https://commonmark.org/help/\">Markdown</a> is supported, but "
 "refrain from using h1 headings."
 msgstr ""
 
-#: user/templates/registration/register.html:114
+#: user/templates/registration/register.html:118
 #: user/templates/user/edit.html:72
 msgid "Make your profile publicly visible to other registered users."
 msgstr ""
 
-#: user/templates/registration/register.html:123
+#: user/templates/registration/register.html:127
 #, python-format
 msgid ""
 "\n"
@@ -1060,7 +1064,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: user/templates/registration/register.html:129
+#: user/templates/registration/register.html:133
 #: user/templates/user/edit.html:87
 #: user/templates/user/privacy-agreement.html:40
 msgid "You have to consent to the privacy policy to proceed."
@@ -1102,6 +1106,15 @@ msgstr ""
 
 #: user/templates/user/change_pass.html:24
 msgid "New Password"
+msgstr ""
+
+#: user/templates/user/change_pass.html:34
+msgid ""
+"\n"
+"                    You know the drill. Make it a good one, don't reuse "
+"another password here. `<a href=\"https://www.xkcd.com/936/\">correct-horse-"
+"battery-staple</a>` is also not up for debate.\n"
+"                "
 msgstr ""
 
 #: user/templates/user/change_pass_success.html:9

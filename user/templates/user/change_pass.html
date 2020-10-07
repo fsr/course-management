@@ -30,7 +30,11 @@
                 {% endfor %}
                 </div>
             {% else %}
-            <small id="passHelp" class="form-text text-muted">{% trans 'You know the drill. Make it a good one, don\'t reuse another password here. `<a href="https://www.xkcd.com/936/">correct-horse-battery-staple</a>` is also not up for debate.' %}</small>
+            <small id="passHelp" class="form-text text-muted">
+                {% blocktrans %}
+                    You know the drill. Make it a good one, don't reuse another password here. `<a href="https://www.xkcd.com/936/">correct-horse-battery-staple</a>` is also not up for debate.
+                {% endblocktrans %}
+            </small>
             {% endif %}
             </div>
         
