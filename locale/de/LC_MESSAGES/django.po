@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-11 21:36+0200\n"
-"PO-Revision-Date: 2019-10-26 12:55+0200\n"
+"POT-Creation-Date: 2020-10-04 23:08+0200\n"
+"PO-Revision-Date: 2020-10-04 23:08+0200\n"
 "Last-Translator: Felix Wittwer <dev@felixwittwer.de>\n"
 "Language-Team: ---\n"
 "Language: German\n"
@@ -29,60 +29,60 @@ msgstr "Ungültiges Kursthema."
 msgid "Requested username does not exist."
 msgstr "Der angeforderte Nutzername existiert nicht."
 
-#: course/forms.py:90
+#: course/forms.py:85
 msgid "Choose a subject for your course. "
-msgstr "Wähle ein Thema für den Kurs."
+msgstr "Wähle ein Thema für den Kurs. "
 
-#: course/forms.py:92
+#: course/forms.py:87
 msgid "Choose whether people should be able to join this course right now."
 msgstr "Wähle aus, ob die Einschreibung für den Kurs sofort aktiv sein soll."
 
-#: course/forms.py:95
+#: course/forms.py:90
 msgid "Choose whether people should see the course even if its not active"
 msgstr ""
 "Wähle aus, ob der Kurs sichtbar sein soll, auch wenn die Einschreibung noch "
 "nicht aktiv ist."
 
-#: course/forms.py:97
+#: course/forms.py:92
 msgid ""
 "A good description is half the battle. You can use markdown for formatting."
 msgstr ""
 "Eine gute Beschreibung ist die halbe Miete. Du kannst Markdown zur "
 "Formatierung verwenden."
 
-#: course/forms.py:100
+#: course/forms.py:95
 msgid "How many people can join your course. (Can be changed later)"
 msgstr "Maximale Teilnehmerzahl. (Kann später geändert werden)"
 
-#: course/forms.py:101
+#: course/forms.py:96
 msgid "The course starts on that day."
 msgstr "Der Kurs beginnt an diesem Tag."
 
-#: course/forms.py:102
+#: course/forms.py:97
 msgid "The course will end at that day."
 msgstr "Der Kurs wird an diesem Tag enden."
 
-#: course/forms.py:105
+#: course/forms.py:100
 msgid "Max nr. of participants"
 msgstr "Maximale Teilnehmerzahl"
 
-#: course/forms.py:106
+#: course/forms.py:101
 msgid "Begin"
 msgstr "Beginn"
 
-#: course/forms.py:107
+#: course/forms.py:102
 msgid "End"
 msgstr "Ende"
 
-#: course/forms.py:113
+#: course/forms.py:115
 msgid "Username of the person you want to be a teacher for this course"
 msgstr "Nutzername der Person, die Tutor des Kurses sein soll"
 
-#: course/forms.py:122
+#: course/forms.py:124
 msgid "Whether to set the email sender to your email address or not."
 msgstr "Soll deine Mailadresse als Absender angegeben werden?"
 
-#: course/forms.py:131
+#: course/forms.py:133
 msgid ""
 "Name of the subject, also decides its url. Allowed characters are word "
 "characters, numbers, spaces, '-' and '_' and it cannot be any of , "
@@ -163,164 +163,102 @@ msgstr "Englisch"
 msgid "German"
 msgstr "Deutsch"
 
-#: course/templates/base-shell.html:9 course/templates/base-shell.html:17
-#: course/templates/new_ui_foo/base-shell.html:10
-#: course/templates/new_ui_foo/base-shell.html:16
+#: course/templates/base-shell.html:11 course/templates/base-shell.html:17
 msgid "Course Manager"
-msgstr "Kursmanagement"
+msgstr "Course Manager"
 
-#: course/templates/base-shell.html:58 course/templates/new_ui_foo/base.html:32
-msgid "Imprint"
-msgstr "Impressum"
+#: course/templates/base.html:7
+msgid "News"
+msgstr "News-Item"
 
-#: course/templates/base-shell.html:58 course/templates/new_ui_foo/base.html:33
-#: course/templates/new_ui_foo/privacy.html:5 course/views/index.py:22
-#: user/forms.py:84
-msgid "Privacy Policy"
-msgstr "Datenschutzerklärung"
-
-#: course/templates/base-shell.html:58 course/templates/new_ui_foo/base.html:35
-msgid "Report an Issue"
-msgstr "Einen Fehler melden"
-
-#: course/templates/base.html:15
-msgid "Create course"
-msgstr "Kurs erstellen"
-
-#: course/templates/base.html:18
-msgid "Create subject"
-msgstr "Thema erstellen"
-
-#: course/templates/base.html:20
-msgid "Edit your data"
-msgstr "Nutzerdaten bearbeiten"
-
-#: course/templates/base.html:21
-msgid "Change pass"
-msgstr "Passwort ändern"
-
-#: course/templates/base.html:22 course/templates/new_ui_foo/base.html:51
-msgid "Logout"
-msgstr "Logout"
-
-#: course/templates/base.html:27 course/templates/new_ui_foo/base.html:55
-msgid "Sign up"
-msgstr "Registrieren"
-
-#: course/templates/base.html:30
-msgid "Sign in"
-msgstr "Login"
-
-#: course/templates/base.html:35
-msgid "Language"
-msgstr "Sprache"
-
-#: course/templates/base.html:67 course/templates/base.html:69
-#: course/templates/new_ui_foo/base.html:10
+#: course/templates/base.html:10
 msgid "Subjects"
 msgstr "Themen"
 
-#: course/templates/base.html:81
-msgid "Add subject"
-msgstr "Neues Thema"
-
-#: course/templates/base.html:87
-msgid "Complete overview"
-msgstr "Komplette Übersicht"
-
-#: course/templates/error/db.html:6
-msgid "Sorry, an error with our database occurred."
-msgstr "Entschuldigung, es ist ein Fehler mit der Datenbank aufgetreten."
-
-#: course/templates/error/db.html:11
-msgid "Database Error"
-msgstr "Datenbankfehler"
-
-#: course/templates/new_ui_foo/base.html:7
-#, fuzzy
-#| msgid "Add News"
-msgid "News"
-msgstr "Neues News-Item"
-
-#: course/templates/new_ui_foo/base.html:14
-#, fuzzy
-#| msgid "Create"
+#: course/templates/base.html:14
 msgid "Create..."
-msgstr "Erstellen"
+msgstr "Erstellen..."
 
-#: course/templates/new_ui_foo/base.html:17 course/views/subject.py:79
+#: course/templates/base.html:17 course/views/subject.py:79
 msgid "New Subject"
 msgstr "Neues Thema"
 
-#: course/templates/new_ui_foo/base.html:20 course/views/course.py:196
+#: course/templates/base.html:20 course/views/course.py:204
 msgid "New Course"
 msgstr "Neuer Kurs"
 
-#: course/templates/new_ui_foo/base.html:24
+#: course/templates/base.html:24
 msgid "News Item"
-msgstr ""
+msgstr "News-Item"
 
-#: course/templates/new_ui_foo/base.html:30
+#: course/templates/base.html:30
 msgid "About"
-msgstr ""
+msgstr "Über"
 
-#: course/templates/new_ui_foo/base.html:40
-#: user/templates/new_ui_foo/user/profile.html:6
-#, fuzzy
-#| msgid "Courses"
+#: course/templates/base.html:32
+msgid "Imprint"
+msgstr "Impressum"
+
+#: course/templates/base.html:33 course/templates/privacy.html:5
+#: course/views/index.py:22 user/forms.py:84
+msgid "Privacy Policy"
+msgstr "Datenschutzerklärung"
+
+#: course/templates/base.html:35
+msgid "Report an Issue"
+msgstr "Einen Fehler melden"
+
+#: course/templates/base.html:40 user/templates/user/profile.html:6
 msgid "Your Courses"
-msgstr "Kurse"
+msgstr "Deine Kurse"
 
-#: course/templates/new_ui_foo/base.html:43
-#: course/templates/new_ui_foo/base.html:44
+#: course/templates/base.html:43 course/templates/base.html:44
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
-#: course/templates/new_ui_foo/base.html:46
-#, fuzzy
-#| msgid "Public Profile"
+#: course/templates/base.html:46
 msgid "Your Profile"
-msgstr "Öffentliches Profil"
+msgstr "Dein Profil"
 
-#: course/templates/new_ui_foo/base.html:47
-#: user/templates/new_ui_foo/user/change_pass.html:7
-#, fuzzy
-#| msgid "Change pass"
+#: course/templates/base.html:47 user/templates/user/change_pass.html:7
 msgid "Change Password"
 msgstr "Passwort ändern"
 
-#: course/templates/new_ui_foo/base.html:58
-#: user/templates/new_ui_foo/registration/login.html:36
-msgid "Login"
-msgstr ""
+#: course/templates/base.html:51
+msgid "Logout"
+msgstr "Logout"
 
-#: course/templates/new_ui_foo/course/attendee-list.html:23
+#: course/templates/base.html:55
+msgid "Sign up"
+msgstr "Registrieren"
+
+#: course/templates/base.html:58 user/templates/registration/login.html:36
+msgid "Login"
+msgstr "Login"
+
+#: course/templates/course/attendee-list.html:23
 msgid "Dates"
 msgstr "Termine"
 
-#: course/templates/new_ui_foo/course/attendees.html:5
+#: course/templates/course/attendees.html:5
 msgid "Attendees"
-msgstr ""
-
-#: course/templates/new_ui_foo/course/attendees.html:11
-#, fuzzy
-#| msgid "Participants"
-msgid "Participant"
 msgstr "Teilnehmer"
 
-#: course/templates/new_ui_foo/course/attendees.html:28
-#: course/templates/new_ui_foo/course/teachers.html:27
-#: course/templates/new_ui_foo/course/timetable.html:27
+#: course/templates/course/attendees.html:11
+msgid "Participant"
+msgstr "Teilnehmer:in"
+
+#: course/templates/course/attendees.html:28
+#: course/templates/course/teachers.html:27
+#: course/templates/course/timetable.html:27
 msgid "Remove"
 msgstr "Entfernen"
 
-#: course/templates/new_ui_foo/course/attendees.html:37
-#, fuzzy
-#| msgid "Generate attendee list"
+#: course/templates/course/attendees.html:37
 msgid "Generate Attendee List"
-msgstr "Teilnehmerliste erstellen"
+msgstr "Anwesenheitsliste erstellen"
 
-#: course/templates/new_ui_foo/course/attendees.html:40
+#: course/templates/course/attendees.html:40
 msgid ""
 "\n"
 "      Using this form you may generate an attendee list you can use to "
@@ -329,38 +267,41 @@ msgid ""
 "this to kick any repeated no-shows to free up space for new particiants.\n"
 "      "
 msgstr ""
+"\n"
+"      Mit dieser Eingabemaske kannst du eine Anwesenheitsliste erstellen, "
+"um zu prüfen, ob alle eingeschriebenen Studierenden an deinen Kursen teilnehmen."
+"Obwohl die Teilnahme an einem Kurs kopmlett freiwillig ist, kannst du diese "
+"Liste nutzen, um wiederholt nicht erscheinende Studierende zu entfernen um Platz "
+"für Nachrücker zu schaffen.\n"
+"      "
 
-#: course/templates/new_ui_foo/course/attendees.html:47
-#, fuzzy
-#| msgid "Number of courses"
+#: course/templates/course/attendees.html:47
 msgid "Number of slots"
-msgstr "Anzahl an Kursen"
+msgstr "Anzahl Spalten"
 
-#: course/templates/new_ui_foo/course/attendees.html:50
+#: course/templates/course/attendees.html:50
 msgid "Generate"
 msgstr "Generieren"
 
-#: course/templates/new_ui_foo/course/attendees.html:55
+#: course/templates/course/attendees.html:55
 msgid ""
 "There are no participants yet. Make sure your course is active and visible."
 msgstr ""
+"Es gibt bisher keine Teilnehmer. Stelle sicher, dass dein Kurs aktiv und sichtbar ist."
 
-#: course/templates/new_ui_foo/course/attendees.html:58
-#: course/templates/new_ui_foo/course/contact-teachers.html:54
-#: course/templates/new_ui_foo/course/notify.html:62
-#: course/templates/new_ui_foo/course/teachers.html:57
-#: course/templates/new_ui_foo/course/timetable.html:101
+#: course/templates/course/attendees.html:58
+#: course/templates/course/contact-teachers.html:54
+#: course/templates/course/notify.html:62
+#: course/templates/course/teachers.html:57
+#: course/templates/course/timetable.html:101
 msgid "back"
-msgstr ""
+msgstr "zurück"
 
-#: course/templates/new_ui_foo/course/contact-teachers.html:6
-#: course/templates/new_ui_foo/course/info.html:134
-#, fuzzy
-#| msgid "Edit Teachers"
+#: course/templates/course/contact-teachers.html:6
 msgid "Contact Teachers"
-msgstr "Tutoren editieren"
+msgstr "Tutoren kontaktieren"
 
-#: course/templates/new_ui_foo/course/contact-teachers.html:9
+#: course/templates/course/contact-teachers.html:9
 msgid ""
 "\n"
 "  You can use this form to send an email to the teachers of your selected "
@@ -370,43 +311,46 @@ msgid ""
 "address at their discretion to respond or reach out to you in the future.\n"
 "  "
 msgstr ""
+"  Mit diesem Formular kannst du eine Mail an die Lehrer des ausgewählten Kurses "
+"senden.\n"
+"  <i>Bitte beachte:</i> Durch das Absenden dieser Nachricht stimmst du zu, dass "
+"die Mailadresse, die in deinem Profil hinterleft ist, mit den kontaktierten Benutzern "
+"geteilt wird. Die Empfänger können deine Mailadresse nach eigenem Ermessen benutzen "
+"um dich jetzt oder zu einem späteren Zeitpunkt zu kontaktieren.\n"
+"  "
 
-#: course/templates/new_ui_foo/course/contact-teachers.html:26
-#: course/templates/new_ui_foo/course/edit.html:32
-#: course/templates/new_ui_foo/course/notify.html:27
-#: course/templates/new_ui_foo/subject/overview.html:12
-#: user/templates/new_ui_foo/contact-form.html:23
+#: course/templates/course/contact-teachers.html:26
+#: course/templates/course/edit.html:32 course/templates/course/notify.html:27
+#: course/templates/subject/overview.html:12
+#: user/templates/contact-form.html:23
 msgid "Subject"
 msgstr "Thema"
 
-#: course/templates/new_ui_foo/course/contact-teachers.html:35
-#: course/templates/new_ui_foo/course/notify.html:36
+#: course/templates/course/contact-teachers.html:35
+#: course/templates/course/notify.html:36
 msgid "The subject of the mail you are about to write."
-msgstr ""
+msgstr "Der Betreff der Nachricht, die du gerade schreibst."
 
-#: course/templates/new_ui_foo/course/contact-teachers.html:40
-#: course/templates/new_ui_foo/course/notify.html:48
+#: course/templates/course/contact-teachers.html:40
+#: course/templates/course/notify.html:48
 msgid "Mail Body"
-msgstr ""
+msgstr "Mailtext"
 
-#: course/templates/new_ui_foo/course/contact-teachers.html:49
-#: course/templates/new_ui_foo/course/notify.html:57
+#: course/templates/course/contact-teachers.html:49
+#: course/templates/course/notify.html:57
 msgid "The mail body. Please note that this will be sent as plain text mail."
-msgstr ""
+msgstr "Der Inhalt deiner Mail. Bitte beachte, dass die Mail als Plain Text Nachricht versendet wird."
 
-#: course/templates/new_ui_foo/course/contact-teachers.html:53
-#: course/templates/new_ui_foo/course/notify.html:61
-#: user/templates/new_ui_foo/contact-form.html:35
+#: course/templates/course/contact-teachers.html:53
+#: course/templates/course/notify.html:61 user/templates/contact-form.html:35
 msgid "Send"
 msgstr "Senden"
 
-#: course/templates/new_ui_foo/course/edit.html:6
-#, fuzzy
-#| msgid "Courses"
+#: course/templates/course/edit.html:6
 msgid "Add Course"
-msgstr "Kurse"
+msgstr "Kurs hinzufügen"
 
-#: course/templates/new_ui_foo/course/edit.html:9
+#: course/templates/course/edit.html:9
 msgid ""
 "\n"
 "    Using this form, you can create a new course.\n"
@@ -416,241 +360,216 @@ msgid ""
 "the teachers list.\n"
 "    "
 msgstr ""
+"\n"
+"    Mit diesem Formular kannst du einen neuen Kurs anlegen.\n"
+"    Du wirst automatisch als Tutor für den Kurs eingetragen, damit du "
+"ihn bearbeiten kannst.\n"
+"    Sobald du fertig bist, kannst du über die Tutorenliste neue Tutoren "
+"festlegen und dich selbst als Tutor entfernen.\n"
+"    "
 
-#: course/templates/new_ui_foo/course/edit.html:18
-#, fuzzy
-#| msgid "Edit course"
+#: course/templates/course/edit.html:18
 msgid "Edit Course"
 msgstr "Kurs editieren"
 
-#: course/templates/new_ui_foo/course/edit.html:48 user/forms.py:83
+#: course/templates/course/edit.html:48 user/forms.py:83
 msgid "Description"
 msgstr "Beschreibung"
 
-#: course/templates/new_ui_foo/course/edit.html:57
-#, fuzzy
-#| msgid "No description provided for this course."
+#: course/templates/course/edit.html:57
 msgid "A description for your course."
-msgstr "Für diesen Kurs liegt keine Beschreibung vor."
+msgstr "Eine Beschreibung für diesen Kurs."
 
-#: course/templates/new_ui_foo/course/edit.html:57
+#: course/templates/course/edit.html:57
 msgid ""
 "<a href=\"https://commonmark.org/help/\">Markdown</a> is supported, but "
 "please refrain from using Headlines larger than h4 (####)."
 msgstr ""
+"<a href=\"https://commonmark.org/help/\">Markdown</a> wird unterstützt, aber "
+"bitte benutze keine Überschriften die größer als h4 (####) sind."
 
-#: course/templates/new_ui_foo/course/edit.html:62
-#, fuzzy
-#| msgid "Max nr. of participants"
+#: course/templates/course/edit.html:62
 msgid "Maximal number of participants"
 msgstr "Maximale Teilnehmerzahl"
 
-#: course/templates/new_ui_foo/course/edit.html:63
+#: course/templates/course/edit.html:63
 msgid "Please enter a number"
-msgstr ""
+msgstr "Bitte gib eine Zahl ein"
 
-#: course/templates/new_ui_foo/course/edit.html:71
+#: course/templates/course/edit.html:71
 msgid ""
 "How many students are allowed to enroll for a course. The rest will be "
 "placed on the waiting list. The ideal teacher-student ratio is usually 1:15."
 msgstr ""
+"Wie viele Studierende sich in einen Kurs einschreiben können. Alle weiteren "
+"Anmeldungen werden auf die Warteliste geschrieben. Das ideale Tutoren-Studierendenverhältnis ist normalerweise 1:15."
 
-#: course/templates/new_ui_foo/course/edit.html:77
+#: course/templates/course/edit.html:77
 msgid "Start Time"
-msgstr ""
+msgstr "Kurs beginnt am"
 
-#: course/templates/new_ui_foo/course/edit.html:89
+#: course/templates/course/edit.html:89
 msgid "End Time"
-msgstr ""
+msgstr "Kurs endet am"
 
-#: course/templates/new_ui_foo/course/edit.html:102
-#, fuzzy
-#| msgid "Schedule"
+#: course/templates/course/edit.html:102
 msgid "Schedule Type"
-msgstr "Zeiten"
+msgstr "Zeitplantyp"
 
-#: course/templates/new_ui_foo/course/edit.html:120
+#: course/templates/course/edit.html:120
 msgid ""
 "Set the course <strong>active</strong> and allow enrollments right away."
 msgstr ""
+"Markiert den Kurs als <strong>aktiv</strong> und erlaubt ab sofort Einschreibungen."
 
-#: course/templates/new_ui_foo/course/edit.html:127
+#: course/templates/course/edit.html:127
 msgid "Make the course <strong>visible</strong> in the course list."
-msgstr ""
+msgstr "Macht den Kurs in der Kursliste <strong>sichtbar</strong>."
 
-#: course/templates/new_ui_foo/course/edit.html:132
+#: course/templates/course/edit.html:132
 msgid "Archiving Behavior"
-msgstr ""
+msgstr "Archivierungsverhalten"
 
-#: course/templates/new_ui_foo/course/edit.html:147
-#: course/templates/new_ui_foo/news/edit.html:28
-#: course/templates/new_ui_foo/subject/edit.html:35
+#: course/templates/course/edit.html:147 course/templates/news/edit.html:28
+#: course/templates/subject/edit.html:35
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
-#: course/templates/new_ui_foo/course/edit.html:148
-#: course/templates/new_ui_foo/news/edit.html:29
-#: course/templates/new_ui_foo/subject/edit.html:36
-#: user/templates/new_ui_foo/contact-form.html:36
+#: course/templates/course/edit.html:149 course/templates/course/edit.html:151
+#: course/templates/news/edit.html:29 course/templates/subject/edit.html:36
+#: user/templates/contact-form.html:36
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: course/templates/new_ui_foo/course/edit.html:157
-#: course/templates/new_ui_foo/index.html:20
-#: course/templates/new_ui_foo/subject/info.html:17
+#: course/templates/course/edit.html:161 course/templates/index.html:20
+#: course/templates/subject/info.html:17
 msgid "Delete"
 msgstr "Löschen"
 
-#: course/templates/new_ui_foo/course/info.html:12
-#, fuzzy
-#| msgid "Courses"
+#: course/templates/course/info.html:12
 msgid "Course Info"
-msgstr "Kurse"
+msgstr "Kursinformationen"
 
-#: course/templates/new_ui_foo/course/info.html:16
+#: course/templates/course/info.html:17
 msgid "General Information"
-msgstr ""
+msgstr "Allgemeine Infos"
 
-#: course/templates/new_ui_foo/course/info.html:19
-#: course/templates/new_ui_foo/subject/info.html:29
+#: course/templates/course/info.html:20 course/templates/subject/info.html:29
 msgid "Teachers"
 msgstr "Tutoren"
 
-#: course/templates/new_ui_foo/course/info.html:21
-#: course/templates/new_ui_foo/course/info.html:35
-#: course/templates/new_ui_foo/course/info.html:53
+#: course/templates/course/info.html:22 course/templates/course/info.html:36
+#: course/templates/course/info.html:54
 msgid "edit"
-msgstr ""
+msgstr "bearbeiten"
 
-#: course/templates/new_ui_foo/course/info.html:33
-#: course/templates/new_ui_foo/course/timetable.html:59
-#: course/templates/new_ui_foo/subject/info.html:26
-#, fuzzy
-#| msgid "Timeslots"
+#: course/templates/course/info.html:34
+#: course/templates/course/timetable.html:59
+#: course/templates/subject/info.html:26
 msgid "Timeslot"
 msgstr "Zeiten"
 
-#: course/templates/new_ui_foo/course/info.html:44
-#: course/templates/new_ui_foo/subject/info.html:41
-#, fuzzy
-#| msgid "No dates set yet"
+#: course/templates/course/info.html:45 course/templates/subject/info.html:41
 msgid "No dates set yet."
-msgstr "Noch keine Termine gesetzt"
+msgstr "Noch keine Termine gesetzt."
 
-#: course/templates/new_ui_foo/course/info.html:51
-#: course/templates/new_ui_foo/course/timetable.html:11
-#: course/templates/new_ui_foo/course/timetable.html:89
-#: course/templates/new_ui_foo/subject/info.html:27
+#: course/templates/course/info.html:52
+#: course/templates/course/timetable.html:11
+#: course/templates/course/timetable.html:89
+#: course/templates/subject/info.html:27
 msgid "Location"
 msgstr "Ort"
 
-#: course/templates/new_ui_foo/course/info.html:60
-#: course/templates/new_ui_foo/subject/info.html:49
+#: course/templates/course/info.html:61 course/templates/subject/info.html:49
 msgid "No location set."
 msgstr "Keine Orte festgelegt."
 
-#: course/templates/new_ui_foo/course/info.html:67
+#: course/templates/course/info.html:68
 msgid "Participants"
 msgstr "Teilnehmer"
 
-#: course/templates/new_ui_foo/course/info.html:69
+#: course/templates/course/info.html:70
 msgid "list"
-msgstr ""
+msgstr "Liste"
 
-#: course/templates/new_ui_foo/course/info.html:73
+#: course/templates/course/info.html:74
 msgid "waiting"
-msgstr ""
+msgstr "warten"
 
-#: course/templates/new_ui_foo/course/info.html:78
-#: course/templates/new_ui_foo/subject/info.html:28
+#: course/templates/course/info.html:79 course/templates/subject/info.html:28
 msgid "Status"
 msgstr "Status"
 
-#: course/templates/new_ui_foo/course/info.html:81
-#: course/templates/new_ui_foo/subject/info.html:56
+#: course/templates/course/info.html:82 course/templates/subject/info.html:56
 msgid "full"
-msgstr ""
+msgstr "voll"
 
-#: course/templates/new_ui_foo/course/info.html:83
+#: course/templates/course/info.html:84
 msgid "available"
-msgstr ""
+msgstr "verfügbar"
 
-#: course/templates/new_ui_foo/course/info.html:86
-#: course/templates/new_ui_foo/subject/info.html:61
+#: course/templates/course/info.html:87 course/templates/subject/info.html:61
 msgid "unavailable"
-msgstr ""
+msgstr "nicht verfügbar"
 
-#: course/templates/new_ui_foo/course/info.html:95
+#: course/templates/course/info.html:97
 msgid "You are on the waiting list"
-msgstr ""
+msgstr "Du bist auf der Warteliste"
 
-#: course/templates/new_ui_foo/course/info.html:95
-#, fuzzy
-#| msgid "Description"
+#: course/templates/course/info.html:97
 msgid "Position"
-msgstr "Beschreibung"
+msgstr "Position"
 
-#: course/templates/new_ui_foo/course/info.html:99
-#, fuzzy
-#| msgid "You are enrolled. ✅"
+#: course/templates/course/info.html:101
 msgid "You are enrolled."
-msgstr "Du bist eingeschrieben. ✅"
+msgstr "Du bist eingeschrieben."
 
-#: course/templates/new_ui_foo/course/info.html:105
-#, fuzzy
-#| msgid "Your description"
+#: course/templates/course/info.html:107
 msgid "Course Description"
-msgstr "Deine Beschreibung"
+msgstr "Kursbeschreibung"
 
-#: course/templates/new_ui_foo/course/info.html:110
-#, fuzzy
-#| msgid "Your description"
+#: course/templates/course/info.html:112
 msgid "This course has no description."
-msgstr "Deine Beschreibung"
+msgstr "Dieser Kurs hat keine Beschreibung."
 
-#: course/templates/new_ui_foo/course/info.html:116
-#: course/templates/new_ui_foo/index.html:17
-#: course/templates/new_ui_foo/subject/info.html:12
-msgid "Edit"
-msgstr "Editieren"
-
-#: course/templates/new_ui_foo/course/info.html:117
-#, fuzzy
-#| msgid "Max nr. of participants"
-msgid "Notify participants"
-msgstr "Maximale Teilnehmerzahl"
-
-#: course/templates/new_ui_foo/course/info.html:122
+#: course/templates/course/info.html:121
 msgid "Unenroll"
-msgstr ""
+msgstr "Austragen"
 
-#: course/templates/new_ui_foo/course/info.html:128
+#: course/templates/course/info.html:128
 msgid "Enroll"
-msgstr ""
+msgstr "Einschreiben"
 
-#: course/templates/new_ui_foo/course/info.html:130
+#: course/templates/course/info.html:130
 msgid "Waiting List"
-msgstr ""
+msgstr "Warteliste"
 
-#: course/templates/new_ui_foo/course/notify-done.html:6
-#, fuzzy
-#| msgid "You have been logged out successfully."
+#: course/templates/course/info.html:135
+msgid "Contact teachers"
+msgstr "Tutoren kontaktieren"
+
+#: course/templates/course/info.html:140 course/templates/index.html:17
+#: course/templates/subject/info.html:12
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: course/templates/course/info.html:141
+msgid "Notify participants"
+msgstr "Teilnehmer benachrichtigen"
+
+#: course/templates/course/notify-done.html:6
 msgid "Your message has been sent successfully."
-msgstr "Du hast dich erfolgreich ausgeloggt."
+msgstr "Deine Nachricht wurde erfolgreich verschickt."
 
-#: course/templates/new_ui_foo/course/notify-done.html:9
-#, fuzzy
-#| msgid "News Overview"
+#: course/templates/course/notify-done.html:9
 msgid "Course Overview"
-msgstr "Nachrichtenübersicht"
+msgstr "Kursübersicht"
 
-#: course/templates/new_ui_foo/course/notify.html:6
-#, fuzzy
-#| msgid "Participants"
+#: course/templates/course/notify.html:6
 msgid "Notify Participants"
-msgstr "Teilnehmer"
+msgstr "Teilnehmer benachrichtigen"
 
-#: course/templates/new_ui_foo/course/notify.html:9
+#: course/templates/course/notify.html:9
 msgid ""
 "\n"
 "  You can use this form to send an email to all people enrolled in your "
@@ -660,74 +579,77 @@ msgid ""
 "losing their effect so use this feature wisely.\n"
 "  "
 msgstr ""
+"\n"
+"  Du kannst dieses Formular benutzen, um eine Mail an alle in deinen Kurs "
+"eingeschriebenen Studierenden zu versenden.\n"
+"  Das beinhaltet auch alle Studierenden auf der Warteliste.\n"
+"  <i>Bitte beachte:</i> Zu häufige Nachrichten an deine Studierenden können "
+"bewirken, dass Mails ihren Effekt verlieren, also benutze das Feature sparsam.\n"
+"  "
 
-#: course/templates/new_ui_foo/course/notify.html:43
-msgid "Reveal your mail address as sender."
-msgstr ""
+#: course/templates/course/notify.html:43
+msgid "Reveal your mail address to your students in the footer."
+msgstr "Zeige deinen Studierenden deine Mailadresse im Footer."
 
-#: course/templates/new_ui_foo/course/teachers.html:5
-#, fuzzy
-#| msgid "You are teacher"
+#: course/templates/course/teachers.html:5
 msgid "Course Teachers"
-msgstr "Du bist Tutor"
+msgstr "Tutoren"
 
-#: course/templates/new_ui_foo/course/teachers.html:10
-#, fuzzy
-#| msgid "Teachers"
+#: course/templates/course/teachers.html:10
 msgid "Teacher"
 msgstr "Tutoren"
 
-#: course/templates/new_ui_foo/course/teachers.html:11
-#: course/templates/new_ui_foo/course/teachers.html:43 user/forms.py:40
-#: user/templates/new_ui_foo/registration/register.html:58
+#: course/templates/course/teachers.html:11
+#: course/templates/course/teachers.html:43 user/forms.py:40
+#: user/templates/registration/register.html:58
 msgid "Username"
 msgstr "Nutzername"
 
-#: course/templates/new_ui_foo/course/teachers.html:36
-#, fuzzy
-#| msgid "Edit Teachers"
+#: course/templates/course/teachers.html:36
 msgid "Add Teacher"
-msgstr "Tutoren editieren"
+msgstr "Tutoren hinzufügen"
 
-#: course/templates/new_ui_foo/course/teachers.html:41
+#: course/templates/course/teachers.html:41
 msgid ""
 "Teachers gain full administrative rights for the courses they teach. They "
 "may alter course description, time table, rooms and name other users as "
 "teacher. Additionally, they can see and edit the list of participants."
 msgstr ""
+"Tutoren erhalten volle administrative Rechte für die Kurse, die sie unterrichten. "
+"Sie können die Kursbeschreibung, Zeitplan und Räume bearbeiten und andere Nutzer "
+"zu Tutoren machen. Zusätzlich können sie die Liste der Teilnehmer sehen und "
+"bearbeiten."
 
-#: course/templates/new_ui_foo/course/teachers.html:56
-#: course/templates/new_ui_foo/course/timetable.html:100
+#: course/templates/course/teachers.html:56
+#: course/templates/course/timetable.html:100
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: course/templates/new_ui_foo/course/timetable.html:5
+#: course/templates/course/timetable.html:5
 msgid "Timetable"
-msgstr ""
+msgstr "Zeitplan"
 
-#: course/templates/new_ui_foo/course/timetable.html:10
+#: course/templates/course/timetable.html:10
 msgid "Slot"
 msgstr "Slot"
 
-#: course/templates/new_ui_foo/course/timetable.html:36
-#, fuzzy
-#| msgid "Slot"
+#: course/templates/course/timetable.html:36
 msgid "Add Slot"
-msgstr "Slot"
+msgstr "Slot hinzufügen"
 
-#: course/templates/new_ui_foo/course/timetable.html:43
+#: course/templates/course/timetable.html:43
 msgid "Weekday"
-msgstr ""
+msgstr "Wochentag"
 
-#: course/templates/new_ui_foo/course/timetable.html:76
+#: course/templates/course/timetable.html:76
 msgid "Date and Time"
-msgstr ""
+msgstr "Datum und Uhrzeit"
 
-#: course/templates/new_ui_foo/error/404.html:5
+#: course/templates/error/404.html:5
 msgid "Page not found"
-msgstr ""
+msgstr "Seite nicht gefunden"
 
-#: course/templates/new_ui_foo/error/404.html:8
+#: course/templates/error/404.html:8
 msgid ""
 "\n"
 "        The page you requested has never existed or was deleted. Either way, "
@@ -735,12 +657,18 @@ msgid ""
 "end. Move on, young surfer.\n"
 "    "
 msgstr ""
+"\n"
+"        Die Seite, die du angefordert hast, hat nie existiert oder wurde "
+"gelöscht. In jedem Fall ist sie nicht hier. Sie mag vielleicht irgendwann "
+"in der Zukunft mal existieren, aber im Moment ist das hier eine Sackgasse. "
+"Ziehe weiter, junger Surfer.\n"
+"    "
 
-#: course/templates/new_ui_foo/error/500.html:5
+#: course/templates/error/500.html:5
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Interner Serverfehler"
 
-#: course/templates/new_ui_foo/error/500.html:8
+#: course/templates/error/500.html:8
 msgid ""
 "\n"
 "        Your server experienced an internal error while processing your "
@@ -749,22 +677,34 @@ msgid ""
 "GitHub.\n"
 "    "
 msgstr ""
+"\n"
+"        Unser Server ist auf einen internen Serverfehler gestoßen während "
+"deine Anfrage bearbeitet wurde. Sorry! Die Maintainer des Projektes wurden "
+"bereits per Mail darüber informiert, aber wenn du diesem Problem öfter "
+"begegnest, öffne doch bitte ein Issue auf Github.\n"
+"    "
 
-#: course/templates/new_ui_foo/index.html:5
-#, fuzzy
-#| msgid "Delete News"
+#: course/templates/error/db.html:5
+msgid "Database Error"
+msgstr "Datenbankfehler"
+
+#: course/templates/error/db.html:8
+msgid "Sorry, an error with our database occurred."
+msgstr "Entschuldigung, es ist ein Fehler mit der Datenbank aufgetreten."
+
+#: course/templates/index.html:5
 msgid "Current News"
-msgstr "News-Item löschen"
+msgstr "Aktuelle News"
 
-#: course/templates/new_ui_foo/index.html:28
+#: course/templates/index.html:28
 msgid "There are currently no news."
-msgstr ""
+msgstr "Es gibt aktuell keine News."
 
-#: course/templates/new_ui_foo/index.html:33
+#: course/templates/index.html:33
 msgid "Welcome to the Course Management System!"
-msgstr ""
+msgstr "Willkommen zum Course Management System!"
 
-#: course/templates/new_ui_foo/index.html:34
+#: course/templates/index.html:34
 msgid ""
 "\n"
 "    <p>Welcome! It's nice to see you here. This is the course management "
@@ -778,139 +718,137 @@ msgid ""
 "or programming languages.</p>\n"
 "  "
 msgstr ""
+"\n"
+"    <p>Willkommen! Das hier ist das Course Management System des Fachschaftsrates "
+"Informatik der TU Dresden. Auf dieser Webseite kannst du dich für verschiedene "
+"Kurse anmelden, die von uns in diesem Semester angeboten werden.</p>\n"
+"    <p>Für gewöhnlich werden alle von uns angebotenen Kurse von anderen Studierenden "
+"gehalten, die Lust darauf haben, ihr Wissen über Programmiersprachen oder andere "
+"Techniken mit anderen zu teilen. Obwohl diese Kurse deshalb vom Prüfungsamt nicht "
+"anerkannt werden, kannst du sie nutzen, um neue Fähigkeiten oder Programmiersprachen "
+"zu erlernen.</p>\n"
+"  "
 
-#: course/templates/new_ui_foo/news/edit.html:6
+#: course/templates/news/edit.html:6
 msgid "Add News"
 msgstr "Neues News-Item"
 
-#: course/templates/new_ui_foo/news/edit.html:9 course/views/news.py:72
+#: course/templates/news/edit.html:9 course/views/news.py:72
 msgid "Edit News"
 msgstr "News-Item editieren"
 
-#: course/templates/new_ui_foo/news/edit.html:16
+#: course/templates/news/edit.html:16
 msgid "Headline"
-msgstr ""
+msgstr "Überschrift"
 
-#: course/templates/new_ui_foo/news/edit.html:22
-#: user/templates/new_ui_foo/contact-form.html:29
+#: course/templates/news/edit.html:22 user/templates/contact-form.html:29
 msgid "Entry"
-msgstr ""
+msgstr "Eintrag"
 
-#: course/templates/new_ui_foo/news/edit.html:24
+#: course/templates/news/edit.html:24
 msgid ""
 "<a href=\"https://commonmark.org/help/\">Markdown</a> is supported. Try to "
 "avoid using additional headings."
 msgstr ""
+"<a href=\"https://commonmark.org/help/\">Markdown</a> wird unterstützt. "
+"Versuche, zusätzliche Überschriften zu vermeiden."
 
-#: course/templates/new_ui_foo/subject/edit.html:6
-#, fuzzy
-#| msgid "Add subject"
+#: course/templates/subject/edit.html:6
 msgid "Add Subject"
 msgstr "Neues Thema"
 
-#: course/templates/new_ui_foo/subject/edit.html:9
-#, fuzzy
-#| msgid "Subject"
+#: course/templates/subject/edit.html:9
 msgid "Edit Subject"
-msgstr "Thema"
+msgstr "Thema bearbeiten"
 
-#: course/templates/new_ui_foo/subject/edit.html:16
+#: course/templates/subject/edit.html:16
 msgid "Name"
 msgstr "Name"
 
-#: course/templates/new_ui_foo/subject/edit.html:22
-#, fuzzy
-#| msgid "Description"
+#: course/templates/subject/edit.html:22
 msgid "German Description"
-msgstr "Beschreibung"
+msgstr "Deutsche Beschreibung"
 
-#: course/templates/new_ui_foo/subject/edit.html:24
+#: course/templates/subject/edit.html:24
 msgid "A german description for the subject."
-msgstr ""
+msgstr "Eine deutsche Beschreibung für das Thema."
 
-#: course/templates/new_ui_foo/subject/edit.html:24
-#: course/templates/new_ui_foo/subject/edit.html:31
+#: course/templates/subject/edit.html:24 course/templates/subject/edit.html:31
 msgid "<a href=\"https://commonmark.org/help/\">Markdown</a> is supported."
-msgstr ""
+msgstr "<a href=\"https://commonmark.org/help/\">Markdown</a> wird unterstützt."
 
-#: course/templates/new_ui_foo/subject/edit.html:29
-#, fuzzy
-#| msgid "Description"
+#: course/templates/subject/edit.html:29
 msgid "English Description"
-msgstr "Beschreibung"
+msgstr "Englische Beschreibung"
 
-#: course/templates/new_ui_foo/subject/edit.html:31
+#: course/templates/subject/edit.html:31
 msgid "An english description for the subject."
-msgstr ""
+msgstr "Eine englische Beschreibung für das Thema."
 
-#: course/templates/new_ui_foo/subject/info.html:5
-#, fuzzy
-#| msgid "Courses"
+#: course/templates/subject/info.html:5
 msgid "Course List"
-msgstr "Kurse"
+msgstr "Kursliste"
 
-#: course/templates/new_ui_foo/subject/info.html:65
-#: course/templates/new_ui_foo/subject/overview.html:22
-#: course/templates/new_ui_foo/subject/overview.html:30
+#: course/templates/subject/info.html:65
+#: course/templates/subject/overview.html:22
+#: course/templates/subject/overview.html:30
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
-#: course/templates/new_ui_foo/subject/overview.html:5
-#, fuzzy
-#| msgid "Subjects"
+#: course/templates/subject/overview.html:5
 msgid "Subjects List"
-msgstr "Themen"
+msgstr "Themenliste"
 
-#: course/templates/new_ui_foo/subject/overview.html:7
+#: course/templates/subject/overview.html:7
 msgid ""
 "These are the subjects we offer courses for. If you feel this list is too "
 "short or it contains a subject you consider yourself proficient in, please "
 "do not hesitate to reach out to us and come aboard!"
 msgstr ""
+"Diese Liste umfasst alle Themen, für die wir Kurse anbieren. Wenn du das "
+"Gefühl hast, dass diese Liste zu kurz ist oder ein Thema enthält, in dem "
+"du dich auskennst, zögere bitte nicht, dich bei uns zu melden und mit an "
+"Bord zu kommen!"
 
-#: course/templates/new_ui_foo/subject/overview.html:13
-#, fuzzy
-#| msgid "New Course"
+#: course/templates/subject/overview.html:13
 msgid "Offered Courses"
-msgstr "Neuer Kurs"
+msgstr "Angebotene Kurse"
 
 #: course/util/permissions.py:29
 msgid "This course does not seem to exist, sorry."
 msgstr "Dieser Kurs scheint nicht zu existieren."
 
-#: course/views/course.py:73 course/views/course.py:87
-#: course/views/course.py:103 course/views/course.py:147
-#: course/views/course.py:210 course/views/course.py:229
-#: course/views/course.py:283 course/views/course.py:298
-#: course/views/course.py:347 course/views/course.py:360
-#: course/views/course.py:385 course/views/enroll.py:21
+#: course/views/course.py:78 course/views/course.py:92
+#: course/views/course.py:108 course/views/course.py:155
+#: course/views/course.py:218 course/views/course.py:237
+#: course/views/course.py:291 course/views/course.py:305
+#: course/views/course.py:350 course/views/course.py:363
+#: course/views/course.py:388 course/views/enroll.py:21
 #: course/views/enroll.py:42 course/views/time.py:24
 msgid "Requested course does not exist."
 msgstr "Der angeforderte Kurs existiert nicht."
 
-#: course/views/course.py:122
+#: course/views/course.py:130
 msgid "Edit course"
 msgstr "Kurs editieren"
 
-#: course/views/course.py:221
+#: course/views/course.py:229
 msgid "Edit Teachers"
 msgstr "Tutoren editieren"
 
-#: course/views/course.py:251
-#, fuzzy
-#| msgid "The username you entered does not exist in my database, sorry :("
+#: course/views/course.py:259
 msgid "The username you entered does not exist."
 msgstr "Der eingegebene Nutzername existiert nicht."
 
-#: course/views/course.py:285
+#: course/views/course.py:293
 msgid "Requested student does not exist."
 msgstr "Der angeforderte Student existiert nicht."
 
-#: course/views/course.py:324 course/views/course.py:402
+#: course/views/course.py:327 course/views/course.py:405
 msgid "Notify Course"
 msgstr "Kurs benachrichtigen"
 
-#: course/views/course.py:349
+#: course/views/course.py:352
 msgid "Requested student is not enrolled in this course."
 msgstr "Der angeforderte Student ist in diesem Kurs nicht eingeschrieben."
 
@@ -970,14 +908,14 @@ msgid "E-Mail address"
 msgstr "Mailadresse"
 
 #: user/forms.py:38 user/forms.py:60
-#: user/templates/new_ui_foo/registration/register.html:18
-#: user/templates/new_ui_foo/user/edit.html:15
+#: user/templates/registration/register.html:18
+#: user/templates/user/edit.html:15
 msgid "First Name"
 msgstr "Vorname"
 
 #: user/forms.py:39 user/forms.py:61
-#: user/templates/new_ui_foo/registration/register.html:32
-#: user/templates/new_ui_foo/user/edit.html:29
+#: user/templates/registration/register.html:32
+#: user/templates/user/edit.html:29
 msgid "Last Name"
 msgstr "Nachname"
 
@@ -1013,20 +951,15 @@ msgstr ""
 msgid "Unique username. Used for login. (cannot be changed later)."
 msgstr "(Einzigartiger) Nutzername. Kann nicht mehr geändert werden."
 
-#: user/forms.py:62
-#: user/templates/new_ui_foo/registration/password-reset.html:14
-#: user/templates/new_ui_foo/registration/register.html:44
-#: user/templates/new_ui_foo/user/edit.html:42
-#, fuzzy
-#| msgid "E-Mail address"
+#: user/forms.py:62 user/templates/registration/password-reset.html:14
+#: user/templates/registration/register.html:44
+#: user/templates/user/edit.html:42
 msgid "Mail address"
 msgstr "Mailadresse"
 
 #: user/forms.py:71
-#, fuzzy
-#| msgid "E-Mail address"
 msgid "Your mail address"
-msgstr "Mailadresse"
+msgstr "Deine Mailadresse"
 
 #: user/forms.py:82
 msgid "Public Profile"
@@ -1066,11 +999,11 @@ msgstr ""
 "Du musst der Datenschutzerklärung zustimmen, um unsere Dienste benutzen zu "
 "können."
 
-#: user/templates/new_ui_foo/contact-form.html:7
+#: user/templates/contact-form.html:7
 msgid "Contact"
 msgstr "Kontakt"
 
-#: user/templates/new_ui_foo/contact-form.html:11
+#: user/templates/contact-form.html:11
 msgid ""
 "\n"
 "                By contacting a user you agree to share the mail address you "
@@ -1078,12 +1011,14 @@ msgid ""
 "or reach out to you in the future.\n"
 "            "
 msgstr ""
+"\n"
+"                Indem du einen Nutzer kontaktierst, stimmst du zu, die Mailadresse "
+"die du in deinem Profil hinterlegt hast, mit diesem Nutzer zu teilen. Dieser Nutzer "
+"kann diese Adresse dann benutzen, um dir zu antworten oder dich in Zukunft zu "
+"kontaktieren.\n"
+"            "
 
-#: user/templates/new_ui_foo/registration/login.html:9
-#, fuzzy
-#| msgid ""
-#| "Your account doesn't have access to this page. To proceed, please login "
-#| "with an account that has access."
+#: user/templates/registration/login.html:9
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has the appropriate rights."
@@ -1091,21 +1026,19 @@ msgstr ""
 "Dein Konto hat keinen Zugriff auf diese Seite. Um fortzufahren, logge dich "
 "bitte mit einem Konto ein, welches über die nötigen Rechte verfügt."
 
-#: user/templates/new_ui_foo/registration/login.html:11
+#: user/templates/registration/login.html:11
 msgid "Please login to see this page."
 msgstr "Bitte logge dich ein, um den Inhalt dieser Seite sehen zu können."
 
-#: user/templates/new_ui_foo/registration/login.html:39
+#: user/templates/registration/login.html:39
 msgid "Lost password?"
 msgstr "Passwort vergessen?"
 
-#: user/templates/new_ui_foo/registration/logout.html:9
-#, fuzzy
-#| msgid "You have been logged out successfully."
+#: user/templates/registration/logout.html:9
 msgid "You have been successfully logged out."
 msgstr "Du hast dich erfolgreich ausgeloggt."
 
-#: user/templates/new_ui_foo/registration/password-reset-done.html:7
+#: user/templates/registration/password-reset-done.html:7
 msgid ""
 "\n"
 "    We've emailed you instructions for setting your password, if an account "
@@ -1115,38 +1048,45 @@ msgid ""
 "address you registered with, and check your spam folder.\n"
 "    "
 msgstr ""
+"\n"
+"    Wir haben die eine Anleitung zum Zurücksetzen deines Passwortes per Mail "
+"gesendet, sofern es einen Account mit dieser Mailadresse gibt. Du solltest die "
+"Nachricht in Kürze erhalten.\n"
+"\n"
+"    Falls du keine Mail erhalten solltest, stelle bitte sicher, dass du die richtige "
+"Adresse angegeben hast, und prüfe auch deinen Spam-Ordner.\n"
+"    "
 
-#: user/templates/new_ui_foo/registration/password-reset.html:7
+#: user/templates/registration/password-reset.html:7
 msgid "Password Reset"
-msgstr ""
+msgstr "Passwort zurücksetzen"
 
-#: user/templates/new_ui_foo/registration/password-reset.html:9
+#: user/templates/registration/password-reset.html:9
 msgid ""
 "Forgot your password? Don't sweat! Just enter your email address below and "
 "we will send you instructions for setting a new password."
 msgstr ""
+"Du hast dein Passwort vergessen? Kein Problem! Gib einfach deine Mailadresse "
+"unten ein und wir werden dir die nötigen Instruktionen zum Zurücksetzen zuschicken."
 
-#: user/templates/new_ui_foo/registration/password-reset.html:15
-#: user/templates/new_ui_foo/registration/register.html:45
-#: user/templates/new_ui_foo/user/edit.html:43
+#: user/templates/registration/password-reset.html:15
+#: user/templates/registration/register.html:45
+#: user/templates/user/edit.html:43
 msgid "john.galt@tu-dresden.de"
 msgstr ""
 
-#: user/templates/new_ui_foo/registration/password-reset.html:25
-#: user/templates/new_ui_foo/registration/register.html:135
-#: user/templates/new_ui_foo/user/change_pass.html:48
-#: user/templates/new_ui_foo/user/edit.html:93
-#: user/templates/user/privacy-agreement.html:20
+#: user/templates/registration/password-reset.html:25
+#: user/templates/registration/register.html:135
+#: user/templates/user/change_pass.html:48 user/templates/user/edit.html:93
+#: user/templates/user/privacy-agreement.html:46
 msgid "Submit"
 msgstr "Abschicken"
 
-#: user/templates/new_ui_foo/registration/register.html:6
-#, fuzzy
-#| msgid "Create new course"
+#: user/templates/registration/register.html:6
 msgid "Create a new account"
-msgstr "Kurs erstellen"
+msgstr "Account erstellen"
 
-#: user/templates/new_ui_foo/registration/register.html:9
+#: user/templates/registration/register.html:9
 msgid ""
 "\n"
 "  You are about to create an account for the course management system "
@@ -1154,104 +1094,107 @@ msgid ""
 "faculty. We just need to know some things about you to get going.\n"
 "  "
 msgstr ""
+"\n"
+"  Du bist gerade dabei, dir einen Account im Course Management System "
+"betrieben vom FSR Informatik der TU Dresden anzulegen. Wir brauchen nur "
+"noch ein paar Informationen über dich, um loslegen zu können.\n"
+"  "
 
-#: user/templates/new_ui_foo/registration/register.html:19
-#: user/templates/new_ui_foo/user/edit.html:16
+#: user/templates/registration/register.html:19
+#: user/templates/user/edit.html:16
 msgid "John"
 msgstr ""
 
-#: user/templates/new_ui_foo/registration/register.html:27
+#: user/templates/registration/register.html:27
 msgid ""
 "Your first name. This, combined with your last name will be used by teachers "
 "to verify your attendance in expecially congested courses."
 msgstr ""
+"Dein Vorname. Er wird zusammen mit deinem Nachnamen von den Tutoren eines "
+"Kurses genutzt, um deine Anwesenheit in besonders stark besuchten Kursen "
+"zu überprüfen."
 
-#: user/templates/new_ui_foo/registration/register.html:33
-#: user/templates/new_ui_foo/user/edit.html:30
+#: user/templates/registration/register.html:33
+#: user/templates/user/edit.html:30
 msgid "Galt"
 msgstr ""
 
-#: user/templates/new_ui_foo/registration/register.html:53
-#: user/templates/new_ui_foo/user/edit.html:51
+#: user/templates/registration/register.html:53
+#: user/templates/user/edit.html:51
 msgid "We will use this to get in touch with you occasionally."
-msgstr ""
+msgstr "Wir werden sie benutzen, um selten mit dir Kontakt aufzunehmen."
 
-#: user/templates/new_ui_foo/registration/register.html:67
+#: user/templates/registration/register.html:67
 msgid "A non-changeable unique username to your account."
-msgstr ""
+msgstr "Ein nicht änderbarer einzigartiger Nutzername für deinen Account."
 
-#: user/templates/new_ui_foo/registration/register.html:72
-#, fuzzy
-#| msgid "Lost password?"
+#: user/templates/registration/register.html:72
 msgid "Password"
-msgstr "Passwort vergessen?"
+msgstr "Passwort"
 
-#: user/templates/new_ui_foo/registration/register.html:81
-#: user/templates/new_ui_foo/user/change_pass.html:33
+#: user/templates/registration/register.html:81
+#: user/templates/user/change_pass.html:33
 msgid "You know the drill. Make it a good one, don\\"
 msgstr ""
 
-#: user/templates/new_ui_foo/registration/register.html:86
-#: user/templates/new_ui_foo/user/change_pass.html:38
-#, fuzzy
-#| msgid "Location"
+#: user/templates/registration/register.html:86
+#: user/templates/user/change_pass.html:38
 msgid "Confirmation"
-msgstr "Ort"
+msgstr "Bestätigung"
 
-#: user/templates/new_ui_foo/registration/register.html:98
-#: user/templates/new_ui_foo/user/edit.html:56
-#, fuzzy
-#| msgid "Description"
+#: user/templates/registration/register.html:98
+#: user/templates/user/edit.html:56
 msgid "Profile Description"
 msgstr "Beschreibung"
 
-#: user/templates/new_ui_foo/registration/register.html:107
-#: user/templates/new_ui_foo/user/edit.html:65
+#: user/templates/registration/register.html:107
+#: user/templates/user/edit.html:65
 msgid ""
 "A few words describing yourself. Will be shown on your profile page if you "
 "make it visible to other users."
 msgstr ""
+"Ein paar Worte, die dich selbst beschreiben. Werden auf deinem Profil angezeigt, "
+"wenn du es für andere Benutzer sichtbar machst."
 
-#: user/templates/new_ui_foo/registration/register.html:107
-#: user/templates/new_ui_foo/user/edit.html:65
+#: user/templates/registration/register.html:107
+#: user/templates/user/edit.html:65
 msgid ""
 "<a href=\"https://commonmark.org/help/\">Markdown</a> is supported, but "
 "refrain from using h1 headings."
 msgstr ""
+"<a href=\"https://commonmark.org/help/\">Markdown</a> wird unterstützt, aber "
+"bitte versichte darauf, h1 Überschriften zu nutzen."
 
-#: user/templates/new_ui_foo/registration/register.html:114
-#: user/templates/new_ui_foo/user/edit.html:72
+#: user/templates/registration/register.html:114
+#: user/templates/user/edit.html:72
 msgid "Make your profile publicly visible to other registered users."
-msgstr ""
+msgstr "Mache dein Profil öffentlich für andere Nutzer sichtbar."
 
-#: user/templates/new_ui_foo/registration/register.html:123
-#, fuzzy, python-format
-#| msgid ""
-#| "You have read our <a href=\"/privacy-policy/\" style=\"color:#9ACC00 !"
-#| "important;\">Privacy Policy</a> and consent to it."
+#: user/templates/registration/register.html:123
+#, python-format
 msgid ""
 "\n"
 "          You have read our <a href=\"%(privvylink)s\">Privacy Policy</a> "
 "and consent to it.\n"
 "        "
 msgstr ""
-"Du hast unsere <a href=\"/privacy-policy/\" style=\"color:#9ACC00 !important;"
-"\">Datenschutzerklärung</a> gelesen und stimmst ihr zu."
+"\n"
+"          Du hast unsere <a href=\"%(privvylink)s\">Datenschutzerklärung</a> "
+"gelesen und stimmst ihr zu.\n"
+"        "
 
-#: user/templates/new_ui_foo/registration/register.html:129
-#: user/templates/new_ui_foo/user/edit.html:87
-#, fuzzy
-#| msgid "You must agree to the privacy policy to use our services."
+#: user/templates/registration/register.html:129
+#: user/templates/user/edit.html:87
+#: user/templates/user/privacy-agreement.html:40
 msgid "You have to consent to the privacy policy to proceed."
 msgstr ""
-"Du musst der Datenschutzerklärung zustimmen, um unsere Dienste benutzen zu "
-"können."
+"Du musst der Datenschutzerklärung zustimmen, um fortzufahren."
 
-#: user/templates/new_ui_foo/registration/success.html:7
+#: user/templates/registration/success.html:7
 msgid "Almost done!"
-msgstr ""
+msgstr "Fast geschafft!"
 
-#: user/templates/new_ui_foo/registration/success.html:10
+#: user/templates/registration/success.html:10
 #, python-format
 msgid ""
 "\n"
@@ -1260,50 +1203,49 @@ msgid ""
 "<strong>%(mail)s</strong>.\n"
 "        "
 msgstr ""
+"\n"
+"        Deine Daten wurden erfolgreich übermittelt. Um den Registrierungsprozess "
+"abzuschließen, klicke bitte auf den Link, den wir dir an <strong>%(mail)s</strong> "
+"gesendet haben.\n"
+"        "
 
-#: user/templates/new_ui_foo/user/activate.html:9
+#: user/templates/user/activate.html:9
 msgid "There was a problem..."
-msgstr ""
+msgstr "Es gab ein Problem..."
 
-#: user/templates/new_ui_foo/user/activate.html:18
-#, fuzzy
-#| msgid "Done"
+#: user/templates/user/activate.html:18
 msgid "Done!"
-msgstr "Fertig"
+msgstr "Fertig!"
 
-#: user/templates/new_ui_foo/user/activate.html:21
-#, fuzzy
-#| msgid "Your account has been successfully activated."
+#: user/templates/user/activate.html:21
 msgid ""
 "\n"
 "      Your account has been successfully activated. You now may log in using "
 "your credentials.\n"
 "      "
-msgstr "Dein Konto wurde erfolgreich aktiviert."
-
-#: user/templates/new_ui_foo/user/change_pass.html:12
-#, fuzzy
-#| msgid "Lost password?"
-msgid "Old Password"
-msgstr "Passwort vergessen?"
-
-#: user/templates/new_ui_foo/user/change_pass.html:24
-#, fuzzy
-#| msgid "Lost password?"
-msgid "New Password"
-msgstr "Passwort vergessen?"
-
-#: user/templates/new_ui_foo/user/change_pass_success.html:9
-#, fuzzy
-#| msgid "You successfully registered your account!"
-msgid "You have successfully changed your password."
-msgstr "Du hast dich erfolgreich registriert!"
-
-#: user/templates/new_ui_foo/user/deletion-success.html:7
-msgid "All done!"
 msgstr ""
+"\n"
+"      Dein Account wurde erfolgreich aktiviert. Du kannst dich nun mit deinen "
+"Anmeldedaten einloggen.\n"
+"      "
 
-#: user/templates/new_ui_foo/user/deletion-success.html:9
+#: user/templates/user/change_pass.html:12
+msgid "Old Password"
+msgstr "Altes Passwort"
+
+#: user/templates/user/change_pass.html:24
+msgid "New Password"
+msgstr "Neues Passwort"
+
+#: user/templates/user/change_pass_success.html:9
+msgid "You have successfully changed your password."
+msgstr "Du hast erfolgreich dein Passwort geändert."
+
+#: user/templates/user/deletion-success.html:7
+msgid "All done!"
+msgstr "Alles erledigt!"
+
+#: user/templates/user/deletion-success.html:9
 #, fuzzy
 #| msgid ""
 #| "Your account has successfully been deleted. We're sorry to see you go!"
@@ -1311,51 +1253,48 @@ msgid ""
 "Your account deletion has been completed successfully and your data has been "
 "removed from our servers. We are sorry to see you go!"
 msgstr ""
-"Dein Account wurde erfolgreich gelöscht. Es tut weh, dich gehen zu sehen!"
+"Dein Account wurde erfolgreich gelöscht und deine Daten wurden von unseren "
+"Servern entfernt. Es tut uns leid, dich zu verlieren!"
 
-#: user/templates/new_ui_foo/user/edit.html:6
-#, fuzzy
-#| msgid "Here you may change your user information."
+#: user/templates/user/edit.html:6
 msgid "Change your Profile Information"
-msgstr "Hier kannst du deine Nutzerinformationen ändern."
+msgstr "Ändere deine Nutzerinformationen"
 
-#: user/templates/new_ui_foo/user/edit.html:24
+#: user/templates/user/edit.html:24
 msgid ""
 "Your first name. This, combined with your last name will be used by teachers "
 "to verify your attendance in especially congested courses."
 msgstr ""
+""
 
-#: user/templates/new_ui_foo/user/edit.html:38
+#: user/templates/user/edit.html:38
 msgid ""
 "Your last name. This, combined with your first name will be used by teachers "
 "to verify your attendance in especially congested courses."
 msgstr ""
+"Dein Nachname. Er wird zusammen mit deinem Vornamen von den Tutoren eines "
+"Kurses genutzt, um deine Anwesenheit in besonders stark besuchten Kursen "
+"zu überprüfen."
 
-#: user/templates/new_ui_foo/user/edit.html:81
-#, fuzzy, python-format
-#| msgid ""
-#| "You have read our <a href=\"/privacy-policy/\" style=\"color:#9ACC00 !"
-#| "important;\">Privacy Policy</a> and consent to it."
+#: user/templates/user/edit.html:81
+#, python-format
 msgid ""
 "\n"
 "              You have read our <a href=\"%(privvylink)s\">Privacy Policy</"
 "a> and consent to it.\n"
 "            "
 msgstr ""
-"Du hast unsere <a href=\"/privacy-policy/\" style=\"color:#9ACC00 !important;"
-"\">Datenschutzerklärung</a> gelesen und stimmst ihr zu."
+"\n"
+"              Du hast unsere <a href=\"%(privvylink)s\">Datenschutzerklärung</a> "
+"gelesen und stimmst ihr zu.\n"
+"            "
 
-#: user/templates/new_ui_foo/user/edit.html:99
+#: user/templates/user/edit.html:99
+#: user/templates/user/privacy-agreement.html:52
 msgid "Danger Zone"
-msgstr ""
+msgstr "Gefahrenzone"
 
-#: user/templates/new_ui_foo/user/edit.html:104
-#, fuzzy
-#| msgid ""
-#| "You are about to delete your account. Clicking the red button below will "
-#| "delete your account <b>immediately and permanently</b>. All your personal "
-#| "information will be removed from our database, so think twice before "
-#| "taking this step."
+#: user/templates/user/edit.html:104
 msgid ""
 "\n"
 "          You are about to delete your account. Clicking the red button "
@@ -1370,132 +1309,32 @@ msgstr ""
 "Datenbanken entfernt, also denke noch mal darüber nach ehe du den Knopf "
 "drückst."
 
-#: user/templates/new_ui_foo/user/edit.html:111
+#: user/templates/user/edit.html:111
 msgid "I understand, please delete my account."
-msgstr ""
+msgstr "Ich verstehe, bitte löscht meinen Account."
 
-#: user/templates/new_ui_foo/user/edit.html:114
-#: user/templates/user/privacy-agreement.html:30
+#: user/templates/user/edit.html:114
+#: user/templates/user/privacy-agreement.html:63
 msgid "Delete my account"
 msgstr "Meinen Account löschen"
 
-#: user/templates/new_ui_foo/user/profile.html:10
-#, python-format
-msgid ""
-"\n"
-"    This page lists all the courses you are currently enrolled for. You can "
-"enroll for more courses by taking a look at the <a href=\"%(subjectlist)s"
-"\">catalogue</a>. If you become a teacher for one or more courses, these "
-"will appear below as well.\n"
-"    "
-msgstr ""
-
-#: user/templates/new_ui_foo/user/profile.html:18
-msgid "Courses you attend"
-msgstr "Kurse, die du besuchst"
-
-#: user/templates/new_ui_foo/user/profile.html:25
-#: user/templates/new_ui_foo/user/profile.html:66
-#: user/templates/new_ui_foo/user/public_profile.html:20
-#, fuzzy
-#| msgid "Courses"
-msgid "course"
-msgstr "Kurse"
-
-#: user/templates/new_ui_foo/user/profile.html:30
-#: user/templates/new_ui_foo/user/profile.html:71
-#: user/templates/new_ui_foo/user/public_profile.html:25
-msgid "No dates set yet"
-msgstr "Noch keine Termine gesetzt"
-
-#: user/templates/new_ui_foo/user/profile.html:39
-#: user/templates/new_ui_foo/user/profile.html:80
-#: user/templates/new_ui_foo/user/public_profile.html:34
-#, fuzzy
-#| msgid "No location set."
-msgid "No locations set."
-msgstr "Keine Orte festgelegt."
-
-#: user/templates/new_ui_foo/user/profile.html:45
-msgid "Waiting list position"
-msgstr ""
-
-#: user/templates/new_ui_foo/user/profile.html:47
-#, fuzzy
-#| msgid "Teachers"
-msgid "Teachers:"
-msgstr "Tutoren"
-
-#: user/templates/new_ui_foo/user/profile.html:54
-#, fuzzy
-#| msgid "You are already enrolled in this course."
-msgid "You are currently not enrolled for any courses."
-msgstr "Du bist bereits in diesem Kurs eingeschrieben."
-
-#: user/templates/new_ui_foo/user/profile.html:59
-msgid "Courses you teach"
-msgstr "Kurse, die du unterrichtest"
-
-#: user/templates/new_ui_foo/user/profile.html:86
-#: user/templates/new_ui_foo/user/public_profile.html:40
-#, fuzzy
-#| msgid "Participants"
-msgid "participants"
-msgstr "Teilnehmer"
-
-#: user/templates/new_ui_foo/user/profile.html:86
-#: user/templates/new_ui_foo/user/public_profile.html:40
-msgid "in queue"
-msgstr ""
-
-#: user/templates/new_ui_foo/user/profile.html:88
-#: user/templates/new_ui_foo/user/public_profile.html:42
-#, fuzzy
-#| msgid "This course is currently"
-msgid "The course is currently suspended."
-msgstr "Dieser Kurs ist momentan"
-
-#: user/templates/new_ui_foo/user/profile.html:95
-msgid ""
-"You are currently not teaching any courses. If you are interested in sharing "
-"your knowledge, make sure to reach out to"
-msgstr ""
-
-#: user/templates/new_ui_foo/user/public_profile.html:14
-msgid "Courses this user teaches"
-msgstr "Kurse, die dieser Nutzer hält"
-
-#: user/templates/new_ui_foo/user/public_profile.html:53
-#, python-format
-msgid ""
-"\n"
-"                        In accordance with your privacy settings information "
-"about the courses youu teach as well as your description will be withheld "
-"from the public. You can change these settings <a href=\"%(settingslink)s"
-"\">here</a>.\n"
-"                    "
-msgstr ""
-
-#: user/templates/new_ui_foo/user/public_profile.html:57
-#, fuzzy
-#| msgid "This user does not wish to publicise any additional information."
-msgid "This user does not wish to publicise any information about themselves."
-msgstr "Dieser Nutzer hat keine weiteren Informationen veröffentlicht."
-
-#: user/templates/user/privacy-agreement.html:6
-msgid "Consent to Privacy Policy"
-msgstr "Zustimmung zur Datenschutzerklärung"
-
 #: user/templates/user/privacy-agreement.html:7
+msgid "New privacy policy"
+msgstr "Neue Datenschutzerklärung"
+
+#: user/templates/user/privacy-agreement.html:10
 msgid ""
-"Hey there! Since the last time you've logged on, we changed our privacy "
-"policy. To continue using our services, please read the policy below "
-"carefully and then either signal us your consent by checking the box below "
-"or delete your account and all associated data by pressing the big red "
+"\n"
+"                Hey there! Since the last time you've logged on, we changed "
+"our privacy policy. To continue using our services, please read the policy "
+"below carefully and then either signal us your consent by checking the box "
+"below or delete your account and all associated data by pressing the big red "
 "button. If you have any questions regarding how we use or store your data, "
 "you can always drop us a mail - either in german or in english - to the "
-"address below!"
+"address below!\n"
+"            "
 msgstr ""
+"\n"
 "Hey du da! Seit du dich das letzte Mal eingeloggt hast, haben wir unsere "
 "Datenschutzerklärung geändert. Um unseren Dienst weiter nutzen zu können, "
 "lies bitte die unten stehende Erklärung und signalisiere uns deine "
@@ -1505,22 +1344,143 @@ msgstr ""
 "speichern, schreib uns einfach eine Mail - wahlweise auf Deutsch oder "
 "Englisch - an die unten stehende Adresse!"
 
-#: user/templates/user/privacy-agreement.html:25
+#: user/templates/user/privacy-agreement.html:24
+msgid "Consent to the privacy policy"
+msgstr "Zustimmung zur Datenschutzerklärung"
+
+#: user/templates/user/privacy-agreement.html:34
+#, python-format
 msgid ""
-"If you feel that you can not consent to the terms of this policy, there is "
-"no other option left for you but to delete your account. Clicking the red "
-"button below will delete your account <b>immediately and permanently</b>. "
-"All your personal information will be removed from our database, so think "
-"twice before taking this step."
+"\n"
+"                    You have read our <a href=\"%(privvylink)s\">Privacy "
+"Policy</a> and consent to it.\n"
+"                    "
 msgstr ""
+"\n"
+"                    Du hast unsere <a href=\"%(privvylink)s\">Datenschutzerklärung</a> "
+"gelesen und stimmst ihr zu.\n"
+"            "
+#: user/templates/user/privacy-agreement.html:58
+msgid ""
+"\n"
+"                    If you feel that you can not consent to the terms of "
+"this policy, there is no other option left for you but to delete your "
+"account. Clicking the red button below will delete your account "
+"<b>immediately and permanently</b>. All your personal information will be "
+"removed from our database, so think twice before taking this step.\n"
+"                "
+msgstr ""
+"\n"
 "Falls du der Meinung bist, dass du den Bedingungen dieser Erklärung nicht "
 "zustimmen kannst, bleibt dir keine andere Option, als deinen Account zu "
 "löschen. Mit einem Klick auf den roten Button unten wird dein Account "
 "<b>sofort und permanent</b> gelöscht. Alle persönlichen Informationen, die "
 "wir über dich gespeichert haben, werden aus unserer Datenbank gelöscht. "
 "Denke also noch mal darüber nach, bevor du diesen Schritt machst."
+"                "
 
-#: user/templates/view-error.html:6
+#: user/templates/user/profile.html:10
+#, python-format
+msgid ""
+"\n"
+"    This page lists all the courses you are currently enrolled for. You can "
+"enroll for more courses by taking a look at the <a href=\"%(subjectlist)s"
+"\">catalogue</a>. If you become a teacher for one or more courses, these "
+"will appear below as well.\n"
+"    "
+msgstr ""
+"\n"
+"    Diese Seite listet alle Kurse auf, für die du im Moment eingeschrieben bist."
+"Du kannst dich für weitere Kurse einschreiben, indem du einen Blick auf die "
+"<a href=\"%(subjectlist)s\">Liste</a> der angebotenen Kurse wirfst."
+"Wenn du selbst Tutor für einen oder meherere Kurse bist, werden diese auch "
+"hier angezeigt werden.\n"
+"    "
+
+#: user/templates/user/profile.html:18
+msgid "Courses you attend"
+msgstr "Kurse, die du besuchst"
+
+#: user/templates/user/profile.html:25 user/templates/user/profile.html:66
+#: user/templates/user/public_profile.html:20
+msgid "course"
+msgstr "Kurs"
+
+#: user/templates/user/profile.html:30 user/templates/user/profile.html:71
+#: user/templates/user/public_profile.html:25
+msgid "No dates set yet"
+msgstr "Noch keine Termine gesetzt"
+
+#: user/templates/user/profile.html:39 user/templates/user/profile.html:80
+#: user/templates/user/public_profile.html:34
+msgid "No locations set."
+msgstr "Keine Orte festgelegt."
+
+#: user/templates/user/profile.html:45
+msgid "Waiting list position"
+msgstr "Wartelistenposition"
+
+#: user/templates/user/profile.html:47
+msgid "Teachers:"
+msgstr "Tutoren:"
+
+#: user/templates/user/profile.html:54
+msgid "You are currently not enrolled for any courses."
+msgstr "Du bist bisher noch in keinen Kurs eingeschrieben."
+
+#: user/templates/user/profile.html:59
+msgid "Courses you teach"
+msgstr "Kurse, die du unterrichtest"
+
+#: user/templates/user/profile.html:86
+#: user/templates/user/public_profile.html:40
+msgid "participants"
+msgstr "Teilnehmer"
+
+#: user/templates/user/profile.html:86
+#: user/templates/user/public_profile.html:40
+msgid "in queue"
+msgstr "in der Warteliste"
+
+#: user/templates/user/profile.html:88
+#: user/templates/user/public_profile.html:42
+msgid "The course is currently suspended."
+msgstr "Dieser Kurs ist momentan inaktiv."
+
+#: user/templates/user/profile.html:95
+msgid ""
+"You are currently not teaching any courses. If you are interested in sharing "
+"your knowledge, make sure to reach out to"
+msgstr ""
+"Du unterrichtest aktuell keine Kurse. Wenn du Lust hast, dein Wissen mit anderen "
+"zu teilen, wende dich doch an"
+
+#: user/templates/user/public_profile.html:14
+msgid "Courses this user teaches"
+msgstr "Kurse, die dieser Nutzer hält"
+
+#: user/templates/user/public_profile.html:53
+#, python-format
+msgid ""
+"\n"
+"                        In accordance with your privacy settings information "
+"about the courses youu teach as well as your description will be withheld "
+"from the public. You can change these settings <a href=\"%(settingslink)s"
+"\">here</a>.\n"
+"                    "
+msgstr ""
+"\n"
+"                        In Übereinstimmung mit deinen Privatsphäre-Einstellungen "
+"werden hier keine Informationen über Kurse, die du besuchst oder unterrichtest "
+"angezeigt. Du kannst diese Einstellungen <a href=\"%(settingslink)s\">hier</a> "
+"ändern.\n"
+"                    "
+
+#: user/templates/user/public_profile.html:57
+msgid "This user does not wish to publicise any information about themselves."
+msgstr "Dieser Nutzer hat keine weiteren Informationen veröffentlicht."
+
+#: user/templates/view-error.html:5
 msgid "The content you requested could not be found."
 msgstr "Der angefordetre Inhalt konnte nicht gefunden werden."
 
@@ -1559,232 +1519,3 @@ msgstr "Das angegebene Token ist ungültig."
 #: user/views/verify.py:64
 msgid "Activation Succeded"
 msgstr "Aktivierung erfolgreich"
-
-#~ msgid "Number of slots to generate."
-#~ msgstr "Anzahl der Tabellen-Slots"
-
-#~ msgid "On this page you can create a new course."
-#~ msgstr "Auf dieser Seite kannst du einen neuen Kurs erstellen."
-
-#~ msgid "You'll automatically be assigned as teacher for this course"
-#~ msgstr "Du wirst automatisch Tutor dieses Kurses"
-
-#~ msgid ""
-#~ ", so that you may be able to edit it. You can assign new teachers once "
-#~ "the course is created"
-#~ msgstr ""
-#~ ", damit du ihn editieren kannst. Du kannst neue Tutoren zuordnen, nachdem "
-#~ "der Kurs erstellt wurde"
-
-#~ msgid "and even unassign yourself as teacher"
-#~ msgstr "und dich auch selbst als Tutor wieder entfernen."
-
-#~ msgid ""
-#~ "You can edit the description for your course here. You may use markdown "
-#~ "to do so."
-#~ msgstr ""
-#~ "Du kannst die Kursbeschreibung hier editieren. (Markdown wird unterstützt)"
-
-#~ msgid "register"
-#~ msgstr "Einschreiben"
-
-#~ msgid "unregister"
-#~ msgstr "Austragen"
-
-#~ msgid "Add/Remove teachers"
-#~ msgstr "Tutoren hinzufügen/entfernen"
-
-#~ msgid "of"
-#~ msgstr "von"
-
-#~ msgid "No schedule has been set."
-#~ msgstr "Keine Zeiten gesetzt."
-
-#~ msgid "Edit schedule"
-#~ msgstr "Zeitplan editieren"
-
-#~ msgid "active"
-#~ msgstr "aktiv"
-
-#~ msgid "suspended"
-#~ msgstr "inaktiv"
-
-#~ msgid "Suspend course (unenrolls all participants)"
-#~ msgstr "Kurs deaktivieren (trägt alle Teilnehmer aus)"
-
-#~ msgid "Set course active"
-#~ msgstr "Kurs aktivieren"
-
-#~ msgid "Administrative actions"
-#~ msgstr "Administrative Aktionen"
-
-#~ msgid "Notify course"
-#~ msgstr "Kurs benachrichtigen"
-
-#~ msgid "Actions"
-#~ msgstr "Aktionen"
-
-#~ msgid "This course is full"
-#~ msgstr "Dieser Kurs ist voll"
-
-#~ msgid "Log in"
-#~ msgstr "Einloggen"
-
-#~ msgid "or"
-#~ msgstr "oder"
-
-#~ msgid "to join this course"
-#~ msgstr "um diesem Kurs beizutreten"
-
-#~ msgid "Your students have successfully been notified."
-#~ msgstr "Die Kursteilnehmer wurden erfolgreich benachrichtigt."
-
-#~ msgid ""
-#~ "You can use this form to send an email to all people enrolled in your "
-#~ "course."
-#~ msgstr ""
-#~ "Du kannst dieses Formular nutzen, um eine Mail an alle Teilnehmer deines "
-#~ "Kurses zu schreiben."
-
-#~ msgid ""
-#~ "Be aware that lots of email spam will most likely put off your students."
-#~ msgstr ""
-#~ "Beachte, dass viele Mails wahrscheinlich dazu führen, dass diese "
-#~ "ignoriert werden."
-
-#~ msgid "kick"
-#~ msgstr "Austragen"
-
-#~ msgid ""
-#~ "Oh no, there don't seem to be any students enrolled in this course yet :"
-#~ "(, perhaps you should advertise more."
-#~ msgstr ""
-#~ "Oh nein, es scheint sich noch niemand in diesen Kurs eingetragen zu "
-#~ "haben :(, vielleicht solltest du ihn stärker bewerben."
-
-#~ msgid "Locations"
-#~ msgstr "Orte"
-
-#~ msgid "This course is free for everyone to join."
-#~ msgstr "Dieser Kurs ist frei für alle Interessierten."
-
-#, python-format
-#~ msgid ""
-#~ "\n"
-#~ "\t\t\t    Your subscription to the course %(s)s was unsuccessful.\n"
-#~ "\t\t\t"
-#~ msgstr ""
-#~ "\n"
-#~ "\t\t\t    Deine Einschreibung für den Kurs %(s)s war leider nicht "
-#~ "erfolgreich.\n"
-#~ "\t\t\t  "
-
-#, python-format
-#~ msgid ""
-#~ "\n"
-#~ "\t\t\t    Your subscription to the course %(s)s was successful.\n"
-#~ "\t\t\t"
-#~ msgstr ""
-#~ "\n"
-#~ "\t\t\t    Deine Einschreibung für den Kurs %(s)s war erfolgreich.\n"
-#~ "\t\t\t  "
-
-#, python-format
-#~ msgid ""
-#~ "\n"
-#~ "\t\t\t    Your unsubscription to the course %(s)s was unsuccessful.\n"
-#~ "\t\t    "
-#~ msgstr ""
-#~ "\n"
-#~ "\t\t\t    Deine Austragung aus dem Kurs %(s)s war leider nicht "
-#~ "erfolgreich.\n"
-#~ "\t\t\t  "
-
-#, python-format
-#~ msgid ""
-#~ "\n"
-#~ "\t\t\t    Your unsubscription to the course %(s)s was successful.\n"
-#~ "\t\t\t"
-#~ msgstr ""
-#~ "\n"
-#~ "\t\t\t    Du hast dich erfolgreich aus dem Kurs %(s)s ausgetragen.\n"
-#~ "\t\t\t  "
-
-#~ msgid "Current news on the courses"
-#~ msgstr "Aktuelle Kursnachrichten"
-
-#~ msgid "Current subjects available"
-#~ msgstr "Aktuell angebotene Themen"
-
-#~ msgid " Create "
-#~ msgstr " Erstellen "
-
-#~ msgid " Modify "
-#~ msgstr " Bearbeiten "
-
-#~ msgid "Right now, we offer courses on the following topics:"
-#~ msgstr "Zurzeit bieten wir Kurse zu folgenden Themen an:"
-
-#~ msgid "Sorry, this course is full."
-#~ msgstr "Dieser Kurs ist voll."
-
-#~ msgid "An email address where the recipient may reach you."
-#~ msgstr "Eine Mail Adresse, unter der der Empfänger dich erreichen kann."
-
-#~ msgid "We sent verification mails to the following email accounts:"
-#~ msgstr "Es wurde eine Verifizierungsmail an folgende Adressen gesendet:"
-
-#~ msgid "These mails contain an account activation link."
-#~ msgstr "Diese Mail beinhaltet einen Aktivierungslink für dein Konto."
-
-#~ msgid "Please validate all of these email accounts."
-#~ msgstr "Bitte validiere alle angegebenen Mail Accounts."
-
-#~ msgid "Account Deletion"
-#~ msgstr "Accountlöschung"
-
-#~ msgid "And off you go!"
-#~ msgstr "Zack, geschafft!"
-
-#~ msgid "Change"
-#~ msgstr "Ändern"
-
-#~ msgid "Perhaps you'd like to"
-#~ msgstr "Vielleicht möchtest du"
-
-#~ msgid "change your password"
-#~ msgstr "dein Passwort ändern"
-
-#~ msgid "Here, you may also"
-#~ msgstr "Hier kannst du auch"
-
-#~ msgid "delete your account"
-#~ msgstr "deinen Account löschen"
-
-#~ msgid "Your data"
-#~ msgstr "Deine Daten"
-
-#~ msgid "First name"
-#~ msgstr "Vorname"
-
-#~ msgid "Last name"
-#~ msgstr "Nachname"
-
-#~ msgid "Email"
-#~ msgstr "E-Mail"
-
-#~ msgid "Visit your public profile."
-#~ msgstr "Öffentliches Profil anzeigen."
-
-#~ msgid ""
-#~ "According to your privacy settings no additional information will be "
-#~ "shown here."
-#~ msgstr ""
-#~ "Entsprechend deinen Privatsphäre-Einstellungen werden hier keine weiteren "
-#~ "Informationen über dich angezeigt."
-
-#~ msgid "Visit your private profile"
-#~ msgstr "Privates Profil anzeigen"
-
-#~ msgid "Contact this user."
-#~ msgstr "Nutzer kontaktieren."
