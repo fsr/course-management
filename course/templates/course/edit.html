@@ -74,8 +74,8 @@
 
   <div class="row">
     <div class="form-group col-6 {% if form.start_time.errors %}is-invalid{% endif %}">
-      <label class="col-form-label" for="{{ form.start_time.id_for_label }}">{% trans 'Start Time' %}</label>
-      <input type="datetime-local" class="form-control {% if form.start_time.errors %}is-invalid{% endif %}" name="{{ form.start_time.html_name }}" id="{{ form.start_time.id_for_label }}" {% if form.start_time.value %}value="{{ form.start_time.value }}"{% endif %}>
+      <label class="col-form-label" for="{{ form.start_time.id_for_label }}">{% trans 'Start Date' %}</label>
+      <input type="date" class="form-control {% if form.start_time.errors %}is-invalid{% endif %}" name="{{ form.start_time.html_name }}" id="{{ form.start_time.id_for_label }}" placeholder="dd.mm.yyyy" aria-describedby="dateHelp" {% if form.start_time.value %}value="{{ form.start_time.value }}"{% endif %}>
       {% if form.start_time.errors %}
         <div class="invalid-feedback">
           {% for err in form.start_time.errors %}
@@ -86,8 +86,8 @@
     </div>
 
     <div class="form-group col-6 {% if form.end_time.errors %}is-invalid{% endif %}">
-      <label class="col-form-label" for="{{ form.end_time.id_for_label }}">{% trans 'End Time' %}</label>
-      <input type="datetime-local" class="form-control {% if form.end_time.errors %}is-invalid{% endif %}" name="{{ form.end_time.html_name }}" id="{{ form.end_time.id_for_label }}" {% if form.end_time.value %}value="{{ form.end_time.value }}"{% endif %}>
+      <label class="col-form-label" for="{{ form.end_time.id_for_label }}">{% trans 'End Date' %}</label>
+      <input type="date" class="form-control {% if form.end_time.errors %}is-invalid{% endif %}" name="{{ form.end_time.html_name }}" id="{{ form.end_time.id_for_label }}" placeholder="dd.mm.yyyy" aria-describedby="dateHelp" {% if form.end_time.value %}value="{{ form.end_time.value }}"{% endif %}>
       {% if form.end_time.errors %}
         <div class="invalid-feedback">
           {% for err in form.end_time.errors %}
@@ -96,6 +96,8 @@
         </div>
       {% endif %}
     </div>
+
+    <small id="dateHelp" class="form-text text-muted">{% trans "The start and end date control how long a course should be displayed in the course list before being archived automatically." %}</small>
   </div>
 
   <div class="form-group {% if form.schedule_type.errors %}has-danger{% endif %}">

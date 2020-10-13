@@ -104,10 +104,10 @@ class CourseForm(ModelForm):
 
     start_time = forms.DateField(
         widget=forms.DateInput(format='%d.%m.%Y'),
-        input_formats=['%d.%m.%Y'])
+        input_formats=['%d.%m.%Y', '%Y-%m-%d'])
     end_time = forms.DateField(
         widget=forms.DateInput(format=('%d.%m.%Y')),
-        input_formats=['%d.%m.%Y'])
+        input_formats=['%d.%m.%Y', '%Y-%m-%d'])
 
 
 class AddTeacherForm(forms.Form):

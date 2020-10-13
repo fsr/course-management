@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-07 14:24+0200\n"
+"POT-Creation-Date: 2020-10-13 17:38+0200\n"
 "PO-Revision-Date: 2020-10-04 23:08+0200\n"
 "Last-Translator: Felix Wittwer <dev@felixwittwer.de>\n"
 "Language-Team: ---\n"
@@ -411,44 +411,52 @@ msgstr ""
 "Studierendenverhältnis ist normalerweise 1:15."
 
 #: course/templates/course/edit.html:77
-msgid "Start Time"
+msgid "Start Date"
 msgstr "Kurs beginnt am"
 
 #: course/templates/course/edit.html:89
-msgid "End Time"
+msgid "End Date"
 msgstr "Kurs endet am"
 
-#: course/templates/course/edit.html:102
+#: course/templates/course/edit.html:100
+msgid ""
+"The start and end date control how long a course should be displayed in the "
+"course list before being archived automatically."
+msgstr ""
+"Das Start- und Enddatum kontrollieren, wie lange ein Kurs in der Kursliste angezeigt "
+"wird bevor er automatisch archiviert wird."
+
+#: course/templates/course/edit.html:104
 msgid "Schedule Type"
 msgstr "Zeitplantyp"
 
-#: course/templates/course/edit.html:120
+#: course/templates/course/edit.html:122
 msgid ""
 "Set the course <strong>active</strong> and allow enrollments right away."
 msgstr ""
 "Markiert den Kurs als <strong>aktiv</strong> und erlaubt ab sofort "
 "Einschreibungen."
 
-#: course/templates/course/edit.html:127
+#: course/templates/course/edit.html:129
 msgid "Make the course <strong>visible</strong> in the course list."
 msgstr "Macht den Kurs in der Kursliste <strong>sichtbar</strong>."
 
-#: course/templates/course/edit.html:132
+#: course/templates/course/edit.html:134
 msgid "Archiving Behavior"
 msgstr "Archivierungsverhalten"
 
-#: course/templates/course/edit.html:147 course/templates/news/edit.html:28
-#: course/templates/subject/edit.html:35
+#: course/templates/course/edit.html:149 course/templates/news/edit.html:28
+#: course/templates/subject/edit.html:62
 msgid "Save"
 msgstr "Speichern"
 
-#: course/templates/course/edit.html:149 course/templates/course/edit.html:151
-#: course/templates/news/edit.html:29 course/templates/subject/edit.html:36
+#: course/templates/course/edit.html:151 course/templates/course/edit.html:153
+#: course/templates/news/edit.html:29 course/templates/subject/edit.html:63
 #: user/templates/contact-form.html:36
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: course/templates/course/edit.html:161 course/templates/index.html:20
+#: course/templates/course/edit.html:163 course/templates/index.html:20
 #: course/templates/subject/info.html:17
 msgid "Delete"
 msgstr "Löschen"
@@ -770,28 +778,28 @@ msgstr "Neues Thema"
 msgid "Edit Subject"
 msgstr "Thema bearbeiten"
 
-#: course/templates/subject/edit.html:16
+#: course/templates/subject/edit.html:23
 msgid "Name"
 msgstr "Name"
 
-#: course/templates/subject/edit.html:22
+#: course/templates/subject/edit.html:35
 msgid "German Description"
 msgstr "Deutsche Beschreibung"
 
-#: course/templates/subject/edit.html:24
+#: course/templates/subject/edit.html:44
 msgid "A german description for the subject."
 msgstr "Eine deutsche Beschreibung für das Thema."
 
-#: course/templates/subject/edit.html:24 course/templates/subject/edit.html:31
+#: course/templates/subject/edit.html:44 course/templates/subject/edit.html:58
 msgid "<a href=\"https://commonmark.org/help/\">Markdown</a> is supported."
 msgstr ""
 "<a href=\"https://commonmark.org/help/\">Markdown</a> wird unterstützt."
 
-#: course/templates/subject/edit.html:29
+#: course/templates/subject/edit.html:49
 msgid "English Description"
 msgstr "Englische Beschreibung"
 
-#: course/templates/subject/edit.html:31
+#: course/templates/subject/edit.html:58
 msgid "An english description for the subject."
 msgstr "Eine englische Beschreibung für das Thema."
 
@@ -1152,9 +1160,9 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"        Du weißt, wie es läuft. Wähle ein sicheres Passwort und recycle kein anderes Passwort. "
-"`<a href=\"https://www.xkcd.com/936/\">correct-horse-battery-staple</"
-"a>` steht übrigens auch nicht zur Diskussion.\n"
+"        Du weißt, wie es läuft. Wähle ein sicheres Passwort und recycle kein "
+"anderes Passwort. `<a href=\"https://www.xkcd.com/936/\">correct-horse-"
+"battery-staple</a>` steht übrigens auch nicht zur Diskussion.\n"
 "      "
 
 #: user/templates/registration/register.html:90
@@ -1265,9 +1273,9 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"        Du weißt, wie es läuft. Wähle ein sicheres Passwort und recycle kein anderes Passwort. "
-"`<a href=\"https://www.xkcd.com/936/\">correct-horse-battery-staple</"
-"a>` steht übrigens auch nicht zur Diskussion.\n"
+"        Du weißt, wie es läuft. Wähle ein sicheres Passwort und recycle kein "
+"anderes Passwort. `<a href=\"https://www.xkcd.com/936/\">correct-horse-"
+"battery-staple</a>` steht übrigens auch nicht zur Diskussion.\n"
 "      "
 
 #: user/templates/user/change_pass_success.html:9
