@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseForbidden
 from django.views.decorators.http import require_POST
 from django.shortcuts import redirect, render
 from django.utils.translation import ugettext as _
@@ -26,7 +26,10 @@ def add(request, course_id):
     else:
         if 'enroll-error' in session:
             del session['enroll-error']
-        course.enroll(stud)
+        try:
+            course.enroll(stud)
+        except Course.IsInactive:
+            return HttpResponseForbidden()
 
     # redirect to course overview or specified target
     return redirect_unless_target(request, 'course', course_id)
