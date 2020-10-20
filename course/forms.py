@@ -56,6 +56,10 @@ class DateForm(ModelForm):
         model = DateSlot
         fields = ('date', 'location')
 
+    date = forms.DateTimeField(
+        widget=forms.DateTimeInput(format='%Y-%m-%dT%H:%M'),
+        input_formats=['%Y-%m-%dT%H:%M'])
+
 
 class WeeklySlotForm(ModelForm):
     location = forms.CharField(max_length=100, validators=[location_validator])

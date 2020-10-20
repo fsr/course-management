@@ -74,7 +74,7 @@
       {% else %}
         <div class="form-group {% if form.date.errors %}is-invalid{% endif %}">
             <label class="col-form-label" for="{{ form.date.id_for_label }}">{% trans 'Date and Time' %}</label>
-            <input type="datetime-local" class="form-control {% if form.date.errors %}is-invalid{% endif %}" name="{{ form.date.html_name }}" id="{{ form.date.id_for_label }}">
+            <input type="datetime-local" class="form-control {% if form.date.errors %}is-invalid{% endif %}" name="{{ form.date.html_name }}" id="{{ form.date.id_for_label }}" placeholder="YYYY-MM-DDTHH:MM">
             {% if form.date.errors %}
             <div class="invalid-feedback">
                 {% for err in form.date.errors %}
