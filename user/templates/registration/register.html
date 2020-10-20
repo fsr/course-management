@@ -42,7 +42,7 @@
 
   <div class="form-group {% if user_form.email.errors %}has-danger{% endif %}">
     <label class="col-form-label" for="{{ user_form.email.id_for_label }}">{% trans 'Mail address' %}</label>
-    <input type="email" class="form-control {% if user_form.email.errors %}is-invalid{% endif %}" placeholder="{% trans 'john.galt@tu-dresden.de' %}" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.html_name }}" aria-describedby="mailHelp" required="" {% if user_form.email.value %}value="{{ user_form.email.value }}"{% endif %}>
+    <input type="email" class="form-control {% if user_form.email.errors %}is-invalid{% endif %}" placeholder="{% trans 'john.galt@mailbox.tu-dresden.de' %}" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.html_name }}" aria-describedby="mailHelp" required="" {% if user_form.email.value %}value="{{ user_form.email.value }}"{% endif %}>
     {% if user_form.email.errors %}
       <div class="invalid-feedback">
         {% for err in user_form.email.errors %}
