@@ -20,16 +20,39 @@
       <input type="hidden" name="next" value="{{ next }}"/>
     {% endif %}
 
+    {% if form.non_field_errors %}
+    <div class="alert alert-dismissible alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {% for err in form.non_field_errors %}
+        {{ err }}
+      {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="form-group row">
       <label class="col-sm-3 col-form-label" for="{{ form.username.id_for_label }}">Username</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" placeholder="ayn_rand" autofocus="" required="">
+      <div class="col-sm-9 {% if form.username.errors %}has-danger{% endif %}">
+        <input type="text" class="form-control {% if form.username.errors %}is-invalid{% endif %}" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" placeholder="ayn_rand" autofocus="" required="">
+        {% if form.username.errors %}
+          <div class="invalid-feedback">
+            {% for err in form.username.errors %}
+              {{ err }}
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-3 col-form-label" for="{{ form.password.id_for_label }}">Password</label>
-      <div class="col-sm-9">
-        <input type="password" class="form-control" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" placeholder="••••••••••" required="">
+      <div class="col-sm-9 {% if form.password.errors %}has-danger{% endif %}">
+        <input type="password" class="form-control {% if form.password.errors %}is-invalid{% endif %}" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" placeholder="••••••••••" required="">
+        {% if form.password.errors %}
+          <div class="invalid-feedback">
+            {% for err in form.password.errors %}
+              {{ err }}
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     </div>
 
