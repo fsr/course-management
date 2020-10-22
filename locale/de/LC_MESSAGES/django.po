@@ -1191,7 +1191,7 @@ msgid ""
 "refrain from using h1 headings."
 msgstr ""
 "<a href=\"https://commonmark.org/help/\">Markdown</a> wird unterstützt, aber "
-"bitte versichte darauf, h1 Überschriften zu nutzen."
+"bitte verzichte darauf, h1 Überschriften zu nutzen."
 
 #: user/templates/registration/register.html:118
 #: user/templates/user/edit.html:72
