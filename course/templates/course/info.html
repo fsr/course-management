@@ -77,7 +77,9 @@
       <hr class="m-0">
       <div class="card-body">
         <h5 class="card-title">{% trans 'Status' %}</h5>
-        {% if course.active %}
+          {% if course.is_archived %}
+            <span class="badge badge-light">{% trans 'archived' %}</span>
+          {% elif course.active %}
             {% if course.saturated %}
               <span class="badge badge-danger">{% trans 'full' %}</span>
             {% else %}
@@ -123,7 +125,7 @@
         {% else %}
           <form action="{% url 'register-course' course.id %}{% if target %}?target={{ target }}{% endif %}" method="post">
             {% csrf_token %}
-            {% if course.active %}
+            {% if course.active and not course.is_archived %}
               {% if course.joinable %}
                 <input class="btn btn-primary mr-2" type="submit" value="{% trans 'Enroll' %}">
               {% else %}
