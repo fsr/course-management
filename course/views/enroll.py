@@ -30,6 +30,8 @@ def add(request, course_id):
             course.enroll(stud)
         except Course.IsInactive:
             return HttpResponseForbidden()
+        except Course.IsArchived:
+            return HttpResponseForbidden()
 
     # redirect to course overview or specified target
     return redirect_unless_target(request, 'course', course_id)
