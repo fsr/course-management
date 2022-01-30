@@ -1,8 +1,8 @@
-django==2.2.*
+django==3.2.*
 PyYAML>=3
 bleach
 markdown
 requests
-django-modeltranslation==0.13.*
+django-modeltranslation==0.17.*
 # django-modeltranslation
 django-guardian==2.1.*
