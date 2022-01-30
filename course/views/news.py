@@ -54,7 +54,7 @@ def edit(request: HttpRequest, news_id: str):
     try:
         cur_news = news.News.objects.get(id=news_id)
     except news.News.DoesNotExist:
-        return db_error(_('Requested News does not exist.'))
+        return db_error(request, _('Requested News does not exist.'))
 
     if request.method == 'POST':
         form = NewsForm(request.POST, instance=cur_news)
@@ -90,7 +90,7 @@ def delete(request: HttpRequest, news_id: str):
     try:
         cur_news = news.News.objects.get(id=news_id)
     except news.News.DoesNotExist:
-        return db_error(_('Requested News does not exist.'))
+        return db_error(request, _('Requested News does not exist.'))
 
     cur_news.delete()
     return redirect('index')

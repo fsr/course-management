@@ -16,7 +16,7 @@ def course_overview(request, subjectname):
     try:
         active_subject = subject.Subject.objects.get(name=subjectname)
     except subject.Subject.DoesNotExist:
-        return db_error(_('Requested subject does not exist.'))
+        return db_error(request, _('Requested subject does not exist.'))
 
     if user.is_authenticated:
         cl = list(filter(
@@ -89,7 +89,7 @@ def edit(request, subjectname):
     try:
         subj = subject.Subject.objects.get(name=subjectname)
     except subject.Subject.DoesNotExist:
-        return db_error(_('Requested subject does not exist.'))
+        return db_error(request, _('Requested subject does not exist.'))
 
     if request.method == 'POST':
         form = SubjectForm(request.POST, instance=subj)
@@ -121,7 +121,7 @@ def delete(request, subjectname):
     try:
         subj = subject.Subject.objects.get(name=subjectname)
     except subject.Subject.DoesNotExist:
-        return db_error(_('Requested subject does not exist.'))
+        return db_error(request, _('Requested subject does not exist.'))
 
     subj.delete()
 

@@ -21,7 +21,7 @@ def edit_slot(request: HttpRequest, course_id):
     try:
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
 
     schedule = course.schedule
 
@@ -64,7 +64,7 @@ def remove_slot(request, course_id, slot_id):
     try:
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error(
+        return db_error(request, 
             'The specified course does not exist. Please try again. '
             'If this error persists, contact an administrator and include the url "{}"'
             ''.format(request.path)
@@ -73,7 +73,7 @@ def remove_slot(request, course_id, slot_id):
     try:
         course.schedule.slots.get(id=slot_id).delete()
     except (WeeklySlot.DoesNotExist, DateSlot.DoesNotExist):
-        return db_error(
+        return db_error(request, 
             'The slot you\'re trying to remove does not exist. Please try again. '
             'If this error persists, contact an administrator and include the url "{}"'
             ''.format(request.path)

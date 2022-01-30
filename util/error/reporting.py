@@ -1,8 +1,8 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 
-def db_error(message):
+def db_error(request, message):
     """
     Report a database error in a view.
     """
-    return render_to_response('error/db.html', {'error': message})
+    return render(request, 'error/db.html', {'error': message})

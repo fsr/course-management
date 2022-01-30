@@ -19,7 +19,7 @@ def contact_form(request: HttpRequest, user_id: int):
     try:
         user = User.objects.get(id=user_id)
     except User.DoesNotExist:
-        return db_error(_('Requested user does not exist.'))
+        return db_error(request, _('Requested user does not exist.'))
     assert isinstance(user, User)
 
     if request.method == 'POST':
