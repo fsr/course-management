@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import permission_required, login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import HttpRequest
-from django.shortcuts import redirect, render_to_response, render
+from django.shortcuts import redirect, render
 from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_POST
 from guardian.shortcuts import assign_perm
@@ -75,7 +75,7 @@ def course(request: HttpRequest, course_id: str):
             context
         )
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
 
 
 @needs_teacher_permissions
@@ -89,7 +89,7 @@ def participants_list(request, course_id):
             {'course': current_course}
         )
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
 
 
 @needs_teacher_permissions
@@ -105,7 +105,7 @@ def edit_course(request: HttpRequest, course_id: str):
         current_course = Course.objects.get(id=course_id)
         current_schedule = Schedule.objects.get(course_id=course_id)
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
 
     if request.method == "POST":
         form = CourseForm(request.POST, instance=current_course)
@@ -152,7 +152,7 @@ def toggle(request: HttpRequest, course_id: str, active: bool):
     try:
         curr_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
 
     curr_course.active = active
     if not active:
@@ -215,7 +215,7 @@ def delete(request, course_id):
     try:
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
 
     subj = course.subject.name
 
@@ -234,7 +234,7 @@ def add_teacher(request, course_id):
     try:
         curr_course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
 
     if request.method == 'POST':
         form = AddTeacherForm(request.POST)
@@ -288,9 +288,9 @@ def remove_teacher(request, course_id, teacher_id):
             curr_course
         )
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
     except UserInformation.DoesNotExist:
-        return db_error(_('Requested student does not exist.'))
+        return db_error(request, _('Requested student does not exist.'))
     return redirect_unless_target(request, 'course', course_id)
 
 
@@ -302,7 +302,7 @@ def notify(request: HttpRequest, course_id):
             try:
                 course = Course.objects.get(id=course_id)
             except Course.DoesNotExist:
-                return db_error(_('Requested course does not exist.'))
+                return db_error(request, _('Requested course does not exist.'))
 
             email = request.user.email
             show_sender = form.cleaned_data['show_sender'] and email
@@ -347,9 +347,9 @@ def remove_student(request: HttpRequest, course_id:str, student_id:str):
         course = Course.objects.get(id=course_id)
         course.unenroll(student_id)
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
     except Course.IsEnrolled:
-        return db_error(_('Requested student is not enrolled in this course.'))
+        return db_error(request, _('Requested student is not enrolled in this course.'))
 
     return redirect('course', course_id)
 
@@ -360,7 +360,7 @@ def attendee_list(request, course_id):
         try:
             course = Course.objects.get(id=course_id)
         except Course.DoesNotExist:
-            return db_error(_('Requested course does not exist.'))
+            return db_error(request, _('Requested course does not exist.'))
 
         # handle empty string (== no number) as input
         try:
@@ -385,7 +385,7 @@ def contact_teachers(request, course_id):
             try:
                 course = Course.objects.get(id=course_id)
             except Course.DoesNotExist:
-                return db_error(_('Requested course does not exist.'))
+                return db_error(request, _('Requested course does not exist.'))
 
             subject = "[CM contact form] " + form.subject
             content = form.content + CONTACT_FOOTER + request.user.email

@@ -18,7 +18,7 @@ def add(request, course_id):
     try:
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
     session = request.session
 
     if course.is_participant(stud):
@@ -44,7 +44,7 @@ def remove(request, course_id):
     try:
         course = Course.objects.get(id=course_id)
     except Course.DoesNotExist:
-        return db_error(_('Requested course does not exist.'))
+        return db_error(request, _('Requested course does not exist.'))
     ps = course.participants
 
     if course.is_participant(stud):

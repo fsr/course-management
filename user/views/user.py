@@ -62,7 +62,7 @@ def profile(request, user_id=None):
             user = User.objects.get(id=user_id)
             is_own = request.user.id == user.id
         except User.DoesNotExist:
-            return db_error(_('This user does not exist'))
+            return db_error(request, _('This user does not exist'))
 
         template = 'user/public_profile.html'
 
