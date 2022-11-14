@@ -1,6 +1,6 @@
 django==3.2.*
 PyYAML>=3
-bleach
+bleach==5.0.*
 markdown
 requests
 django-modeltranslation==0.17.*

@@ -25,4 +25,4 @@ def clean_all(html):
     """
     Removes *all* html tags.
     """
-    return bleach.clean(html, tags=[], styles=[], attributes=[], strip=True)
+    return bleach.clean(html, tags=[], attributes=[], strip=True)
