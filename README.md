@@ -14,7 +14,6 @@ For more details on the design decisions taken and the general structure of the 
 2. Copy the example configuration and mail settings and customize them as you see fit:
 ```
 cp course/settings.py.example course/settings.py
-cp user/mailsettings.py.example user/mailsettings.py
 ```
 3. Install any Python dependencies via `pip3 install -r requirements.txt`.
 4. Run `python3 manage.py migrate` to apply the database migrations.

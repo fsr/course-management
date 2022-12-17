@@ -142,3 +142,7 @@ DEFAULT_FROM_EMAIL = 'noreply@ifsr.de'
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+EMAIL_HOST = "mail.example.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "sender@example.com"
+EMAIL_HOST_PASSWORD = "correct horse battery staple"
