@@ -46,6 +46,10 @@ Otherwise, just follow steps 1-4 from the checklist above, then follow the stand
 Run the `python3 manage.py createsuperuser` command to create a root user for the application to be able to assign administrative privileges to new users.
 Admin rights may in general only be granted from the `http://[site url]/admin` page by selecting the appropriate user there and giving them staff/superuser rights.
 
+## Deployment with Docker-Compose
+
+To deploy the application using docker-compose, make all necessary configurations and then run `docker compose up -d`.
+
 ## License
 
 This software is licensed with the BSD3 license. See the `LICENSE` file for more information.
