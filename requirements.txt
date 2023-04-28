@@ -5,4 +5,4 @@ markdown
 requests
 django-modeltranslation==0.17.*
 # django-modeltranslation
-django-guardian==2.1.*
+django-guardian
