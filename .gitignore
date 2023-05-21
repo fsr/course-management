@@ -1,5 +1,5 @@
-course/settings.py
-user/mailsettings.py
+course-management/course/settings.py
+course-management/user/mailsettings.py
 
 
 .DS_Store
