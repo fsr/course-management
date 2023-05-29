@@ -1,5 +1,7 @@
 course-management/course/settings.py
-course-management/user/mailsettings.py
+
+/result*
+/.direnv
 
 
 .DS_Store
