@@ -1,8 +1,0 @@
-services:
-  ifsr-courses:
-    build:
-      context: .
-      target: builder
-    #ports:
-    #  - '8000:8000'
-    network_mode: "host"
