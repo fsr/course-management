@@ -117,6 +117,16 @@ in
       default = pkgs.course-management;
       description = "The package to use.";
     };
+    user = mkOption {
+      type = types.str;
+      default = "course-management";
+      description = "The user under which the server runs.";
+    };
+    group = mkOption {
+      type = types.str;
+      default = "course-management";
+      description = "The group under which the server runs.";
+    };
     hostName = mkOption {
       type = types.nullOr types.str;
       default = null;
@@ -298,6 +308,13 @@ in
       '';
     in
     lib.mkIf cfg.enable {
+      users.users.course-management = lib.mkIf (cfg.user == "course-management") {
+        group = cfg.group;
+        isSystemUser = true;
+      };
+
+      users.groups.course-management = lib.mkIf (cfg.group == "course-management") { };
+
       systemd.services.course-management = {
         wantedBy = [ "multi-user.target" ];
         after = [ "network.target" ];
@@ -316,12 +333,13 @@ in
           ${python}/bin/python ${baseDir}/manage.py shell < ${ensureAdminScript}
         '';
         serviceConfig = {
+          User = cfg.user;
+          Group = cfg.group;
           StateDirectory = "course-management";
           ExecStart = "${python.pkgs.gunicorn}/bin/gunicorn course-management.course.wsgi -w ${toString cfg.workers} -b ${cfg.listenAddress}:${toString cfg.listenPort}";
 
           # from systemd-analyze --no-pager security course-management.service
           CapabilityBoundingSet = null;
-          DynamicUser = true;
           MemoryDenyWriteExecute = true;
           PrivateDevices = true;
           PrivateUsers = true;
