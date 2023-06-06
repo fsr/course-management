@@ -15,7 +15,7 @@ For more details on the design decisions taken and the general structure of the 
 ```
 cp course-management/course/settings.py.example course-management/course/settings.py
 ```
-3. Install any Python dependencies via `poetry install`.
+3. Install any Python dependencies via `poetry install`. PostgreSQL support is gated behind a poetry extra. If you need it, run `poetry install -E pgsql`.
 4. Run `poetry run course-management/manage.py migrate` to apply the database migrations.
 5. Run `poetry run course-management/manage.py loaddata courses` to load a sample data set.
 6. Fire up the development server with `poetry run course-management/manage.py runserver`.
@@ -79,7 +79,7 @@ The NixOS module can be used in a flake like this:
 A superuser named `admin` will be created with the password stored in `adminPassFile`.
 Nginx will be set up to serve the application on `hostName`, unless none is configured.
 Note however that TLS will *not* be enabled by default and should be configured separately.
-As explained above, it is recommended to configure a database suited for use in a productive environment.
+As explained above, it is recommended to configure a database suited for use in a productive environment. PostgreSQL is supported without further configuration.
 
 ## License
 

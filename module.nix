@@ -65,14 +65,7 @@ let
       email = mkOption {
         type = settingsEmailType;
         description = "Configuration for sending email.";
-        default = {
-          host = "localhost";
-          port = 25;
-          user = "";
-          passwordFile = "/dev/null";
-          fromEmail = "webmaster@localhost";
-          serverEmail = "root@localhost";
-        };
+        default = {};
       };
       extraConfig = mkOption {
         default = "";
@@ -89,22 +82,28 @@ let
     options = {
       host = mkOption {
         type = types.str;
+        default = "localhost";
       };
       port = mkOption {
         type = types.int;
+        default = 25;
       };
       user = mkOption {
         type = types.str;
+        default = "";
       };
       passwordFile = mkOption {
         type = types.str;
+        default = "/dev/null";
       };
       fromEmail = mkOption {
         type = types.str;
+        default = "webmaster@localhost";
       };
       serverEmail = mkOption {
         type = types.str;
         description = "Email used for error notifications.";
+        default = "root@localhost";
       };
     };
   };
@@ -289,7 +288,7 @@ in
         ${cfg.settings.extraConfig}
       '';
 
-      ensureAdminScript = pkgs.writeText "ensureAdminScript" /* python */ ''
+      ensureAdminScript = pkgs.writeText "ensureAdminScript.py" /* python */ ''
         from django.contrib.auth.models import User
         from user.models import UserInformation
 
@@ -299,7 +298,7 @@ in
         query = User.objects.filter(username="admin")
 
         if not query.exists():
-            user = User.objects.create_superuser(username="admin", password=password)
+            user = User.objects.create_superuser(username="admin", first_name="Admin", password=password)
             UserInformation.objects.create(user=user, accepted_privacy_policy=True)
         else:
             user = query.first()
@@ -345,7 +344,7 @@ in
           PrivateUsers = true;
           ProtectHome = true;
           ProtectKernelLogs = true;
-          RestrictAddressFamilies = [ "AF_INET" "AF_INET6" ];
+          RestrictAddressFamilies = [ "AF_INET" "AF_INET6" "AF_UNIX" ];
           RestrictNamespaces = true;
           RestrictRealtime = true;
           SystemCallArchitectures = "native";
@@ -360,6 +359,7 @@ in
         virtualHosts.${cfg.hostName} = {
           locations."/".proxyPass = "http://${cfg.listenAddress}:${toString cfg.listenPort}";
           locations."/static".root = baseDir;
+          locations."/static/admin".root = "${pythonEnv}/${python.sitePackages}/django/contrib/admin";
         };
       };
     };
