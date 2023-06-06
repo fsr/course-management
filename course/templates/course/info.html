@@ -62,18 +62,20 @@
           {% endif %}
         {% endwith %}
       </div>
+      {% if can_modify %}
       <hr class="m-0">
       <div class="card-body">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="card-title">{% trans 'Participants' %}</h5>
-          {% if can_modify %}
+          <!-- {% if can_modify %} -->
             <small><a href="{% url 'course-participants' course.id %}">{% trans 'list' %}</a></small>
-          {% endif %}
+          <!-- {% endif %} -->
         </div>
         <p class="card-text">
           {{ course.enrolled_students }}/{{ course.max_participants }} {% if course.students_on_queue %}({{ course.students_on_queue }} {% trans 'waiting' %}){% endif %}
         </p>
       </div>
+      {% endif %}
       <hr class="m-0">
       <div class="card-body">
         <h5 class="card-title">{% trans 'Status' %}</h5>

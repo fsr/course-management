@@ -55,7 +55,7 @@
             {% if course.saturated %}
               <span class="badge badge-danger">{% trans 'full' %}</span>
             {% else %}
-              <span class="badge badge-success badge-pill">{{ course.enrolled_students }}/{{ course.max_participants }}</span>
+              <span class="badge badge-success badge-pill">{% trans 'free places' %}</span>
             {% endif %}
           {% else %}
             <span class="badge badge-secondary">{% trans 'unavailable' %}</span>

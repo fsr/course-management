@@ -476,6 +476,10 @@ msgstr ""
 msgid "full"
 msgstr ""
 
+#: course/templates/course/info.html
+msgid "free places"
+msgstr ""
+
 #: course/templates/course/info.html:84
 msgid "available"
 msgstr ""

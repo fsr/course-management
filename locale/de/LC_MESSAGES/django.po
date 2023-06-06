@@ -519,6 +519,10 @@ msgstr "Status"
 msgid "full"
 msgstr "voll"
 
+#: course/templates/course/info.html
+msgid "free places"
+msgstr "freie Plätze"
+
 #: course/templates/course/info.html:84
 msgid "available"
 msgstr "verfügbar"
