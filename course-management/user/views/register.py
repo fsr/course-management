@@ -10,7 +10,6 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.views.decorators.debug import sensitive_post_parameters, sensitive_variables
 
-from user import mailsettings
 from user.forms import UserInformationForm, UserForm
 from user.models import UserInformation, Activation, ACTIVATION_TYPES
 
@@ -98,9 +97,7 @@ def verification_mail(user, type_, email, request):
     send_mail(
         _('Your {} verification at the iFSR course enrollment system.'.format(type_)),
         message,
-        mailsettings.sender,
+        None,
         [email],
-        mailsettings.auth_user,
-        mailsettings.auth_pass
     )
     # print(user_token)

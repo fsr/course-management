@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "course-management"
+version = "0.1.0"
+description = ""
+authors = []
+license = "BSD-3-Clause"
+readme = "README.md"
+packages = [{include = "course-management"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "3.2.*"
+PyYAML = "^6.0"
+bleach = "5.0.*"
+django-modeltranslation = "0.17.*"
+Markdown = "^3.4.3"
+django-guardian = "^2.4.0"
+psycopg2 = {version = "^2.9.6", optional = true}
+
+[tool.poetry.extras]
+pgsql = ["psycopg2"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -10,21 +10,24 @@ For more details on the design decisions taken and the general structure of the 
 
 ## Setting up a development environment
 
-1. In order to use this project, you need `python3` and on your system. Install them via your distributions' package manager. If you want, you can use `virtualenv` to not pollute your working environment too much.
-2. Copy the example configuration and mail settings and customize them as you see fit:
+1. In order to use this project, you need `python3` and `poetry` on your system. Install them via your distribution's package manager.
+2. Copy the example configuration and customize it as you see fit:
 ```
-cp course/settings.py.example course/settings.py
-cp user/mailsettings.py.example user/mailsettings.py
+cp course-management/course/settings.py.example course-management/course/settings.py
 ```
-3. Install any Python dependencies via `pip3 install -r requirements.txt`.
-4. Run `python3 manage.py migrate` to apply the database migrations.
-5. Run `python3 manage.py loaddata courses` to load a sample data set.
-6. Fire up the development server with `python3 manage.py runserver`.
+3. Install any Python dependencies via `poetry install`. PostgreSQL support is gated behind a poetry extra. If you need it, run `poetry install -E pgsql`.
+4. Run `poetry run course-management/manage.py migrate` to apply the database migrations.
+5. Run `poetry run course-management/manage.py loaddata courses` to load a sample data set.
+6. Fire up the development server with `poetry run course-management/manage.py runserver`.
 7. You now can login with the super user **foo** and password **bar**
 
 Another test user is available by logging in as `test: test`.
 
 Opening `http://[project url]/admin` in your browser gives you access to the standard admin interface of Django which you can use to make manual changes to the database.
+
+### Using nix
+
+This project's flake provides a devShell that sets up everything for you. Activate it by executing `nix develop` or using direnv, and the manage.py commands will work as above.
 
 ## Changing the database model
 
@@ -43,12 +46,40 @@ Be sure to change the `settings.py` configuration accordingly.
 
 Otherwise, just follow steps 1-4 from the checklist above, then follow the standard [instructions for deploying a Django application](https://docs.djangoproject.com/en/3.2/howto/deployment/) and check the [deployment checklist](https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/).
 
-Run the `python3 manage.py createsuperuser` command to create a root user for the application to be able to assign administrative privileges to new users.
+Run the `poetry run course-management/manage.py createsuperuser` command to create a root user for the application to be able to assign administrative privileges to new users.
 Admin rights may in general only be granted from the `http://[site url]/admin` page by selecting the appropriate user there and giving them staff/superuser rights.
 
-## Deployment with Docker-Compose
+### NixOS module
 
-To deploy the application using docker-compose, make all necessary configurations and then run `docker compose up -d`.
+The NixOS module can be used in a flake like this:
+```nix
+{
+  inputs.course-management.url = "github:fsr/course-management";
+
+  outputs = { self, nixpkgs, course-management }: {
+    nixosConfigurations.yourhostname = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./configuration.nix
+        course-management.nixosModules.default
+        {
+          services.course-management = {
+            enable = true;
+            hostName = "courses.example.com";
+            settings.adminPassFile = "/run/secrets/course-management-adminPass";
+            # settings.database = { ... };
+            # ...
+          };
+        }
+      ];
+    };
+  };
+}
+```
+A superuser named `admin` will be created with the password stored in `adminPassFile`.
+Nginx will be set up to serve the application on `hostName`, unless none is configured.
+Note however that TLS will *not* be enabled by default and should be configured separately.
+As explained above, it is recommended to configure a database suited for use in a productive environment. PostgreSQL is supported without further configuration.
 
 ## License
 
