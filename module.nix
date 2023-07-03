@@ -11,8 +11,9 @@ let
         description = "The secret key django should use.";
       };
       adminPassFile = mkOption {
-        type = types.str;
-        description = "The password for the `admin` user account.";
+        type = types.nullOr types.str;
+        default = null;
+        description = "If set, a superuser named `admin` with the given password will be created automatically.";
       };
       database = mkOption {
         type = types.attrsOf types.anything;
@@ -65,7 +66,7 @@ let
       email = mkOption {
         type = settingsEmailType;
         description = "Configuration for sending email.";
-        default = {};
+        default = { };
       };
       extraConfig = mkOption {
         default = "";
@@ -305,31 +306,53 @@ in
             user.set_password(password)
             user.save()
       '';
+
+      environment = {
+        PYTHONPATH = "${settingsFile}/${python.sitePackages}:${pythonEnv}/${python.sitePackages}";
+        DJANGO_SETTINGS_MODULE = "course_management_nixos_settings";
+      };
+
+      manageScript =
+        let
+          preserveEnv = "--preserve-env=${lib.concatStringsSep "," (builtins.attrNames environment)}";
+          exportEnv = lib.concatLines (lib.mapAttrsToList (name: value: "export ${name}='${value}'") environment);
+        in
+        pkgs.writeScriptBin "cm-manage" ''
+          #!${pkgs.runtimeShell}
+
+          exec=exec
+          if [[ "$USER" != ${cfg.user} ]]; then
+            exec='exec /run/wrappers/bin/sudo -u ${cfg.user} ${preserveEnv}'
+          fi
+
+          ${exportEnv}
+
+          $exec ${python}/bin/python ${baseDir}/manage.py "$@"
+        '';
     in
     lib.mkIf cfg.enable {
+      environment.systemPackages = [ manageScript ];
+
       users.users.course-management = lib.mkIf (cfg.user == "course-management") {
         group = cfg.group;
         isSystemUser = true;
       };
-
       users.groups.course-management = lib.mkIf (cfg.group == "course-management") { };
 
       systemd.services.course-management = {
+        inherit environment;
         wantedBy = [ "multi-user.target" ];
         after = [ "network.target" ];
-        environment = {
-          PYTHONPATH = "${settingsFile}/${python.sitePackages}:${pythonEnv}/${python.sitePackages}";
-          DJANGO_SETTINGS_MODULE = "course_management_nixos_settings";
-        };
         preStart = ''
           # Generate secret key if it does not exist
           if ! [ -f "${cfg.settings.secretKeyFile}" ]; then
             ${pkgs.pwgen}/bin/pwgen -s 50 1 > "${cfg.settings.secretKeyFile}"
           fi
           # Run migrations
-          ${python}/bin/python ${baseDir}/manage.py migrate
+          ${manageScript}/bin/cm-manage migrate
+        '' + lib.optionalString (cfg.settings.adminPassFile != null) ''
           # Ensure that admin user exists
-          ${python}/bin/python ${baseDir}/manage.py shell < ${ensureAdminScript}
+          ${manageScript}/bin/cm-manage shell < ${ensureAdminScript}
         '';
         serviceConfig = {
           User = cfg.user;

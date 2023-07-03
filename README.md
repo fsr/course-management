@@ -76,10 +76,12 @@ The NixOS module can be used in a flake like this:
   };
 }
 ```
-A superuser named `admin` will be created with the password stored in `adminPassFile`.
 Nginx will be set up to serve the application on `hostName`, unless none is configured.
 Note however that TLS will *not* be enabled by default and should be configured separately.
 As explained above, it is recommended to configure a database suited for use in a productive environment. PostgreSQL is supported without further configuration.
+
+If the option is set, a superuser named `admin` with the password stored in `adminPassFile` will be created automatically.
+Alternatively, you can create a superuser using the wrapped `manage.py` script (as explained above), which is installed to the system environment as `cm-manage`.
 
 ## License
 
