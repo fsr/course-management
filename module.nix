@@ -170,9 +170,9 @@ in
       cfgToPython = name: value: "load_file('${pkgs.writeText (name + ".json") (builtins.toJSON value)}')";
 
       # Convert admins list to python tuples.
-      adminsStr = builtins.concatStringsSep ", " (
+      adminsStr = builtins.concatStringsSep "\n" (
         builtins.map
-          (a: "('${a.name}', '${a.email}')")
+          (a: "('${a.name}', '${a.email}'),")
           cfg.settings.admins
       );
 
@@ -250,7 +250,9 @@ in
 
         ANONYMOUS_USER_ID = -1
 
-        ADMINS = ( ${adminsStr} )
+        ADMINS = [
+        ${adminsStr}
+        ]
 
         DATABASES = {
             'default': ${cfgToPython "database" cfg.settings.database}
@@ -327,7 +329,7 @@ in
 
           ${exportEnv}
 
-          $exec ${python}/bin/python ${baseDir}/manage.py "$@"
+          $exec ${lib.getExe python} ${baseDir}/manage.py "$@"
         '';
     in
     lib.mkIf cfg.enable {
@@ -346,19 +348,19 @@ in
         preStart = ''
           # Generate secret key if it does not exist
           if ! [ -f "${cfg.settings.secretKeyFile}" ]; then
-            ${pkgs.pwgen}/bin/pwgen -s 50 1 > "${cfg.settings.secretKeyFile}"
+            ${lib.getExe pkgs.pwgen} -s 50 1 > "${cfg.settings.secretKeyFile}"
           fi
           # Run migrations
-          ${manageScript}/bin/cm-manage migrate
+          ${lib.getExe manageScript} migrate
         '' + lib.optionalString (cfg.settings.adminPassFile != null) ''
           # Ensure that admin user exists
-          ${manageScript}/bin/cm-manage shell < ${ensureAdminScript}
+          ${lib.getExe manageScript} shell < ${ensureAdminScript}
         '';
         serviceConfig = {
           User = cfg.user;
           Group = cfg.group;
           StateDirectory = "course-management";
-          ExecStart = "${python.pkgs.gunicorn}/bin/gunicorn course-management.course.wsgi -w ${toString cfg.workers} -b ${cfg.listenAddress}:${toString cfg.listenPort}";
+          ExecStart = "${lib.getExe python.pkgs.gunicorn} course-management.course.wsgi -w ${toString cfg.workers} -b ${cfg.listenAddress}:${toString cfg.listenPort}";
 
           # from systemd-analyze --no-pager security course-management.service
           CapabilityBoundingSet = null;
