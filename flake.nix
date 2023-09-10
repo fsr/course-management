@@ -16,7 +16,14 @@
       in
       rec {
         packages = rec {
-          course-management = mkPoetryApplication { projectDir = self; };
+          course-management = mkPoetryApplication {
+            projectDir = self;
+            preBuild = ''
+              cp course-management/course/settings.py.example course-management/course/settings.py
+              python course-management/manage.py compilemessages
+              rm course-management/course/settings.py
+            '';
+          };
           default = course-management;
         };
 
