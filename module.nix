@@ -360,7 +360,7 @@ in
           User = cfg.user;
           Group = cfg.group;
           StateDirectory = "course-management";
-          ExecStart = "${lib.getExe python.pkgs.gunicorn} course-management.course.wsgi -w ${toString cfg.workers} -b ${cfg.listenAddress}:${toString cfg.listenPort}";
+          ExecStart = "${lib.getExe' python.pkgs.gunicorn "gunicorn"} course-management.course.wsgi -w ${toString cfg.workers} -b ${cfg.listenAddress}:${toString cfg.listenPort}";
 
           # from systemd-analyze --no-pager security course-management.service
           CapabilityBoundingSet = null;

@@ -11,8 +11,8 @@
   outputs = { self, nixpkgs, flake-utils, poetry2nix }:
     (flake-utils.lib.eachDefaultSystem (system:
       let
-        inherit (poetry2nix.legacyPackages.${system}) mkPoetryApplication;
         pkgs = nixpkgs.legacyPackages.${system};
+        inherit (poetry2nix.lib.mkPoetry2Nix { inherit pkgs; }) mkPoetryApplication;
       in
       rec {
         packages = rec {
