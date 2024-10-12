@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 from user.forms import ContactForm
 from util.error.reporting import db_error

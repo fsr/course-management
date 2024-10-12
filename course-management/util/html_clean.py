@@ -1,8 +1,8 @@
 import bleach
 
 
-DESCR_ALLOWED_TAGS = bleach.ALLOWED_TAGS + ['h2', 'h3', 'h4', 'h5', 'h6', 'br', 'p', 'img']
-USER_DESCR_ALLOWED_TAGS = bleach.ALLOWED_TAGS + ['h2', 'h3', 'h4', 'h5', 'h6', 'br', 'p']
+DESCR_ALLOWED_TAGS = list(bleach.ALLOWED_TAGS) + ['h2', 'h3', 'h4', 'h5', 'h6', 'br', 'p', 'img']
+USER_DESCR_ALLOWED_TAGS = list(bleach.ALLOWED_TAGS) + ['h2', 'h3', 'h4', 'h5', 'h6', 'br', 'p']
 
 
 def clean_for_user_description(html):

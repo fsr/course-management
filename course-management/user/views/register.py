@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.conf import settings
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.views.decorators.debug import sensitive_post_parameters, sensitive_variables
 
 from user.forms import UserInformationForm, UserForm

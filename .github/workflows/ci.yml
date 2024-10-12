@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "${{ github.workspace }}/.local/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: |
+          poetry install
+
+      - name: Copy settings.py
+        run: |
+          cp course-management/course/settings.py.example course-management/course/settings.py
+
+      - name: Run migrations
+        run: |
+          poetry run python course-management/manage.py migrate
+
+      - name: Run tests
+        run: |
+          poetry run python course-management/manage.py test
