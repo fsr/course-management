@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.http import require_GET

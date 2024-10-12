@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.views.decorators.debug import sensitive_post_parameters
 
 from user.forms import UserForm, UserInformationForm, UserEditForm, PrivacyAgreementForm
