@@ -51,7 +51,7 @@
                 {% if is_own %}
                     {% url 'modify-user' as settingslink %}
                     {% blocktrans %}
-                        In accordance with your privacy settings information about the courses youu teach as well as your description will be withheld from the public. You can change these settings <a href="{{ settingslink }}">here</a>.
+                        In accordance with your privacy settings information about the courses you teach as well as your description will be withheld from the public. You can change these settings <a href="{{ settingslink }}">here</a>.
                     {% endblocktrans %}
                 {% else %}
                     {% trans "This user does not wish to publicise any information about themselves." %}

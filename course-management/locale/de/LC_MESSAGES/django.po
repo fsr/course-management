@@ -1510,7 +1510,7 @@ msgstr "Kurse, die dieser Nutzer hält"
 msgid ""
 "\n"
 "                        In accordance with your privacy settings information "
-"about the courses youu teach as well as your description will be withheld "
+"about the courses you teach as well as your description will be withheld "
 "from the public. You can change these settings <a href=\"%(settingslink)s"
 "\">here</a>.\n"
 "                    "
@@ -1528,7 +1528,7 @@ msgstr "Dieser Nutzer hat keine weiteren Informationen veröffentlicht."
 
 #: user/templates/view-error.html:5
 msgid "The content you requested could not be found."
-msgstr "Der angefordetre Inhalt konnte nicht gefunden werden."
+msgstr "Der angeforderte Inhalt konnte nicht gefunden werden."
 
 #: user/views/contact.py:22
 msgid "Requested user does not exist."
