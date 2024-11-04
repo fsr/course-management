@@ -8,7 +8,7 @@ import django.utils.timezone
 
 from guardian.models import UserObjectPermission
 
-from . import subject
+from course.models import subject
 
 from user.models import UserInformation, get_user_information
 
