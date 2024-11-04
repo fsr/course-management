@@ -6,6 +6,8 @@ from django.views.decorators.debug import sensitive_post_parameters
 
 from user.forms import UserForm, UserInformationForm, UserEditForm, PrivacyAgreementForm
 
+from course.views.index import handler404
+
 from util.error.reporting import db_error
 
 
@@ -62,7 +64,10 @@ def profile(request, user_id=None):
             user = User.objects.get(id=user_id)
             is_own = request.user.id == user.id
         except User.DoesNotExist:
-            return db_error(request, _('This user does not exist'))
+            return handler404(request, None)
+
+        if not is_own and not (hasattr(user, "userinformation") and user.userinformation.public_profile):
+            return handler404(request, None)
 
         template = 'user/public_profile.html'
 
