@@ -2,12 +2,20 @@
 {% load i18n %}
 {% block content %}
 
-<meta http-equiv="refresh" content="2;url={% url 'index' %}">
-
 <div class="col-sm-8 mr-auto ml-auto align-middle">
   <div class="alert alert-success">
     {% trans 'You have been successfully logged out.' %}
   </div>
+  <p class="text-center mt-3">
+    <a href="{% url 'index' %}" class="btn btn-primary">{% trans 'Go to Homepage' %}</a>
+  </p>
 </div>
+
+<script>
+  // Redirect after 2 seconds
+  setTimeout(function() {
+    window.location.href = "{% url 'index' %}";
+  }, 2000);
+</script>
 
 {% endblock %}

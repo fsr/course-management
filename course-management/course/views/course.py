@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import HttpRequest
 from django.shortcuts import redirect, render
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 from guardian.shortcuts import assign_perm
 from guardian.shortcuts import remove_perm
@@ -112,8 +112,11 @@ def edit_course(request: HttpRequest, course_id: str):
 
         if form.is_valid():
             current_course.save()
-            current_schedule.set_type(request.POST['schedule_type'])
-            current_schedule.save()
+            # Safely get schedule_type from POST data
+            schedule_type = request.POST.get('schedule_type', 'W')
+            if schedule_type in ['W', 'O']:  # Validate allowed values
+                current_schedule.set_type(schedule_type)
+                current_schedule.save()
             return redirect('course', course_id)
 
     else:
@@ -172,7 +175,11 @@ def create(request):
             created.save()
             created.teacher.add(request.user.userinformation)
 
-            Schedule.objects.create(_type=request.POST['schedule_type'], course=created)
+            # Safely get schedule_type from POST data
+            schedule_type = request.POST.get('schedule_type', 'W')
+            if schedule_type not in ['W', 'O']:  # Validate allowed values
+                schedule_type = 'W'
+            Schedule.objects.create(_type=schedule_type, course=created)
 
             assign_perm(
                 'change_course',
@@ -193,9 +200,18 @@ def create(request):
             'archiving': 't'
         })
         if 'subject' in request.GET:
-            subj = int(request.GET['subject'][0])
-            if Subject.objects.filter(id=subj).exists():
-                form.initial['subject'] = subj
+            try:
+                # Safely get and validate subject ID
+                subject_id = request.GET.get('subject', '')
+                if subject_id:
+                    # Handle both single value and list
+                    subject_id = subject_id[0] if isinstance(subject_id, list) else subject_id
+                    subj = int(subject_id)
+                    if Subject.objects.filter(id=subj).exists():
+                        form.initial['subject'] = subj
+            except (ValueError, IndexError, TypeError):
+                # Invalid subject ID, ignore
+                pass
 
     return render(
         request,

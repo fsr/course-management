@@ -44,7 +44,7 @@ To deploy the application in an productive environment, using a SQLite database 
 The amount of concurrent users during registration frequently overwhelms the simplistic architecture and therefore, a MySQL/Postgres database should be preferred.
 Be sure to change the `settings.py` configuration accordingly.
 
-Otherwise, just follow steps 1-4 from the checklist above, then follow the standard [instructions for deploying a Django application](https://docs.djangoproject.com/en/3.2/howto/deployment/) and check the [deployment checklist](https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/).
+Otherwise, just follow steps 1-4 from the checklist above, then follow the standard [instructions for deploying a Django application](https://docs.djangoproject.com/en/5.0/howto/deployment/) and check the [deployment checklist](https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/).
 
 Run the `poetry run course-management/manage.py createsuperuser` command to create a root user for the application to be able to assign administrative privileges to new users.
 Admin rights may in general only be granted from the `http://[site url]/admin` page by selecting the appropriate user there and giving them staff/superuser rights.

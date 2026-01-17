@@ -452,8 +452,8 @@
     last_login: 2020-09-11 22:16:52.778766
     is_superuser: true
     username: foo
-    first_name: Ayn
-    last_name: Rand
+    first_name: Mathias
+    last_name: Stuhlbein
     email: test@example.org
     is_staff: true
     is_active: true
@@ -682,7 +682,7 @@
     entry: As you've probably noticed while taking a glimpse at the course management
       [Github repository](https://github.com/fsr/course-management), this system is
       still under development. So expect updates every now and then!
-    author: Ayn Rand
+    author: Mathias Stuhlbein
     modified: 2020-09-11
 - model: admin.logentry
   pk: 1

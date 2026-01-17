@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponseForbidden
 from django.views.decorators.http import require_POST
 from django.shortcuts import redirect, render
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 from course.models.course import Course
 

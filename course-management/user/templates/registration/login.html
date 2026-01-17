@@ -16,7 +16,8 @@
   <form action="{% url 'login' %}" method="post">
     {% csrf_token %}
     {% url 'logout' as logout_url %}
-    {% if not next == logout_url %}
+    {% url 'login' as login_url %}
+    {% if next and next != logout_url and next != login_url %}
       <input type="hidden" name="next" value="{{ next }}"/>
     {% endif %}
 

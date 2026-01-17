@@ -82,7 +82,8 @@ class Course(models.Model):
 
     def _is_participant(self, student):
         student = get_user_information(student)
-        return student in self.participants.all()
+        # Use exists() for better performance instead of loading all participants
+        return self.participants.filter(id=student.id).exists()
 
     def is_participant(self, student):
         return self._is_participant(get_user_information(student)) and not self.is_archived()

@@ -1,8 +1,9 @@
 import bleach
 
 
-DESCR_ALLOWED_TAGS = bleach.ALLOWED_TAGS + ['h2', 'h3', 'h4', 'h5', 'h6', 'br', 'p', 'img']
-USER_DESCR_ALLOWED_TAGS = bleach.ALLOWED_TAGS + ['h2', 'h3', 'h4', 'h5', 'h6', 'br', 'p']
+# In bleach 6.x, ALLOWED_TAGS is a frozenset, so we need to use set operations
+DESCR_ALLOWED_TAGS = set(bleach.ALLOWED_TAGS) | {'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'p', 'img'}
+USER_DESCR_ALLOWED_TAGS = set(bleach.ALLOWED_TAGS) | {'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'p'}
 
 
 def clean_for_user_description(html):
@@ -16,7 +17,8 @@ def clean_for_description(html):
     """
     Removes dangerous tags.
     """
-    allowed_attrs = bleach.ALLOWED_ATTRIBUTES
+    # Copy ALLOWED_ATTRIBUTES to avoid modifying the original
+    allowed_attrs = dict(bleach.ALLOWED_ATTRIBUTES)
     allowed_attrs['img'] = ['src']
     return bleach.clean(html, tags=DESCR_ALLOWED_TAGS, attributes=allowed_attrs, strip=True)
 

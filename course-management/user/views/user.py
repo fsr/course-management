@@ -1,8 +1,11 @@
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.shortcuts import redirect, render
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.views.decorators.debug import sensitive_post_parameters
+from django.views.decorators.http import require_http_methods
 
 from user.forms import UserForm, UserInformationForm, UserEditForm, PrivacyAgreementForm
 
@@ -129,3 +132,14 @@ def delete_account(request):
         )
     else:
         return redirect('modify-user')
+
+
+@require_http_methods(["POST"])
+def logout_view(request):
+    """
+    Custom logout view that logs out the user.
+    Only accepts POST requests for security (CSRF protection).
+    """
+    logout(request)
+    messages.success(request, _('You have been successfully logged out.'))
+    return redirect('index')
