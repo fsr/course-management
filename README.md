@@ -1,4 +1,11 @@
-# A homegrown course management system
+# ⚠️ Project Discontinued & Archived
+
+> **Note:** This repository is no longer actively maintained and lives on as a public archive.
+
+Thank you to everyone who contributed to this project! You are welcome to fork the repository and continue development on your own.
+
+
+# A homegrown course management systemz
 
 This repository houses the source code that runs the [course management system](https://kurse.ifsr.de) operated by the [student representatives](https://www.ifsr.de) of the computer science department at [TU Dresden](https://tu-dresden.de). It can be used to manage programming courses or pretty much every other event that has a limited number of attendees and should therefore offer a registration.
 
